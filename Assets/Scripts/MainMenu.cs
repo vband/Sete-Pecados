@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour
     public Dropdown Resolucoes, Qualidades;
     public Button BotaoVoltar, BotaoSalvarPref;
     [Space(20)]
-    public Text textoVol,resolucoes,qualidades;
+    public Text textoVol,resolucoes,qualidades,titulo;
     public string nomeCenaJogo = "PhsycsScene";
     private string nomeDaCena;
     private float VOLUME;
@@ -161,6 +161,7 @@ public class MainMenu : MonoBehaviour
         BotaoJogar.gameObject.SetActive(!ativarOP);
         BotaoOpcoes.gameObject.SetActive(!ativarOP);
         BotaoSair.gameObject.SetActive(!ativarOP);
+        titulo.gameObject.SetActive(!ativarOP);
         //
         textoVol.gameObject.SetActive(ativarOP);
         resolucoes.gameObject.SetActive(ativarOP);
