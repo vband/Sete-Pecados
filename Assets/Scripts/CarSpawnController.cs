@@ -40,7 +40,7 @@ public class CarSpawnController : MonoBehaviour
                 GameObject toInstantiate = cars[(int)Random.Range(0, cars.Length)];
                 // Instancia
                 Instantiate(toInstantiate,
-                    new Vector3(camera.transform.position.x + screenDimensionsInWorldUnits.x + 3, streetYPosition, 0),
+                    new Vector3(camera.transform.position.x + screenDimensionsInWorldUnits.x + 20, streetYPosition, 0),
                     new Quaternion(0,0,0,0));
             }
         }
