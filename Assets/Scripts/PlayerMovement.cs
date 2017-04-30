@@ -9,6 +9,9 @@ public class PlayerMovement : MonoBehaviour {
     public float maxJumpTime; // Tempo máximo em segundos no qual o personagem pode se deslocar para o alto quando pula
     public LayerMask environmentLayer; // Layer do ambiente do jogo: chão, paredes, obstáculos, etc.
 
+    public AudioClip jumpsound; //Som de pulo
+    private float lastjump; //instante do ultimo pulo
+
     private Rigidbody2D rb2D;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -24,6 +27,7 @@ public class PlayerMovement : MonoBehaviour {
     private Vector3 spriteBottomLeft; // Canto inferior esquerdo da base da sprite
     private Vector3 spriteBottomRight; // Canto inferior direito da base da sprite
 
+
     // Inicializa os atributos privados da classe
     void Start ()
     {
@@ -36,6 +40,7 @@ public class PlayerMovement : MonoBehaviour {
         spriteYExtent = spriteRenderer.sprite.bounds.extents.y - 0.2f;
         spriteXExtent = spriteRenderer.sprite.bounds.extents.x - 0.2f;
 
+        lastjump = Time.realtimeSinceStartup;
     }
 	
 	void FixedUpdate ()
@@ -90,6 +95,7 @@ public class PlayerMovement : MonoBehaviour {
             // Se o personagem estiver tocando o chão
             if (IsGrounded())
             {
+                
                 // Inicia o temporizador do pulo
                 currentJumpTime = 0;
                 // Registra que o personagem está pulando
@@ -97,6 +103,14 @@ public class PlayerMovement : MonoBehaviour {
                 // Move o personagem para cima
                 movement = new Vector2(0f, jumpSpeed);
                 rb2D.AddForce(movement);
+
+                //testa o tempo para evitar que o som se sobreponha
+                if ((Time.realtimeSinceStartup - lastjump) > 0.5f)
+                {
+                    GetComponent<AudioSource>().PlayOneShot(jumpsound);
+                    lastjump = Time.realtimeSinceStartup;
+                }
+                
             }
             // Se a força do pulo ainda não tiver acabado
             else if (isJumping && currentJumpTime < maxJumpTime)
