@@ -7,7 +7,7 @@ public class CarSpawnController : MonoBehaviour
     public float chance; // Chance de gerar um novo carro a cada frame
     public float timeInterval; // Intervalo de tempo entre a geração de dois carros
     public GameObject[] cars; // Vetor com os carros disponíveis
-    public GameObject camera;
+    public GameObject cam;
     public float streetYPosition;
 
     private float timer; // Cronômetro
@@ -16,7 +16,7 @@ public class CarSpawnController : MonoBehaviour
 	void Start ()
     {
         timer = 0;
-        screenDimensionsInWorldUnits = camera.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(
+        screenDimensionsInWorldUnits = cam.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(
             Screen.width, Screen.height, 0));
 	}
 	
@@ -40,7 +40,7 @@ public class CarSpawnController : MonoBehaviour
                 GameObject toInstantiate = cars[(int)Random.Range(0, cars.Length)];
                 // Instancia
                 Instantiate(toInstantiate,
-                    new Vector3(camera.transform.position.x + screenDimensionsInWorldUnits.x + 20, streetYPosition, 0),
+                    new Vector3(cam.transform.position.x + screenDimensionsInWorldUnits.x + 20, streetYPosition, 0),
                     new Quaternion(0,0,0,0));
             }
         }
