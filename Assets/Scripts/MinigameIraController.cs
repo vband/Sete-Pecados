@@ -10,11 +10,17 @@ public class MinigameIraController : MonoBehaviour
     public int nAggressiveComments;
     public int nPoliteComments;
     public RectTransform commentPrefab;
+    public Text timer;
+    public float maxTime;
+    public Transform canvas;
 
     // Caminhos para os diretórios
     private string pathToAggressiveFolder;
     private string pathToPoliteFolder;
     private string fileExtension;
+
+    // Temporizador
+    private float timeLeft;
 
 	void Start ()
     {
@@ -37,6 +43,29 @@ public class MinigameIraController : MonoBehaviour
         commentSlots = GenerateComments(buttonHeight, pathToAggressiveFolder, fileExtension, nAggressiveComments, true, commentSlots);
         // Gera os comentários educados
         GenerateComments(buttonHeight, pathToPoliteFolder, fileExtension, nPoliteComments, false, commentSlots);
+
+        // Inicia o temporizador
+        timeLeft = maxTime;
+
+        // Inicia o temporizador da tela
+        timer.text = timeLeft.ToString();
+    }
+
+    void Update()
+    {
+        // Atualiza o tempo
+        if (canvas.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsTag("2") && (timeLeft > 0))
+        {
+            timeLeft -= Time.deltaTime;
+            int t = (int)timeLeft;
+            timer.text = t.ToString();
+        }
+
+        // Checa se o tmepo acabou
+        if (timeLeft <= 0)
+        {
+            canvas.GetComponent<Animator>().SetBool("Lost", true);
+        }
     }
 
     private List<float> GenerateComments(float buttonHeight, string pathToFolder, string fileExtension, int nComments, bool isAggressive, List<float> heights)
@@ -89,18 +118,13 @@ public class MinigameIraController : MonoBehaviour
         return heights;
     }
 	
-	void Update ()
-    {
-		
-	}
-
     public void AggressiveCommentOnClick()
     {
-        Debug.Log("Pong");
+        canvas.GetComponent<Animator>().SetBool("Lost", true);
     }
 
     public void PoliteCommentOnClick()
     {
-        Debug.Log("Ping");
+        canvas.GetComponent<Animator>().SetBool("Won", true);
     }
 }
