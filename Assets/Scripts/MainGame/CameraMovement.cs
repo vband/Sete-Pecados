@@ -6,17 +6,39 @@ public class CameraMovement : MonoBehaviour {
 
     public GameObject player;
     public GameObject cam;
-    public EdgeCollider2D EC2D;
     private Vector3 offset;
-    private Vector3 screenDimensionsInWorldUnits;
+
+
+    public float colDepth = 4f;
+    public float zPosition = 0f;
+    private Vector2 screenSize;
+   
+    private Transform leftCollider;
+    private Vector3 cameraPos;
 
 
     void Start()
     {
         offset = transform.position - player.transform.position;
-        screenDimensionsInWorldUnits = cam.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(
-            Screen.width, Screen.height, 0));
        
+        //Cria o objeto vazio
+        leftCollider = new GameObject().transform;
+        //Dã nome a ele 
+        leftCollider.name = "LeftCollider";
+        //Adiciona o colisor
+        leftCollider.gameObject.AddComponent<BoxCollider2D>();
+        //faz do colisor filho da camera para que se mova junto com ela
+        leftCollider.parent = transform;
+        //Gera as cordenadas do mundo
+        cameraPos = Camera.main.transform.position;
+        screenSize.x = Vector2.Distance(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)), Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0))) * 0.5f;
+        screenSize.y = Vector2.Distance(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)), Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height))) * 0.5f;
+        //modifica as cordanadas papa equivaler a extremidades   
+        leftCollider.localScale = new Vector3(colDepth, screenSize.y * 2, colDepth);
+        leftCollider.position = new Vector3(cameraPos.x - screenSize.x - (leftCollider.localScale.x * 0.5f), cameraPos.y, zPosition);
+
+
+
     }
 
     void Update(){

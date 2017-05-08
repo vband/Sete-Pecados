@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Hotkeys : MonoBehaviour {
-    public string nomeCenaJogo = "MainMenu";
+public class certo : MonoBehaviour {
+    private string maingame;
+
 
     [Space(20)]
     public Image black;
@@ -13,25 +14,19 @@ public class Hotkeys : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-    
+        maingame = "Main";
+
     }
 	
 	// Update is called once per frame
 	void Update () {
-        verificaEsc();
-
-        if (Input.GetKey(KeyCode.G))
-        {
-            StartCoroutine(fading("MiniGame_Ganancia"));
-        }
+		
 	}
 
-    void verificaEsc()
+    public void Certo()
     {
-        if (Input.GetButtonDown("Cancel"))
-        {
-            StartCoroutine(fading(nomeCenaJogo));
-        }
+        print("acertou");
+        StartCoroutine(fading(maingame));
     }
 
     IEnumerator fading(string NextScene)
@@ -40,4 +35,6 @@ public class Hotkeys : MonoBehaviour {
         yield return new WaitUntil(() => black.color.a == 1);
         SceneManager.LoadScene(NextScene);
     }
+
+
 }
