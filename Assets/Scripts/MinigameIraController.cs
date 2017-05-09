@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MinigameIraController : MonoBehaviour
 {
@@ -61,10 +62,17 @@ public class MinigameIraController : MonoBehaviour
             timer.text = t.ToString();
         }
 
-        // Checa se o tmepo acabou
+        // Checa se o tempo acabou
         if (timeLeft <= 0)
         {
             canvas.GetComponent<Animator>().SetBool("Lost", true);
+        }
+
+        // Checa se o minigame acabou
+        if (canvas.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsTag("5"))
+        {
+            // Volta para o jogo principal
+            SceneManager.LoadScene("Main");
         }
     }
 

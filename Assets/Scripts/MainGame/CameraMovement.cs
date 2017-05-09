@@ -29,6 +29,10 @@ public class CameraMovement : MonoBehaviour {
         leftCollider.gameObject.AddComponent<BoxCollider2D>();
         //faz do colisor filho da camera para que se mova junto com ela
         leftCollider.parent = transform;
+        //dá a layer de "LeftCollider" ao colisor
+        leftCollider.gameObject.layer = LayerMask.NameToLayer("LeftCollider");
+        //determina que as colisões entre os inimigos e o leftCollider serão ignoradas
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("LeftCollider"));
         //Gera as cordenadas do mundo
         cameraPos = Camera.main.transform.position;
         screenSize.x = Vector2.Distance(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)), Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0))) * 0.5f;
@@ -47,10 +51,10 @@ public class CameraMovement : MonoBehaviour {
 
     private void LateUpdate()
     {
-        movimentacao();
+        Movimentacao();
     }
 
-    void movimentacao()
+    void Movimentacao()
     {
         
 
