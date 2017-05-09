@@ -7,7 +7,7 @@ public class CarSpawnController : MonoBehaviour
     public float chance; // Chance de gerar um novo carro a cada frame
     public float timeInterval; // Intervalo de tempo entre a geração de dois carros
     public GameObject[] cars; // Vetor com os carros disponíveis
-    public GameObject cam;
+    public GameObject cam; // Câmera
     public float streetYPosition;
 
     private float timer; // Cronômetro
