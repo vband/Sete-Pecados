@@ -5,9 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Hotkeys : MonoBehaviour {
-    public string nomeCenaJogo = "MainMenu";
-
-    [Space(20)]
+   
     public Image black;
     public Animator fade;
 
@@ -18,20 +16,27 @@ public class Hotkeys : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        verificaEsc();
-
+      
         if (Input.GetKey(KeyCode.G))
         {
             StartCoroutine(fading("MiniGame_Ganancia"));
         }
-	}
 
-    void verificaEsc()
-    {
-        if (Input.GetButtonDown("Cancel"))
+        if (Input.GetKey(KeyCode.I))
         {
-            StartCoroutine(fading(nomeCenaJogo));
+            StartCoroutine(fading("Ira"));
         }
+
+        if (Input.GetKey(KeyCode.M))
+        {
+            StartCoroutine(fading("Main"));
+        }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            StartCoroutine(fading("MainMenu"));
+        }
+
     }
 
     IEnumerator fading(string NextScene)
