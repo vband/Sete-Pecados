@@ -17,11 +17,16 @@ public class MainMenu : MonoBehaviour
     [Space(20)]
     public Text textoVol,resolucoes,qualidades,titulo;
     public string nomeCenaJogo = "PhsycsScene";
+    [Space(20)]
+    public Image black;
+    public Animator fade;
+
     private string nomeDaCena;
     private float VOLUME;
     private int qualidadeGrafica, modoJanelaAtivo, resolucaoSalveIndex;
     private bool telaCheiaAtivada;
     private Resolution[] resolucoesSuportadas;
+    
 
     void Awake()
     {
@@ -210,10 +215,18 @@ public class MainMenu : MonoBehaviour
     }
     private void Jogar()
     {
-        SceneManager.LoadScene(nomeCenaJogo);
+        StartCoroutine(fading(nomeCenaJogo));
+        
     }
     private void Sair()
     {
         Application.Quit();
+    }
+
+    IEnumerator fading(string NextScene)
+    {
+        fade.SetBool("Fade", true);
+        yield return new WaitUntil(() => black.color.a == 1);
+        SceneManager.LoadScene(NextScene);
     }
 }
