@@ -25,7 +25,6 @@ public class certo : MonoBehaviour {
 
     public void Certo()
     {
-        print("acertou");
         StartCoroutine(fading(maingame));
     }
 

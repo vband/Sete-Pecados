@@ -23,7 +23,12 @@ public class MinigameIraController : MonoBehaviour
     // Temporizador
     private float timeLeft;
 
-	void Start ()
+    //fadeAnimation
+    [Space(20)]
+    public Image black;
+    public Animator fade;
+
+    void Start ()
     {
         // Inicializa os caminhos para o s diretórios
         float buttonHeight = commentPrefab.rect.height;
@@ -66,13 +71,15 @@ public class MinigameIraController : MonoBehaviour
         if (timeLeft <= 0)
         {
             canvas.GetComponent<Animator>().SetBool("Lost", true);
+            StartCoroutine(fading("MainMenu"));
         }
 
         // Checa se o minigame acabou
         if (canvas.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsTag("5"))
         {
             // Volta para o jogo principal
-            SceneManager.LoadScene("Main");
+            //SceneManager.LoadScene("Main");
+            StartCoroutine(fading("MainMenu"));
         }
     }
 
@@ -129,10 +136,19 @@ public class MinigameIraController : MonoBehaviour
     public void AggressiveCommentOnClick()
     {
         canvas.GetComponent<Animator>().SetBool("Lost", true);
+        StartCoroutine(fading("MainMenu"));
     }
 
     public void PoliteCommentOnClick()
     {
         canvas.GetComponent<Animator>().SetBool("Won", true);
+        StartCoroutine(fading("Main"));
+    }
+
+    IEnumerator fading(string NextScene)
+    {
+        fade.SetBool("Fade", true);
+        yield return new WaitUntil(() => black.color.a == 1);
+        SceneManager.LoadScene(NextScene);
     }
 }

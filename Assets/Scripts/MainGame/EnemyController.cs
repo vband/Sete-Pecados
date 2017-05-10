@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -11,7 +12,12 @@ public class EnemyController : MonoBehaviour
     private Rigidbody2D rb2D;
     private SpriteRenderer sprite;
 
-	void Start ()
+
+    [Space(20)]
+    public Image black;
+    public Animator fade;
+
+    void Start ()
     {
         rb2D = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
@@ -43,7 +49,17 @@ public class EnemyController : MonoBehaviour
         {
             // se destrói
             //gameObject.SetActive(false);
-            SceneManager.LoadScene("Ira");
+
+            //SceneManager.LoadScene("Ira");
+            StartCoroutine(fading("Ira"));
         }
     }
+
+    IEnumerator fading(string NextScene)
+    {
+        fade.SetBool("Fade", true);
+        yield return new WaitUntil(() => black.color.a == 1);
+        SceneManager.LoadScene(NextScene);
+    }
+
 }
