@@ -32,8 +32,10 @@ public class MinigameIraController : MonoBehaviour
     {
         // Inicializa os caminhos para o s diretórios
         float buttonHeight = commentPrefab.rect.height;
-        pathToAggressiveFolder = "Assets\\Text\\AggressiveComments";
-        pathToPoliteFolder = "Assets\\Text\\PoliteComments";
+        //pathToAggressiveFolder = "Assets\\Text\\AggressiveComments";
+        pathToAggressiveFolder = Application.dataPath + "\\Text\\AggressiveComments";
+        //pathToPoliteFolder = "Assets\\Text\\PoliteComments";
+        pathToPoliteFolder = Application.dataPath + "\\Text\\PoliteComments";
         fileExtension = ".txt";
 
         // Cria os espaços onde serão instanciados os comentários
