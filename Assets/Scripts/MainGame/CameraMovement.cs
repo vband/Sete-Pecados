@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraMovement : MonoBehaviour {
+public class CameraMovement : MonoBehaviour
+{
 
     public GameObject player;
     public GameObject cam;
@@ -12,7 +13,7 @@ public class CameraMovement : MonoBehaviour {
     public float colDepth = 4f;
     public float zPosition = 0f;
     private Vector2 screenSize;
-   
+
     private Transform leftCollider;
     private Vector3 cameraPos;
 
@@ -20,7 +21,7 @@ public class CameraMovement : MonoBehaviour {
     void Start()
     {
         offset = transform.position - player.transform.position;
-       
+
         //Cria o objeto vazio
         leftCollider = new GameObject().transform;
         //Dã nome a ele 
@@ -45,8 +46,9 @@ public class CameraMovement : MonoBehaviour {
 
     }
 
-    void Update(){
-       
+    void Update()
+    {
+
     }
 
     private void LateUpdate()
@@ -56,7 +58,7 @@ public class CameraMovement : MonoBehaviour {
 
     void Movimentacao()
     {
-        
+
 
         // Se o jogador se mover para a direita
         if (player.transform.position.x > (cam.transform.position.x - offset.x))
@@ -66,9 +68,9 @@ public class CameraMovement : MonoBehaviour {
         // Se o jogador se mover para a esquerda ou ficar parado
         else
         {
-            transform.position = new Vector3(cam.transform.position.x, player.transform.position.y + offset.y, offset.z);  
+            transform.position = new Vector3(cam.transform.position.x, player.transform.position.y + offset.y, offset.z);
         }
-        
+
 
 
 
