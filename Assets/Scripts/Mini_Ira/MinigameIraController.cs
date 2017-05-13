@@ -14,6 +14,7 @@ public class MinigameIraController : MonoBehaviour
     public Text timer;
     public float maxTime;
     public Transform canvas;
+    public Image timeBar;
 
     public static int difficulty = 1;
 
@@ -59,11 +60,12 @@ public class MinigameIraController : MonoBehaviour
         // Gera os comentários educados
         GenerateComments(buttonHeight, pathToPoliteFolder, fileExtension, nPoliteComments, false, commentSlots);
 
+        // Desconta um certo tempo, dependendo da dificuldade
+        maxTime -= (difficulty - 1) * 0.5f;
+
         // Inicia o temporizador
         timeLeft = maxTime;
-        // Desconta um certo tempo, dependendo da dificuldade
-        timeLeft -= (difficulty - 1) * 0.5f;
-
+        
         // Inicia o temporizador da tela
         timer.text = timeLeft.ToString();
     }
@@ -75,6 +77,7 @@ public class MinigameIraController : MonoBehaviour
         {
             timeLeft -= Time.deltaTime;
             timer.text = timeLeft.ToString("0.0");
+            timeBar.fillAmount = timeLeft / maxTime;
         }
 
         // Checa se o tempo acabou
