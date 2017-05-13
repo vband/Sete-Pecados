@@ -8,12 +8,14 @@ using UnityEngine.SceneManagement;
 
 public class MinigameIraController : MonoBehaviour
 {
-    public int nAggressiveComments;
-    public int nPoliteComments;
+    //public int nAggressiveComments;
+    //public int nPoliteComments;
     public RectTransform commentPrefab;
     public Text timer;
     public float maxTime;
     public Transform canvas;
+
+    public static int difficulty = 1;
 
     // Caminhos para os diretórios
     private string pathToAggressiveFolder;
@@ -38,6 +40,11 @@ public class MinigameIraController : MonoBehaviour
         pathToPoliteFolder = Application.dataPath + "\\Text\\PoliteComments";
         fileExtension = ".txt";
 
+        // Determina o número de comentários de acordo com a dificuldade
+        //difficulty = 5; // just for now
+        int nAggressiveComments= difficulty;
+        int nPoliteComments = (difficulty > 1)?(1):(2); // se dif = 1, nPoliteComments = 2. se dif > 1, nPoliteComments = 1
+
         // Cria os espaços onde serão instanciados os comentários
         int total = nAggressiveComments + nPoliteComments;
         List<float> commentSlots = new List<float>();
@@ -54,6 +61,8 @@ public class MinigameIraController : MonoBehaviour
 
         // Inicia o temporizador
         timeLeft = maxTime;
+        // Desconta um certo tempo, dependendo da dificuldade
+        timeLeft -= (difficulty - 1) * 0.5f;
 
         // Inicia o temporizador da tela
         timer.text = timeLeft.ToString();
@@ -65,8 +74,7 @@ public class MinigameIraController : MonoBehaviour
         if (canvas.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsTag("2") && (timeLeft > 0))
         {
             timeLeft -= Time.deltaTime;
-            int t = (int)timeLeft;
-            timer.text = t.ToString();
+            timer.text = timeLeft.ToString("0.0");
         }
 
         // Checa se o tempo acabou
@@ -152,5 +160,15 @@ public class MinigameIraController : MonoBehaviour
         fade.SetBool("Fade", true);
         yield return new WaitUntil(() => black.color.a == 1);
         SceneManager.LoadScene(NextScene);
+    }
+
+    public static void SetDifficulty(int dif)
+    {
+        difficulty = dif;
+    }
+
+    public static int GetDifficulty()
+    {
+        return difficulty;
     }
 }
