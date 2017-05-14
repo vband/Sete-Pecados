@@ -152,13 +152,15 @@ public class MinigamePreguiçaController : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.UpArrow) && bedControls[nBedsTouched - 1] == UP)
                 {
-                    Debug.Log("Acertou");
-                    beds[nBedsTouched - 1].gameObject.SetActive(false);
+                    //Debug.Log("Acertou");
+                    //beds[nBedsTouched - 1].gameObject.SetActive(false);
+                    beds[nBedsTouched - 1].GetComponent<Animator>().SetTrigger("hitBed");
                 }
                 else if (Input.GetKeyDown(KeyCode.DownArrow) && bedControls[nBedsTouched - 1] == DOWN)
                 {
-                    Debug.Log("Acertou");
-                    beds[nBedsTouched - 1].gameObject.SetActive(false);
+                    //Debug.Log("Acertou");
+                    //beds[nBedsTouched - 1].gameObject.SetActive(false);
+                    beds[nBedsTouched - 1].GetComponent<Animator>().SetTrigger("hitBed");
                 }
                 else
                 {
@@ -178,8 +180,9 @@ public class MinigamePreguiçaController : MonoBehaviour
             
             if (PlayerPressedDoubleKeys())
             {
-                Debug.Log("Acertou");
-                beds[nBedsTouched - 1].gameObject.SetActive(false);
+                //Debug.Log("Acertou");
+                //beds[nBedsTouched - 1].gameObject.SetActive(false);
+                beds[nBedsTouched - 1].GetComponent<Animator>().SetTrigger("hitBed");
                 UpAndDownPressTime = 0;
             }
             
