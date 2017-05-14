@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MinigamePreguiçaController : MonoBehaviour
 {
+    public Animator animator;
+    public Transform mainCamera;
+    public Transform background;
     public Transform bedUpPrefab;
     public Transform bedDownPrefab;
     public Transform bedUpAndDownPrefab;
@@ -11,8 +14,12 @@ public class MinigamePreguiçaController : MonoBehaviour
     public float bedSpeed; // Velocidade de deslocamento das camas
     public float deltaDistance; // Intervalo de distância entre cada cama
 
+    private List<Transform> backgrounds; // Lista que armazena as imagens dos planos de fundo
+    private float bgWidth; // Largura do plano de fundo
+    private float cameraWidth; // Largura do quadro da câmera
     private List<Transform> beds; // Lista que armazena as camas
     private List<int> bedControls; // Lista que armazena os controles certos de cada cama: cima, baixo, ou cima e baixo
+    private List<bool> wasBedHit; // Lista que armazena em quais camas o jogador já bateu atualmente
     private bool isTouchingBed; // True se o jogador estiver tocando em uma cama
     private int nBedsTouched; // Quantidade atual de camas que o jogador já passou
     private float buttonPressedTime = 0; // Tempo em que o jogador pressionou a seta para cima OU baixo
@@ -32,10 +39,15 @@ public class MinigamePreguiçaController : MonoBehaviour
         nBedsTouched = 0;
         beds = new List<Transform>();
         bedControls = new List<int>();
+        wasBedHit = new List<bool>();
+        backgrounds = new List<Transform>();
+        bgWidth = background.GetComponent<SpriteRenderer>().sprite.bounds.size.x;
+        cameraWidth = mainCamera.GetComponent<Camera>().rect.size.x;
 
         // Vetor com os controles que o microgame reconhece
         int[] controls = { UP, DOWN, UPANDDOWN };
-        
+
+        // Cria as camas
         for (int i = 0; i < numberOfBeds; i++)
         {
             // Define um controle aleatório para cada cama criada
@@ -51,31 +63,54 @@ public class MinigamePreguiçaController : MonoBehaviour
             else
                 prefab = bedUpAndDownPrefab;
             
-            // Cria as camas
+            // Instancia
             Transform instance = Instantiate(
                 prefab,
                 transform.position + new Vector3(deltaDistance * (i+1), 0, 0),
                 new Quaternion(0, 0, 0, 0));
             beds.Add(instance);
+
+            // Determina que essa cama ainda não foi atingida
+            wasBedHit.Add(false);
+        }
+
+        // Cria os planos de fundo
+        float lastBedPos = beds[beds.Count - 1].position.x;
+        float lastBgPos = background.position.x;
+
+        while(lastBgPos + cameraWidth < lastBedPos + cameraWidth)
+        {
+            Transform instance = Instantiate(
+                background,
+                new Vector3(lastBgPos + bgWidth, background.position.y),
+                new Quaternion());
+            lastBgPos = lastBgPos + bgWidth;
+            backgrounds.Add(instance);
         }
 	}
 	
 	void Update ()
     {
-        // Computa o tempo em que recebeu uma tecla
-        ReceiveKeyPress();
-        // Desloca as camas
-        MoveBeds();
+        // Se o jogo já começou, permite que ele aconteça
+        if (animator.GetCurrentAnimatorStateInfo(0).IsTag("2"))
+        {
+            // Computa o tempo em que recebeu uma tecla
+            ReceiveKeyPress();
+            // Desloca as camas
+            MoveBeds();
+            // Desloca o plano de fundo
+            MoveBackground();
 
-        if (isTouchingBed)
-        {
-            // Permite que o jogador acerte uma cama, caso esteja tocando em uma
-            HitBed();
-        }
-        // Se o jogador apertar uma seta sem estar tocando numa cama, ele perde
-        else if (PlayerPressedKey())
-        {
-            Debug.Log("Erooou!1");
+            if (isTouchingBed)
+            {
+                // Permite que o jogador acerte uma cama, caso esteja tocando em uma
+                HitBed();
+            }
+            // Se o jogador apertar uma seta sem estar tocando numa cama, ele perde
+            else if (PlayerPressedKey())
+            {
+                Debug.Log("Erooou!1");
+            }
         }
 	}
 
@@ -86,6 +121,36 @@ public class MinigamePreguiçaController : MonoBehaviour
         {
             bed.GetComponent<Rigidbody2D>().MovePosition(
                 (Vector2)bed.position - new Vector2(bedSpeed, 0));
+        }
+    }
+
+    // Desloca o plano de fundo
+    private void MoveBackground()
+    {
+        foreach (Transform bg in backgrounds)
+        {
+            bg.GetComponent<Rigidbody2D>().MovePosition(
+                (Vector2)bg.position + Vector2.left * bedSpeed);
+        }
+    }
+
+    private void WinGame()
+    {
+        DespawnBeds();
+        animator.SetTrigger("win");
+    }
+
+    private void LoseGame()
+    {
+        DespawnBeds();
+        animator.SetTrigger("lose");
+    }
+
+    private void DespawnBeds()
+    {
+        foreach (Transform bed in beds)
+        {
+            bed.gameObject.SetActive(false);
         }
     }
 
@@ -103,6 +168,19 @@ public class MinigamePreguiçaController : MonoBehaviour
         GetComponent<Animator>().SetBool("isRunning", false);
         isTouchingBed = false;
         UpAndDownPressTime = 0;
+
+        // Checa se o jogador deixou de bater nessa cama
+        if (!wasBedHit[nBedsTouched - 1])
+        {
+            //Debug.Log("Deixou passar");
+            LoseGame();
+        }
+
+        // Checa se o jogador ganhou
+        if (nBedsTouched == numberOfBeds && wasBedHit[nBedsTouched - 1])
+        {
+            WinGame();
+        }
     }
 
     // Computa o tempo em que recebeu uma tecla
@@ -143,8 +221,8 @@ public class MinigamePreguiçaController : MonoBehaviour
             // Se o jogador apertou as duas setas ao mesmo tempo
             if (PlayerPressedDoubleKeys())
             {
-                Debug.Log("Erooou!2");
-                return;
+                //Debug.Log("Erooou!2");
+                LoseGame();
             }
 
             // Se o jogador apertou apenas uma seta
@@ -155,17 +233,19 @@ public class MinigamePreguiçaController : MonoBehaviour
                     //Debug.Log("Acertou");
                     //beds[nBedsTouched - 1].gameObject.SetActive(false);
                     beds[nBedsTouched - 1].GetComponent<Animator>().SetTrigger("hitBed");
+                    wasBedHit[nBedsTouched - 1] = true;
                 }
                 else if (Input.GetKeyDown(KeyCode.DownArrow) && bedControls[nBedsTouched - 1] == DOWN)
                 {
                     //Debug.Log("Acertou");
                     //beds[nBedsTouched - 1].gameObject.SetActive(false);
                     beds[nBedsTouched - 1].GetComponent<Animator>().SetTrigger("hitBed");
+                    wasBedHit[nBedsTouched - 1] = true;
                 }
                 else
                 {
-                    Debug.Log("Erooou!3");
-                    return;
+                    //Debug.Log("Erooou!3");
+                    LoseGame();
                 }
             }
         }
@@ -184,13 +264,14 @@ public class MinigamePreguiçaController : MonoBehaviour
                 //beds[nBedsTouched - 1].gameObject.SetActive(false);
                 beds[nBedsTouched - 1].GetComponent<Animator>().SetTrigger("hitBed");
                 UpAndDownPressTime = 0;
+                wasBedHit[nBedsTouched - 1] = true;
             }
-            
+
             // Se o jogador não apertou as duas setas ao mesmo tempo, ele errou
             if (UpAndDownPressTime != 0 && Time.time - UpAndDownPressTime > timeWindow)
             {
-                Debug.Log("Erooou!4");
-                UpAndDownPressTime = 0;
+                //Debug.Log("Erooou!4");
+                LoseGame();
             }
         }
     }
