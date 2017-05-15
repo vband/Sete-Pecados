@@ -10,10 +10,11 @@ public class MinigamePreguiçaController : MonoBehaviour
     public Transform bedUpPrefab;
     public Transform bedDownPrefab;
     public Transform bedUpAndDownPrefab;
-    public int numberOfBeds; // Número de camas que irão aparecer
-    public float bedSpeed; // Velocidade de deslocamento das camas
-    public float deltaDistance; // Intervalo de distância entre cada cama
+    public int difficulty;
 
+    private int numberOfBeds; // Número de camas que irão aparecer
+    private float bedSpeed; // Velocidade de deslocamento das camas
+    private float deltaDistance; // Intervalo de distância entre cada cama
     private List<Transform> backgrounds; // Lista que armazena as imagens dos planos de fundo
     private float bgWidth; // Largura do plano de fundo
     private float cameraWidth; // Largura do quadro da câmera
@@ -23,7 +24,7 @@ public class MinigamePreguiçaController : MonoBehaviour
     private bool isTouchingBed; // True se o jogador estiver tocando em uma cama
     private int nBedsTouched; // Quantidade atual de camas que o jogador já passou
     private float buttonPressedTime = 0; // Tempo em que o jogador pressionou a seta para cima OU baixo
-    private float timeWindow = 0.05f; // Intervalo de tempo em segundos entre uma tecla e outra, para que se considere
+    private float timeWindow = 0.02f; // Intervalo de tempo em segundos entre uma tecla e outra, para que se considere
                                       // que elas foram tecladas ao mesmo tempo
     private float UpAndDownPressTime = 0; // Tempo em que o jogador pressionou a seta para cima E para baixo
 
@@ -43,6 +44,9 @@ public class MinigamePreguiçaController : MonoBehaviour
         backgrounds = new List<Transform>();
         bgWidth = background.GetComponent<SpriteRenderer>().sprite.bounds.size.x;
         cameraWidth = mainCamera.GetComponent<Camera>().rect.size.x;
+
+        // Ajusta os parâmetros do jogo de acordo com a dificuldade
+        SetUpDifficulty();
 
         // Vetor com os controles que o microgame reconhece
         int[] controls = { UP, DOWN, UPANDDOWN };
@@ -66,7 +70,7 @@ public class MinigamePreguiçaController : MonoBehaviour
             // Instancia
             Transform instance = Instantiate(
                 prefab,
-                transform.position + new Vector3(deltaDistance * (i+1), 0, 0),
+                new Vector3(transform.position.x + deltaDistance * (i + 1), prefab.position.y),
                 new Quaternion(0, 0, 0, 0));
             beds.Add(instance);
 
@@ -109,10 +113,47 @@ public class MinigamePreguiçaController : MonoBehaviour
             // Se o jogador apertar uma seta sem estar tocando numa cama, ele perde
             else if (PlayerPressedKey())
             {
-                Debug.Log("Erooou!1");
+                //Debug.Log("Erooou!1");
+                LoseGame();
             }
         }
 	}
+
+    private void SetUpDifficulty()
+    {
+        switch (difficulty)
+        {
+            case 1:
+                numberOfBeds = 3;
+                bedSpeed = 0.1f;
+                deltaDistance = 5;
+                break;
+
+            case 2:
+                numberOfBeds = 6;
+                bedSpeed = 0.2f;
+                deltaDistance = 5;
+                break;
+
+            case 3:
+                numberOfBeds = 8;
+                bedSpeed = 0.3f;
+                deltaDistance = 5;
+                break;
+
+            case 4:
+                numberOfBeds = 10;
+                bedSpeed = 0.4f;
+                deltaDistance = 8;
+                break;
+
+            case 5:
+                numberOfBeds = 15;
+                bedSpeed = 0.45f;
+                deltaDistance = 8;
+                break;
+        }
+    }
 
     // Desloca as camas
     private void MoveBeds()
