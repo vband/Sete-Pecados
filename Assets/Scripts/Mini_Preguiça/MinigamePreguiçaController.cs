@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MinigamePreguiçaController : MonoBehaviour
 {
@@ -10,7 +12,6 @@ public class MinigamePreguiçaController : MonoBehaviour
     public Transform bedUpPrefab;
     public Transform bedDownPrefab;
     public Transform bedUpAndDownPrefab;
-    public int difficulty;
 
     private int numberOfBeds; // Número de camas que irão aparecer
     private float bedSpeed; // Velocidade de deslocamento das camas
@@ -28,12 +29,19 @@ public class MinigamePreguiçaController : MonoBehaviour
                                       // que elas foram tecladas ao mesmo tempo
     private float UpAndDownPressTime = 0; // Tempo em que o jogador pressionou a seta para cima E para baixo
 
+    private static int difficulty;
+
     // Constantes
     const int UP = 1;
     const int DOWN = 2;
     const int UPANDDOWN = 3;
 
-	void Start ()
+    //fadeAnimation
+    [Space(20)]
+    public Image black;
+    public Animator fade;
+
+    void Start ()
     {
         // Inicialização
         isTouchingBed = false;
@@ -179,12 +187,14 @@ public class MinigamePreguiçaController : MonoBehaviour
     {
         DespawnBeds();
         animator.SetTrigger("win");
+        StartCoroutine(fading("Main"));
     }
 
     private void LoseGame()
     {
         DespawnBeds();
         animator.SetTrigger("lose");
+        StartCoroutine(fading("MainMenu"));
     }
 
     private void DespawnBeds()
@@ -315,5 +325,22 @@ public class MinigamePreguiçaController : MonoBehaviour
                 LoseGame();
             }
         }
+    }
+
+    public static void SetDifficulty(int dif)
+    {
+        difficulty = dif;
+    }
+
+    public static int GetDifficulty()
+    {
+        return difficulty;
+    }
+
+    IEnumerator fading(string NextScene)
+    {
+        fade.SetBool("Fade", true);
+        yield return new WaitUntil(() => black.color.a == 1);
+        SceneManager.LoadScene(NextScene);
     }
 }

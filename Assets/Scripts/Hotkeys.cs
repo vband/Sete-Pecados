@@ -37,6 +37,10 @@ public class Hotkeys : MonoBehaviour {
             StartCoroutine(fading("MainMenu"));
         }
 
+        if (Input.GetKey(KeyCode.P))
+        {
+            StartCoroutine(fading("Preguiça"));
+        }
     }
 
     private GameObject[] FindGameObjectsWithLayer(int layer)
