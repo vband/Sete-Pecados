@@ -29,7 +29,7 @@ public class MinigamePreguiçaController : MonoBehaviour
                                       // que elas foram tecladas ao mesmo tempo
     private float UpAndDownPressTime = 0; // Tempo em que o jogador pressionou a seta para cima E para baixo
 
-    private static int difficulty;
+    private static int difficulty = 1;
 
     // Constantes
     const int UP = 1;
