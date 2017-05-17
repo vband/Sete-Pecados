@@ -11,7 +11,6 @@ public class MinigameIraController : MonoBehaviour
     //public int nAggressiveComments;
     //public int nPoliteComments;
     public RectTransform commentPrefab;
-    public Text timer;
     public float maxTime;
     public Transform canvas;
     public Image timeBar;
@@ -60,9 +59,6 @@ public class MinigameIraController : MonoBehaviour
 
         // Inicia o temporizador
         timeLeft = maxTime;
-        
-        // Inicia o temporizador da tela
-        timer.text = timeLeft.ToString();
     }
 
     void Update()
@@ -71,7 +67,6 @@ public class MinigameIraController : MonoBehaviour
         if (canvas.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsTag("2") && (timeLeft > 0))
         {
             timeLeft -= Time.deltaTime;
-            timer.text = timeLeft.ToString("0.0");
             timeBar.fillAmount = timeLeft / maxTime;
         }
 
@@ -153,16 +148,6 @@ public class MinigameIraController : MonoBehaviour
         
     }
 
-<<<<<<< HEAD
-    
-=======
-    IEnumerator fading(string NextScene)
-    {
-        fade.SetBool("Fade", true);
-        yield return new WaitUntil(() => black.color.a == 1);
-        SceneManager.LoadScene(NextScene);
-    }
-
     public static void SetDifficulty(int dif)
     {
         difficulty = dif;
@@ -172,5 +157,4 @@ public class MinigameIraController : MonoBehaviour
     {
         return difficulty;
     }
->>>>>>> f89e37802e0bca52c167967b3288509099d0351d
 }

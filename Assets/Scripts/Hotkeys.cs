@@ -34,12 +34,18 @@ public class Hotkeys : MonoBehaviour {
             GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
         }
 
+        if (Input.GetKey(KeyCode.P))
+        {
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Preguiça");
+        }
+
         if (Input.GetKey(KeyCode.Escape))
         {
             GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MainMenu");
         }
 
-<<<<<<< HEAD
+
+
         //DEBUG
         if (Input.GetKey(KeyCode.V))
         {
@@ -49,16 +55,7 @@ public class Hotkeys : MonoBehaviour {
         {
             enviroment.GetComponent<LivesController>().addVidas();
         }
-=======
-        if (Input.GetKey(KeyCode.P))
-        {
-            StartCoroutine(fading("Preguiça"));
-        }
     }
->>>>>>> origin/Minigame_preguiça
-
-<<<<<<< HEAD
-=======
     private GameObject[] FindGameObjectsWithLayer(int layer)
     {
         GameObject[] goArray = FindObjectsOfType(typeof(GameObject)) as GameObject[];
@@ -75,13 +72,5 @@ public class Hotkeys : MonoBehaviour {
             return null;
         }
         return goList.ToArray();
-    }
-
-
-    IEnumerator fading(string NextScene)
-    {
-        fade.SetBool("Fade", true);
-        yield return new WaitUntil(() => black.color.a == 1);
-        SceneManager.LoadScene(NextScene);
     }
 }
