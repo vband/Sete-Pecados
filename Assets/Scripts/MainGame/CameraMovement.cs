@@ -7,9 +7,10 @@ public class CameraMovement : MonoBehaviour
 
     public GameObject player;
     public GameObject cam;
+    public GameObject Limite_direita;
+
     private Vector3 offset;
-
-
+    
     public float colDepth = 4f;
     public float zPosition = 0f;
     private Vector2 screenSize;
@@ -34,6 +35,7 @@ public class CameraMovement : MonoBehaviour
         leftCollider.gameObject.layer = LayerMask.NameToLayer("LeftCollider");
         //determina que as colisões entre os inimigos e o leftCollider serão ignoradas
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("LeftCollider"));
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Environment"), LayerMask.NameToLayer("LeftCollider"));
         //Gera as cordenadas do mundo
         cameraPos = Camera.main.transform.position;
         screenSize.x = Vector2.Distance(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)), Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0))) * 0.5f;
@@ -41,6 +43,9 @@ public class CameraMovement : MonoBehaviour
         //modifica as cordanadas papa equivaler a extremidades   
         leftCollider.localScale = new Vector3(colDepth, screenSize.y * 2, colDepth);
         leftCollider.position = new Vector3(cameraPos.x - screenSize.x - (leftCollider.localScale.x * 0.5f), cameraPos.y, zPosition);
+
+        //limite direita
+        Limite_direita.transform.position = new Vector3(cameraPos.x + screenSize.x , cameraPos.y, zPosition);
 
 
 

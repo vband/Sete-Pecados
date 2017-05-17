@@ -12,13 +12,9 @@ public class EnemyController : MonoBehaviour
     private Rigidbody2D rb2D;
     private SpriteRenderer sprite;
 
-
-    [Space(20)]
-    public Image black;
-    public Animator fade;
-
     void Start ()
     {
+        player = GameObject.Find("Player").transform;
         rb2D = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
 	}
@@ -45,21 +41,20 @@ public class EnemyController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Se o inimigo colidir com o player...
+              
         if (collision.gameObject.tag == "Player")
         {
-            // se destrói
-            //gameObject.SetActive(false);
+            if (GameObject.Find("Player").GetComponent<PlayerMovement>().imortal)
+            {
+                //print("MATOU ENQUANTO DIVINO!");
+                goto Destruir;
+            }
 
-            //SceneManager.LoadScene("Ira");
-            StartCoroutine(fading("Ira"));
+            GameObject.Find("Vidas").GetComponent<LivesController>().RemVidas();
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Ira");
+        Destruir:
+            Destroy(gameObject);
         }
     }
-
-    IEnumerator fading(string NextScene)
-    {
-        fade.SetBool("Fade", true);
-        yield return new WaitUntil(() => black.color.a == 1);
-        SceneManager.LoadScene(NextScene);
-    }
-
+    
 }

@@ -17,7 +17,7 @@ public class Remove_instruçoes : MonoBehaviour {
 	// Update is called once per frame
     void Update()
     {
-        if (move_instructions && transform.position.y < 50)
+        if (move_instructions && transform.position.y < 8)
         {
             transform.Translate(new Vector3(0, velocidade * Time.deltaTime));
         }

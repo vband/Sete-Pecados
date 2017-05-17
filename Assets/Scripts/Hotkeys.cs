@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class Hotkeys : MonoBehaviour {
    
-    public Image black;
-    public Animator fade;
+    
+
+    //debug
+    public GameObject enviroment;
 
     // Use this for initialization
     void Start () {
@@ -19,30 +21,35 @@ public class Hotkeys : MonoBehaviour {
       
         if (Input.GetKey(KeyCode.G))
         {
-            StartCoroutine(fading("MiniGame_Ganancia"));
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MiniGame_Ganancia");
         }
 
         if (Input.GetKey(KeyCode.I))
         {
-            StartCoroutine(fading("Ira"));
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Ira");    
         }
 
         if (Input.GetKey(KeyCode.M))
         {
-            StartCoroutine(fading("Main"));
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
         }
 
         if (Input.GetKey(KeyCode.Escape))
         {
-            StartCoroutine(fading("MainMenu"));
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MainMenu");
+        }
+
+        //DEBUG
+        if (Input.GetKey(KeyCode.V))
+        {
+            enviroment.GetComponent<LivesController>().RemVidas();
+        }
+        if (Input.GetKey(KeyCode.B))
+        {
+            enviroment.GetComponent<LivesController>().addVidas();
         }
 
     }
 
-    IEnumerator fading(string NextScene)
-    {
-        fade.SetBool("Fade", true);
-        yield return new WaitUntil(() => black.color.a == 1);
-        SceneManager.LoadScene(NextScene);
-    }
+    
 }

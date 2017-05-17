@@ -9,6 +9,18 @@ public class PlayerMovement : MonoBehaviour {
     public float maxJumpTime; // Tempo máximo em segundos no qual o personagem pode se deslocar para o alto quando pula
     public LayerMask environmentLayer; // Layer do ambiente do jogo: chão, paredes, obstáculos, etc.
 
+    public bool imortal;// estado de imortalidade do falamaia
+    public float Tempo_imortal;
+    private float Tempo_imortal_original;
+    public GameObject aureola;
+
+    //estado de bencao do falamaia
+    public bool benzido;
+    public float Tempo_benzido;
+    private float Tempo_benzido_original;
+    public GameObject simboloBencao;
+    
+
     public AudioClip jumpsound; //Som de pulo
     private float lastjump; //instante do ultimo pulo
 
@@ -28,6 +40,7 @@ public class PlayerMovement : MonoBehaviour {
     private Vector3 spriteBottomRight; // Canto inferior direito da base da sprite
 
 
+
     // Inicializa os atributos privados da classe
     void Start ()
     {
@@ -41,12 +54,16 @@ public class PlayerMovement : MonoBehaviour {
         spriteXExtent = spriteRenderer.sprite.bounds.extents.x - 0.2f;
 
         lastjump = Time.realtimeSinceStartup;
+
+        Tempo_imortal_original = Tempo_imortal;
+        Tempo_benzido_original = Tempo_benzido;
     }
 	
 	void FixedUpdate ()
     {
         Move();
         Jump();
+        atualizaTempo();
     }
 
     private void Move()
@@ -163,6 +180,49 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         return false;
+    }
+
+    public void viraDeus()
+    {
+        imortal = true;
+        Instantiate(aureola, GetComponent<Transform>());
+        //print("Sou Deus!!!");
+        
+    }
+
+    public void ficaBenzido()
+    {
+        benzido = true;
+        Instantiate(simboloBencao, GetComponent<Transform>());
+        //print("Estou Benzido!!!");
+    }
+
+    void atualizaTempo()
+    {
+        if (Tempo_imortal > 0.0f && imortal == true)
+        {
+            Tempo_imortal -= Time.deltaTime;
+        }
+        else if (imortal == true)
+        {
+            imortal = false;
+            Destroy(GameObject.Find("aureola(Clone)"));
+            //print("Virei humano :-(");
+            Tempo_imortal = Tempo_imortal_original;
+        }
+
+        if (Tempo_benzido > 0.0f && benzido == true)
+        {
+            Tempo_benzido -= Time.deltaTime;
+        }
+        else if (benzido == true)
+        {
+            benzido = false;
+            Destroy(GameObject.Find("AguaBentaPowerUp(Clone)"));
+            print("fiquei puro :-(");
+            Tempo_benzido = Tempo_benzido_original;
+        }
+
     }
 }
 

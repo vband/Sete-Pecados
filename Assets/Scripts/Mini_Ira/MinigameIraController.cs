@@ -23,11 +23,6 @@ public class MinigameIraController : MonoBehaviour
     // Temporizador
     private float timeLeft;
 
-    //fadeAnimation
-    [Space(20)]
-    public Image black;
-    public Animator fade;
-
     void Start ()
     {
         // Inicializa os caminhos para o s diretórios
@@ -73,15 +68,14 @@ public class MinigameIraController : MonoBehaviour
         if (timeLeft <= 0)
         {
             canvas.GetComponent<Animator>().SetBool("Lost", true);
-            StartCoroutine(fading("MainMenu"));
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MainMenu");
         }
 
         // Checa se o minigame acabou
         if (canvas.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsTag("5"))
         {
             // Volta para o jogo principal
-            //SceneManager.LoadScene("Main");
-            StartCoroutine(fading("MainMenu"));
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MainMenu");
         }
     }
 
@@ -138,19 +132,15 @@ public class MinigameIraController : MonoBehaviour
     public void AggressiveCommentOnClick()
     {
         canvas.GetComponent<Animator>().SetBool("Lost", true);
-        StartCoroutine(fading("MainMenu"));
+        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MainMenu");
     }
 
     public void PoliteCommentOnClick()
     {
         canvas.GetComponent<Animator>().SetBool("Won", true);
-        StartCoroutine(fading("Main"));
+        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+        
     }
 
-    IEnumerator fading(string NextScene)
-    {
-        fade.SetBool("Fade", true);
-        yield return new WaitUntil(() => black.color.a == 1);
-        SceneManager.LoadScene(NextScene);
-    }
+    
 }

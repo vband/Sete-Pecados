@@ -16,11 +16,7 @@ public class MainMenu : MonoBehaviour
     public Button BotaoVoltar, BotaoSalvarPref;
     [Space(20)]
     public Text textoVol,resolucoes,qualidades,titulo;
-    public string nomeCenaJogo = "PhsycsScene";
-    [Space(20)]
-    public Image black;
-    public Animator fade;
-
+        
     private string nomeDaCena;
     private float VOLUME;
     private int qualidadeGrafica, modoJanelaAtivo, resolucaoSalveIndex;
@@ -215,18 +211,11 @@ public class MainMenu : MonoBehaviour
     }
     private void Jogar()
     {
-        StartCoroutine(fading(nomeCenaJogo));
-        
+        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
     private void Sair()
     {
         Application.Quit();
     }
 
-    IEnumerator fading(string NextScene)
-    {
-        fade.SetBool("Fade", true);
-        yield return new WaitUntil(() => black.color.a == 1);
-        SceneManager.LoadScene(NextScene);
-    }
 }
