@@ -20,23 +20,18 @@ public class MinigameIraController : MonoBehaviour
     // Caminhos para os diretórios
     private string pathToAggressiveFolder;
     private string pathToPoliteFolder;
-    private string fileExtension;
 
     // Temporizador
     private float timeLeft;
 
     void Start ()
     {
-        // Inicializa os caminhos para o s diretórios
+        // Inicializa os caminhos para os diretórios
         float buttonHeight = commentPrefab.rect.height;
-        //pathToAggressiveFolder = "Assets\\Text\\AggressiveComments";
-        pathToAggressiveFolder = Application.dataPath + "\\Text\\AggressiveComments";
-        //pathToPoliteFolder = "Assets\\Text\\PoliteComments";
-        pathToPoliteFolder = Application.dataPath + "\\Text\\PoliteComments";
-        fileExtension = ".txt";
+        pathToAggressiveFolder = "AggressiveComments";
+        pathToPoliteFolder = "PoliteComments";
 
         // Determina o número de comentários de acordo com a dificuldade
-        //difficulty = 5; // just for now
         int nAggressiveComments= difficulty;
         int nPoliteComments = (difficulty > 1)?(1):(2); // se dif = 1, nPoliteComments = 2. se dif > 1, nPoliteComments = 1
 
@@ -50,9 +45,9 @@ public class MinigameIraController : MonoBehaviour
         }
 
         // Gera os comentários agressivos
-        commentSlots = GenerateComments(buttonHeight, pathToAggressiveFolder, fileExtension, nAggressiveComments, true, commentSlots);
+        commentSlots = GenerateComments(buttonHeight, pathToAggressiveFolder, nAggressiveComments, true, commentSlots);
         // Gera os comentários educados
-        GenerateComments(buttonHeight, pathToPoliteFolder, fileExtension, nPoliteComments, false, commentSlots);
+        GenerateComments(buttonHeight, pathToPoliteFolder, nPoliteComments, false, commentSlots);
 
         // Desconta um certo tempo, dependendo da dificuldade
         maxTime -= (difficulty - 1) * 0.5f;
@@ -85,7 +80,7 @@ public class MinigameIraController : MonoBehaviour
         }
     }
 
-    private List<float> GenerateComments(float buttonHeight, string pathToFolder, string fileExtension, int nComments, bool isAggressive, List<float> heights)
+    private List<float> GenerateComments(float buttonHeight, string pathToFolder, int nComments, bool isAggressive, List<float> heights)
     {
         // Obtém os comentários
         for (int i = 1; i <= nComments; i++)
@@ -96,41 +91,29 @@ public class MinigameIraController : MonoBehaviour
             {
                 string file = "\\aggressive";
                 file = string.Concat(file, i.ToString());
-                file = string.Concat(file, fileExtension);
                 path = string.Concat(pathToFolder, file);
             }
             else
             {
                 string file = "\\polite";
                 file = string.Concat(file, i.ToString());
-                file = string.Concat(file, fileExtension);
                 path = string.Concat(pathToFolder, file);
             }
 
             // Abre o arquivo
-            using (FileStream fs = File.Open(path, FileMode.Open)) 
-            {
-                byte[] b = new byte[1024];
-                UTF8Encoding temp = new UTF8Encoding(true);
-
-                // Lê o arquivo
-                while (fs.Read(b, 0, b.Length) > 0)
-                {
-                    // Instancia o comentário
-                    RectTransform instance = Instantiate(commentPrefab, transform);
-                    // Escreve o comentário
-                    instance.GetComponent<CommentController>().SetComment(temp.GetString(b));
-                    // Define se o comentário é agressivo ou educado
-                    instance.GetComponent<CommentController>().isAggressive = isAggressive;
-
-                    // Posiciona o comentário a uma altura aleatória
-                    float randomHeight = heights[Random.Range(0, heights.Count)];
-                    instance.SetPositionAndRotation(
-                        new Vector3(instance.position.x, randomHeight, instance.position.z),
-                        new Quaternion(0, 0, 0, 0));
-                    heights.Remove(randomHeight);
-                }
-            }
+            TextAsset txtAsset = (TextAsset)Resources.Load(path);
+            // Instancia o comentário
+            RectTransform instance = Instantiate(commentPrefab, transform);
+            // Escreve o comentário
+            instance.GetComponent<CommentController>().SetComment(txtAsset.text);
+            // Define se o comentário é agressivo ou educado
+            instance.GetComponent<CommentController>().isAggressive = isAggressive;
+            // Posiciona o comentário a uma altura aleatória
+            float randomHeight = heights[Random.Range(0, heights.Count)];
+            instance.SetPositionAndRotation(
+                new Vector3(instance.position.x, randomHeight, instance.position.z),
+                new Quaternion(0, 0, 0, 0));
+            heights.Remove(randomHeight);
         }
         return heights;
     }
