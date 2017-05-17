@@ -49,6 +49,33 @@ public class Hotkeys : MonoBehaviour {
             enviroment.GetComponent<LivesController>().addVidas();
         }
 
+<<<<<<< HEAD
+=======
+    private GameObject[] FindGameObjectsWithLayer(int layer)
+    {
+        GameObject[] goArray = FindObjectsOfType(typeof(GameObject)) as GameObject[];
+        List<GameObject> goList = new List<GameObject>();
+        for (int i = 0; i < goArray.Length; i++)
+        {
+            if (goArray[i].layer == layer)
+            {
+                goList.Add(goArray[i]);
+            }
+        }
+        if (goList.Count == 0)
+        {
+            return null;
+        }
+        return goList.ToArray();
+    }
+
+
+    IEnumerator fading(string NextScene)
+    {
+        fade.SetBool("Fade", true);
+        yield return new WaitUntil(() => black.color.a == 1);
+        SceneManager.LoadScene(NextScene);
+>>>>>>> f89e37802e0bca52c167967b3288509099d0351d
     }
 
     
