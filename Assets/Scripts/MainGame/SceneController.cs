@@ -35,29 +35,34 @@ public class SceneController : MonoBehaviour
         progressBar.fillAmount = fillAmount;
     }
 
-    private void UpdateDifficulty() // Por enquanto, só funciona para o minigame da ira.
+    private void UpdateDifficulty() // Por enquanto, só funciona para o minigame da ira e da preguiça.
     {
         // Divide o progresso do jogo em 5 segmentos, e
         // estabelece um nível de dificuldade para cada um.
         if (progressBar.fillAmount <= 0.2)
         {
             MinigameIraController.SetDifficulty(1);
+            MinigamePreguiçaController.SetDifficulty(1);
         }
         else if (progressBar.fillAmount <= 0.4)
         {
             MinigameIraController.SetDifficulty(2);
+            MinigamePreguiçaController.SetDifficulty(2);
         }
         else if (progressBar.fillAmount <= 0.6)
         {
             MinigameIraController.SetDifficulty(3);
+            MinigamePreguiçaController.SetDifficulty(3);
         }
         else if (progressBar.fillAmount <= 0.8)
         {
             MinigameIraController.SetDifficulty(4);
+            MinigamePreguiçaController.SetDifficulty(4);
         }
         else
         {
             MinigameIraController.SetDifficulty(5);
+            MinigamePreguiçaController.SetDifficulty(5);
         }
     }
 

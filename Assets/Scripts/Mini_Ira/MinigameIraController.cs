@@ -16,7 +16,7 @@ public class MinigameIraController : MonoBehaviour
     public Transform canvas;
     public Image timeBar;
 
-    public static int difficulty = 1;
+    private static int difficulty = 1;
 
     // Caminhos para os diretórios
     private string pathToAggressiveFolder;
