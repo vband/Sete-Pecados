@@ -11,6 +11,9 @@ public class FadeController : MonoBehaviour {
 
     //metodo padrao para chamar fade e alteracao de cenas a partir de qualquer gameobject
     //GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+    //para garantir que o fade aconteca e a transicao nao quebre, associe a qualquer objeto fixo da cena
+    //o script ativarFade.cs pra garantir que o objeto do fade esteja ativado quando acontecer a chamada.
+    //nao esqueca de associar o fadeimage da cena no script ativarfade
 
     public void CallFading(string NextScene)
     {
