@@ -17,10 +17,10 @@ public class SceneController : MonoBehaviour
     {
         playerInitPos = beginningOfWorld.position.x;
         playerEndPos = playerInitPos + distanceToWin;
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("PowerUps"));
+    }
 
-	}
-	
-	void Update ()
+    void Update ()
     {
         ProgressBar();
         UpdateDifficulty(); // Por enquanto, só funciona para o minigame da ira.
