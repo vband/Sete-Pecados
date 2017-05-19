@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class EnemyController : MonoBehaviour
+public class EnemyIraController : MonoBehaviour
 {
     public Transform player;
     public float speed;
