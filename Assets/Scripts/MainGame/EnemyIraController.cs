@@ -8,20 +8,43 @@ public class EnemyIraController : MonoBehaviour
 {
     public Transform player;
     public float speed;
+    public float jumpForce;
+    public float jumpCooldown;
 
     private Rigidbody2D rb2D;
     private SpriteRenderer sprite;
+    private float currentCooldown;
+    private bool isgrounded;
 
     void Start ()
     {
         player = GameObject.Find("Player").transform;
         rb2D = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
-	}
+        currentCooldown = 0;
+        isgrounded = false;
+    }
 	
 	void Update ()
     {
-		// Verifica se o player está para a direita
+        Move();
+
+        // Verifica se o player está acima
+        if (player.position.y > transform.position.y + 2)
+        {
+            Jump();
+        }
+
+        // Diminui o cooldown de pulo
+        if (currentCooldown > 0)
+        {
+            currentCooldown -= Time.deltaTime;
+        }
+    }
+
+    private void Move()
+    {
+        // Verifica se o player está para a direita
         if (player.position.x > transform.position.x)
         {
             // Anda para a direita
@@ -34,6 +57,15 @@ public class EnemyIraController : MonoBehaviour
             // Anda para a esquerda
             rb2D.AddForce(Vector2.left * speed);
             sprite.flipX = true;
+        }
+    }
+
+    private void Jump()
+    {
+        if ((currentCooldown <= 0) && isgrounded)
+        {
+            rb2D.AddForce(Vector2.up * jumpForce);
+            currentCooldown = jumpCooldown;
         }
     }
 
@@ -55,6 +87,16 @@ public class EnemyIraController : MonoBehaviour
         Destruir:
             Destroy(gameObject);
         }
+
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Environment"))
+        {
+            isgrounded = true;
+        }
     }
-    
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        isgrounded = false;
+    }
+
 }
