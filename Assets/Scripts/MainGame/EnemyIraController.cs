@@ -6,15 +6,14 @@ using UnityEngine.UI;
 
 public class EnemyIraController : MonoBehaviour
 {
-    public Transform player;
     public float speed;
     public float jumpForce;
     public float jumpCooldown;
 
+    private Transform player;
     private Rigidbody2D rb2D;
     private SpriteRenderer sprite;
     private float currentCooldown;
-    private bool isgrounded;
 
     void Start ()
     {
@@ -22,15 +21,14 @@ public class EnemyIraController : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         currentCooldown = 0;
-        isgrounded = false;
     }
 	
 	void Update ()
     {
         Move();
 
-        // Verifica se o player está acima
-        if (player.position.y > transform.position.y + 2)
+        // Verifica se o player está acima e se existe umaplataforma dobre o inimigo
+        if ((player.position.y > transform.position.y + 2) && IsBelowPlatform())
         {
             Jump();
         }
@@ -62,11 +60,24 @@ public class EnemyIraController : MonoBehaviour
 
     private void Jump()
     {
-        if ((currentCooldown <= 0) && isgrounded)
+        if ((currentCooldown <= 0) && IsGrounded())
         {
             rb2D.AddForce(Vector2.up * jumpForce);
             currentCooldown = jumpCooldown;
         }
+    }
+
+    private bool IsBelowPlatform()
+    {
+        GetComponent<BoxCollider2D>().enabled = false;
+        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, Vector2.up, 3f);
+        GetComponent<BoxCollider2D>().enabled = true;
+
+        if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Environment"))
+        {
+            return true;
+        }
+        return false;
     }
 
     // Essa função é chamada quando o inimigo colidir
@@ -87,16 +98,19 @@ public class EnemyIraController : MonoBehaviour
         Destruir:
             Destroy(gameObject);
         }
-
-        else if (collision.gameObject.layer == LayerMask.NameToLayer("Environment"))
-        {
-            isgrounded = true;
-        }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private bool IsGrounded()
     {
-        isgrounded = false;
+        GetComponent<BoxCollider2D>().enabled = false;
+        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, Vector2.down, 0.5f);
+        GetComponent<BoxCollider2D>().enabled = true;
+
+        if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Environment"))
+        {
+            return true;
+        }
+        return false;
     }
 
 }
