@@ -44,14 +44,26 @@ public class Hotkeys : MonoBehaviour {
             GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MainMenu");
         }
 
-
-
+        //BotaoPausa
+        if (Input.GetKeyUp(KeyCode.F1))
+        {
+            if (Time.timeScale == 0)
+            {
+                Time.timeScale = 1;
+            }
+            else
+            {
+                Time.timeScale = 0;
+            }
+            
+        }
+        
         //DEBUG
-        if (Input.GetKey(KeyCode.V))
+        if (Input.GetKeyUp(KeyCode.V))
         {
             enviroment.GetComponent<LivesController>().RemVidas();
         }
-        if (Input.GetKey(KeyCode.B))
+        if (Input.GetKeyUp(KeyCode.B))
         {
             enviroment.GetComponent<LivesController>().addVidas();
         }

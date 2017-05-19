@@ -17,13 +17,27 @@ public class FadeController : MonoBehaviour {
 
     public void CallFading(string NextScene)
     {
-        StartCoroutine(fading(NextScene));
+        StartCoroutine(fadingDestroy(NextScene));
     }
 
-    IEnumerator fading(string NextScene)
+    public void CallFadingAdditive(string NextScene)
+    {
+        StartCoroutine(fadingAdditive(NextScene));
+    }
+
+    IEnumerator fadingAdditive(string NextScene)
     {
         fade.SetBool("Fade", true);
         yield return new WaitUntil(() => black.color.a == 1);
-        SceneManager.LoadScene(NextScene);
+        GameObject.Find("FadeImage").SetActive(false);
+        SceneManager.LoadScene(NextScene, LoadSceneMode.Additive);
+    }
+
+    IEnumerator fadingDestroy(string NextScene)
+    {
+        fade.SetBool("Fade", true);
+        yield return new WaitUntil(() => black.color.a == 1);
+        GameObject.Find("FadeImage").SetActive(false);
+        SceneManager.LoadScene(NextScene, LoadSceneMode.Single);
     }
 }

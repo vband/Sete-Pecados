@@ -21,19 +21,22 @@ public class EnemyController : MonoBehaviour
 	
 	void Update ()
     {
-		// Verifica se o player está para a direita
-        if (player.position.x > transform.position.x)
+        if (Time.timeScale != 0) //evita que atualize posicao enquanto jogo estiver pausado
         {
-            // Anda para a direita
-            rb2D.AddForce(Vector2.right * speed);
-            sprite.flipX = false;
-        }
-        // Verifica se o player está para a esquerda
-        else if (player.position.x < transform.position.x)
-        {
-            // Anda para a esquerda
-            rb2D.AddForce(Vector2.left * speed);
-            sprite.flipX = true;
+            // Verifica se o player está para a direita
+            if (player.position.x > transform.position.x)
+            {
+                // Anda para a direita
+                rb2D.AddForce(Vector2.right * speed);
+                sprite.flipX = false;
+            }
+            // Verifica se o player está para a esquerda
+            else if (player.position.x < transform.position.x)
+            {
+                // Anda para a esquerda
+                rb2D.AddForce(Vector2.left * speed);
+                sprite.flipX = true;
+            }
         }
     }
 
