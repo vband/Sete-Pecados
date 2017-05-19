@@ -50,10 +50,12 @@ public class Hotkeys : MonoBehaviour {
             if (Time.timeScale == 0)
             {
                 Time.timeScale = 1;
+                AudioListener.pause = false;
             }
             else
             {
                 Time.timeScale = 0;
+                AudioListener.pause = true;
             }
             
         }
