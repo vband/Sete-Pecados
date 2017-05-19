@@ -51,7 +51,9 @@ public class MinigamePreguiçaController : MonoBehaviour
         wasBedHit = new List<bool>();
         backgrounds = new List<Transform>();
         bgWidth = background.GetComponent<SpriteRenderer>().sprite.bounds.size.x;
-        cameraWidth = mainCamera.GetComponent<Camera>().rect.size.x;
+        cameraWidth = mainCamera.GetComponent<Camera>().orthographicSize * 2f * mainCamera.GetComponent<Camera>().aspect;
+        //cameraWidth = mainCamera.GetComponent<Camera>().rect.size.x;
+        //Debug.Log(cameraWidth);
 
         // Ajusta os parâmetros do jogo de acordo com a dificuldade
         SetUpDifficulty();
@@ -90,16 +92,20 @@ public class MinigamePreguiçaController : MonoBehaviour
         float lastBedPos = beds[beds.Count - 1].position.x;
         float lastBgPos = background.position.x;
 
-        while(lastBgPos + cameraWidth < lastBedPos + cameraWidth)
+        float totalDistance = (lastBedPos + cameraWidth) - (background.position.x + bgWidth/2);
+        float numberOfBgs = totalDistance / bgWidth;
+        numberOfBgs = Mathf.Ceil(numberOfBgs);
+
+        for (int i = 0; i < numberOfBgs; i++)
         {
             Transform instance = Instantiate(
                 background,
                 new Vector3(lastBgPos + bgWidth, background.position.y),
                 new Quaternion());
-            lastBgPos = lastBgPos + bgWidth;
+            lastBgPos = instance.position.x;
             backgrounds.Add(instance);
         }
-	}
+    }
 	
 	void Update ()
     {
