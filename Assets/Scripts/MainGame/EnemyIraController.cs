@@ -70,7 +70,7 @@ public class EnemyIraController : MonoBehaviour
     private bool IsBelowPlatform()
     {
         GetComponent<BoxCollider2D>().enabled = false;
-        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, Vector2.up, 3f);
+        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, Vector2.up, 2f);
         GetComponent<BoxCollider2D>().enabled = true;
 
         if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Environment"))
