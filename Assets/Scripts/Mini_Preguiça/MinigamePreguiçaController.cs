@@ -28,6 +28,7 @@ public class MinigamePreguiçaController : MonoBehaviour
     private float timeWindow = 0.02f; // Intervalo de tempo em segundos entre uma tecla e outra, para que se considere
                                       // que elas foram tecladas ao mesmo tempo
     private float UpAndDownPressTime = 0; // Tempo em que o jogador pressionou a seta para cima E para baixo
+    private int nInitialLives;
 
     private static int difficulty = 1;
 
@@ -52,6 +53,7 @@ public class MinigamePreguiçaController : MonoBehaviour
         backgrounds = new List<Transform>();
         bgWidth = background.GetComponentInChildren<SpriteRenderer>().sprite.bounds.size.x * background.localScale.x;
         cameraWidth = mainCamera.GetComponent<Camera>().orthographicSize * 2f * mainCamera.GetComponent<Camera>().aspect;
+        nInitialLives = LivesController.GetVidas();
         //cameraWidth = mainCamera.GetComponent<Camera>().rect.size.x;
         //Debug.Log(cameraWidth);
 
@@ -129,6 +131,7 @@ public class MinigamePreguiçaController : MonoBehaviour
             {
                 //Debug.Log("Erooou!1");
                 LoseGame();
+                return;
             }
         }
 	}
@@ -202,6 +205,14 @@ public class MinigamePreguiçaController : MonoBehaviour
         LivesController.RemVidas();
         DespawnBeds();
         animator.SetTrigger("lose");
+
+        // BUG FIX
+        int nCurrentLives = LivesController.GetVidas();
+        if (nCurrentLives == nInitialLives - 2)
+        {
+            LivesController.addVidas();
+        }
+
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
 
@@ -233,12 +244,14 @@ public class MinigamePreguiçaController : MonoBehaviour
         {
             //Debug.Log("Deixou passar");
             LoseGame();
+            return;
         }
 
         // Checa se o jogador ganhou
         if (nBedsTouched == numberOfBeds && wasBedHit[nBedsTouched - 1])
         {
             WinGame();
+            return;
         }
     }
 
@@ -282,6 +295,7 @@ public class MinigamePreguiçaController : MonoBehaviour
             {
                 //Debug.Log("Erooou!2");
                 LoseGame();
+                return;
             }
 
             // Se o jogador apertou apenas uma seta
@@ -305,6 +319,7 @@ public class MinigamePreguiçaController : MonoBehaviour
                 {
                     //Debug.Log("Erooou!3");
                     LoseGame();
+                    return;
                 }
             }
         }
@@ -331,6 +346,7 @@ public class MinigamePreguiçaController : MonoBehaviour
             {
                 //Debug.Log("Erooou!4");
                 LoseGame();
+                return;
             }
         }
     }

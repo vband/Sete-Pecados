@@ -57,4 +57,8 @@ public class LivesController : MonoBehaviour {
         vidas = 3;
     }
 
+    public static int GetVidas()
+    {
+        return vidas;
+    }
 }
