@@ -19,27 +19,27 @@ public class Hotkeys : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
       
-        if (Input.GetKey(KeyCode.G))
+        if (Input.GetKeyUp(KeyCode.G))
         {
             GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MiniGame_Ganancia");
         }
 
-        if (Input.GetKey(KeyCode.I))
+        if (Input.GetKeyUp(KeyCode.I))
         {
             GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Ira");    
         }
 
-        if (Input.GetKey(KeyCode.M))
+        if (Input.GetKeyUp(KeyCode.M))
         {
             GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
         }
 
-        if (Input.GetKey(KeyCode.P))
+        if (Input.GetKeyUp(KeyCode.P))
         {
             GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Preguiça");
         }
 
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
             GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MainMenu");
         }

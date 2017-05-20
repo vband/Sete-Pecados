@@ -22,8 +22,13 @@ public class CarSpawnController : MonoBehaviour
 	
 	void Update ()
     {
-        timer += Time.deltaTime;
-        SpawnCar();
+        
+        if (!SceneController.paused)
+        {
+            timer += Time.deltaTime;
+            SpawnCar();
+        }
+        
 	}
 
     private void SpawnCar()
@@ -41,7 +46,7 @@ public class CarSpawnController : MonoBehaviour
                 // Instancia
                 Instantiate(toInstantiate,
                     new Vector3(cam.transform.position.x + screenDimensionsInWorldUnits.x + 20, streetYPosition, 0),
-                    new Quaternion(0,0,0,0));
+                    new Quaternion(0,0,0,0), this.transform);
             }
         }
     }

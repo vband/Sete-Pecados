@@ -61,9 +61,13 @@ public class PlayerMovement : MonoBehaviour {
 	
 	void FixedUpdate ()
     {
-        Move();
-        Jump();
-        atualizaTempo();
+
+        if (!SceneController.paused)
+        {
+            Move();
+            Jump();
+            atualizaTempo();
+        }
     }
 
     private void Move()

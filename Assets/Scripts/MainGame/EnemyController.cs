@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour
 	
 	void Update ()
     {
-        if (Time.timeScale != 0) //evita que atualize posicao enquanto jogo estiver pausado
+        if (Time.timeScale != 0 && !SceneController.paused) //evita que atualize posicao enquanto jogo estiver pausado
         {
             // Verifica se o player está para a direita
             if (player.position.x > transform.position.x)

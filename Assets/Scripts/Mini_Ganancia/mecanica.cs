@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class mecanica : MonoBehaviour {
 
+    public GameObject Cam;
     public GameObject minigame;
     public GameObject Certo;
     public GameObject Errado;
@@ -33,7 +34,7 @@ public class mecanica : MonoBehaviour {
         rosto_correto = album_faces[RostoCerto];
         album_faces.RemoveAt(RostoCerto);
 
-        //obtendo tamanho da tela para gerar obejtos dentro da area visivel
+        //obtendo tamanho da tela para gerar objetos dentro da area visivel
         screenSize.x = Vector2.Distance(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)), Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0))) * 0.5f;
         screenSize.y = Vector2.Distance(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)), Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height))) * 0.5f;
     }
@@ -62,16 +63,16 @@ public class mecanica : MonoBehaviour {
         foreach (GameObject go in listaCerto)
         {
             go.GetComponent<Image>().sprite = rosto_correto;
-            Instantiate(go, new Vector3(Random.Range(0 - (screenSize.x - 2), 0 + (screenSize.x - 2)),
-                                        Random.Range(0 - (screenSize.y - 2), 0 + (screenSize.y - 2)),
+            Instantiate(go, new Vector3(Random.Range(Cam.transform.position.x - (screenSize.x - 2), Cam.transform.position.x + (screenSize.x - 2)),
+                                        Random.Range(Cam.transform.position.y - (screenSize.y - 2), Cam.transform.position.y + (screenSize.y - 2)),
                                         zPosition), Quaternion.identity, minigame.transform);
         }
 
         foreach (GameObject go in listaErrado)
         {
             go.GetComponent<Image>().sprite = album_faces[Random.Range(0, album_faces.Count)];
-            Instantiate(go, new Vector3(Random.Range(0 - (screenSize.x - 2), 0 + (screenSize.x - 2)),
-                                        Random.Range(0 - (screenSize.y - 2), 0 + (screenSize.y - 2)),
+            Instantiate(go, new Vector3(Random.Range(Cam.transform.position.x - (screenSize.x - 2), Cam.transform.position.x + (screenSize.x - 2)),
+                                        Random.Range(Cam.transform.position.y - (screenSize.y - 2), Cam.transform.position.y + (screenSize.y - 2)),
                                         zPosition), Quaternion.identity, minigame.transform);
         }
         

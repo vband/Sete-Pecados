@@ -78,7 +78,7 @@ public class MinigamePreguiçaController : MonoBehaviour
             // Instancia
             Transform instance = Instantiate(
                 prefab,
-                new Vector3(transform.position.x + deltaDistance * (i + 1), prefab.position.y),
+                new Vector3(transform.position.x + deltaDistance * (i + 1), prefab.position.y + mainCamera.transform.position.y), //modificado para evitar conflito com a cena do jogo principal
                 new Quaternion(0, 0, 0, 0));
             beds.Add(instance);
 
@@ -187,14 +187,14 @@ public class MinigamePreguiçaController : MonoBehaviour
     {
         DespawnBeds();
         animator.SetTrigger("win");
-        StartCoroutine(fading("Main"));
+        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
 
     private void LoseGame()
     {
         DespawnBeds();
         animator.SetTrigger("lose");
-        StartCoroutine(fading("MainMenu"));
+        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MainMenu");
     }
 
     private void DespawnBeds()
@@ -335,12 +335,5 @@ public class MinigamePreguiçaController : MonoBehaviour
     public static int GetDifficulty()
     {
         return difficulty;
-    }
-
-    IEnumerator fading(string NextScene)
-    {
-        fade.SetBool("Fade", true);
-        yield return new WaitUntil(() => black.color.a == 1);
-        SceneManager.LoadScene(NextScene);
     }
 }

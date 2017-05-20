@@ -12,8 +12,16 @@ public class SceneController : MonoBehaviour
     public float distanceToWin;
 
     private float playerInitPos, playerEndPos;
+    [HideInInspector] public static bool created = false;
+    [HideInInspector] public static bool paused = false;
+ 
+    private void Awake()
+    {
+        CheckExistance();
+        
+    }
 
-	void Start ()
+    void Start ()
     {
         playerInitPos = beginningOfWorld.position.x;
         playerEndPos = playerInitPos + distanceToWin;
@@ -25,6 +33,7 @@ public class SceneController : MonoBehaviour
         ProgressBar();
         UpdateDifficulty(); // Por enquanto, só funciona para o minigame da ira.
         WinGame();
+        print(paused);
 	}
 
     // Ajusta a posição da barra de progresso com base a posição atual do jogador
@@ -76,6 +85,21 @@ public class SceneController : MonoBehaviour
         if (player.position.x >= playerEndPos)
         {
             Debug.Log("Você venceu o jogo!");
+        }
+    }
+
+    private void CheckExistance()
+    {
+        if (!created)
+        {
+            // this is the first instance - make it persist
+            DontDestroyOnLoad(this.gameObject);
+            created = true;
+        }
+        else
+        {
+            // this must be a duplicate from a scene reload - DESTROY!
+            Destroy(this.gameObject);
         }
     }
 }

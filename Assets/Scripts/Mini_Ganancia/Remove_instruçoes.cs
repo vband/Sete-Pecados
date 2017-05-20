@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Remove_instruçoes : MonoBehaviour {
 
+    public GameObject Cam;
+
     public float tempo;
     public float velocidade;
     private bool move_instructions = false;
@@ -17,7 +19,7 @@ public class Remove_instruçoes : MonoBehaviour {
 	// Update is called once per frame
     void Update()
     {
-        if (move_instructions && transform.position.y < 8)
+        if (move_instructions && transform.position.y < Cam.transform.position.y + 8)//8
         {
             transform.Translate(new Vector3(0, velocidade * Time.deltaTime));
         }

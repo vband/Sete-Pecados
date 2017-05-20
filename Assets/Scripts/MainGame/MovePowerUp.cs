@@ -21,9 +21,12 @@ public class MovePowerUp : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        rb2D = GetComponent<Rigidbody2D>();
-        move();
-        destroyTimer();
+        if (!SceneController.paused)
+        {
+            move();
+            destroyTimer();
+        }
+            
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -46,11 +49,8 @@ public class MovePowerUp : MonoBehaviour {
 
     private void destroyTimer()
     {
-        if(despawn_time == 0)
-        {
-            //nao destroi
-        }
-        else if((Time.fixedTime - awaketime) > despawn_time)
+        despawn_time -= Time.fixedDeltaTime;
+        if(despawn_time < 0)
         {
             Destroy(gameObject);
         }

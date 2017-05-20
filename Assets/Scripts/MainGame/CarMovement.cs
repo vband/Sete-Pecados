@@ -16,9 +16,14 @@ public class CarMovement : MonoBehaviour
 	
 	void FixedUpdate ()
     {
-        timer += Time.fixedDeltaTime;
-        Move();
-        Despawn();
+        
+        if (!SceneController.paused)
+        {
+            timer += Time.fixedDeltaTime;
+            Move();
+            Despawn(); 
+        }
+        
 	}
 
     private void Move()

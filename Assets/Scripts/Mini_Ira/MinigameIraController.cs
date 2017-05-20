@@ -109,9 +109,9 @@ public class MinigameIraController : MonoBehaviour
             // Define se o comentário é agressivo ou educado
             instance.GetComponent<CommentController>().isAggressive = isAggressive;
             // Posiciona o comentário a uma altura aleatória
-            float randomHeight = heights[Random.Range(0, heights.Count)];
+            float randomHeight = heights[Random.Range(0 , heights.Count)];
             instance.SetPositionAndRotation(
-                new Vector3(instance.position.x, randomHeight, instance.position.z),
+                new Vector3(instance.position.x, canvas.transform.position.y + randomHeight, instance.position.z), //modificado para evitar conflito com a cena do jogo principal
                 new Quaternion(0, 0, 0, 0));
             heights.Remove(randomHeight);
         }

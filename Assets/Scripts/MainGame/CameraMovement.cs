@@ -6,7 +6,6 @@ public class CameraMovement : MonoBehaviour
 {
 
     public GameObject player;
-    public GameObject cam;
     public GameObject Limite_direita;
 
     private Vector3 offset;
@@ -63,21 +62,16 @@ public class CameraMovement : MonoBehaviour
 
     void Movimentacao()
     {
-
-
         // Se o jogador se mover para a direita
-        if (player.transform.position.x > (cam.transform.position.x - offset.x))
+        if (player.transform.position.x > (transform.position.x - offset.x))
         {
-            transform.position = player.transform.position + offset;
+            transform.position = new Vector3(player.transform.position.x, offset.y, offset.z);
+            //transform.position = player.transform.position + offset;
         }
         // Se o jogador se mover para a esquerda ou ficar parado
         else
         {
-            transform.position = new Vector3(cam.transform.position.x, player.transform.position.y + offset.y, offset.z);
+            transform.position = new Vector3(transform.position.x, offset.y, offset.z);
         }
-
-
-
-
     }
 }

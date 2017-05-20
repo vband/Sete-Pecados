@@ -32,8 +32,9 @@ public class InfiniteWorld : MonoBehaviour
         // Instancia todos os objetos que foram preparados antecipadamente
         for (int i = 0; i < objectsToGenerate.Length; i++)
         {
-            Instantiate(objectsToGenerate[i], objectsToGenerate[i].position + Vector3.right * worldWidth * nIterations,
-                new Quaternion(0, 0, 0, 0));
+            Instantiate(objectsToGenerate[i], objectsToGenerate[i].position + Vector3.right * worldWidth * nIterations, 
+                        new Quaternion(0, 0, 0, 0), this.transform);
+            
         }
 
         nIterations++;

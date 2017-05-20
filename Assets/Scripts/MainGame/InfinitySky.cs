@@ -28,7 +28,7 @@ public class InfinitySky : MonoBehaviour
         // Obtém o tamanho da sprite, em coordenadas de mundo
         skyWidth = skypf.GetComponent<SpriteRenderer>().bounds.size.x;
         // Instancia a primeira imagem do background
-        Transform instance = Instantiate(skypf, skypf.position, new Quaternion(0, 0, 0, 0)) as Transform;
+        Transform instance = Instantiate(skypf, skypf.position, new Quaternion(0, 0, 0, 0), this.transform) as Transform;
         // Insere o backgorund inicial na lista
         backgorundList = new List<Transform>();
         backgorundList.Add(instance);
@@ -48,7 +48,7 @@ public class InfinitySky : MonoBehaviour
         if (Vector3.Distance(player.transform.position, currentPos) < 50)
         {
             currentPos += skyWidth * Vector3.right;
-            Transform instance = Instantiate(skypf, currentPos, new Quaternion(0, 0, 0, 0)) as Transform;
+            Transform instance = Instantiate(skypf, currentPos, new Quaternion(0, 0, 0, 0), this.transform) as Transform;
             // Insere o novo background na lista
             backgorundList.Add(instance);
 
