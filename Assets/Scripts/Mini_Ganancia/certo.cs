@@ -8,6 +8,7 @@ public class certo : MonoBehaviour {
    
     public void Certo()
     {
+        //LivesController.addVidas();
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
 

@@ -24,6 +24,8 @@ public class MinigameIraController : MonoBehaviour
     // Temporizador
     private float timeLeft;
 
+    private bool lost;
+
     void Start ()
     {
         // Inicializa os caminhos para os diretórios
@@ -54,6 +56,8 @@ public class MinigameIraController : MonoBehaviour
 
         // Inicia o temporizador
         timeLeft = maxTime;
+
+        lost = false;
     }
 
     void Update()
@@ -66,18 +70,19 @@ public class MinigameIraController : MonoBehaviour
         }
 
         // Checa se o tempo acabou
-        if (timeLeft <= 0)
+        if (timeLeft <= 0 && !lost)
         {
-            canvas.GetComponent<Animator>().SetBool("Lost", true);
-            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MainMenu");
+            LoseGame();
         }
 
+        /*
         // Checa se o minigame acabou
         if (canvas.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsTag("5"))
         {
             // Volta para o jogo principal
-            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MainMenu");
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
         }
+        */
     }
 
     private List<float> GenerateComments(float buttonHeight, string pathToFolder, int nComments, bool isAggressive, List<float> heights)
@@ -118,17 +123,32 @@ public class MinigameIraController : MonoBehaviour
         return heights;
     }
 	
+    // Perde o jogo
     public void AggressiveCommentOnClick()
     {
-        canvas.GetComponent<Animator>().SetBool("Lost", true);
-        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MainMenu");
+        LoseGame();
     }
 
+    // Ganha o jogo
     public void PoliteCommentOnClick()
     {
+        WinGame();
+        
+    }
+
+    private void LoseGame()
+    {
+        lost = true;
+        LivesController.RemVidas();
+        canvas.GetComponent<Animator>().SetBool("Lost", true);
+        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+    }
+
+    private void WinGame()
+    {
+        //LivesController.addVidas();
         canvas.GetComponent<Animator>().SetBool("Won", true);
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
-        
     }
 
     public static void SetDifficulty(int dif)

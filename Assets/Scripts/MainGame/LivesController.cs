@@ -9,13 +9,13 @@ public class LivesController : MonoBehaviour {
 
     public GameObject LivesPrefab;
 
-    private int vidas;
+    static private int vidas = 3;
     private int showingLives;
 
     // Use this for initialization
     void Start()
     {
-        vidas = 3;
+        //vidas = 3;
         showingLives = 0;
     }
 	
@@ -26,7 +26,7 @@ public class LivesController : MonoBehaviour {
 
     void updatePanel()
     {
-        if (vidas < 0)
+        if (vidas <= 0)
         {
             GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MainMenu");   
         }
@@ -42,14 +42,19 @@ public class LivesController : MonoBehaviour {
         }      
     }
 
-    public void addVidas()
+    public static void addVidas()
     {
         vidas++;
     }
 
-    public void RemVidas()
+    public static void RemVidas()
     {
         vidas--;
+    }
+
+    public static void InitVidas()
+    {
+        vidas = 3;
     }
 
 }

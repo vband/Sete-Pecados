@@ -8,6 +8,7 @@ public class errado : MonoBehaviour
 {
     public void Errado()
     {
-        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MainMenu");
+        LivesController.RemVidas();
+        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
 }

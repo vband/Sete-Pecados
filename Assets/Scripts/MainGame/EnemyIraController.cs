@@ -96,7 +96,7 @@ public class EnemyIraController : MonoBehaviour
                 goto Destruir;
             }
 
-            GameObject.Find("Vidas").GetComponent<LivesController>().RemVidas();
+            //GameObject.Find("Vidas").GetComponent<LivesController>().RemVidas();
             GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Ira");
         Destruir:
             Destroy(gameObject);

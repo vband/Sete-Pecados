@@ -19,7 +19,6 @@ public class SceneController : MonoBehaviour
     private void Awake()
     {
         CheckExistance();
-        
     }
 
     void Start ()

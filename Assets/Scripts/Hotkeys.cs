@@ -63,11 +63,11 @@ public class Hotkeys : MonoBehaviour {
         //DEBUG
         if (Input.GetKeyUp(KeyCode.V))
         {
-            enviroment.GetComponent<LivesController>().RemVidas();
+            LivesController.RemVidas();
         }
         if (Input.GetKeyUp(KeyCode.B))
         {
-            enviroment.GetComponent<LivesController>().addVidas();
+            LivesController.addVidas();
         }
     }
     private GameObject[] FindGameObjectsWithLayer(int layer)

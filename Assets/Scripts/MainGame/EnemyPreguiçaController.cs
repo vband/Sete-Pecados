@@ -21,7 +21,7 @@ public class EnemyPreguiçaController : MonoBehaviour
                 goto Destruir;
             }
 
-            GameObject.Find("Vidas").GetComponent<LivesController>().RemVidas();
+            //GameObject.Find("Vidas").GetComponent<LivesController>().RemVidas();
             GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Preguiça");
 
             Destruir:

@@ -191,6 +191,7 @@ public class MinigamePreguiçaController : MonoBehaviour
 
     private void WinGame()
     {
+        //LivesController.addVidas();
         DespawnBeds();
         animator.SetTrigger("win");
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
@@ -198,9 +199,10 @@ public class MinigamePreguiçaController : MonoBehaviour
 
     private void LoseGame()
     {
+        LivesController.RemVidas();
         DespawnBeds();
         animator.SetTrigger("lose");
-        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MainMenu");
+        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
 
     private void DespawnBeds()

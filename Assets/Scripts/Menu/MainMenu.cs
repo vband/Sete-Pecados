@@ -211,6 +211,7 @@ public class MainMenu : MonoBehaviour
     }
     private void Jogar()
     {
+        LivesController.InitVidas();
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
     private void Sair()
