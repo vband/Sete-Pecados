@@ -25,18 +25,21 @@ public class EnemyIraController : MonoBehaviour
 	
 	void Update ()
     {
-        Move();
-
-        // Verifica se o player está acima e se existe umaplataforma dobre o inimigo
-        if ((player.position.y > transform.position.y + 2) && IsBelowPlatform())
+        if (Time.timeScale != 0 && !SceneController.paused) //evita que atualize posicao enquanto jogo estiver pausado
         {
-            Jump();
-        }
+            Move();
 
-        // Diminui o cooldown de pulo
-        if (currentCooldown > 0)
-        {
-            currentCooldown -= Time.deltaTime;
+            // Verifica se o player está acima e se existe umaplataforma dobre o inimigo
+            if ((player.position.y > transform.position.y + 2) && IsBelowPlatform())
+            {
+                Jump();
+            }
+
+            // Diminui o cooldown de pulo
+            if (currentCooldown > 0)
+            {
+                currentCooldown -= Time.deltaTime;
+            }
         }
     }
 
