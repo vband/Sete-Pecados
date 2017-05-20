@@ -50,7 +50,7 @@ public class MinigamePreguiçaController : MonoBehaviour
         bedControls = new List<int>();
         wasBedHit = new List<bool>();
         backgrounds = new List<Transform>();
-        bgWidth = background.GetComponent<SpriteRenderer>().sprite.bounds.size.x;
+        bgWidth = background.GetComponentInChildren<SpriteRenderer>().sprite.bounds.size.x * background.localScale.x;
         cameraWidth = mainCamera.GetComponent<Camera>().orthographicSize * 2f * mainCamera.GetComponent<Camera>().aspect;
         //cameraWidth = mainCamera.GetComponent<Camera>().rect.size.x;
         //Debug.Log(cameraWidth);
