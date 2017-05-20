@@ -35,6 +35,7 @@ public class CameraMovement : MonoBehaviour
         //determina que as colisões entre os inimigos e o leftCollider serão ignoradas
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("LeftCollider"));
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Environment"), LayerMask.NameToLayer("LeftCollider"));
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("PowerUps"), LayerMask.NameToLayer("LeftCollider"));
         //Gera as cordenadas do mundo
         cameraPos = Camera.main.transform.position;
         screenSize.x = Vector2.Distance(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)), Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0))) * 0.5f;
