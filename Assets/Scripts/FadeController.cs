@@ -20,7 +20,6 @@ public class FadeController : MonoBehaviour {
 
     IEnumerator fadingDestroy(string NextScene)
     {
-        
         SceneController.paused = true;
         fade.SetBool("Fade", true);
         yield return new WaitUntil(() => black.color.a == 1);
@@ -37,8 +36,5 @@ public class FadeController : MonoBehaviour {
         {
             SceneController.paused = false;
         }
-        
-
-
     }
 }
