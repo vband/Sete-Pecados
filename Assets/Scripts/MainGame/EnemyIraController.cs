@@ -18,7 +18,7 @@ public class EnemyIraController : MonoBehaviour
     private float currentJumpCooldown;
     private float originPosition;
     private int currentState;
-    private float distanceToPlayer, distanceToOrigin;
+    private float distanceToPlayer;
     private bool isIdlingRight, isIdlingLeft;
 
     private const int CHASE = 1;
@@ -86,8 +86,6 @@ public class EnemyIraController : MonoBehaviour
     {
         // Calcula a distância entre o inimigo e o jogador
         distanceToPlayer = Mathf.Abs(player.position.x - transform.position.x);
-        // Calcula a distância entre o inimigo e o seu ponto de origem
-        distanceToOrigin = Mathf.Abs(originPosition - transform.position.x);
 
         // Se o jogador estiver dentro das vistas do inimigo...
         if (distanceToPlayer <= chaseDistance)
