@@ -133,7 +133,6 @@ public class MinigameIraController : MonoBehaviour
     public void PoliteCommentOnClick()
     {
         WinGame();
-        
     }
 
     private void LoseGame()
@@ -146,9 +145,18 @@ public class MinigameIraController : MonoBehaviour
 
     private void WinGame()
     {
-        //LivesController.addVidas();
-        canvas.GetComponent<Animator>().SetBool("Won", true);
-        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+        // Checa se o jogador ganhou de Perfect (ganhar em menos de 1 segundo)
+        if (maxTime - timeLeft <= 1)
+        {
+            LivesController.addVidas();
+            canvas.GetComponent<Animator>().SetBool("Perfect", true);
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+        }
+        else
+        {
+            canvas.GetComponent<Animator>().SetBool("Won", true);
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+        }
     }
 
     public static void SetDifficulty(int dif)
