@@ -35,7 +35,6 @@ public class SceneController : MonoBehaviour
         ProgressBar();
         UpdateDifficulty(); // Por enquanto, só funciona para o minigame da ira.
         WinGame();
-        print(paused);
 	}
 
     // Ajusta a posição da barra de progresso com base a posição atual do jogador
@@ -97,6 +96,7 @@ public class SceneController : MonoBehaviour
             // this is the first instance - make it persist
             DontDestroyOnLoad(this.gameObject);
             created = true;
+            paused = false;
         }
         else
         {

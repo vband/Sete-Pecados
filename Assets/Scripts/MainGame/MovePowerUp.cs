@@ -7,12 +7,7 @@ public class MovePowerUp : MonoBehaviour {
     public float forca;
     public float despawn_time;
     private Rigidbody2D rb2D;
-    private float awaketime;
-
-    private void Awake()
-    {
-        awaketime = Time.fixedTime;
-    }
+    
 
     // Use this for initialization
     void Start () {
