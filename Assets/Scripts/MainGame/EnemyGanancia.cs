@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyGanancia : MonoBehaviour {
+    public GameObject panfleto;
     public float forceY;
     public float forceX;
     public float MaxVelo;
+    public float ArrebentaCordatimer;
+    public float DropCooldown;
+    public float AutoDestroyTime;
 
     private Vector2 offset;
     private Vector3 temp;
-
-
 
     private void Awake()
     {
@@ -19,7 +21,9 @@ public class EnemyGanancia : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        ArrebentaCordaStart(ArrebentaCordatimer);
+        DropPaperStart(DropCooldown);
+        AutoDestroyStart(AutoDestroyTime);
 	}
 	
 	// Update is called once per frame
@@ -36,6 +40,41 @@ public class EnemyGanancia : MonoBehaviour {
         }
         
 	}
+
+    private void ArrebentaCordaStart(float time)
+    {
+        StartCoroutine(ArrebentaCorda(time));
+    }
+
+    IEnumerator ArrebentaCorda(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(GetComponent<DistanceJoint2D>());
+    }
+
+
+    private void DropPaperStart(float Cooldown)
+    {
+        StartCoroutine(DropPaper(Cooldown));
+    }
+    IEnumerator DropPaper(float Cooldown)
+    {
+    inicio:
+        yield return new WaitForSeconds(Cooldown);
+        Instantiate(panfleto, transform.position, Quaternion.identity, transform.parent);
+        goto inicio;
+    }
+
+    private void AutoDestroyStart(float time)
+    {
+        StartCoroutine(AutoDestroy(time));
+    }
+
+    IEnumerator AutoDestroy(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(gameObject);
+    }
 
     void moveHorizontal()
     {
