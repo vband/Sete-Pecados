@@ -8,7 +8,9 @@ public class EnemyGanancia : MonoBehaviour {
     public float MaxVelo;
 
     private Vector2 offset;
-    
+    private Vector3 temp;
+
+
 
     private void Awake()
     {
@@ -22,9 +24,17 @@ public class EnemyGanancia : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        MoveVacilante();
-        moveHorizontal();
+        if (!SceneController.paused)
+        {
+            MoveVacilante();
+            moveHorizontal();
+            
+        }
+        else if(SceneController.paused)
+        {
+            GetComponent<Rigidbody2D>().Sleep();
+        }
+        
 	}
 
     void moveHorizontal()
