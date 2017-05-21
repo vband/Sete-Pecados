@@ -8,6 +8,8 @@ public class FadeController : MonoBehaviour {
 
     public Image black;
     public Animator fade;
+    //resolvendo problema dos listeners
+    public GameObject MainCamera;
 
     //metodo padrao para chamar fade e alteracao de cenas a partir de qualquer gameobject
     //GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
@@ -23,18 +25,21 @@ public class FadeController : MonoBehaviour {
         SceneController.paused = true;
         fade.SetBool("Fade", true);
         yield return new WaitUntil(() => black.color.a == 1);
+               
         SceneManager.LoadScene(NextScene, LoadSceneMode.Single);
-        if(NextScene == "MainMenu")
+
+        if (NextScene == "MainMenu")
         {
             SceneController.created = false;
             SceneController.paused = false;
             Destroy( GameObject.Find("CenaPrincipal") );
         }
+        
         fade.SetBool("Fade", false);
+        
         yield return new WaitForSeconds(1.5f);
-        if(NextScene == "Main")
-        {
-            SceneController.paused = false;
-        }
+        
+        if (NextScene == "Main") { SceneController.paused = false; }
+
     }
 }

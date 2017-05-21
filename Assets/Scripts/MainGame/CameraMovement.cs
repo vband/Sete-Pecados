@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraMovement : MonoBehaviour
 {
@@ -51,13 +53,19 @@ public class CameraMovement : MonoBehaviour
 
     }
 
-    void Update()
+    private void Update()
     {
-
+        DisableListener();
     }
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
+        
+    }
+
+    void LateUpdate()
+    {
+       
         Movimentacao();
     }
 
@@ -74,5 +82,17 @@ public class CameraMovement : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, offset.y, offset.z);
         }
+    }
+    
+    void DisableListener()
+    {
+        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Main") ) {
+            GetComponent<AudioListener>().enabled = false;
+        }
+        else
+        {
+            GetComponent<AudioListener>().enabled = true;
+        }
+        
     }
 }
