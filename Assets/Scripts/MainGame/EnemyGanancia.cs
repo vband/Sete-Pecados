@@ -49,7 +49,10 @@ public class EnemyGanancia : MonoBehaviour {
     IEnumerator ArrebentaCorda(float time)
     {
         yield return new WaitForSeconds(time);
+        Rigidbody2D placa = GetComponent<DistanceJoint2D>().connectedBody;
+        placa.transform.SetParent(GameObject.Find("Environment").transform);
         Destroy(GetComponent<DistanceJoint2D>());
+        
     }
 
 
@@ -61,7 +64,10 @@ public class EnemyGanancia : MonoBehaviour {
     {
     inicio:
         yield return new WaitForSeconds(Cooldown);
-        Instantiate(panfleto, new Vector3(transform.position.x - 1, transform.position.y, 0) , Quaternion.identity, transform.parent);
+        if (!SceneController.paused && Time.deltaTime != 0)
+        {
+            Instantiate(panfleto, new Vector3(transform.position.x - 1, transform.position.y - 1, 0), Quaternion.identity, transform.parent);
+        }
         goto inicio;
     }
 

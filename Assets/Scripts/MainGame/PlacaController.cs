@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class PlacaController : MonoBehaviour {
 
+    public float AutoDestructionTime;
+
+    private void Start()
+    {
+        AutoDestroyStart(AutoDestructionTime);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -18,4 +25,15 @@ public class PlacaController : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+
+    void AutoDestroyStart(float timer)
+    {
+        StartCoroutine(AutoDestroy(timer));
+    }
+    IEnumerator AutoDestroy(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(this.gameObject);
+    }
+
 }
