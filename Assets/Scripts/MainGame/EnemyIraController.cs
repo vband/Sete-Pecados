@@ -107,14 +107,14 @@ public class EnemyIraController : MonoBehaviour
         if (player.position.x > transform.position.x)
         {
             // Anda para a direita
-            rb2D.AddForce(Vector2.right * speed * Time.deltaTime);
+            rb2D.AddForce(Vector2.right * speed/* * Time.deltaTime*/);
             sprite.flipX = false;
         }
         // Verifica se o player está para a esquerda
         else if (player.position.x < transform.position.x)
         {
             // Anda para a esquerda
-            rb2D.AddForce(Vector2.left * speed * Time.deltaTime);
+            rb2D.AddForce(Vector2.left * speed/* * Time.deltaTime*/);
             sprite.flipX = true;
         }
     }
