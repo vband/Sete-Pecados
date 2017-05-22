@@ -61,7 +61,7 @@ public class EnemyGanancia : MonoBehaviour {
     {
     inicio:
         yield return new WaitForSeconds(Cooldown);
-        Instantiate(panfleto, transform.position, Quaternion.identity, transform.parent);
+        Instantiate(panfleto, new Vector3(transform.position.x - 1, transform.position.y, 0) , Quaternion.identity, transform.parent);
         goto inicio;
     }
 

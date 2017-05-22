@@ -28,7 +28,7 @@ public class EnemyGananciaSpawner : MonoBehaviour {
         yield return new WaitForSeconds(cooldown);
         if (!SceneController.paused)
         {   
-            Instantiate(InimigoGanancia, new Vector3(limiteDaCamera.transform.position.x + 5, 5, 0), Quaternion.identity, transform.parent);
+            Instantiate(InimigoGanancia, new Vector3(limiteDaCamera.transform.position.x + 5, 5.5f, 0), Quaternion.identity, transform.parent);
         }
         goto inicio;
     }
