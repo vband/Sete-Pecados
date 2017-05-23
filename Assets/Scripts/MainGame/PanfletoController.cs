@@ -20,9 +20,9 @@ public class PanfletoController : MonoBehaviour {
 
         if (collision.gameObject.tag == "Player")
         {
-            if (GameObject.Find("Player").GetComponent<PlayerMovement>().imortal)
+            if (GameObject.Find("Player").GetComponent<PlayerMovement>().imortal || SceneController.paused)
             {
-                //print("MATOU ENQUANTO DIVINO!");
+                //caso o player esteja imortal ou o jogo estiver pausado, destroi o panfleto.
                 goto Destruir;
             }
             GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MiniGame_Ganancia");

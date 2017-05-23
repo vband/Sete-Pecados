@@ -36,26 +36,39 @@ public class PowerUpController : MonoBehaviour {
             
 	}
 
-    private void SpawnPowerUp()
+    private void SpawnPowerUp() //a cada 5 segundos sorteia um power up para espawnar
     {
         if ((Time.fixedTime - lastSpawn) > 5 && Player.GetComponent<PlayerMovement>().imortal == false) {
-            if (pai == false)
+
+            switch (Random.Range(0, 3))
             {
-                Instantiate(Pai, Limite_camera.transform.position + new Vector3(Random.Range(5, 25), Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
-            }
-            if (filho == false)
-            {
-                Instantiate(Filho, Limite_camera.transform.position + new Vector3(Random.Range(5, 25), Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
-            }
-            if (espirito == false)
-            {
-                Instantiate(Espirito, Limite_camera.transform.position + new Vector3(Random.Range(5, 25), Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
+                case 0:
+                    if (pai == false)
+                    {
+                        Instantiate(Pai, Limite_camera.transform.position + new Vector3(Random.Range(5, 25), Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
+                    }
+                    break;
+                case 1:
+                    if (filho == false)
+                    {
+                        Instantiate(Filho, Limite_camera.transform.position + new Vector3(Random.Range(5, 25), Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
+                    }
+                    break;
+                case 2:
+                    if (espirito == false)
+                    {
+                        Instantiate(Espirito, Limite_camera.transform.position + new Vector3(Random.Range(5, 25), Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
+                    }
+                    break;
+                case 3:
+                    if (benzido == false)
+                    {
+                        Instantiate(AguaBenta, Limite_camera.transform.position + new Vector3(Random.Range(5, 25), Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
+                    }
+                    break;
             }
             lastSpawn = Time.fixedTime;
-            if (benzido == false)
-            {
-                Instantiate(AguaBenta, Limite_camera.transform.position + new Vector3(Random.Range(5, 25), Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
-            }
+            
         }
 
         
@@ -68,22 +81,22 @@ public class PowerUpController : MonoBehaviour {
             case "pai":
                 pai = true;
                 Pais = GameObject.FindGameObjectsWithTag("pai");
-                for(int i = 0; i < Pais.Length; i++) { Destroy(Pais[i], 1.5f); }
+                for(int i = 0; i < Pais.Length; i++) { Destroy(Pais[i], 0.5f); }
                 break;
             case "filho":
                 filho = true;
                 Filhos = GameObject.FindGameObjectsWithTag("filho");
-                for (int i = 0; i < Filhos.Length; i++) { Destroy(Filhos[i], 1.5f); }
+                for (int i = 0; i < Filhos.Length; i++) { Destroy(Filhos[i], 0.5f); }
                 break;
             case "espirito":
                 espirito = true;
                 Espiritos = GameObject.FindGameObjectsWithTag("espirito");
-                for (int i = 0; i < Espiritos.Length; i++) { Destroy(Espiritos[i], 1.5f); }
+                for (int i = 0; i < Espiritos.Length; i++) { Destroy(Espiritos[i], 0.5f); }
                 break;
             case "aguabenta":
                 benzido = true;
                 AguasBentas = GameObject.FindGameObjectsWithTag("aguabenta");
-                for (int i = 0; i < AguasBentas.Length; i++) { Destroy(AguasBentas[i], 1.5f); }
+                for (int i = 0; i < AguasBentas.Length; i++) { Destroy(AguasBentas[i], 0.5f); }
                 break;
         }
     }
