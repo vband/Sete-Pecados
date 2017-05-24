@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PostProcessing;
 using UnityEngine.UI;
 
 public class PauseMenuController : MonoBehaviour {
 
     public Button VoltarAoJogo, VoltarParaMenu;
+    public Text Pausado;
+    public GameObject Cam;
 
     public void AtivaMenu(bool estado)
     {
@@ -14,10 +17,14 @@ public class PauseMenuController : MonoBehaviour {
             case true:
                 VoltarAoJogo.gameObject.SetActive(true);
                 VoltarParaMenu.gameObject.SetActive(true);
+                Pausado.gameObject.SetActive(true);
+                Cam.GetComponent<PostProcessingBehaviour>().enabled = true;
                 break;
             case false:
                 VoltarAoJogo.gameObject.SetActive(false);
                 VoltarParaMenu.gameObject.SetActive(false);
+                Pausado.gameObject.SetActive(false);
+                Cam.GetComponent<PostProcessingBehaviour>().enabled = false;
                 break;
         }
         

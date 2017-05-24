@@ -14,7 +14,7 @@ public class CameraMovement : MonoBehaviour
     
     public float colDepth = 4f;
     public float zPosition = 0f;
-    private Vector2 screenSize;
+    [HideInInspector] public Vector2 screenSize;
 
     private Transform leftCollider;
     private Vector3 cameraPos;
