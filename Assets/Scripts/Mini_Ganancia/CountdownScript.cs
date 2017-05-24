@@ -7,27 +7,25 @@ public class CountdownScript : MonoBehaviour {
 
     public Text display;
     public float TempoContagem;
-    public GameObject errado;
-
-    private bool temp;
-
+    
+    
 	// Update is called once per frame
 	void Update () {
-        temp = GetComponent<mecanica>().syncBool;
+        
 
-        if (temp)
+        if (GetComponent<mecanica>().syncBool)
         {
             display.gameObject.SetActive(true);
-            if (TempoContagem > 0.0f)
+            if (TempoContagem > 0.0f && !GetComponent<mecanica> ().faceClick)
             {
                 TempoContagem -= Time.deltaTime;
                 display.text = TempoContagem.ToString("F1");
             }
-            else
+            else if(!GetComponent<mecanica>().faceClick)
             {
                 display.fontSize = 35;
                 display.text = "Time!";
-                errado.GetComponent<errado>().Errado();
+                GetComponent<mecanica> ().RostoErrado();
             }
         }
 	}

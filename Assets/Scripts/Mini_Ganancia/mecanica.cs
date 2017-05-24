@@ -24,8 +24,9 @@ public class mecanica : MonoBehaviour {
     private List<GameObject> listaErrado = new List<GameObject>();
 
     [HideInInspector] public Vector2 screenSize;
-    [HideInInspector] public bool syncBool = false;
+    [HideInInspector] public bool syncBool = false; //variavel que controla o tempo certo para ativar a contagem e a acao do minigame
     [HideInInspector] public Sprite rosto_correto;
+    [HideInInspector] public bool faceClick = false;
 
 
     private void Awake()
@@ -109,6 +110,19 @@ public class mecanica : MonoBehaviour {
                 tot_errado = 25;
                 break;
         }
+    }
+
+    public void RostoCerto()
+    {
+        faceClick = true;
+        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+    }
+
+    public void RostoErrado()
+    {
+        faceClick = true;
+        LivesController.RemVidas();
+        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
 
     public static void SetDifficulty(int dif)
