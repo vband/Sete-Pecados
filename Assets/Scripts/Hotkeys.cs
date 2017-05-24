@@ -21,7 +21,7 @@ public class Hotkeys : MonoBehaviour {
       
         if (Input.GetKeyUp(KeyCode.G))
         {
-            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MiniGame_Ganancia");
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading( "MiniGame_Ganancia");
         }
 
         if (Input.GetKeyUp(KeyCode.I))
@@ -39,23 +39,20 @@ public class Hotkeys : MonoBehaviour {
             GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Preguiça");
         }
 
+        //BotaoPausa
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MainMenu");
-        }
-
-        //BotaoPausa
-        if (Input.GetKeyUp(KeyCode.F1))
-        {
-            if (Time.timeScale == 0)
+            if (Time.timeScale == 0)//se já estiver pausado
             {
                 Time.timeScale = 1;
                 AudioListener.pause = false;
+                GameObject.Find("PauseMenu").GetComponent<PauseMenuController>().AtivaMenu(false);
             }
-            else
+            else //nao está pausado
             {
                 Time.timeScale = 0;
                 AudioListener.pause = true;
+                GameObject.Find("PauseMenu").GetComponent<PauseMenuController>().AtivaMenu(true);
             }
             
         }
