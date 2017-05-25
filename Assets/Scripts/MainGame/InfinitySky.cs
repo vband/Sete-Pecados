@@ -10,7 +10,7 @@ public class InfinitySky : MonoBehaviour
     public GameObject mainCamera;
     // Parâmetro que guarda a proporção entre a velocidade do background e a velocidade do player.
     // Por exemplo: se o parâmetro for igual a 0.5, o background irá se mover à metade da velocidade do player.
-    public float bgVelocityRelativeToPlayer;
+    public float bgVelocityRelativeToCamera;
 
     // Prefabs para clonar
     public Transform skypf;
@@ -59,14 +59,16 @@ public class InfinitySky : MonoBehaviour
 
     private void MoveBackgorund()
     {
-        float playerVelocityX = player.GetComponent<Rigidbody2D>().velocity.x;
+        //float playerVelocityX = player.GetComponent<Rigidbody2D>().velocity.x;
+        float cameraVelocityX = mainCamera.GetComponent<Camera>().velocity.x;
 
-        if ((playerVelocityX < 0)||(player.transform.position.x < mainCamera.transform.position.x))
+        /*if ((playerVelocityX < 0)||(player.transform.position.x < mainCamera.transform.position.x))
         {
             playerVelocityX = 0;
-        }
+        }*/
 
-        float bgVelocity = playerVelocityX * bgVelocityRelativeToPlayer;
+        //float bgVelocity = playerVelocityX * bgVelocityRelativeToPlayer;
+        float bgVelocity = cameraVelocityX * bgVelocityRelativeToCamera;
 
         foreach (Transform bg in backgorundList)
         {

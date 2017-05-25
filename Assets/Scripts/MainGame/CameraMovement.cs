@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class CameraMovement : MonoBehaviour
 {
-
+    public float cameraSpeed;
     public GameObject player;
     public GameObject Limite_direita;
 
-    private Vector3 offset;
+    //private Vector3 offset;
     
     public float colDepth = 4f;
     public float zPosition = 0f;
@@ -18,11 +18,13 @@ public class CameraMovement : MonoBehaviour
 
     private Transform leftCollider;
     private Vector3 cameraPos;
+    private Rigidbody2D rb;
 
 
     void Start()
     {
-        offset = transform.position - player.transform.position;
+        rb = GetComponent<Rigidbody2D>();
+        //offset = transform.position - player.transform.position;
 
         //Cria o objeto vazio
         leftCollider = new GameObject().transform;
@@ -65,14 +67,16 @@ public class CameraMovement : MonoBehaviour
 
     void LateUpdate()
     {
-       
-        Movimentacao();
+        if (!SceneController.paused)
+        {
+            Movimentacao();
+        }
     }
 
     void Movimentacao()
     {
         // Se o jogador se mover para a direita
-        if (player.transform.position.x > (transform.position.x - offset.x))
+        /*if (player.transform.position.x > (transform.position.x - offset.x))
         {
             transform.position = new Vector3(player.transform.position.x, offset.y, offset.z);
             //transform.position = player.transform.position + offset;
@@ -81,7 +85,11 @@ public class CameraMovement : MonoBehaviour
         else
         {
             transform.position = new Vector3(transform.position.x, offset.y, offset.z);
-        }
+        }*/
+
+        Vector2 pos = (Vector2) transform.position;
+        Vector2 speed = new Vector2(cameraSpeed,0);
+        rb.MovePosition(pos + speed);
     }
     
     void DisableListener()

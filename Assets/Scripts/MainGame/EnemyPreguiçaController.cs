@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class EnemyPreguiçaController : MonoBehaviour
 {
-
-	void Start () {}
+	void Start () { }
 
     void Update () {}
 
