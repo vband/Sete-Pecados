@@ -98,7 +98,7 @@ public class SceneController : MonoBehaviour
     {
         if (player.position.x >= playerEndPos)
         {
-            Debug.Log("Você venceu o jogo!");
+            //Debug.Log("Você venceu o jogo!");
         }
     }
 

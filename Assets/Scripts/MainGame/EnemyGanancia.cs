@@ -50,7 +50,10 @@ public class EnemyGanancia : MonoBehaviour {
     {
         yield return new WaitForSeconds(time);
         Rigidbody2D placa = GetComponent<DistanceJoint2D>().connectedBody;
-        placa.transform.SetParent(GameObject.Find("Environment").transform);
+        if(placa != null)
+        {
+            placa.transform.SetParent(GameObject.Find("Environment").transform);
+        }
         Destroy(GetComponent<DistanceJoint2D>());
         
     }

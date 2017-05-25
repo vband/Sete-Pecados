@@ -223,7 +223,6 @@ public class PlayerMovement : MonoBehaviour {
         {
             benzido = false;
             Destroy(GameObject.FindGameObjectWithTag("aguabentapowerup"));
-            print("fiquei puro :-(");
             Tempo_benzido = Tempo_benzido_original;
         }
 
