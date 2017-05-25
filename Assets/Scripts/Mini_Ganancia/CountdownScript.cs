@@ -21,7 +21,7 @@ public class CountdownScript : MonoBehaviour {
                 TempoContagem -= Time.deltaTime;
                 display.text = TempoContagem.ToString("F1");
             }
-            else if(!GetComponent<mecanica>().faceClick)
+            else if(!GetComponent<mecanica>().faceClick )
             {
                 display.fontSize = 35;
                 display.text = "Time!";

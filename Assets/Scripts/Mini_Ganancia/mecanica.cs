@@ -64,16 +64,27 @@ public class mecanica : MonoBehaviour {
         foreach (GameObject go in listaCerto)
         {
             go.GetComponent<Image>().sprite = rosto_correto;
+            /*
             Instantiate(go, new Vector3(Random.Range(Cam.transform.position.x - (screenSize.x - 2), Cam.transform.position.x + (screenSize.x - 2)),
                                         Random.Range(Cam.transform.position.y - (screenSize.y - 2), Cam.transform.position.y + (screenSize.y - 2)),
+                                        zPosition), Quaternion.identity, minigame.transform);
+                                        */
+            Instantiate(go, new Vector3(Random.Range(Cam.transform.position.x - (screenSize.x - 1), Cam.transform.position.x + (screenSize.x - 1)),
+                                        Random.Range(Cam.transform.position.y - (screenSize.y - 1), Cam.transform.position.y + (screenSize.y - 1)),
                                         zPosition), Quaternion.identity, minigame.transform);
         }
 
         foreach (GameObject go in listaErrado)
         {
+            
             go.GetComponent<Image>().sprite = album_faces[Random.Range(0, album_faces.Count)];
+            /*
             Instantiate(go, new Vector3(Random.Range(Cam.transform.position.x - (screenSize.x - 2), Cam.transform.position.x + (screenSize.x - 2)),
                                         Random.Range(Cam.transform.position.y - (screenSize.y - 2), Cam.transform.position.y + (screenSize.y - 2)),
+                                        zPosition), Quaternion.identity, minigame.transform);
+                                        */
+            Instantiate(go, new Vector3(Random.Range(Cam.transform.position.x - (screenSize.x - 1), Cam.transform.position.x + (screenSize.x - 1)),
+                                        Random.Range(Cam.transform.position.y - (screenSize.y - 1), Cam.transform.position.y + (screenSize.y - 1)),
                                         zPosition), Quaternion.identity, minigame.transform);
         }
         
