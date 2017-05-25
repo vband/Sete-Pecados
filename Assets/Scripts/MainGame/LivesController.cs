@@ -44,7 +44,11 @@ public class LivesController : MonoBehaviour {
 
     public static void addVidas()
     {
-        vidas++;
+        if(vidas < 3)
+        {
+            vidas++;
+        }
+        
     }
 
     public static void RemVidas()

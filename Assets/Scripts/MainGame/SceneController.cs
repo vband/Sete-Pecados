@@ -9,6 +9,7 @@ public class SceneController : MonoBehaviour
     public Image progressBar;
     public Transform beginningOfWorld;
     public RectTransform progressBarFrame;
+    public Transform PainelPowerUp;
     // Distância que o jogador precisa percorrer para ganhar
     public float distanceToWin;
 
@@ -33,16 +34,18 @@ public class SceneController : MonoBehaviour
     void Update ()
     {
         ProgressBar();
-        UpdateDifficulty(); // Por enquanto, só funciona para o minigame da ira.
+        UpdateDifficulty(); 
         WinGame();
 
-        // Desativa a barra de progresso quando o jogo é pausado
+        // Desativa a barra de progresso e controle de poweUPs quando o jogo é pausado
         if (paused)
         {
+            PainelPowerUp.gameObject.SetActive(false);
             progressBarFrame.gameObject.SetActive(false);
         }
         else
         {
+            PainelPowerUp.gameObject.SetActive(true);
             progressBarFrame.gameObject.SetActive(true);
         }
 	}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerUpController : MonoBehaviour {
 
@@ -12,6 +13,9 @@ public class PowerUpController : MonoBehaviour {
     public GameObject Espirito;
     public GameObject AguaBenta;
     [Space(20)]
+    public Image pai_canvas;
+    public Image filho_canvas;
+    public Image espirito_canvas;
         
 
     private bool pai, filho, espirito, benzido;
@@ -32,6 +36,7 @@ public class PowerUpController : MonoBehaviour {
         {
             SpawnPowerUp();
             verificaBencao();
+            atualizaPainel();
         }
             
 	}
@@ -93,22 +98,22 @@ public class PowerUpController : MonoBehaviour {
             case "pai":
                 pai = true;
                 Pais = GameObject.FindGameObjectsWithTag("pai");
-                for(int i = 0; i < Pais.Length; i++) { Destroy(Pais[i], 0.5f); }
+                for(int i = 0; i < Pais.Length; i++) { Destroy(Pais[i], 0.1f); }
                 break;
             case "filho":
                 filho = true;
                 Filhos = GameObject.FindGameObjectsWithTag("filho");
-                for (int i = 0; i < Filhos.Length; i++) { Destroy(Filhos[i], 0.5f); }
+                for (int i = 0; i < Filhos.Length; i++) { Destroy(Filhos[i], 0.1f); }
                 break;
             case "espirito":
                 espirito = true;
                 Espiritos = GameObject.FindGameObjectsWithTag("espirito");
-                for (int i = 0; i < Espiritos.Length; i++) { Destroy(Espiritos[i], 0.5f); }
+                for (int i = 0; i < Espiritos.Length; i++) { Destroy(Espiritos[i], 0.1f); }
                 break;
             case "aguabenta":
                 benzido = true;
                 AguasBentas = GameObject.FindGameObjectsWithTag("aguabenta");
-                for (int i = 0; i < AguasBentas.Length; i++) { Destroy(AguasBentas[i], 0.5f); }
+                for (int i = 0; i < AguasBentas.Length; i++) { Destroy(AguasBentas[i], 0.1f); }
                 break;
         }
     }
@@ -127,6 +132,34 @@ public class PowerUpController : MonoBehaviour {
         {
             benzido = false;
             Player.GetComponent<PlayerMovement>().ficaBenzido();
+        }
+    }
+
+    private void atualizaPainel()
+    {
+        if(pai)
+        {
+            pai_canvas.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        }
+        else
+        {
+            pai_canvas.GetComponent<Image>().color = new Color(1, 1, 1, 0.125f);
+        }
+        if (filho)
+        {
+            filho_canvas.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        }
+        else
+        {
+            filho_canvas.GetComponent<Image>().color = new Color(1, 1, 1, 0.125f);
+        }
+        if (espirito)
+        {
+            espirito_canvas.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        }
+        else
+        {
+            espirito_canvas.GetComponent<Image>().color = new Color(1, 1, 1, 0.125f);
         }
     }
     
