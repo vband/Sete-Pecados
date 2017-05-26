@@ -126,6 +126,7 @@ public class mecanica : MonoBehaviour {
     public void RostoCerto()
     {
         faceClick = true;
+        LivesController.addVidas();
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
 

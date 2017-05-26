@@ -40,14 +40,16 @@ public class LivesController : MonoBehaviour {
         }
         else if (vidas < showingLives)
         {
-            Destroy(transform.GetChild(vidas).gameObject);
             showingLives--;
+            StartVidaVisualFeedback(transform.GetChild(vidas).gameObject);
+            //Destroy(transform.GetChild(vidas).gameObject);
+            
         }      
     }
 
     public static void addVidas()
     {
-        if(vidas < 3)
+        if (vidas < 3) //limite de vidas
         {
             vidas++;
         }
@@ -67,5 +69,27 @@ public class LivesController : MonoBehaviour {
     public static int GetVidas()
     {
         return vidas;
+    }
+
+    private void StartVidaVisualFeedback(GameObject vidaPraPerder)
+    {
+        StartCoroutine(VidaVisualFeedBack(vidaPraPerder));
+    }
+
+    IEnumerator VidaVisualFeedBack(GameObject vidaPraPerder)
+    {
+        float tempo = 1;
+        inicio:
+        vidaPraPerder.SetActive(false);
+        yield return new WaitForSeconds(tempo);
+        vidaPraPerder.SetActive(true);
+        tempo -= 0.1f;
+        yield return new WaitForSeconds(tempo);
+        if(tempo > 0.2f)
+        {
+            goto inicio;
+        }
+
+        Destroy(vidaPraPerder);
     }
 }
