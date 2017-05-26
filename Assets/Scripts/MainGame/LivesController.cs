@@ -11,12 +11,14 @@ public class LivesController : MonoBehaviour {
 
     static private int vidas = 3;
     private int showingLives;
+    private bool gameOver;
 
     // Use this for initialization
     void Start()
     {
         //vidas = 3;
         showingLives = 0;
+        gameOver = false;
     }
 	
 	// Update is called once per frame
@@ -26,9 +28,10 @@ public class LivesController : MonoBehaviour {
 
     void updatePanel()
     {
-        if (vidas <= 0)
+        if (vidas <= 0 && !gameOver)
         {
-            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MainMenu");   
+            gameOver = true;
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("GameOver");
         }
         else if (vidas > showingLives)
         {

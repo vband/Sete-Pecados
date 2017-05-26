@@ -41,7 +41,7 @@ public class SceneController : MonoBehaviour
         UpdateDifficulty(); 
         WinGame();
 
-        if (intro == true && introAnim.GetCurrentAnimatorStateInfo(0).IsTag("1"))
+        if (intro == true && introAnim != null && introAnim.GetCurrentAnimatorStateInfo(0).IsTag("1"))
         {
             paused = true;
         }

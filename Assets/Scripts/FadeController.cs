@@ -28,7 +28,7 @@ public class FadeController : MonoBehaviour {
                
         SceneManager.LoadScene(NextScene, LoadSceneMode.Single);
 
-        if (NextScene == "MainMenu")
+        if (NextScene == "MainMenu" || NextScene == "GameOver")
         {
             SceneController.created = false;
             SceneController.paused = false;
@@ -39,7 +39,9 @@ public class FadeController : MonoBehaviour {
         
         yield return new WaitForSeconds(1.5f);
         
-        if (NextScene == "Main") { SceneController.paused = false; }
+        if (NextScene == "Main") {
+            SceneController.paused = false;
+        }
 
     }
 }
