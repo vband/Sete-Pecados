@@ -128,6 +128,8 @@ public class SceneController : MonoBehaviour
         }
         else
         {
+            // Determina que não é para mostrar a intro de novo
+            introAnim.enabled = false;
             // this must be a duplicate from a scene reload - DESTROY!
             Destroy(this.gameObject);
         }
