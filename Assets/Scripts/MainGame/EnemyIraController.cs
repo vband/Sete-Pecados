@@ -8,6 +8,7 @@ public class EnemyIraController : MonoBehaviour
 {
     public float speed;
     public float jumpForce;
+    public float jumpMaxTime;
     public float jumpCooldown;
     public float chaseDistance;
     public float idleDistance;
@@ -16,10 +17,12 @@ public class EnemyIraController : MonoBehaviour
     private Rigidbody2D rb2D;
     private SpriteRenderer sprite;
     private float currentJumpCooldown;
+    private float jumpTimer;
     private float originPosition;
     private int currentState;
     private float distanceToPlayer;
     private bool isIdlingRight, isIdlingLeft;
+    private bool isJumping;
 
     private const int CHASE = 1;
     private const int IDLE = 2;
@@ -35,6 +38,7 @@ public class EnemyIraController : MonoBehaviour
         currentState = IDLE;
         isIdlingRight = true;
         isIdlingLeft = false;
+        isJumping = false;
     }
 	
 	void Update ()
@@ -45,6 +49,12 @@ public class EnemyIraController : MonoBehaviour
             if (currentJumpCooldown > 0)
             {
                 currentJumpCooldown -= Time.deltaTime;
+            }
+
+            // Realiza o movimento do pulo, caso esteja pulando
+            if (isJumping)
+            {
+                KeepJumping();
             }
 
             // Atualiza o estado do inimigo baseado na sua posição e na posição do jogador
@@ -61,7 +71,7 @@ public class EnemyIraController : MonoBehaviour
                     // Verifica se o player está acima e se existe uma plataforma sobre o inimigo
                     if ((player.position.y > transform.position.y + 2) && IsBelowPlatform())
                     {
-                        Jump();
+                        StartJumping();
                     }
                     break;
 
@@ -76,7 +86,7 @@ public class EnemyIraController : MonoBehaviour
             if (IsStuck())
             {
                 // Pula, para tentar soltá-lo
-                Jump();
+                StartJumping();
             }
         }
     }
@@ -119,13 +129,28 @@ public class EnemyIraController : MonoBehaviour
         }
     }
 
-    // Faz a ação de pular
-    private void Jump()
+    // Inicia a ação de pular
+    private void StartJumping()
     {
         if ((currentJumpCooldown <= 0) && IsGrounded())
         {
-            rb2D.AddForce(Vector2.up * jumpForce);
+            isJumping = true;
             currentJumpCooldown = jumpCooldown;
+            jumpTimer = 0;
+        }
+    }
+
+    // Continua a ação de pular
+    private void KeepJumping()
+    {
+        if (jumpTimer < jumpMaxTime)
+        {
+            rb2D.AddForce(Vector2.up * jumpForce);
+            jumpTimer += Time.deltaTime;
+        }
+        else
+        {
+            isJumping = false;
         }
     }
 
@@ -203,7 +228,7 @@ public class EnemyIraController : MonoBehaviour
     private bool IsBelowPlatform()
     {
         GetComponent<BoxCollider2D>().enabled = false;
-        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, Vector2.up, 2f);
+        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, Vector2.up, 4f);
         GetComponent<BoxCollider2D>().enabled = true;
 
         if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Environment"))
