@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SceneController : MonoBehaviour
 {
     public Transform player;
+    public Animator introAnim;
     public Image progressBar;
     public Transform beginningOfWorld;
     public RectTransform progressBarFrame;
@@ -13,6 +14,7 @@ public class SceneController : MonoBehaviour
     // Distância que o jogador precisa percorrer para ganhar
     public float distanceToWin;
 
+    private bool intro;
     private float playerInitPos, playerEndPos;
     [HideInInspector] public static bool created = false;
     [HideInInspector] public static bool paused = false;
@@ -29,6 +31,7 @@ public class SceneController : MonoBehaviour
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("PowerUps"));
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("Enemies"));
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("AguaBentaPowerUp"), LayerMask.NameToLayer("PowerUps"));
+        intro = true;
     }
 
     void Update ()
@@ -37,6 +40,17 @@ public class SceneController : MonoBehaviour
         ProgressBar();
         UpdateDifficulty(); 
         WinGame();
+
+        if (intro == true && introAnim.GetCurrentAnimatorStateInfo(0).IsTag("1"))
+        {
+            paused = true;
+        }
+        else if (intro == true)
+        {
+            paused = false;
+            intro = false;
+            player.GetComponent<SpriteRenderer>().enabled = true;
+        }
 
         // Desativa a barra de progresso e controle de poweUPs quando o jogo é pausado
         if (paused)

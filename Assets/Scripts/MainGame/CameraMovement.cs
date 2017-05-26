@@ -67,7 +67,7 @@ public class CameraMovement : MonoBehaviour
 
     void LateUpdate()
     {
-        if (!SceneController.paused)
+        if (SceneController.paused == false)
         {
             Movimentacao();
         }

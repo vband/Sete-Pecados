@@ -189,7 +189,7 @@ public class PlayerMovement : MonoBehaviour {
     public void viraDeus()
     {
         imortal = true;
-        Instantiate(aureola, GetComponent<Transform>());
+        Instantiate(aureola, transform);
         //print("Sou Deus!!!");
         
     }
@@ -197,7 +197,7 @@ public class PlayerMovement : MonoBehaviour {
     public void ficaBenzido()
     {
         benzido = true;
-        Instantiate(simboloBencao, GetComponent<Transform>());
+        Instantiate(simboloBencao, transform);
         //print("Estou Benzido!!!");
     }
 
