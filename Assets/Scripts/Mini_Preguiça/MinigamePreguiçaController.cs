@@ -183,27 +183,27 @@ public class MinigamePreguiçaController : MonoBehaviour
                 break;
 
             case 2:
+                numberOfBeds = 4;
+                bedSpeed = 0.1f;
+                deltaDistance = 5;
+                break;
+
+            case 3:
+                numberOfBeds = 5;
+                bedSpeed = 0.2f;
+                deltaDistance = 5;
+                break;
+
+            case 4:
                 numberOfBeds = 6;
                 bedSpeed = 0.2f;
                 deltaDistance = 5;
                 break;
 
-            case 3:
-                numberOfBeds = 8;
+            case 5:
+                numberOfBeds = 7;
                 bedSpeed = 0.3f;
                 deltaDistance = 5;
-                break;
-
-            case 4:
-                numberOfBeds = 10;
-                bedSpeed = 0.4f;
-                deltaDistance = 8;
-                break;
-
-            case 5:
-                numberOfBeds = 15;
-                bedSpeed = 0.45f;
-                deltaDistance = 8;
                 break;
         }
     }
