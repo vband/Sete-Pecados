@@ -50,37 +50,37 @@ public class PowerUpController : MonoBehaviour {
                 case 0:
                     if (pai == false)
                     {
-                        Instantiate(Pai, Limite_camera.transform.position + new Vector3(Random.Range(5, 25), Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
+                        Instantiate(Pai, Limite_camera.transform.position + new Vector3(5, Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
                     }
                     else
                     {
-                        Instantiate(AguaBenta, Limite_camera.transform.position + new Vector3(Random.Range(5, 25), Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
+                        Instantiate(AguaBenta, Limite_camera.transform.position + new Vector3(5, Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
                     }
                     break;
                 case 1:
                     if (filho == false)
                     {
-                        Instantiate(Filho, Limite_camera.transform.position + new Vector3(Random.Range(5, 25), Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
+                        Instantiate(Filho, Limite_camera.transform.position + new Vector3(5, Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
                     }
                     else
                     {
-                        Instantiate(AguaBenta, Limite_camera.transform.position + new Vector3(Random.Range(5, 25), Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
+                        Instantiate(AguaBenta, Limite_camera.transform.position + new Vector3(5, Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
                     }
                     break;
                 case 2:
                     if (espirito == false)
                     {
-                        Instantiate(Espirito, Limite_camera.transform.position + new Vector3(Random.Range(5, 25), Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
+                        Instantiate(Espirito, Limite_camera.transform.position + new Vector3(5, Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
                     }
                     else
                     {
-                        Instantiate(AguaBenta, Limite_camera.transform.position + new Vector3(Random.Range(5, 25), Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
+                        Instantiate(AguaBenta, Limite_camera.transform.position + new Vector3(5, Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
                     }
                     break;
                 case 3:
                     if (benzido == false)
                     {
-                        Instantiate(AguaBenta, Limite_camera.transform.position + new Vector3(Random.Range(5, 25), Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
+                        Instantiate(AguaBenta, Limite_camera.transform.position + new Vector3(5, Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
                     }
                     break;
             }

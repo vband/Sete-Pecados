@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyGananciaSpawner : MonoBehaviour {
+public class EnemyPreguiçaSpawner : MonoBehaviour {
+
     public GameObject limiteDaCamera;
-    public GameObject InimigoGanancia;
+    public GameObject InimigoPreguiça;
     public float cooldown;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         SpawnerStart(cooldown);
-	}
+    }
 
     void SpawnerStart(float cooldown)
     {
@@ -19,11 +21,11 @@ public class EnemyGananciaSpawner : MonoBehaviour {
 
     IEnumerator Spawner(float cooldown)
     {
-    inicio:
+        inicio:
         yield return new WaitForSeconds(cooldown);
         if (!SceneController.paused || Time.timeScale != 0)
-        {   
-            Instantiate(InimigoGanancia, new Vector3(limiteDaCamera.transform.position.x + 5, 5.5f, 0), Quaternion.identity, transform.parent);
+        {
+            Instantiate(InimigoPreguiça, new Vector3(limiteDaCamera.transform.position.x + 7, Random.Range(2, 3), 0), Quaternion.AngleAxis(90, Vector3.forward), transform.parent);
         }
         goto inicio;
     }

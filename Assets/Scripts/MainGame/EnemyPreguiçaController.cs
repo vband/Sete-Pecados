@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class EnemyPreguiçaController : MonoBehaviour
 {
-	void Start () { }
-
-    void Update () {}
-
     // Essa função é chamada quando o inimigo colidir
     private void OnCollisionEnter2D(Collision2D collision)
     {
