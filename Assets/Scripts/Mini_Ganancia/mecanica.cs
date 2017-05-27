@@ -10,6 +10,8 @@ public class mecanica : MonoBehaviour {
     public GameObject minigame;
     public GameObject Certo;
     public GameObject Errado;
+    public Text perfect;
+    public Text ganhou;
     public List<Sprite> album_faces;
 
     //dificuldade
@@ -64,28 +66,28 @@ public class mecanica : MonoBehaviour {
         foreach (GameObject go in listaCerto)
         {
             go.GetComponent<Image>().sprite = rosto_correto;
-            /*
+            
             Instantiate(go, new Vector3(Random.Range(Cam.transform.position.x - (screenSize.x - 2), Cam.transform.position.x + (screenSize.x - 2)),
                                         Random.Range(Cam.transform.position.y - (screenSize.y - 2), Cam.transform.position.y + (screenSize.y - 2)),
                                         zPosition), Quaternion.identity, minigame.transform);
-                                        */
+                                        /*
             Instantiate(go, new Vector3(Random.Range(Cam.transform.position.x - (screenSize.x - 1), Cam.transform.position.x + (screenSize.x - 1)),
                                         Random.Range(Cam.transform.position.y - (screenSize.y - 1), Cam.transform.position.y + (screenSize.y - 1)),
-                                        zPosition), Quaternion.identity, minigame.transform);
+                                        zPosition), Quaternion.identity, minigame.transform);*/
         }
 
         foreach (GameObject go in listaErrado)
         {
             
             go.GetComponent<Image>().sprite = album_faces[Random.Range(0, album_faces.Count)];
-            /*
+            
             Instantiate(go, new Vector3(Random.Range(Cam.transform.position.x - (screenSize.x - 2), Cam.transform.position.x + (screenSize.x - 2)),
                                         Random.Range(Cam.transform.position.y - (screenSize.y - 2), Cam.transform.position.y + (screenSize.y - 2)),
                                         zPosition), Quaternion.identity, minigame.transform);
-                                        */
+                                        /*
             Instantiate(go, new Vector3(Random.Range(Cam.transform.position.x - (screenSize.x - 1), Cam.transform.position.x + (screenSize.x - 1)),
                                         Random.Range(Cam.transform.position.y - (screenSize.y - 1), Cam.transform.position.y + (screenSize.y - 1)),
-                                        zPosition), Quaternion.identity, minigame.transform);
+                                        zPosition), Quaternion.identity, minigame.transform);*/
         }
         
         syncBool = true;
@@ -98,27 +100,27 @@ public class mecanica : MonoBehaviour {
         {
             case 1:
                 tot_certo = 5;
-                tot_errado = 25;
+                tot_errado = 30;
                 break;
             case 2:
                 tot_certo = 4;
-                tot_errado = 26;
+                tot_errado = 35;
                 break;
             case 3:
                 tot_certo = 3;
-                tot_errado = 27;
+                tot_errado = 40;
                 break;
             case 4:
                 tot_certo = 2;
-                tot_errado = 28;
+                tot_errado = 45;
                 break;
             case 5:
                 tot_certo = 1;
-                tot_errado = 29;
+                tot_errado = 50;
                 break;
             default: //case sem entrada, ativa o mais facil
                 tot_certo = 5;
-                tot_errado = 25;
+                tot_errado = 30;
                 break;
         }
     }
@@ -126,6 +128,14 @@ public class mecanica : MonoBehaviour {
     public void RostoCerto()
     {
         faceClick = true;
+        if (GetComponent<CountdownScript>().TempoContagem > 10 - difficulty - 1)
+        {
+            perfect.gameObject.SetActive(true);
+        }
+        else
+        {
+            ganhou.gameObject.SetActive(true);
+        }
         LivesController.addVidas();
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
@@ -133,6 +143,10 @@ public class mecanica : MonoBehaviour {
     public void RostoErrado()
     {
         faceClick = true;
+        GameObject[] certos = GameObject.FindGameObjectsWithTag("Certo");
+        foreach (GameObject certo in certos) {
+            certo.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        }
         LivesController.RemVidas();
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
