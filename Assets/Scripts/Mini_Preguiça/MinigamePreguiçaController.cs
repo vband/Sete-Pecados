@@ -29,6 +29,7 @@ public class MinigamePreguiçaController : MonoBehaviour
                                       // que elas foram tecladas ao mesmo tempo
     private float UpAndDownPressTime = 0; // Tempo em que o jogador pressionou a seta para cima E para baixo
     private int nInitialLives;
+    private int nGreats; // Quantidade de vezes que o jogador consegue bater em uma cama na hora ótima
 
     private static int difficulty = 1;
 
@@ -54,8 +55,7 @@ public class MinigamePreguiçaController : MonoBehaviour
         bgWidth = background.GetComponentInChildren<SpriteRenderer>().sprite.bounds.size.x * background.localScale.x;
         cameraWidth = mainCamera.GetComponent<Camera>().orthographicSize * 2f * mainCamera.GetComponent<Camera>().aspect;
         nInitialLives = LivesController.GetVidas();
-        //cameraWidth = mainCamera.GetComponent<Camera>().rect.size.x;
-        //Debug.Log(cameraWidth);
+        nGreats = 0;
 
         // Ajusta os parâmetros do jogo de acordo com a dificuldade
         SetUpDifficulty();
@@ -118,6 +118,8 @@ public class MinigamePreguiçaController : MonoBehaviour
             ReceiveKeyPress();
             // Desloca as camas
             MoveBeds();
+            // Diminui o tamanho dos highlights das setas das camas
+            RescaleHighlights();
             // Desloca o plano de fundo
             MoveBackground();
 
@@ -129,12 +131,45 @@ public class MinigamePreguiçaController : MonoBehaviour
             // Se o jogador apertar uma seta sem estar tocando numa cama, ele perde
             else if (PlayerPressedKey())
             {
-                //Debug.Log("Erooou!1");
                 LoseGame();
                 return;
             }
         }
 	}
+
+    private void RescaleHighlights()
+    {
+        float distanciaQueComecaAComparar = 4;
+        int bedIndex;
+
+        if (!isTouchingBed)
+        {
+            bedIndex = nBedsTouched;
+        }
+        else
+        {
+            bedIndex = nBedsTouched - 1;
+        }
+
+        if (bedIndex >= beds.Count)
+        {
+            return;
+        }
+
+        // Calcula a distância entre o jogador e a próxima cama
+        float distance = beds[bedIndex].position.x - transform.position.x;
+
+        if (distance > 0 && distance < distanciaQueComecaAComparar)
+        {
+            // Diminui o tamanho do highlight das setas da cama
+            // De acordo com a distância entre a cama e o jogador
+            HighlightBehaviour[] hlb = beds[bedIndex].GetComponentsInChildren<HighlightBehaviour>();
+            foreach (HighlightBehaviour h in hlb)
+            {
+                h.Rescale(distance / distanciaQueComecaAComparar);
+            }
+        }
+    }
 
     private void SetUpDifficulty()
     {
@@ -194,9 +229,18 @@ public class MinigamePreguiçaController : MonoBehaviour
 
     private void WinGame()
     {
-        //LivesController.addVidas();
         DespawnBeds();
-        animator.SetTrigger("win");
+
+        if (nGreats == numberOfBeds)
+        {
+            LivesController.addVidas();
+            animator.SetTrigger("perfect");
+        }
+        else
+        {
+            animator.SetTrigger("win");
+        }
+
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
 
@@ -230,11 +274,13 @@ public class MinigamePreguiçaController : MonoBehaviour
         GetComponent<Animator>().SetBool("isRunning", true);
         isTouchingBed = true;
         nBedsTouched++;
+
     }
 
     // Checa se o player parou de colidir com alguma cama
     public void OnTriggerExit2D(Collider2D collision)
     {
+
         GetComponent<Animator>().SetBool("isRunning", false);
         isTouchingBed = false;
         UpAndDownPressTime = 0;
@@ -303,21 +349,38 @@ public class MinigamePreguiçaController : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.UpArrow) && bedControls[nBedsTouched - 1] == UP)
                 {
-                    //Debug.Log("Acertou");
-                    //beds[nBedsTouched - 1].gameObject.SetActive(false);
+                    // Acertou
                     beds[nBedsTouched - 1].GetComponent<Animator>().SetTrigger("hitBed");
                     wasBedHit[nBedsTouched - 1] = true;
+
+                    if (beds[nBedsTouched - 1].GetComponentInChildren<HighlightBehaviour>().IsGreat())
+                    {
+                        Debug.Log("Great!");
+                        nGreats++;
+                    }
+                    else
+                    {
+                        Debug.Log("Ok");
+                    }
                 }
                 else if (Input.GetKeyDown(KeyCode.DownArrow) && bedControls[nBedsTouched - 1] == DOWN)
                 {
-                    //Debug.Log("Acertou");
-                    //beds[nBedsTouched - 1].gameObject.SetActive(false);
+                    // Acertou
                     beds[nBedsTouched - 1].GetComponent<Animator>().SetTrigger("hitBed");
                     wasBedHit[nBedsTouched - 1] = true;
+
+                    if (beds[nBedsTouched - 1].GetComponentInChildren<HighlightBehaviour>().IsGreat())
+                    {
+                        Debug.Log("Great!");
+                        nGreats++;
+                    }
+                    else
+                    {
+                        Debug.Log("Ok");
+                    }
                 }
                 else
                 {
-                    //Debug.Log("Erooou!3");
                     LoseGame();
                     return;
                 }
@@ -334,17 +397,25 @@ public class MinigamePreguiçaController : MonoBehaviour
             
             if (PlayerPressedDoubleKeys())
             {
-                //Debug.Log("Acertou");
-                //beds[nBedsTouched - 1].gameObject.SetActive(false);
+                // Acertou
                 beds[nBedsTouched - 1].GetComponent<Animator>().SetTrigger("hitBed");
                 UpAndDownPressTime = 0;
                 wasBedHit[nBedsTouched - 1] = true;
+
+                if (beds[nBedsTouched - 1].GetComponentInChildren<HighlightBehaviour>().IsGreat())
+                {
+                    Debug.Log("Great!");
+                    nGreats++;
+                }
+                else
+                {
+                    Debug.Log("Ok");
+                }
             }
 
             // Se o jogador não apertou as duas setas ao mesmo tempo, ele errou
             if (UpAndDownPressTime != 0 && Time.time - UpAndDownPressTime > timeWindow)
             {
-                //Debug.Log("Erooou!4");
                 LoseGame();
                 return;
             }
