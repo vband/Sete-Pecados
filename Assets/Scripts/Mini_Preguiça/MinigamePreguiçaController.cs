@@ -12,6 +12,7 @@ public class MinigamePreguiçaController : MonoBehaviour
     public Transform bedUpPrefab;
     public Transform bedDownPrefab;
     public Transform bedUpAndDownPrefab;
+    public ParticleSystem okPartSys, greatPartSys;
 
     private int numberOfBeds; // Número de camas que irão aparecer
     private float bedSpeed; // Velocidade de deslocamento das camas
@@ -339,7 +340,6 @@ public class MinigamePreguiçaController : MonoBehaviour
             // Se o jogador apertou as duas setas ao mesmo tempo
             if (PlayerPressedDoubleKeys())
             {
-                //Debug.Log("Erooou!2");
                 LoseGame();
                 return;
             }
@@ -355,12 +355,20 @@ public class MinigamePreguiçaController : MonoBehaviour
 
                     if (beds[nBedsTouched - 1].GetComponentInChildren<HighlightBehaviour>().IsGreat())
                     {
-                        Debug.Log("Great!");
+                        if (greatPartSys.isPlaying)
+                        {
+                            greatPartSys.Clear();
+                        }
+                        greatPartSys.Play();
                         nGreats++;
                     }
                     else
                     {
-                        Debug.Log("Ok");
+                        if (okPartSys.isPlaying)
+                        {
+                            okPartSys.Clear();
+                        }
+                        okPartSys.Play();
                     }
                 }
                 else if (Input.GetKeyDown(KeyCode.DownArrow) && bedControls[nBedsTouched - 1] == DOWN)
@@ -371,12 +379,20 @@ public class MinigamePreguiçaController : MonoBehaviour
 
                     if (beds[nBedsTouched - 1].GetComponentInChildren<HighlightBehaviour>().IsGreat())
                     {
-                        Debug.Log("Great!");
+                        if (greatPartSys.isPlaying)
+                        {
+                            greatPartSys.Clear();
+                        }
+                        greatPartSys.Play();
                         nGreats++;
                     }
                     else
                     {
-                        Debug.Log("Ok");
+                        if (okPartSys.isPlaying)
+                        {
+                            okPartSys.Clear();
+                        }
+                        okPartSys.Play();
                     }
                 }
                 else
@@ -404,12 +420,20 @@ public class MinigamePreguiçaController : MonoBehaviour
 
                 if (beds[nBedsTouched - 1].GetComponentInChildren<HighlightBehaviour>().IsGreat())
                 {
-                    Debug.Log("Great!");
+                    if (greatPartSys.isPlaying)
+                    {
+                        greatPartSys.Clear();
+                    }
+                    greatPartSys.Play();
                     nGreats++;
                 }
                 else
                 {
-                    Debug.Log("Ok");
+                    if (okPartSys.isPlaying)
+                    {
+                        okPartSys.Clear();
+                    }
+                    okPartSys.Play();
                 }
             }
 
