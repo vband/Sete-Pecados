@@ -15,7 +15,7 @@ public class aguaBentaPowerUp : MonoBehaviour {
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))
         {
-            
+            transform.parent.GetComponent<PlayerMovement>().sobeCarinha();
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }
