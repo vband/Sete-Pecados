@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour {
     
 
     public AudioClip jumpsound; //Som de pulo
+    public AudioClip paaai; //som da imortalidade
     private float lastjump; //instante do ultimo pulo
 
     private Rigidbody2D rb2D;
@@ -193,8 +194,9 @@ public class PlayerMovement : MonoBehaviour {
     {
         imortal = true;
         Instantiate(aureola, transform);
+        GetComponent<AudioSource>().PlayOneShot(paaai);
         //print("Sou Deus!!!");
-        
+
     }
 
     public void ficaBenzido()
