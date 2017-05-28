@@ -23,7 +23,6 @@ public class EnemyGanancia : MonoBehaviour {
     void Start () {
         ArrebentaCordaStart(ArrebentaCordatimer);
         DropPaperStart(DropCooldown);
-        AutoDestroyStart(AutoDestroyTime);
 	}
 	
 	// Update is called once per frame
@@ -38,6 +37,7 @@ public class EnemyGanancia : MonoBehaviour {
         {
             GetComponent<Rigidbody2D>().Sleep();
         }
+        AutoDestroy();
         
 	}
 
@@ -74,15 +74,17 @@ public class EnemyGanancia : MonoBehaviour {
         goto inicio;
     }
 
-    private void AutoDestroyStart(float time)
+    public void AutoDestroy()
     {
-        StartCoroutine(AutoDestroy(time));
-    }
-
-    IEnumerator AutoDestroy(float time)
-    {
-        yield return new WaitForSeconds(time);
-        Destroy(gameObject);
+        if (!SceneController.paused && Time.deltaTime != 0)
+        {
+            AutoDestroyTime -= Time.deltaTime;
+        }
+        if(AutoDestroyTime < 0)
+        {
+            Destroy(gameObject);
+        }
+        
     }
 
     void moveHorizontal()
@@ -91,7 +93,6 @@ public class EnemyGanancia : MonoBehaviour {
         {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(forceX * Time.deltaTime, 0));
         }
-        
     }
 
     void MoveVacilante()
