@@ -197,13 +197,13 @@ public class EnemyIraController : MonoBehaviour
               
         if (collision.gameObject.tag == "Player")
         {
-            if (GameObject.Find("Player").GetComponent<PlayerMovement>().imortal)
+            GameObject player = GameObject.Find("Player");
+            if (player.GetComponent<PlayerMovement>().imortal)
             {
-                //print("MATOU ENQUANTO DIVINO!");
+                player.GetComponent<PlayerMovement>().sobeCarinha();
                 goto Destruir;
             }
 
-            //GameObject.Find("Vidas").GetComponent<LivesController>().RemVidas();
             GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Ira");
         Destruir:
             Destroy(gameObject);

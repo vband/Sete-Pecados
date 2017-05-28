@@ -150,13 +150,16 @@ public class MinigameIraController : MonoBehaviour
         {
             LivesController.addVidas();
             canvas.GetComponent<Animator>().SetBool("Perfect", true);
+            GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
             GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
         }
         else
         {
             canvas.GetComponent<Animator>().SetBool("Won", true);
+            GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
             GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
         }
+
     }
 
     public static void SetDifficulty(int dif)

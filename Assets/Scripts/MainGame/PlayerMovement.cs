@@ -241,6 +241,18 @@ public class PlayerMovement : MonoBehaviour {
     {
         return pessoasSalvas;
     }
+
+    public void StartDelaySobeCarinha()
+    {
+        //atraso padrao de 3 segundos
+        StartCoroutine(DelaySobeCarinha(3));
+    }
+
+    IEnumerator DelaySobeCarinha(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        sobeCarinha();
+    }
 }
 
 /*

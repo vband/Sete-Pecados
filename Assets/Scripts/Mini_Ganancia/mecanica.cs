@@ -70,10 +70,6 @@ public class mecanica : MonoBehaviour {
             Instantiate(go, new Vector3(Random.Range(Cam.transform.position.x - (screenSize.x - 2), Cam.transform.position.x + (screenSize.x - 2)),
                                         Random.Range(Cam.transform.position.y - (screenSize.y - 2), Cam.transform.position.y + (screenSize.y - 2)),
                                         zPosition), Quaternion.identity, minigame.transform);
-                                        /*
-            Instantiate(go, new Vector3(Random.Range(Cam.transform.position.x - (screenSize.x - 1), Cam.transform.position.x + (screenSize.x - 1)),
-                                        Random.Range(Cam.transform.position.y - (screenSize.y - 1), Cam.transform.position.y + (screenSize.y - 1)),
-                                        zPosition), Quaternion.identity, minigame.transform);*/
         }
 
         foreach (GameObject go in listaErrado)
@@ -84,10 +80,6 @@ public class mecanica : MonoBehaviour {
             Instantiate(go, new Vector3(Random.Range(Cam.transform.position.x - (screenSize.x - 2), Cam.transform.position.x + (screenSize.x - 2)),
                                         Random.Range(Cam.transform.position.y - (screenSize.y - 2), Cam.transform.position.y + (screenSize.y - 2)),
                                         zPosition), Quaternion.identity, minigame.transform);
-                                        /*
-            Instantiate(go, new Vector3(Random.Range(Cam.transform.position.x - (screenSize.x - 1), Cam.transform.position.x + (screenSize.x - 1)),
-                                        Random.Range(Cam.transform.position.y - (screenSize.y - 1), Cam.transform.position.y + (screenSize.y - 1)),
-                                        zPosition), Quaternion.identity, minigame.transform);*/
         }
         
         syncBool = true;
@@ -131,12 +123,13 @@ public class mecanica : MonoBehaviour {
         if (GetComponent<CountdownScript>().TempoContagem > 10 - difficulty - 1)
         {
             perfect.gameObject.SetActive(true);
+            LivesController.addVidas();
         }
         else
         {
             ganhou.gameObject.SetActive(true);
         }
-        LivesController.addVidas();
+        GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
 
@@ -160,5 +153,7 @@ public class mecanica : MonoBehaviour {
     {
         return difficulty;
     }
+
+    
 
 }
