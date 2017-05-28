@@ -115,6 +115,11 @@ public class MinigamePreguiçaController : MonoBehaviour
         // Se o jogo já começou, permite que ele aconteça
         if (animator.GetCurrentAnimatorStateInfo(0).IsTag("2"))
         {
+            // Determina que a animação de corrida do jogador deve ser executada
+            if (GetComponent<Animator>().GetBool("isRunning") == false)
+            {
+                GetComponent<Animator>().SetBool("isRunning", true);
+            }
             // Computa o tempo em que recebeu uma tecla
             ReceiveKeyPress();
             // Desloca as camas
@@ -272,7 +277,7 @@ public class MinigamePreguiçaController : MonoBehaviour
     // Checa se o player começou a colidir com alguma cama
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        GetComponent<Animator>().SetBool("isRunning", true);
+        //GetComponent<Animator>().SetBool("isRunning", true);
         isTouchingBed = true;
         nBedsTouched++;
 
@@ -282,7 +287,7 @@ public class MinigamePreguiçaController : MonoBehaviour
     public void OnTriggerExit2D(Collider2D collision)
     {
 
-        GetComponent<Animator>().SetBool("isRunning", false);
+        //GetComponent<Animator>().SetBool("isRunning", false);
         isTouchingBed = false;
         UpAndDownPressTime = 0;
 

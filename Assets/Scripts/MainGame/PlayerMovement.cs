@@ -54,8 +54,8 @@ public class PlayerMovement : MonoBehaviour {
         currentJumpTime = 0;
         isJumping = false;
 
-        spriteYExtent = spriteRenderer.sprite.bounds.extents.y - 0.2f;
-        spriteXExtent = spriteRenderer.sprite.bounds.extents.x - 0.2f;
+        spriteYExtent = spriteRenderer.sprite.bounds.size.y + 0.2f;
+        spriteXExtent = spriteRenderer.sprite.bounds.size.x + 0.2f;
 
         lastjump = Time.realtimeSinceStartup;
 
@@ -65,6 +65,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 	void FixedUpdate ()
     {
+        //Debug.DrawRay(spriteBottomCenter, Vector3.down, Color.green);
 
         if (!SceneController.paused)
         {
@@ -83,7 +84,7 @@ public class PlayerMovement : MonoBehaviour {
         if (horizontalInput > 0)
         {
             // Ajusta a orientação correta da sprite do personagem
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX = false;
             // Diz para o Animator ativar a animação do personagem correndo
             animator.SetBool("isRunning", true);
         }
@@ -91,7 +92,7 @@ public class PlayerMovement : MonoBehaviour {
         else if (horizontalInput < 0)
         {
             // Ajusta a orientação correta da sprite do personagem
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = true;
             // Diz para o Animator ativar a animação do personagem correndo
             animator.SetBool("isRunning", true);
         }
@@ -176,9 +177,9 @@ public class PlayerMovement : MonoBehaviour {
         // Desabilita temporariamente o collider do jogador
         collider.enabled = false;
         //Faz três raycasts para saber se o jogador está no chão
-        hitCenter = Physics2D.Raycast(spriteBottomCenter, Vector2.down, Mathf.Epsilon, environmentLayer);
-        hitLeft = Physics2D.Raycast(spriteBottomLeft, Vector2.down, Mathf.Epsilon, environmentLayer);
-        hitRight = Physics2D.Raycast(spriteBottomRight, Vector2.down, Mathf.Epsilon, environmentLayer);
+        hitCenter = Physics2D.Raycast(spriteBottomCenter, Vector2.down, 0.1f, environmentLayer);
+        hitLeft = Physics2D.Raycast(spriteBottomLeft, Vector2.down, 0.1f, environmentLayer);
+        hitRight = Physics2D.Raycast(spriteBottomRight, Vector2.down, 0.1f, environmentLayer);
         collider.enabled = true;
 
         // Testa se algum dos raycasts acertaram o chão
