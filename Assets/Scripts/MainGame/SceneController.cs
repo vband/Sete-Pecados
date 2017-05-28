@@ -13,9 +13,11 @@ public class SceneController : MonoBehaviour
     public Transform PainelPowerUp;
     // Distância que o jogador precisa percorrer para ganhar
     public float distanceToWin;
+    public RectTransform rostoFalamaia;
 
     private bool intro;
-    private float playerInitPos, playerEndPos;
+    private float playerInitPos, playerEndPos, deltaDistance;
+    private float progressBarWidth;
     [HideInInspector] public static bool created = false;
     [HideInInspector] public static bool paused = false;
  
@@ -28,6 +30,8 @@ public class SceneController : MonoBehaviour
     {
         playerInitPos = beginningOfWorld.position.x;
         playerEndPos = playerInitPos + distanceToWin;
+        deltaDistance = Mathf.Abs(playerEndPos - playerInitPos);
+        progressBarWidth = progressBar.GetComponent<RectTransform>().rect.width;
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("PowerUps"));
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("Enemies"));
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("AguaBentaPowerUp"), LayerMask.NameToLayer("PowerUps"));
@@ -68,9 +72,14 @@ public class SceneController : MonoBehaviour
     // Ajusta a posição da barra de progresso com base a posição atual do jogador
     private void ProgressBar()
     {
-        float delta = Mathf.Abs(playerEndPos - playerInitPos);
-        float fillAmount = player.position.x / delta;
+        // Atualiza o enchimento da barra de progresso
+        //float delta = Mathf.Abs(playerEndPos - playerInitPos);
+        float fillAmount = player.position.x / deltaDistance;
         progressBar.fillAmount = fillAmount;
+
+        // Move o rosto do Falamaia
+        float correctPos = fillAmount * progressBarWidth;
+        rostoFalamaia.anchoredPosition = new Vector2(correctPos, rostoFalamaia.anchoredPosition.y);
     }
 
     private void UpdateDifficulty() //mecanica = MinigameGananciaController
