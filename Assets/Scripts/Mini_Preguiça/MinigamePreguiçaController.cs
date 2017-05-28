@@ -241,7 +241,7 @@ public class MinigamePreguiçaController : MonoBehaviour
         {
             animator.SetTrigger("win");
         }
-
+        GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
 

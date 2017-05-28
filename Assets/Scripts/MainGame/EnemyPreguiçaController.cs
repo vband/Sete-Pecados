@@ -10,13 +10,14 @@ public class EnemyPreguiçaController : MonoBehaviour
         // Se o inimigo colidir com o jogador
         if (collision.gameObject.tag == "Player")
         {
+            GameObject player = GameObject.Find("Player");
             // Se o jogador estava invulnerável
-            if (GameObject.Find("Player").GetComponent<PlayerMovement>().imortal)
+            if (player.GetComponent<PlayerMovement>().imortal)
             {
+                player.GetComponent<PlayerMovement>().sobeCarinha();
                 goto Destruir;
             }
-
-            //GameObject.Find("Vidas").GetComponent<LivesController>().RemVidas();
+                        
             GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Preguiça");
 
             Destruir:
