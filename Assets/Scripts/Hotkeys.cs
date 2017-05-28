@@ -39,6 +39,11 @@ public class Hotkeys : MonoBehaviour {
             GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Preguiça");
         }
 
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            GameObject.Find("Player").GetComponent<PlayerMovement>().sobeCarinha();
+        }
+
         //BotaoPausa
         if (Input.GetKeyUp(KeyCode.Escape))
         {
