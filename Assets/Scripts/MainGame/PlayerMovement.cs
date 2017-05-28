@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour {
     public GameObject aureola;
 
     public ParticleSystem carinhaSubindo;
-    public static int pessoasSalvas;
+    public static int pessoasSalvas = 0;
 
     //estado de bencao do falamaia
     public bool benzido;
@@ -60,8 +60,6 @@ public class PlayerMovement : MonoBehaviour {
 
         Tempo_imortal_original = Tempo_imortal;
         Tempo_benzido_original = Tempo_benzido;
-
-        pessoasSalvas = 0;
     }
 	
 	void FixedUpdate ()
