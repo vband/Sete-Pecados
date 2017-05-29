@@ -66,7 +66,10 @@ public class EnemyIraController : MonoBehaviour
                 // Se o inimigo estiver perseguindo o jogador...
                 case CHASE:
                     // Corre atrás do jogador
-                    MoveToPlayer();
+                    //MoveToPlayer();
+
+                    // Anda para a esquerda
+                    MoveLeft();
 
                     // Verifica se o player está acima e se existe uma plataforma sobre o inimigo
                     if ((player.position.y > transform.position.y + 2) && IsBelowPlatform())
@@ -117,16 +120,23 @@ public class EnemyIraController : MonoBehaviour
         if (player.position.x > transform.position.x)
         {
             // Anda para a direita
-            rb2D.AddForce(Vector2.right * speed/* * Time.deltaTime*/);
+            rb2D.AddForce(Vector2.right * speed);
             sprite.flipX = false;
         }
         // Verifica se o player está para a esquerda
-        else if (player.position.x < transform.position.x)
+        if (player.position.x < transform.position.x)
         {
             // Anda para a esquerda
-            rb2D.AddForce(Vector2.left * speed/* * Time.deltaTime*/);
+            rb2D.AddForce(Vector2.left * speed);
             sprite.flipX = true;
         }
+    }
+
+    // Se desloca para a esquerda, não importando a posição do jogador
+    private void MoveLeft()
+    {
+        rb2D.AddForce(Vector2.left * speed);
+        sprite.flipX = true;
     }
 
     // Inicia a ação de pular
@@ -228,10 +238,12 @@ public class EnemyIraController : MonoBehaviour
     private bool IsBelowPlatform()
     {
         GetComponent<BoxCollider2D>().enabled = false;
-        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, Vector2.up, 4f);
+        RaycastHit2D hit1 = Physics2D.Raycast((Vector2)transform.position, Vector2.up, 4f);
+        RaycastHit2D hit2 = Physics2D.Raycast((Vector2)transform.position, Vector2.up + Vector2.left, 4f);
         GetComponent<BoxCollider2D>().enabled = true;
 
-        if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Environment"))
+        if ((hit1.collider != null && hit1.collider.gameObject.layer == LayerMask.NameToLayer("Environment"))
+            || (hit2.collider != null && hit2.collider.gameObject.layer == LayerMask.NameToLayer("Environment")))
         {
             return true;
         }

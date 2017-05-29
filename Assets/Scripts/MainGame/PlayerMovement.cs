@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour {
     private Animator animator;
 
     private float currentJumpTime; // Tempo atual no qual o personagem está se deslocando para o alto enquanto pula
-    private bool isJumping; // True se o personagem está se deslocando para o alto porque pulou
+    public bool isJumping; // True se o personagem está se deslocando para o alto porque pulou
     private float horizontalInput;
     private float jumpInput;
 
