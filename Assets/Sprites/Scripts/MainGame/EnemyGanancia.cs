@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyGanancia : MonoBehaviour {
     public GameObject panfleto;
+    public GameObject Placa;
+    public HingeJoint2D CordaPlaca;
     public float forceY;
     public float forceX;
     public float MaxVelo;
@@ -13,6 +15,7 @@ public class EnemyGanancia : MonoBehaviour {
 
     private Vector2 offset;
     private Vector3 temp;
+    private bool natela;
 
     private void Awake()
     {
@@ -38,6 +41,8 @@ public class EnemyGanancia : MonoBehaviour {
             GetComponent<Rigidbody2D>().Sleep();
         }
         AutoDestroy();
+
+        natela = NaTela();
         
 	}
 
@@ -48,13 +53,15 @@ public class EnemyGanancia : MonoBehaviour {
 
     IEnumerator ArrebentaCorda(float time)
     {
-        yield return new WaitForSeconds(time);
-        Rigidbody2D placa = GetComponent<DistanceJoint2D>().connectedBody;
-        if(placa != null)
+        yield return new WaitUntil(() => natela == true);
+        yield return new WaitForSeconds(Random.Range(2,4));
+        
+        if(Placa != null)
         {
-            placa.transform.SetParent(GameObject.Find("Environment").transform);
+            Placa.transform.SetParent(GameObject.Find("Environment").transform);
         }
-        Destroy(GetComponent<DistanceJoint2D>());
+        
+        Destroy(CordaPlaca);
         
     }
 
@@ -108,6 +115,18 @@ public class EnemyGanancia : MonoBehaviour {
         else
         {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, forceY * Time.deltaTime));
+        }
+    }
+
+    public bool NaTela()
+    {
+        if (GetComponent<Renderer>().isVisible)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

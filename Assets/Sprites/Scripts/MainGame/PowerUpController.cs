@@ -177,9 +177,7 @@ public class PowerUpController : MonoBehaviour {
         fim:
         ;
 
-        print("Pai: " + pai);
-        print("Filho: " + filho);
-        print("Espirito: " + espirito);
+        
 
     }
     

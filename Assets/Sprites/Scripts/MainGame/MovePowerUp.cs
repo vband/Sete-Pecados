@@ -30,7 +30,7 @@ public class MovePowerUp : MonoBehaviour {
         if(collision.gameObject.tag == "FILHO-PANEL")
         {
             GetComponentInParent<PowerUpController>().coleta(gameObject.tag);
-            print("coliddiu");
+
             Destroy(this.gameObject);
         }
         
