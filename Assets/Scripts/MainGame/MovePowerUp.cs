@@ -26,12 +26,28 @@ public class MovePowerUp : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if( collision.gameObject.tag == "Player")
+        
+        if(collision.gameObject.tag == "FILHO-PANEL")
+        {
+            GetComponentInParent<PowerUpController>().coleta(gameObject.tag);
+            print("coliddiu");
+            Destroy(this.gameObject);
+        }
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player" && this.gameObject.tag == "aguabenta")
         {
             GetComponentInParent<PowerUpController>().coleta(gameObject.tag);
             Destroy(this.gameObject);
         }
-        
+
+        if (collision.gameObject.tag == "Player" && this.gameObject.tag != "aguabenta")
+        {
+            this.gameObject.layer = LayerMask.NameToLayer("FILHO-PANEL");
+        }
     }
 
     private void move()

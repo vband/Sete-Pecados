@@ -98,22 +98,22 @@ public class PowerUpController : MonoBehaviour {
             case "pai":
                 pai = true;
                 Pais = GameObject.FindGameObjectsWithTag("pai");
-                for(int i = 0; i < Pais.Length; i++) { Destroy(Pais[i], 0.1f); }
+                for(int i = 0; i < Pais.Length; i++) { Pais[i].layer = LayerMask.NameToLayer("FILHO-PANEL"); }
                 break;
             case "filho":
                 filho = true;
                 Filhos = GameObject.FindGameObjectsWithTag("filho");
-                for (int i = 0; i < Filhos.Length; i++) { Destroy(Filhos[i], 0.1f); }
+                for (int i = 0; i < Filhos.Length; i++) { Filhos[i].layer = LayerMask.NameToLayer("FILHO-PANEL"); }
                 break;
             case "espirito":
                 espirito = true;
                 Espiritos = GameObject.FindGameObjectsWithTag("espirito");
-                for (int i = 0; i < Espiritos.Length; i++) { Destroy(Espiritos[i], 0.1f); }
+                for (int i = 0; i < Espiritos.Length; i++) { Espiritos[i].layer = LayerMask.NameToLayer("FILHO-PANEL"); }
                 break;
             case "aguabenta":
                 benzido = true;
-                AguasBentas = GameObject.FindGameObjectsWithTag("aguabenta");
-                for (int i = 0; i < AguasBentas.Length; i++) { Destroy(AguasBentas[i], 0.1f); }
+                // AguasBentas = GameObject.FindGameObjectsWithTag("aguabenta");
+                // for (int i = 0; i < AguasBentas.Length; i++) { Destroy(AguasBentas[i], 0.1f); }
                 break;
         }
     }
@@ -126,6 +126,7 @@ public class PowerUpController : MonoBehaviour {
             filho = false;
             espirito = false;
             Player.GetComponent<PlayerMovement>().viraDeus();
+            
         }
 
         if(benzido == true)
@@ -137,6 +138,17 @@ public class PowerUpController : MonoBehaviour {
 
     private void atualizaPainel()
     {
+        if(Player.GetComponent<PlayerMovement>().imortal)
+        {
+            pai_canvas.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            filho_canvas.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            espirito_canvas.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            pai = false;
+            filho = false;
+            espirito = false;
+            goto fim;
+        }
+        
         if(pai)
         {
             pai_canvas.GetComponent<Image>().color = new Color(1, 1, 1, 1);
@@ -161,6 +173,14 @@ public class PowerUpController : MonoBehaviour {
         {
             espirito_canvas.GetComponent<Image>().color = new Color(1, 1, 1, 0.125f);
         }
+
+        fim:
+        ;
+
+        print("Pai: " + pai);
+        print("Filho: " + filho);
+        print("Espirito: " + espirito);
+
     }
     
 }
