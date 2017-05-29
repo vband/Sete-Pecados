@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour {
         isJumping = false;
 
         spriteYExtent = spriteRenderer.sprite.bounds.size.y + 0.2f;
-        spriteXExtent = spriteRenderer.sprite.bounds.size.x + 0.2f;
+        spriteXExtent = spriteRenderer.sprite.bounds.size.x /*+ 0.2f*/;
 
         lastjump = Time.realtimeSinceStartup;
 
@@ -71,7 +71,8 @@ public class PlayerMovement : MonoBehaviour {
         if (!SceneController.paused)
         {
             Move();
-            Jump();
+            //Jump();
+            JumpNew();
             atualizaTempo();
         }
     }
@@ -109,6 +110,35 @@ public class PlayerMovement : MonoBehaviour {
         // Move o personagem
         Vector2 movement = new Vector2(horizontalInput, 0f);
         rb2D.AddForce(movement * speed);
+    }
+
+    private void JumpNew()
+    {
+        // Obtém input do teclado
+        jumpInput = Input.GetAxisRaw("Jump");
+
+        // Se o jogador pular
+        if (!isJumping && jumpInput > 0 && IsGrounded())
+        {
+            // Registra que o movimento do pulo deverá começar
+            isJumping = true;
+            currentJumpTime = 0;
+        }
+
+        // Se o movimento do pulo está acontecendo
+        if (isJumping)
+        {
+            // Realiza o movimento
+            rb2D.AddForce(new Vector2(0f, jumpSpeed));
+            currentJumpTime += Time.fixedDeltaTime;
+        }
+
+        // Se chegou o fim do pulo
+        if (currentJumpTime >= maxJumpTime)
+        {
+            // Determina que o jogador não mais deverá pular
+            isJumping = false;
+        }
     }
 
     private void Jump()
@@ -172,17 +202,17 @@ public class PlayerMovement : MonoBehaviour {
     {
         BoxCollider2D collider = GetComponent<BoxCollider2D>();
         spriteBottomCenter = transform.position + new Vector3(0f, -spriteYExtent, 0f);
-        spriteBottomLeft = transform.position + new Vector3(-spriteXExtent, -spriteYExtent, 0f);
-        spriteBottomRight = transform.position + new Vector3(spriteXExtent, -spriteYExtent, 0f);
+        spriteBottomLeft = transform.position + new Vector3(-spriteXExtent + 0.2f, -spriteYExtent, 0f);
+        spriteBottomRight = transform.position + new Vector3(spriteXExtent - 0.2f, -spriteYExtent, 0f);
 
         RaycastHit2D hitCenter, hitLeft, hitRight;
 
         // Desabilita temporariamente o collider do jogador
         collider.enabled = false;
         //Faz três raycasts para saber se o jogador está no chão
-        hitCenter = Physics2D.Raycast(spriteBottomCenter, Vector2.down, 0.1f, environmentLayer);
-        hitLeft = Physics2D.Raycast(spriteBottomLeft, Vector2.down, 0.1f, environmentLayer);
-        hitRight = Physics2D.Raycast(spriteBottomRight, Vector2.down, 0.1f, environmentLayer);
+        hitCenter = Physics2D.Raycast(spriteBottomCenter, Vector2.down, 0.05f, environmentLayer);
+        hitLeft = Physics2D.Raycast(spriteBottomLeft, Vector2.down, 0.05f, environmentLayer);
+        hitRight = Physics2D.Raycast(spriteBottomRight, Vector2.down, 0.05f, environmentLayer);
         collider.enabled = true;
 
         // Testa se algum dos raycasts acertaram o chão
