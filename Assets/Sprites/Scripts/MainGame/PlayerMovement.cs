@@ -115,10 +115,10 @@ public class PlayerMovement : MonoBehaviour {
     private void JumpNew()
     {
         // Obtém input do teclado
-        jumpInput = Input.GetAxisRaw("Jump");
+        //jumpInput = Input.GetAxisRaw("Jump");
 
         // Se o jogador pular
-        if (!isJumping && jumpInput > 0 && IsGrounded())
+        if (!isJumping && /*jumpInput > 0*/ Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             // Registra que o movimento do pulo deverá começar
             isJumping = true;
