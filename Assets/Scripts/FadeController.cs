@@ -10,6 +10,8 @@ public class FadeController : MonoBehaviour {
     public Animator fade;
     //resolvendo problema dos listeners
     public GameObject MainCamera;
+    //proibir pause na transicao de cena
+    [HideInInspector] public bool EmTransicao = false;
 
     //metodo padrao para chamar fade e alteracao de cenas a partir de qualquer gameobject
     //GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
@@ -22,6 +24,7 @@ public class FadeController : MonoBehaviour {
 
     IEnumerator fadingDestroy(string NextScene)
     {
+        EmTransicao = true;
         SceneController.paused = true;
         fade.SetBool("Fade", true);
         yield return new WaitUntil(() => black.color.a == 1);
@@ -42,6 +45,6 @@ public class FadeController : MonoBehaviour {
         if (NextScene == "Main") {
             SceneController.paused = false;
         }
-
+        EmTransicao = false;
     }
 }

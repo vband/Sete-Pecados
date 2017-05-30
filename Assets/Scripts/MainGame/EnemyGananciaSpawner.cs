@@ -23,7 +23,7 @@ public class EnemyGananciaSpawner : MonoBehaviour {
         yield return new WaitForSeconds(cooldown);
         if ((!SceneController.paused || Time.timeScale != 0) && GameObject.Find("EnemyGananciaEsquerda(Clone)") == null)
         {   
-            Instantiate(InimigoGanancia, new Vector3(limiteDaCamera.transform.position.x + 5, 5.5f, 0), Quaternion.identity, transform.parent);
+            Instantiate(InimigoGanancia, new Vector3(limiteDaCamera.transform.position.x + 15, 5.5f, 0), Quaternion.identity, transform.parent);
         }
         goto inicio;
     }

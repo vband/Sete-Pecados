@@ -47,6 +47,8 @@ public class Hotkeys : MonoBehaviour {
         //BotaoPausa
         if (Input.GetKeyUp(KeyCode.Escape))
         {
+            //se tiver em transicao, nao pausa o jogo.
+            if(GameObject.Find("FadeImage").GetComponent<FadeController>().EmTransicao == true) { goto fim; }
             if (Time.timeScale == 0)//se já estiver pausado
             {
                 Time.timeScale = 1;
@@ -59,7 +61,8 @@ public class Hotkeys : MonoBehaviour {
                 AudioListener.pause = true;
                 GameObject.Find("PauseMenu").GetComponent<PauseMenuController>().AtivaMenu(true);
             }
-            
+            fim:
+            ;//nop operation
         }
         
         //DEBUG
@@ -71,22 +74,5 @@ public class Hotkeys : MonoBehaviour {
         {
             LivesController.addVidas();
         }
-    }
-    private GameObject[] FindGameObjectsWithLayer(int layer)
-    {
-        GameObject[] goArray = FindObjectsOfType(typeof(GameObject)) as GameObject[];
-        List<GameObject> goList = new List<GameObject>();
-        for (int i = 0; i < goArray.Length; i++)
-        {
-            if (goArray[i].layer == layer)
-            {
-                goList.Add(goArray[i]);
-            }
-        }
-        if (goList.Count == 0)
-        {
-            return null;
-        }
-        return goList.ToArray();
     }
 }
