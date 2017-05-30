@@ -114,8 +114,10 @@ public class PlayerMovement : MonoBehaviour {
 
     private void JumpNew()
     {
+        bool isGrounded = IsGrounded();
+
         // Se o jogador pular
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             // Registra que o movimento do pulo deverá começar
             isJumping = true;
@@ -135,6 +137,15 @@ public class PlayerMovement : MonoBehaviour {
         {
             // Determina que o jogador não mais deverá pular
             isJumping = false;
+        }
+
+        if (!isGrounded)
+        {
+            animator.SetBool("isJumping", true);
+        }
+        else
+        {
+            animator.SetBool("isJumping", false);
         }
     }
 
