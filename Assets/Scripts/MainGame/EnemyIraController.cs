@@ -12,6 +12,7 @@ public class EnemyIraController : MonoBehaviour
     public float jumpCooldown;
     public float chaseDistance;
     public float idleDistance;
+    public LayerMask environmentLayer;
 
     private Transform player;
     private Rigidbody2D rb2D;
@@ -228,11 +229,14 @@ public class EnemyIraController : MonoBehaviour
     // Retorna true se o inimigo estiver tocando o chão
     private bool IsGrounded()
     {
-        GetComponent<BoxCollider2D>().enabled = false;
-        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, Vector2.down, 0.5f);
-        GetComponent<BoxCollider2D>().enabled = true;
+        float distanceToGround = GetComponent<BoxCollider2D>().bounds.extents.y;
+        Vector3 origin = transform.position - new Vector3(0, distanceToGround, 0);
+        float distance = 0.2f;
+        //GetComponent<BoxCollider2D>().enabled = false;
+        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, distance, environmentLayer);
+        //GetComponent<BoxCollider2D>().enabled = true;
 
-        if (hit.collider != null/* && hit.collider.gameObject.layer == LayerMask.NameToLayer("Environment")*/)
+        if (hit.collider != null)
         {
             return true;
         }
@@ -242,13 +246,12 @@ public class EnemyIraController : MonoBehaviour
     // Retorna true quando existe uma plataforma sobre o inimigo
     private bool IsBelowPlatform()
     {
-        GetComponent<BoxCollider2D>().enabled = false;
-        RaycastHit2D hit1 = Physics2D.Raycast((Vector2)transform.position, Vector2.up, 4f);
-        RaycastHit2D hit2 = Physics2D.Raycast((Vector2)transform.position, Vector2.up + Vector2.left, 4f);
-        GetComponent<BoxCollider2D>().enabled = true;
+        //GetComponent<BoxCollider2D>().enabled = false;
+        RaycastHit2D hit1 = Physics2D.Raycast((Vector2)transform.position, Vector2.up, 4f, environmentLayer);
+        RaycastHit2D hit2 = Physics2D.Raycast((Vector2)transform.position, Vector2.up + Vector2.left, 4f, environmentLayer);
+        //GetComponent<BoxCollider2D>().enabled = true;
 
-        if ((hit1.collider != null/* && hit1.collider.gameObject.layer == LayerMask.NameToLayer("Environment")*/)
-            || (hit2.collider != null/* && hit2.collider.gameObject.layer == LayerMask.NameToLayer("Environment")*/))
+        if (hit1.collider != null || hit2.collider != null)
         {
             return true;
         }
