@@ -217,10 +217,6 @@ public class PlayerMovement : MonoBehaviour {
         hitRight = Physics2D.Raycast(originRight, Vector2.down, distance, environmentLayer);
         //collider.enabled = true;
 
-        Debug.DrawRay(originCenter, Vector3.down * distance, Color.red, 1f);
-        Debug.DrawRay(originLeft, Vector3.down * distance, Color.red, 1f);
-        Debug.DrawRay(originRight, Vector3.down * distance, Color.red, 1f);
-
         // Testa se algum dos raycasts acertaram o chão
         if (hitCenter.collider != null || hitLeft.collider != null || hitRight.collider != null)
         {
