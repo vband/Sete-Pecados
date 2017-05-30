@@ -48,7 +48,11 @@ public class Hotkeys : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             //se tiver em transicao, nao pausa o jogo.
-            if(GameObject.Find("FadeImage").GetComponent<FadeController>().EmTransicao == true) { goto fim; }
+            //se tiver em minigame nao pausa o jogo
+
+            if (GameObject.Find("FadeImage").GetComponent<FadeController>().EmTransicao == true ||
+                !SceneManager.GetActiveScene().Equals(SceneManager.GetSceneByName("Main"))) { goto fim; }
+
             if (Time.timeScale == 0)//se já estiver pausado
             {
                 Time.timeScale = 1;
