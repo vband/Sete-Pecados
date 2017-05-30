@@ -247,8 +247,8 @@ public class EnemyIraController : MonoBehaviour
         RaycastHit2D hit2 = Physics2D.Raycast((Vector2)transform.position, Vector2.up + Vector2.left, 4f);
         GetComponent<BoxCollider2D>().enabled = true;
 
-        if ((hit1.collider != null && hit1.collider.gameObject.layer == LayerMask.NameToLayer("Environment"))
-            || (hit2.collider != null && hit2.collider.gameObject.layer == LayerMask.NameToLayer("Environment")))
+        if ((hit1.collider != null/* && hit1.collider.gameObject.layer == LayerMask.NameToLayer("Environment")*/)
+            || (hit2.collider != null/* && hit2.collider.gameObject.layer == LayerMask.NameToLayer("Environment")*/))
         {
             return true;
         }
