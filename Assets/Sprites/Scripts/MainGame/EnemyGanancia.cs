@@ -9,7 +9,6 @@ public class EnemyGanancia : MonoBehaviour {
     public float forceY;
     public float forceX;
     public float MaxVelo;
-    public float ArrebentaCordatimer;
     public float DropCooldown;
     public float AutoDestroyTime;
 
@@ -24,7 +23,7 @@ public class EnemyGanancia : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        ArrebentaCordaStart(ArrebentaCordatimer);
+        ArrebentaCordaStart();
         DropPaperStart(DropCooldown);
 	}
 	
@@ -46,15 +45,15 @@ public class EnemyGanancia : MonoBehaviour {
         
 	}
 
-    private void ArrebentaCordaStart(float time)
+    private void ArrebentaCordaStart()
     {
-        StartCoroutine(ArrebentaCorda(time));
+        StartCoroutine(ArrebentaCorda());
     }
 
-    IEnumerator ArrebentaCorda(float time)
+    IEnumerator ArrebentaCorda()
     {
         yield return new WaitUntil(() => natela == true);
-        yield return new WaitForSeconds(Random.Range(2,4));
+        yield return new WaitForSeconds(Random.Range(1f,2f));
         
         if(Placa != null)
         {
@@ -72,7 +71,8 @@ public class EnemyGanancia : MonoBehaviour {
     }
     IEnumerator DropPaper(float Cooldown)
     {
-    inicio:
+        yield return new WaitUntil(() => natela == true);
+        inicio:
         yield return new WaitForSeconds(Cooldown);
         if (!SceneController.paused && Time.deltaTime != 0)
         {
