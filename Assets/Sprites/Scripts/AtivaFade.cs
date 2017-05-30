@@ -8,7 +8,6 @@ public class AtivaFade : MonoBehaviour {
     private void Awake()
     {
         fadeimage.SetActive(true);
-        //GameObject.Find("FadeImage").SetActive(true);
     }
 
 }

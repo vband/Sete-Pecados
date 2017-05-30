@@ -6,14 +6,14 @@ public class aguaBentaPowerUp : MonoBehaviour {
 
     public float AutoDestroyTimer;
 
-	// Use this for initialization
-	void Start () {
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Environment"), LayerMask.NameToLayer("AguaBentaPowerUp"));
+	private void Update()
+    {
+        rotaciona();
     }
-	
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))
         {
             transform.parent.GetComponent<PlayerMovement>().sobeCarinha();
             Destroy(collision.gameObject);
@@ -21,6 +21,20 @@ public class aguaBentaPowerUp : MonoBehaviour {
         }
     }
 
+    private void rotaciona()
+    {
+        if (transform.parent.GetComponent<PlayerMovement> ().inverte == true) //esquerda
+        {
+            this.transform.localPosition = new Vector3(1.3f, -0.409f, 0);
+            this.transform.rotation = Quaternion.AngleAxis(-180, Vector3.forward);
+        }
+        else if (transform.parent.GetComponent<PlayerMovement>().inverte == false) //direita
+        {
+            this.transform.localPosition = new Vector3(- 1.3f, 0.24f, 0);
+            this.transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
+        }
+    }
+        
     //sem uso, mas pode ser uma possivel implementacao mais elegante
     void AutoDestroyStart(float time)
     {

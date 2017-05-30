@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour {
     public float Tempo_benzido;
     private float Tempo_benzido_original;
     public GameObject simboloBencao;
+    [HideInInspector] public bool inverte;
     
 
     public AudioClip jumpsound; //Som de pulo
@@ -87,6 +88,7 @@ public class PlayerMovement : MonoBehaviour {
             spriteRenderer.flipX = false;
             // Diz para o Animator ativar a animação do personagem correndo
             animator.SetBool("isRunning", true);
+            inverte = false; //bool que controla inversao do powerup da aguabenta
         }
         // Se o jogador se mover para a esquerda
         else if (horizontalInput < 0)
@@ -95,6 +97,7 @@ public class PlayerMovement : MonoBehaviour {
             spriteRenderer.flipX = true;
             // Diz para o Animator ativar a animação do personagem correndo
             animator.SetBool("isRunning", true);
+            inverte = true; //bool que controla inversao do powerup da aguabenta
         }
         // Se o jogador não quiser andar
         else
