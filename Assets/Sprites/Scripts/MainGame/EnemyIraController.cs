@@ -43,6 +43,7 @@ public class EnemyIraController : MonoBehaviour
 	
 	void Update ()
     {
+        //Debug.Log(currentJumpCooldown);
         if (Time.timeScale != 0 && !SceneController.paused) //evita que atualize posicao enquanto jogo estiver pausado
         {
             // Diminui o cooldown de pulo
@@ -82,6 +83,9 @@ public class EnemyIraController : MonoBehaviour
                 case IDLE:
                     // Move-se em volta do seu "spawn point", ocioso
                     IdleAround();
+
+                    //MoveLeft();
+
                     break;
             }
 
@@ -91,6 +95,7 @@ public class EnemyIraController : MonoBehaviour
                 // Pula, para tentar soltá-lo
                 StartJumping();
             }
+            //JumpOverObstacle();
         }
     }
 
@@ -142,7 +147,7 @@ public class EnemyIraController : MonoBehaviour
     // Inicia a ação de pular
     private void StartJumping()
     {
-        if ((currentJumpCooldown <= 0) && IsGrounded())
+        if (/*(currentJumpCooldown <= 0) &&*/ IsGrounded())
         {
             isJumping = true;
             currentJumpCooldown = jumpCooldown;
@@ -227,7 +232,7 @@ public class EnemyIraController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, Vector2.down, 0.5f);
         GetComponent<BoxCollider2D>().enabled = true;
 
-        if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Environment"))
+        if (hit.collider != null/* && hit.collider.gameObject.layer == LayerMask.NameToLayer("Environment")*/)
         {
             return true;
         }
