@@ -12,9 +12,11 @@ public class EnemyGanancia : MonoBehaviour {
     public float DropCooldown;
     public float AutoDestroyTime;
 
+    private float DropCooldownOriginal;
     private Vector2 offset;
     private Vector3 temp;
     private bool natela;
+    private bool EntrouNaTelaUmaVez;
 
     private void Awake()
     {
@@ -24,26 +26,33 @@ public class EnemyGanancia : MonoBehaviour {
     // Use this for initialization
     void Start () {
         ArrebentaCordaStart();
-        DropPaperStart(DropCooldown);
-	}
+        DropPaperStart();
+        DropCooldownOriginal = DropCooldown;
+        
+    }
 	
 	// Update is called once per frame
 	void Update () {
         if (!SceneController.paused)
         {
             MoveVacilante();
-            moveHorizontal();
-            
         }
         else if(SceneController.paused)
         {
             GetComponent<Rigidbody2D>().Sleep();
+            
         }
         AutoDestroy();
 
         natela = NaTela();
-        
-	}
+
+        //atualiza tempo para drop em funcao do deltaTime.
+        if (!SceneController.paused)
+        {
+            DropCooldown -= Time.deltaTime;
+        }
+       
+    }
 
     private void ArrebentaCordaStart()
     {
@@ -53,7 +62,8 @@ public class EnemyGanancia : MonoBehaviour {
     IEnumerator ArrebentaCorda()
     {
         yield return new WaitUntil(() => natela == true);
-        yield return new WaitForSeconds(Random.Range(1f,2f));
+        EntrouNaTelaUmaVez = true;
+        yield return new WaitForSeconds(Random.Range(0.5f,2f));
         
         if(Placa != null)
         {
@@ -65,25 +75,26 @@ public class EnemyGanancia : MonoBehaviour {
     }
 
 
-    private void DropPaperStart(float Cooldown)
+    private void DropPaperStart()
     {
-        StartCoroutine(DropPaper(Cooldown));
+        StartCoroutine(DropPaper());
     }
-    IEnumerator DropPaper(float Cooldown)
+    IEnumerator DropPaper()
     {
         yield return new WaitUntil(() => natela == true);
+        
         inicio:
-        yield return new WaitForSeconds(Cooldown);
-        if (!SceneController.paused && Time.deltaTime != 0)
-        {
-            Instantiate(panfleto, new Vector3(transform.position.x - 1, transform.position.y - 1, 0), Quaternion.identity, transform.parent);
-        }
+
+        yield return new WaitUntil(() => DropCooldown < 0);
+        Instantiate(panfleto, new Vector3(transform.position.x - 1, transform.position.y - 1, 0), Quaternion.identity, transform.parent);
+        DropCooldown = DropCooldownOriginal;
+
         goto inicio;
     }
 
     public void AutoDestroy()
     {
-        if (!SceneController.paused && Time.deltaTime != 0)
+        if ( !NaTela() && EntrouNaTelaUmaVez && Time.deltaTime != 0)
         {
             AutoDestroyTime -= Time.deltaTime;
         }
@@ -94,26 +105,41 @@ public class EnemyGanancia : MonoBehaviour {
         
     }
 
-    void moveHorizontal()
+    void moveHorizontalStart()
     {
-        if (GetComponent<Rigidbody2D>().velocity.x < MaxVelo  )
-        {
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(forceX * Time.deltaTime, 0));
-        }
+        StartCoroutine(MoveHorizontal());    
+    }
+
+    IEnumerator MoveHorizontal()
+    {
+        inicio:
+        yield return new WaitUntil(() => GetComponent<Rigidbody2D>().IsSleeping() == true);
+        yield return new WaitUntil(() => GetComponent<Rigidbody2D>().IsAwake() == true);
+        GetComponent<Rigidbody2D>().velocity += new Vector2(-MaxVelo, 0);
+        goto inicio;
     }
 
     void MoveVacilante()
     {
         if (transform.position.y > offset.y)
         {
+            Vector3 velAtual = GetComponent<Rigidbody2D>().velocity;
+            velAtual.x = -MaxVelo;
+            GetComponent<Rigidbody2D>().velocity = velAtual;
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, (forceY / 1.2f) * Time.deltaTime));
         }
         else if (transform.position.y < offset.y)
         {
+            Vector3 velAtual = GetComponent<Rigidbody2D>().velocity;
+            velAtual.x = -MaxVelo;
+            GetComponent<Rigidbody2D>().velocity = velAtual;
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, (forceY * 1.2f) * Time.deltaTime));
         }
         else
         {
+            Vector3 velAtual = GetComponent<Rigidbody2D>().velocity;
+            velAtual.x = -MaxVelo;
+            GetComponent<Rigidbody2D>().velocity = velAtual;
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, forceY * Time.deltaTime));
         }
     }
