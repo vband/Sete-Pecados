@@ -17,7 +17,6 @@ public class MainMenu : MonoBehaviour
     [Space(20)]
     public Text textoVol,resolucoes,qualidades,titulo;
         
-    private string nomeDaCena;
     private float VOLUME;
     private int qualidadeGrafica, modoJanelaAtivo, resolucaoSalveIndex;
     private bool telaCheiaAtivada;
@@ -35,6 +34,7 @@ public class MainMenu : MonoBehaviour
         Opcoes(false);
         ChecarResolucoes();
         AjustarQualidades();
+        BarraVolume.onValueChanged.AddListener(delegate { AtualizaVolume(); });
         //
         if (PlayerPrefs.HasKey("RESOLUCAO"))
         {
@@ -45,7 +45,6 @@ public class MainMenu : MonoBehaviour
             }
         }
         //
-        nomeDaCena = SceneManager.GetActiveScene().name;
         Cursor.visible = true;
         Time.timeScale = 1;
         //
@@ -57,11 +56,13 @@ public class MainMenu : MonoBehaviour
         {
             VOLUME = PlayerPrefs.GetFloat("VOLUME");
             BarraVolume.value = VOLUME;
+            
         }
         else
         {
             PlayerPrefs.SetFloat("VOLUME", 1);
             BarraVolume.value = 1;
+            
         }
         //=============MODO JANELA===========//
         if (PlayerPrefs.HasKey("modoJanela"))
@@ -201,13 +202,10 @@ public class MainMenu : MonoBehaviour
         Screen.SetResolution(resolucoesSuportadas[resolucaoSalveIndex].width, resolucoesSuportadas[resolucaoSalveIndex].height, telaCheiaAtivada);
     }
     //===========VOIDS NORMAIS=========//
-    void Update()
+    
+    public void AtualizaVolume()
     {
-        if (SceneManager.GetActiveScene().name != nomeDaCena)
-        {
-            AudioListener.volume = VOLUME;
-            Destroy(gameObject);
-        }
+        AudioListener.volume = BarraVolume.value;
     }
     private void Jogar()
     {
