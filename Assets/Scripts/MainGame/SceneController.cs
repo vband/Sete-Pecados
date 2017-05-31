@@ -14,10 +14,13 @@ public class SceneController : MonoBehaviour
     // Distância que o jogador precisa percorrer para ganhar
     public float distanceToWin;
     public RectTransform rostoFalamaia;
+    public Camera mainCamera;
 
     private bool intro;
     private float playerInitPos, playerEndPos, deltaDistance;
     private float progressBarWidth;
+    private bool winGame = false;
+    private GameObject igreja;
     [HideInInspector] public static bool created = false;
     [HideInInspector] public static bool paused = false;
  
@@ -47,12 +50,13 @@ public class SceneController : MonoBehaviour
 
         ProgressBar();
         UpdateDifficulty(); 
-        WinGame();
 
+        // Impede que o jogo prossiga enquanto ainda estiver na introdução
         if (intro == true && introAnim != null && introAnim.GetCurrentAnimatorStateInfo(0).IsTag("1"))
         {
             paused = true;
         }
+        // Ao final da intro, permite que o jogo prossiga
         else if (intro == true)
         {
             paused = false;
@@ -70,6 +74,12 @@ public class SceneController : MonoBehaviour
         {
             PainelPowerUp.gameObject.SetActive(true);
             progressBarFrame.gameObject.SetActive(true);
+        }
+
+        // Verifica se o jogador ganhou
+        if (winGame)
+        {
+            PlayWinAnimation();
         }
 	}
 
@@ -122,11 +132,43 @@ public class SceneController : MonoBehaviour
         }
     }
 
-    private void WinGame()
+    public void WinGame()
     {
-        if (player.position.x >= playerEndPos)
+        // Avisa que o jogo acabou
+        winGame = true;
+        // Avisa que a câmera vai parar de andar sozinha
+        mainCamera.GetComponent<CameraMovement>().enabled = false;
+        // Impede que o jogo prossiga
+        paused = true;
+
+        igreja = GameObject.FindGameObjectWithTag("Igreja");
+    }
+
+    // Executa a animação de vitória
+    private void PlayWinAnimation()
+    {
+        // Move a câmera até centralizar a igreja
+        if (mainCamera.transform.position.x < igreja.transform.position.x)
         {
-            //Debug.Log("Você venceu o jogo!");
+            Rigidbody2D cameraRB = mainCamera.GetComponent<Rigidbody2D>();
+            Vector3 cameraPos = mainCamera.transform.position;
+            Vector2 cameraSpeed = new Vector2(0.05f, 0f);
+
+            cameraRB.MovePosition((Vector2)cameraPos + cameraSpeed);
+        }
+        else if (mainCamera.transform.position.y < igreja.transform.position.y - 1.37f)
+        {
+            Rigidbody2D cameraRB = mainCamera.GetComponent<Rigidbody2D>();
+            Vector3 cameraPos = mainCamera.transform.position;
+            Vector2 cameraSpeed = new Vector2(0f, 0.05f);
+
+            cameraRB.MovePosition((Vector2)cameraPos + cameraSpeed);
+        }
+        // Quando tiver centralizado a igreja...
+        else
+        {
+            // Chama a cena de gameover (futuramente, será trocada por uma cena mais adequada)
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("GameOver");
         }
     }
 
