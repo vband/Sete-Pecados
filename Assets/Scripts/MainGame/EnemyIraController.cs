@@ -17,6 +17,7 @@ public class EnemyIraController : MonoBehaviour
     private Transform player;
     private Rigidbody2D rb2D;
     private SpriteRenderer sprite;
+    private Animator animator;
     private float currentJumpCooldown;
     private float jumpTimer;
     private float originPosition;
@@ -34,6 +35,7 @@ public class EnemyIraController : MonoBehaviour
         player = GameObject.Find("Player").transform;
         rb2D = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         currentJumpCooldown = 0;
         originPosition = transform.position.x;
         currentState = IDLE;
@@ -96,7 +98,16 @@ public class EnemyIraController : MonoBehaviour
                 // Pula, para tentar soltá-lo
                 StartJumping();
             }
-            //JumpOverObstacle();
+
+            // Atualiza a animação
+            if (rb2D.velocity.x != 0)
+            {
+                animator.SetBool("isRunning", true);
+            }
+            else
+            {
+                animator.SetBool("isRunning", false);
+            }
         }
     }
 
