@@ -45,8 +45,6 @@ public class InfiniteWorld : MonoBehaviour
         {
             generateMoreObjects();
         }
-
-        Debug.DrawLine(beginnigOfWorld.position, currentCityEndPos, Color.red);
 	}
 
     private void generateMoreObjects()
@@ -64,13 +62,13 @@ public class InfiniteWorld : MonoBehaviour
 
     private void CreateChurch()
     {
+        // Instancia a igreja
         Transform instance = Instantiate(igrejaPrefab,
             igrejaPrefab.position + new Vector3(currentCityEndPos.x, 0, 0),
             new Quaternion(0, 0, 0, 0),
             cenaPrincipal.transform);
 
-        //Debug.Log(instance.GetComponent<BoxCollider2D>().bounds.extents.x);
-
+        // Reposiciona a igreja, para ficar certo
         float igrejaExtent = instance.GetComponent<BoxCollider2D>().bounds.extents.x;
         instance.position = new Vector3 (instance.position.x + igrejaExtent + 1.75f, instance.position.y, instance.position.z);
     }
