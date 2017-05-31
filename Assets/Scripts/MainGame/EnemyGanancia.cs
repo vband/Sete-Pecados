@@ -144,7 +144,7 @@ public class EnemyGanancia : MonoBehaviour {
         }
     }
 
-    public bool NaTela()
+    private bool NaTela()
     {
         if (GetComponent<Renderer>().isVisible)
         {

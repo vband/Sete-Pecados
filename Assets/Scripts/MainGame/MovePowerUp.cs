@@ -61,9 +61,21 @@ public class MovePowerUp : MonoBehaviour {
     private void destroyTimer()
     {
         despawn_time -= Time.fixedDeltaTime;
-        if(despawn_time < 0)
+        if( !NaTela() && despawn_time < 0)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private bool NaTela()
+    {
+        if (GetComponent<Renderer>().isVisible)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }
