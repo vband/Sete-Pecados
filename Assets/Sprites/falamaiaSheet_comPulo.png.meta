@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 56fe2febd4543f7409350407864d07fc
-timeCreated: 1496182898
+timeCreated: 1496218731
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -40,7 +40,7 @@ TextureImporter:
   textureFormat: 1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -1
     wrapMode: 1
@@ -64,17 +64,49 @@ TextureImporter:
   textureFormatSet: 0
   platformSettings:
   - buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: tvOS
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -86,10 +118,10 @@ TextureImporter:
       name: falamaiaSheet_comPulo_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 48
-        height: 64
+        x: 2
+        y: 6
+        width: 41
+        height: 55
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -99,10 +131,10 @@ TextureImporter:
       name: falamaiaSheet_comPulo_1
       rect:
         serializedVersion: 2
-        x: 48
+        x: 51
         y: 0
-        width: 48
-        height: 64
+        width: 37
+        height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,10 +144,10 @@ TextureImporter:
       name: falamaiaSheet_comPulo_2
       rect:
         serializedVersion: 2
-        x: 96
+        x: 105
         y: 0
-        width: 48
-        height: 64
+        width: 28
+        height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,10 +157,10 @@ TextureImporter:
       name: falamaiaSheet_comPulo_3
       rect:
         serializedVersion: 2
-        x: 144
+        x: 154
         y: 0
-        width: 48
-        height: 64
+        width: 28
+        height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -138,10 +170,10 @@ TextureImporter:
       name: falamaiaSheet_comPulo_4
       rect:
         serializedVersion: 2
-        x: 192
-        y: 0
-        width: 48
-        height: 64
+        x: 194
+        y: 7
+        width: 40
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,10 +183,10 @@ TextureImporter:
       name: falamaiaSheet_comPulo_5
       rect:
         serializedVersion: 2
-        x: 240
+        x: 241
         y: 0
-        width: 48
-        height: 64
+        width: 40
+        height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,10 +196,10 @@ TextureImporter:
       name: falamaiaSheet_comPulo_6
       rect:
         serializedVersion: 2
-        x: 288
+        x: 301
         y: 0
-        width: 48
-        height: 64
+        width: 26
+        height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,10 +209,10 @@ TextureImporter:
       name: falamaiaSheet_comPulo_7
       rect:
         serializedVersion: 2
-        x: 336
+        x: 346
         y: 0
-        width: 48
-        height: 64
+        width: 27
+        height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,10 +222,10 @@ TextureImporter:
       name: falamaiaSheet_comPulo_8
       rect:
         serializedVersion: 2
-        x: 384
+        x: 394
         y: 0
-        width: 48
-        height: 64
+        width: 25
+        height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,10 +235,10 @@ TextureImporter:
       name: falamaiaSheet_comPulo_9
       rect:
         serializedVersion: 2
-        x: 432
+        x: 444
         y: 0
-        width: 48
-        height: 64
+        width: 31
+        height: 55
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,10 +248,10 @@ TextureImporter:
       name: falamaiaSheet_comPulo_10
       rect:
         serializedVersion: 2
-        x: 480
-        y: 0
-        width: 48
-        height: 64
+        x: 495
+        y: 9
+        width: 26
+        height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,10 +261,10 @@ TextureImporter:
       name: falamaiaSheet_comPulo_11
       rect:
         serializedVersion: 2
-        x: 528
+        x: 529
         y: 0
-        width: 48
-        height: 64
+        width: 28
+        height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,10 +274,10 @@ TextureImporter:
       name: falamaiaSheet_comPulo_12
       rect:
         serializedVersion: 2
-        x: 576
+        x: 586
         y: 0
-        width: 48
-        height: 64
+        width: 27
+        height: 49
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
