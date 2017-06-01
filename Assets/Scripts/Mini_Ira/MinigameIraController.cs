@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -20,6 +21,9 @@ public class MinigameIraController : MonoBehaviour
     // Caminhos para os diretórios
     private string pathToAggressiveFolder;
     private string pathToPoliteFolder;
+
+    List<TextAsset> AgressiveComments;
+    List<TextAsset> PoliteComments;
 
     // Temporizador
     private float timeLeft;
@@ -40,6 +44,10 @@ public class MinigameIraController : MonoBehaviour
         // Cria os espaços onde serão instanciados os comentários
         int total = nAggressiveComments + nPoliteComments;
         List<float> commentSlots = new List<float>();
+
+        //Carrega todos os comentarios para sortear depois
+        AgressiveComments = Resources.LoadAll(pathToAggressiveFolder, typeof(TextAsset)).Cast<TextAsset>().ToList();
+        PoliteComments = Resources.LoadAll(pathToPoliteFolder, typeof(TextAsset)).Cast<TextAsset>().ToList();
 
         for (int i = 0; i < total; i++)
         {
@@ -74,47 +82,38 @@ public class MinigameIraController : MonoBehaviour
         {
             LoseGame();
         }
-
-        /*
-        // Checa se o minigame acabou
-        if (canvas.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsTag("5"))
-        {
-            // Volta para o jogo principal
-            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
-        }
-        */
     }
+
+
 
     private List<float> GenerateComments(float buttonHeight, string pathToFolder, int nComments, bool isAggressive, List<float> heights)
     {
+        
         // Obtém os comentários
         for (int i = 1; i <= nComments; i++)
         {
-            string path = "";
+            TextAsset txtAsset;
 
             if (isAggressive)
             {
-                string file = "\\aggressive";
-                file = string.Concat(file, i.ToString());
-                path = string.Concat(pathToFolder, file);
+                txtAsset = AgressiveComments[Random.Range(0, AgressiveComments.Count)];
+                AgressiveComments.Remove(txtAsset);
             }
             else
             {
-                string file = "\\polite";
-                file = string.Concat(file, i.ToString());
-                path = string.Concat(pathToFolder, file);
+                txtAsset = PoliteComments[Random.Range(0, PoliteComments.Count)];
+                PoliteComments.Remove(txtAsset);
             }
 
-            // Abre o arquivo
-            TextAsset txtAsset = (TextAsset)Resources.Load(path);
             // Instancia o comentário
             RectTransform instance = Instantiate(commentPrefab, transform);
             // Escreve o comentário
             instance.GetComponent<CommentController>().SetComment(txtAsset.text);
+            //print(txtAsset.text);
             // Define se o comentário é agressivo ou educado
             instance.GetComponent<CommentController>().isAggressive = isAggressive;
             // Posiciona o comentário a uma altura aleatória
-            float randomHeight = heights[Random.Range(0 , heights.Count)];
+            float randomHeight = heights[Random.Range(0, heights.Count)];
             instance.SetPositionAndRotation(
                 new Vector3(instance.position.x, canvas.transform.position.y + randomHeight, instance.position.z), //modificado para evitar conflito com a cena do jogo principal
                 new Quaternion(0, 0, 0, 0));
@@ -122,7 +121,7 @@ public class MinigameIraController : MonoBehaviour
         }
         return heights;
     }
-	
+
     // Perde o jogo
     public void AggressiveCommentOnClick()
     {

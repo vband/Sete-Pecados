@@ -103,11 +103,18 @@ public class PlayerMovement : MonoBehaviour {
         bool isGrounded = IsGrounded();
 
         // Se o jogador pular
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetAxisRaw("Jump") > 0 && isGrounded && (Time.realtimeSinceStartup - lastjump) > 0.3f) 
         {
             // Registra que o movimento do pulo deverá começar
             isJumping = true;
             currentJumpTime = 0;
+
+            //testa o tempo para evitar que o som se sobreponha
+            if ((Time.realtimeSinceStartup - lastjump) > 0.5f)
+            {
+                GetComponent<AudioSource>().PlayOneShot(jumpsound);
+                lastjump = Time.realtimeSinceStartup;
+            }
         }
 
         // Se o movimento do pulo está acontecendo

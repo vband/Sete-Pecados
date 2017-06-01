@@ -69,6 +69,8 @@ public class SceneController : MonoBehaviour
         {
             PainelPowerUp.gameObject.SetActive(false);
             progressBarFrame.gameObject.SetActive(false);
+            player.GetComponent<Animator>().SetBool("isRunning", false);
+            player.GetComponent<Animator>().SetBool("isJumping", false);
         }
         else
         {
@@ -168,7 +170,7 @@ public class SceneController : MonoBehaviour
         else
         {
             // Chama a cena de gameover (futuramente, será trocada por uma cena mais adequada)
-            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("GameOver");
+            //GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("GameOver");
         }
     }
 
