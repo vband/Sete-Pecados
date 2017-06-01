@@ -22,8 +22,8 @@ public class MinigameIraController : MonoBehaviour
     private string pathToAggressiveFolder;
     private string pathToPoliteFolder;
 
-    TextAsset[] AgressiveComments;
-    TextAsset[] PoliteComments;
+    List<TextAsset> AgressiveComments;
+    List<TextAsset> PoliteComments;
 
     // Temporizador
     private float timeLeft;
@@ -46,8 +46,8 @@ public class MinigameIraController : MonoBehaviour
         List<float> commentSlots = new List<float>();
 
         //Carrega todos os comentarios para sortear depois
-        AgressiveComments = Resources.LoadAll(pathToAggressiveFolder, typeof(TextAsset)).Cast<TextAsset>().ToArray(); ;
-        PoliteComments = Resources.LoadAll(pathToPoliteFolder, typeof(TextAsset)).Cast<TextAsset>().ToArray();
+        AgressiveComments = Resources.LoadAll(pathToAggressiveFolder, typeof(TextAsset)).Cast<TextAsset>().ToList();
+        PoliteComments = Resources.LoadAll(pathToPoliteFolder, typeof(TextAsset)).Cast<TextAsset>().ToList();
 
         for (int i = 0; i < total; i++)
         {
@@ -96,11 +96,13 @@ public class MinigameIraController : MonoBehaviour
 
             if (isAggressive)
             {
-                txtAsset = AgressiveComments[Random.Range(0, AgressiveComments.Length)];
+                txtAsset = AgressiveComments[Random.Range(0, AgressiveComments.Count)];
+                //AgressiveComments.Remove(txtAsset);
             }
             else
             {
-                txtAsset = PoliteComments[Random.Range(0, PoliteComments.Length)];
+                txtAsset = PoliteComments[Random.Range(0, PoliteComments.Count)];
+                //PoliteComments.Remove(txtAsset);
             }
 
             // Instancia o comentário
