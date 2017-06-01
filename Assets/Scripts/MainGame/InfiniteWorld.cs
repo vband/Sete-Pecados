@@ -61,8 +61,14 @@ public class InfiniteWorld : MonoBehaviour
             case 1:
                 for (int i = 0; i < objectsToGenerate1.Length; i++)
                 {
-                    Instantiate(objectsToGenerate1[i], objectsToGenerate1[i].position + Vector3.right * worldWidth * nIterations,
-                                new Quaternion(0, 0, 0, 0), this.transform);
+                    if (objectsToGenerate1 != null)
+                    {
+                        objectsToGenerate1[i].gameObject.SetActive(true);
+                        Instantiate(objectsToGenerate1[i], objectsToGenerate1[i].position + Vector3.right * worldWidth * nIterations,
+                                    new Quaternion(0, 0, 0, 0), this.transform);
+                        //objectsToGenerate1[i].gameObject.SetActive(false);
+                    }
+
 
                 }
                 break;
@@ -70,8 +76,10 @@ public class InfiniteWorld : MonoBehaviour
             case 2:
                 for (int i = 0; i < objectsToGenerate2.Length; i++)
                 {
+                    objectsToGenerate2[i].gameObject.SetActive(true);
                     Instantiate(objectsToGenerate2[i], objectsToGenerate2[i].position + Vector3.right * worldWidth * nIterations,
                                 new Quaternion(0, 0, 0, 0), this.transform);
+                    objectsToGenerate2[i].gameObject.SetActive(false);
 
                 }
                 break;
@@ -79,8 +87,10 @@ public class InfiniteWorld : MonoBehaviour
             case 3:
                 for (int i = 0; i < objectsToGenerate3.Length; i++)
                 {
+                    objectsToGenerate3[i].gameObject.SetActive(true);
                     Instantiate(objectsToGenerate3[i], objectsToGenerate3[i].position + Vector3.right * worldWidth * nIterations,
                                 new Quaternion(0, 0, 0, 0), this.transform);
+                    objectsToGenerate3[i].gameObject.SetActive(false);
 
                 }
                 break;
