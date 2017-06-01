@@ -61,7 +61,7 @@ public class InfiniteWorld : MonoBehaviour
             case 1:
                 for (int i = 0; i < objectsToGenerate1.Length; i++)
                 {
-                    if (objectsToGenerate1 != null)
+                    if (objectsToGenerate1[i] != null)
                     {
                         objectsToGenerate1[i].gameObject.SetActive(true);
                         Instantiate(objectsToGenerate1[i], objectsToGenerate1[i].position + Vector3.right * worldWidth * nIterations,
@@ -76,7 +76,7 @@ public class InfiniteWorld : MonoBehaviour
             case 2:
                 for (int i = 0; i < objectsToGenerate2.Length; i++)
                 {
-                    if (objectsToGenerate2 != null)
+                    if (objectsToGenerate2[i] != null)
                     {
                         objectsToGenerate2[i].gameObject.SetActive(true);
                         Instantiate(objectsToGenerate2[i], objectsToGenerate2[i].position + Vector3.right * worldWidth * nIterations,
@@ -90,7 +90,7 @@ public class InfiniteWorld : MonoBehaviour
             case 3:
                 for (int i = 0; i < objectsToGenerate3.Length; i++)
                 {
-                    if (objectsToGenerate3 != null)
+                    if (objectsToGenerate3[i] != null)
                     {
                         objectsToGenerate3[i].gameObject.SetActive(true);
                         Instantiate(objectsToGenerate3[i], objectsToGenerate3[i].position + Vector3.right * worldWidth * nIterations,
