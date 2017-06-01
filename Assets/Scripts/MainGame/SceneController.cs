@@ -15,14 +15,17 @@ public class SceneController : MonoBehaviour
     public float distanceToWin;
     public RectTransform rostoFalamaia;
     public Camera mainCamera;
+    public Button VoltarParaMenu;
 
     private bool intro;
     private float playerInitPos, playerEndPos, deltaDistance;
     private float progressBarWidth;
-    private bool winGame = false;
+    
     private GameObject igreja;
+    [HideInInspector] public static bool winGame = false;
     [HideInInspector] public static bool created = false;
     [HideInInspector] public static bool paused = false;
+
  
     private void Awake()
     {
@@ -171,6 +174,7 @@ public class SceneController : MonoBehaviour
         {
             // Chama a cena de gameover (futuramente, será trocada por uma cena mais adequada)
             //GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("GameOver");
+            VoltarParaMenu.gameObject.SetActive(true);
         }
     }
 

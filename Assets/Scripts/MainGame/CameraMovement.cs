@@ -57,7 +57,7 @@ public class CameraMovement : MonoBehaviour
 
     private void Update()
     {
-        DisableListener();
+        //DisableListener();
     }
 
     private void FixedUpdate()

@@ -21,10 +21,25 @@ public class EnemyGananciaSpawner : MonoBehaviour {
     {
     inicio:
         yield return new WaitForSeconds(cooldown);
-        if ((!SceneController.paused || Time.timeScale != 0) && GameObject.Find("EnemyGananciaEsquerda(Clone)") == null)
+        if ((!SceneController.paused || Time.timeScale != 0) && GameObject.Find("EnemyGananciaEsquerda(Clone)") == null
+            && !SceneController.winGame)
         {   
             Instantiate(InimigoGanancia, new Vector3(limiteDaCamera.transform.position.x + 15, 5.5f, 0), Quaternion.identity, transform.parent);
         }
+        else if (SceneController.winGame)
+        {
+            DestroyAll();
+        }
         goto inicio;
+    }
+
+    private void DestroyAll()
+    {
+        GameObject[] go = GameObject.FindGameObjectsWithTag("EnemyGanancia");
+        for (int i = 0; i < go.Length; i++)
+        {
+            Destroy(go[i]);
+
+        }
     }
 }
