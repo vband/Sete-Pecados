@@ -97,12 +97,12 @@ public class MinigameIraController : MonoBehaviour
             if (isAggressive)
             {
                 txtAsset = AgressiveComments[Random.Range(0, AgressiveComments.Count)];
-                //AgressiveComments.Remove(txtAsset);
+                AgressiveComments.Remove(txtAsset);
             }
             else
             {
                 txtAsset = PoliteComments[Random.Range(0, PoliteComments.Count)];
-                //PoliteComments.Remove(txtAsset);
+                PoliteComments.Remove(txtAsset);
             }
 
             // Instancia o comentário
