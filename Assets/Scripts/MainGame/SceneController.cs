@@ -69,6 +69,8 @@ public class SceneController : MonoBehaviour
         {
             PainelPowerUp.gameObject.SetActive(false);
             progressBarFrame.gameObject.SetActive(false);
+            player.GetComponent<Animator>().SetBool("isRunning", false);
+            player.GetComponent<Animator>().SetBool("isJumping", false);
         }
         else
         {
