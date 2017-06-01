@@ -108,6 +108,13 @@ public class PlayerMovement : MonoBehaviour {
             // Registra que o movimento do pulo deverá começar
             isJumping = true;
             currentJumpTime = 0;
+
+            //testa o tempo para evitar que o som se sobreponha
+            if ((Time.realtimeSinceStartup - lastjump) > 0.5f)
+            {
+                GetComponent<AudioSource>().PlayOneShot(jumpsound);
+                lastjump = Time.realtimeSinceStartup;
+            }
         }
 
         // Se o movimento do pulo está acontecendo
