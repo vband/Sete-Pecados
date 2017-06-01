@@ -76,10 +76,13 @@ public class InfiniteWorld : MonoBehaviour
             case 2:
                 for (int i = 0; i < objectsToGenerate2.Length; i++)
                 {
-                    objectsToGenerate2[i].gameObject.SetActive(true);
-                    Instantiate(objectsToGenerate2[i], objectsToGenerate2[i].position + Vector3.right * worldWidth * nIterations,
-                                new Quaternion(0, 0, 0, 0), this.transform);
-                    objectsToGenerate2[i].gameObject.SetActive(false);
+                    if (objectsToGenerate2 != null)
+                    {
+                        objectsToGenerate2[i].gameObject.SetActive(true);
+                        Instantiate(objectsToGenerate2[i], objectsToGenerate2[i].position + Vector3.right * worldWidth * nIterations,
+                                    new Quaternion(0, 0, 0, 0), this.transform);
+                        objectsToGenerate2[i].gameObject.SetActive(false);
+                    }
 
                 }
                 break;
@@ -87,10 +90,13 @@ public class InfiniteWorld : MonoBehaviour
             case 3:
                 for (int i = 0; i < objectsToGenerate3.Length; i++)
                 {
-                    objectsToGenerate3[i].gameObject.SetActive(true);
-                    Instantiate(objectsToGenerate3[i], objectsToGenerate3[i].position + Vector3.right * worldWidth * nIterations,
-                                new Quaternion(0, 0, 0, 0), this.transform);
-                    objectsToGenerate3[i].gameObject.SetActive(false);
+                    if (objectsToGenerate3 != null)
+                    {
+                        objectsToGenerate3[i].gameObject.SetActive(true);
+                        Instantiate(objectsToGenerate3[i], objectsToGenerate3[i].position + Vector3.right * worldWidth * nIterations,
+                                    new Quaternion(0, 0, 0, 0), this.transform);
+                        objectsToGenerate3[i].gameObject.SetActive(false);
+                    }
 
                 }
                 break;
