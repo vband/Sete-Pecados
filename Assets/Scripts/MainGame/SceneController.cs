@@ -168,7 +168,7 @@ public class SceneController : MonoBehaviour
         else
         {
             // Chama a cena de gameover (futuramente, será trocada por uma cena mais adequada)
-            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("GameOver");
+            //GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("GameOver");
         }
     }
 
