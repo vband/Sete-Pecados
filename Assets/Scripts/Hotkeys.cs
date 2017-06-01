@@ -5,17 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Hotkeys : MonoBehaviour {
-   
-    
 
-    //debug
-    public GameObject enviroment;
-
-    // Use this for initialization
-    void Start () {
-    
-    }
-	
 	// Update is called once per frame
 	void Update () {
       
@@ -67,16 +57,6 @@ public class Hotkeys : MonoBehaviour {
             }
             fim:
             ;//nop operation
-        }
-        
-        //DEBUG
-        if (Input.GetKeyUp(KeyCode.V))
-        {
-            LivesController.RemVidas();
-        }
-        if (Input.GetKeyUp(KeyCode.B))
-        {
-            LivesController.addVidas();
         }
     }
 }
