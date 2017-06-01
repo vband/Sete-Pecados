@@ -23,10 +23,24 @@ public class EnemyPreguiçaSpawner : MonoBehaviour {
     {
         inicio:
         yield return new WaitForSeconds(cooldown);
-        if (!SceneController.paused || Time.timeScale != 0)
+        if (!SceneController.paused || Time.timeScale != 0 || !SceneController.winGame)
         {
             Instantiate(InimigoPreguiça, new Vector3(limiteDaCamera.transform.position.x + 7, Random.Range(2, 3), 0), Quaternion.AngleAxis(90, Vector3.forward), transform.parent);
         }
+        else if (SceneController.winGame)
+        {
+            DestroyAll();
+        }
         goto inicio;
+    }
+
+    private void DestroyAll()
+    {
+        GameObject[] go = GameObject.FindGameObjectsWithTag("EnemyPreguica");
+        for (int i = 0; i < go.Length; i++)
+        {
+            Destroy(go[i]);
+
+        }
     }
 }

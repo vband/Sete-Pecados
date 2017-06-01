@@ -36,7 +36,7 @@ public class PowerUpController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!SceneController.paused)
+        if (!SceneController.paused && !SceneController.winGame)
         {
             SpawnPowerUp();
             verificaBencao();
