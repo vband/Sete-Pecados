@@ -206,12 +206,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1018
     y: 0
-    width: 435
+    width: 432
     height: 947
   m_MinSize: {x: 234, y: 471}
   m_MaxSize: {x: 10004, y: 14021}
   vertical: 1
-  controlID: 90
+  controlID: 66
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -226,9 +226,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1453
+    x: 1450
     y: 0
-    width: 467
+    width: 470
     height: 947
   m_MinSize: {x: 277, y: 71}
   m_MaxSize: {x: 4002, y: 4021}
@@ -254,7 +254,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 435
+    width: 432
     height: 417
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
@@ -279,7 +279,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 417
-    width: 435
+    width: 432
     height: 530
   m_MinSize: {x: 234, y: 271}
   m_MaxSize: {x: 10004, y: 10021}
@@ -297,28 +297,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 1
-  m_Script: {fileID: 12158, guid: 0000000000000000e000000000000000, type: 0}
+  m_Script: {fileID: 12157, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
   m_AutoRepaintOnSceneChange: 0
   m_MinSize: {x: 275, y: 50}
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
-    m_Text: Collab History
+    m_Text: Services
     m_Image: {fileID: 0}
     m_Tooltip: 
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 1457
+    x: 1452
     y: 92
-    width: 463
+    width: 468
     height: 926
-  m_InitialOpenURL: file:///C:/Users/Alonso/AppData/Roaming/Unity/Packages/node_modules/unityeditor-collab-history/dist/index.html
+  m_InitialOpenURL: https://public-cdn.cloud.unity3d.com/editor/production/cloud/collab
   m_GlobalObjectTypeName: 
   m_RegisteredViewURLs:
-  - file:///C:/Users/Alonso/AppData/Roaming/Unity/Packages/node_modules/unityeditor-collab-history/dist/index.html
+  - https://public-cdn.cloud.unity3d.com/editor/production/cloud/hub
+  - https://public-cdn.cloud.unity3d.com/editor/production/cloud/collab
   m_RegisteredViewInstances:
+  - {fileID: 0}
   - {fileID: 0}
 --- !u!114 &14
 MonoBehaviour:
@@ -431,7 +433,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1020
     y: 509
-    width: 431
+    width: 428
     height: 509
 --- !u!114 &17
 MonoBehaviour:
@@ -481,9 +483,9 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 1455
+    x: 1452
     y: 92
-    width: 465
+    width: 468
     height: 926
   m_ScrollPosition: {x: 0, y: 0}
   m_InspectorMode: 0
@@ -516,7 +518,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1020
     y: 509
-    width: 431
+    width: 428
     height: 509
   m_SearchFilter:
     m_NameFilter: 
@@ -529,35 +531,35 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Animation
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Animation
   m_LastFoldersGridSize: 16
   m_LastProjectPath: G:\GitHubRepo\CCXP18
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 2e390000
-    m_LastClickedID: 14638
-    m_ExpandedIDs: 000000005c250000907a0000927a0000947a0000967a0000987a00009a7a00009c7a00009e7a0000a07a0000a27a000000ca9a3bffffff7f
+    m_SelectedIDs: 12390000
+    m_LastClickedID: 14610
+    m_ExpandedIDs: 000000005c25000012390000d44a0000907a0000927a0000947a0000967a0000987a00009a7a00009c7a00009e7a0000a07a0000a27a000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Materials
+      m_OriginalName: Materials
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 14608
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 12}
     m_SearchString: 
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
@@ -569,7 +571,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000005c250000443500000e37000012390000907a0000927a0000947a0000967a0000987a00009a7a00009c7a00009e7a0000a07a0000a27a0000
+    m_ExpandedIDs: 000000005c250000907a0000927a0000947a0000967a0000987a00009a7a00009c7a00009e7a0000a07a0000a27a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -596,22 +598,22 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000de350000
+    m_HadKeyboardFocusLastEvent: 0
+    m_ExpandedInstanceIDs: c6230000083100001a3b0000a43a0000d64a0000262f00008a250000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: music_cartoony_background
+      m_OriginalName: music_cartoony_background
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 14294
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 12}
     m_CreateAssetUtility:
@@ -732,9 +734,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 14.595025, y: 2.8042245, z: 0}
+    m_Target: {x: 2.3234022, y: 1.5963796, z: 0}
     speed: 2
-    m_Value: {x: 14.595025, y: 2.8042245, z: 0}
+    m_Value: {x: 2.3234022, y: 1.5963796, z: 0}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -761,9 +763,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 9.4868965
+    m_Target: 21.8501
     speed: 2
-    m_Value: 9.4868965
+    m_Value: 21.8501
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -798,32 +800,32 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1020
     y: 92
-    width: 431
+    width: 428
     height: 396
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 96820000
-    m_LastClickedID: 33430
-    m_ExpandedIDs: aee8ffffc0e8ffff98f0ffffe2fbffff00000000844c0000224d0000f88100004c820000f2820000
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: 82d1feff98d8feff5cc9ffff90daffffe2fbffff00000000e07d00004e7f00006e7f0000ce7f0000e27f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Canvas - Mobile Joystick
-      m_OriginalName: Canvas - Mobile Joystick
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 33356
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 11}
     m_SearchString: 
   m_ExpandedScenes:
   - Main
   m_CurrenRootInstanceID: 0
-  m_Locked: 0
+  m_Locked: 1
   m_CurrentSortingName: TransformSorting

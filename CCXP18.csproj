@@ -84,10 +84,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\AtivaFade.cs" />
-    <Compile Include="Assets\Scripts\CallCircleFade.cs" />
-    <Compile Include="Assets\Scripts\CircleFadeController.cs" />
-    <Compile Include="Assets\Scripts\FadeController.cs" />
     <Compile Include="Assets\Scripts\GameOver\GameOverBehaviour.cs" />
     <Compile Include="Assets\Scripts\Hotkeys.cs" />
     <Compile Include="Assets\Scripts\MainGame\CameraMovement.cs" />
@@ -124,6 +120,8 @@
     <Compile Include="Assets\Scripts\Mini_Ira\MinigameIraController.cs" />
     <Compile Include="Assets\Scripts\Mini_Preguiça\HighlightBehaviour.cs" />
     <Compile Include="Assets\Scripts\Mini_Preguiça\MinigamePreguiçaController.cs" />
+    <Compile Include="Assets\Scripts\TransicaoDeTela\AtivaFade.cs" />
+    <Compile Include="Assets\Scripts\TransicaoDeTela\FadeController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\AggressiveComments\aggressive1.txt" />
