@@ -7,214 +7,238 @@ using System.Linq;
 
 public class MainMenu : MonoBehaviour
 {
+    public Text titulo;
+    [Space(20)]
+    public Button BotaoJogar;
+    public Button BotaoOpcoes;
+    public Button BotaoSair;
+    [Space(20)]
+    public Text TextoVolume;
+    public Slider SliderVolume;
+    public Toggle CaixaVolumeMudo;
+    public Button BotaoVoltarOpcoes;
+    [Space(20)]
+    public Button BotaoCreditos;
+    public Button BotaoVoltarCreditos;
+    public GameObject ConteudoDosCreditos;
+    [Space(20)]
+    public Toggle Joystick;
+    public Toggle BotaoVirtual;
 
-    public Button BotaoJogar, BotaoOpcoes, BotaoSair;
-    [Space(20)]
-    public Slider BarraVolume;
-    public Toggle CaixaModoJanela;
-    public Dropdown Resolucoes, Qualidades;
-    public Button BotaoVoltar, BotaoSalvarPref;
-    [Space(20)]
-    public Text textoVol,resolucoes,qualidades,titulo;
-        
     private float VOLUME;
-    private int qualidadeGrafica, modoJanelaAtivo, resolucaoSalveIndex;
-    private bool telaCheiaAtivada;
-    private Resolution[] resolucoesSuportadas;
-    
-
-    void Awake()
-    {
-        //DontDestroyOnLoad(transform.gameObject);
-        resolucoesSuportadas = Screen.resolutions;
-    }
+    private int menu, inputConfig;
+    private const int INICIAL = 0, OPCOES = 1, CREDITOS = 2;
+    private const int JOYSTICK = 0, VIRTUAL = 1;
 
     void Start()
     {
-        Opcoes(false);
-        ChecarResolucoes();
-        AjustarQualidades();
-        BarraVolume.onValueChanged.AddListener(delegate { AtualizaVolume(); });
-        //
-        if (PlayerPrefs.HasKey("RESOLUCAO"))
-        {
-            int numResoluc = PlayerPrefs.GetInt("RESOLUCAO");
-            if (resolucoesSuportadas.Length <= numResoluc)
-            {
-                PlayerPrefs.DeleteKey("RESOLUCAO");
-            }
-        }
-        //
+        menu = INICIAL;
+        AtualizaMenu(menu);
+
         Cursor.visible = true;
         Time.timeScale = 1;
-        //
-        BarraVolume.minValue = 0;
-        BarraVolume.maxValue = 1;
-
-        //=============== SAVES===========//
+  
+        //=============== CARREGA SALVOS OU DEFINE AS CONFIG PADRAO NO ELSE ===========//
         if (PlayerPrefs.HasKey("VOLUME"))
         {
             VOLUME = PlayerPrefs.GetFloat("VOLUME");
-            BarraVolume.value = VOLUME;
-            
+            SliderVolume.value = VOLUME;
         }
         else
         {
             PlayerPrefs.SetFloat("VOLUME", 1);
-            BarraVolume.value = 1;
-            
+            SliderVolume.value = 1;
         }
-        //=============MODO JANELA===========//
-        if (PlayerPrefs.HasKey("modoJanela"))
+
+        if (PlayerPrefs.HasKey("MUDO"))
         {
-            modoJanelaAtivo = PlayerPrefs.GetInt("modoJanela");
-            if (modoJanelaAtivo == 1)
+            if(PlayerPrefs.GetInt("MUDO") == 0)
             {
-                Screen.fullScreen = false;
-                CaixaModoJanela.isOn = true;
+                CaixaVolumeMudo.isOn = false;
+                AtualizaMudo();
             }
             else
             {
-                Screen.fullScreen = true;
-                CaixaModoJanela.isOn = false;
+                CaixaVolumeMudo.isOn = true;
+                AtualizaMudo();
             }
         }
         else
         {
-            modoJanelaAtivo = 0;
-            PlayerPrefs.SetInt("modoJanela", modoJanelaAtivo);
-            CaixaModoJanela.isOn = false;
-            Screen.fullScreen = true;
-        }
-        //========RESOLUCOES========//
-        if (modoJanelaAtivo == 1)
-        {
-            telaCheiaAtivada = false;
-        }
-        else
-        {
-            telaCheiaAtivada = true;
-        }
-        if (PlayerPrefs.HasKey("RESOLUCAO"))
-        {
-            resolucaoSalveIndex = PlayerPrefs.GetInt("RESOLUCAO");
-            Screen.SetResolution(resolucoesSuportadas[resolucaoSalveIndex].width, resolucoesSuportadas[resolucaoSalveIndex].height, telaCheiaAtivada);
-            Resolucoes.value = resolucaoSalveIndex;
-        }
-        else
-        {
-            resolucaoSalveIndex = (resolucoesSuportadas.Length - 1);
-            Screen.SetResolution(resolucoesSuportadas[resolucaoSalveIndex].width, resolucoesSuportadas[resolucaoSalveIndex].height, telaCheiaAtivada);
-            PlayerPrefs.SetInt("RESOLUCAO", resolucaoSalveIndex);
-            Resolucoes.value = resolucaoSalveIndex;
-        }
-        //=========QUALIDADES=========//
-        if (PlayerPrefs.HasKey("qualidadeGrafica"))
-        {
-            qualidadeGrafica = PlayerPrefs.GetInt("qualidadeGrafica");
-            QualitySettings.SetQualityLevel(qualidadeGrafica);
-            Qualidades.value = qualidadeGrafica;
-        }
-        else
-        {
-            QualitySettings.SetQualityLevel((QualitySettings.names.Length - 1));
-            qualidadeGrafica = (QualitySettings.names.Length - 1);
-            PlayerPrefs.SetInt("qualidadeGrafica", qualidadeGrafica);
-            Qualidades.value = qualidadeGrafica;
+            PlayerPrefs.SetInt("MUDO", 0);
+            CaixaVolumeMudo.isOn = false;
+            AtualizaMudo();
         }
 
-        // =========SETAR BOTOES==========//
-        BotaoJogar.onClick = new Button.ButtonClickedEvent();
-        BotaoOpcoes.onClick = new Button.ButtonClickedEvent();
-        BotaoSair.onClick = new Button.ButtonClickedEvent();
-        BotaoVoltar.onClick = new Button.ButtonClickedEvent();
-        BotaoSalvarPref.onClick = new Button.ButtonClickedEvent();
-        BotaoJogar.onClick.AddListener(() => Jogar());
-        BotaoOpcoes.onClick.AddListener(() => Opcoes(true));
-        BotaoSair.onClick.AddListener(() => Sair());
-        BotaoVoltar.onClick.AddListener(() => Opcoes(false));
-        BotaoSalvarPref.onClick.AddListener(() => SalvarPreferencias());
-    }
-    //=========VOIDS DE CHECAGEM==========//
-    private void ChecarResolucoes()
-    {
-        Resolution[] resolucoesSuportadas = Screen.resolutions;
-        Resolucoes.options.Clear();
-        for (int y = 0; y < resolucoesSuportadas.Length; y++)
+        if (PlayerPrefs.HasKey("INPUTCONFIG"))
         {
-            Resolucoes.options.Add(new Dropdown.OptionData() {
-                text = resolucoesSuportadas[y].width + "x" + resolucoesSuportadas[y].height + "@" + resolucoesSuportadas[y].refreshRate
-            });
-        }
-        Resolucoes.captionText.text = "Resolucao";
-    }
-    private void AjustarQualidades()
-    {
-        string[] nomes = QualitySettings.names;
-        Qualidades.options.Clear();
-        for (int y = 0; y < nomes.Length; y++)
-        {
-            Qualidades.options.Add(new Dropdown.OptionData() { text = nomes[y] });
-        }
-        Qualidades.captionText.text = "Qualidade";
-    }
-    private void Opcoes(bool ativarOP)
-    {
-        BotaoJogar.gameObject.SetActive(!ativarOP);
-        BotaoOpcoes.gameObject.SetActive(!ativarOP);
-        BotaoSair.gameObject.SetActive(!ativarOP);
-        titulo.gameObject.SetActive(!ativarOP);
-        //
-        textoVol.gameObject.SetActive(ativarOP);
-        resolucoes.gameObject.SetActive(ativarOP);
-        qualidades.gameObject.SetActive(ativarOP);
-        BarraVolume.gameObject.SetActive(ativarOP);
-        CaixaModoJanela.gameObject.SetActive(ativarOP);
-        Resolucoes.gameObject.SetActive(ativarOP);
-        Qualidades.gameObject.SetActive(ativarOP);
-        BotaoVoltar.gameObject.SetActive(ativarOP);
-        BotaoSalvarPref.gameObject.SetActive(ativarOP);
-    }
-    //=========VOIDS DE SALVAMENTO==========//
-    private void SalvarPreferencias()
-    {
-        if (CaixaModoJanela.isOn == true)
-        {
-            modoJanelaAtivo = 1;
-            telaCheiaAtivada = false;
+            if(PlayerPrefs.GetInt("INPUTCONFIG") == JOYSTICK)
+            {
+                Joystick.isOn = true;
+                AtualizaInput(JOYSTICK);
+            } else
+            {
+                BotaoVirtual.isOn = true;
+                AtualizaInput(VIRTUAL);
+            }
         }
         else
         {
-            modoJanelaAtivo = 0;
-            telaCheiaAtivada = true;
+            PlayerPrefs.SetInt("INPUTCONFIG", JOYSTICK);
+            Joystick.isOn = true;
+            AtualizaInput(JOYSTICK);
         }
-        PlayerPrefs.SetFloat("VOLUME", BarraVolume.value);
-        PlayerPrefs.SetInt("qualidadeGrafica", Qualidades.value);
-        PlayerPrefs.SetInt("modoJanela", modoJanelaAtivo);
-        PlayerPrefs.SetInt("RESOLUCAO", Resolucoes.value);
-        resolucaoSalveIndex = Resolucoes.value;
-        AplicarPreferencias();
+
     }
-    private void AplicarPreferencias()
+    //========= VOIDS DE ATUALIZACAO ==========//
+
+    private void AtualizaMenu(int menu)
     {
-        VOLUME = PlayerPrefs.GetFloat("VOLUME");
-        QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("qualidadeGrafica"));
-        Screen.SetResolution(resolucoesSuportadas[resolucaoSalveIndex].width, resolucoesSuportadas[resolucaoSalveIndex].height, telaCheiaAtivada);
+
+        switch (menu)
+        {
+            case INICIAL:
+                titulo.gameObject.SetActive(true);
+                BotaoJogar.gameObject.SetActive(true);
+                BotaoOpcoes.gameObject.SetActive(true);
+                BotaoSair.gameObject.SetActive(true);
+
+                TextoVolume.gameObject.SetActive(false);
+                SliderVolume.gameObject.SetActive(false);
+                CaixaVolumeMudo.gameObject.SetActive(false);
+                BotaoVoltarOpcoes.gameObject.SetActive(false);
+                BotaoCreditos.gameObject.SetActive(false);
+                ConteudoDosCreditos.SetActive(false);
+                BotaoVoltarCreditos.gameObject.SetActive(false);
+                Joystick.gameObject.SetActive(false);
+                BotaoVirtual.gameObject.SetActive(false);
+                break;
+            case OPCOES:
+                titulo.gameObject.SetActive(true);
+
+                BotaoJogar.gameObject.SetActive(false);
+                BotaoOpcoes.gameObject.SetActive(false);
+                BotaoSair.gameObject.SetActive(false);
+
+                TextoVolume.gameObject.SetActive(true);
+                SliderVolume.gameObject.SetActive(true);
+                CaixaVolumeMudo.gameObject.SetActive(true);
+                BotaoVoltarOpcoes.gameObject.SetActive(true);
+                BotaoCreditos.gameObject.SetActive(true);
+
+                ConteudoDosCreditos.SetActive(false);
+                BotaoVoltarCreditos.gameObject.SetActive(false);
+
+                Joystick.gameObject.SetActive(true);
+                BotaoVirtual.gameObject.SetActive(true);
+                break;
+            case CREDITOS:
+                titulo.gameObject.SetActive(false);
+                BotaoJogar.gameObject.SetActive(false);
+                BotaoOpcoes.gameObject.SetActive(false);
+                BotaoSair.gameObject.SetActive(false);
+
+                TextoVolume.gameObject.SetActive(false);
+                SliderVolume.gameObject.SetActive(false);
+                CaixaVolumeMudo.gameObject.SetActive(false);
+                BotaoVoltarOpcoes.gameObject.SetActive(false);
+                BotaoCreditos.gameObject.SetActive(false);
+
+                ConteudoDosCreditos.SetActive(true);
+                BotaoVoltarCreditos.gameObject.SetActive(true);
+
+                Joystick.gameObject.SetActive(false);
+                BotaoVirtual.gameObject.SetActive(false);
+                break;
+            default: //carrega inicial, caso receba um parametro invalido
+                titulo.gameObject.SetActive(true);
+                BotaoJogar.gameObject.SetActive(true);
+                BotaoOpcoes.gameObject.SetActive(true);
+                BotaoSair.gameObject.SetActive(true);
+
+                TextoVolume.gameObject.SetActive(false);
+                SliderVolume.gameObject.SetActive(false);
+                CaixaVolumeMudo.gameObject.SetActive(false);
+                BotaoVoltarOpcoes.gameObject.SetActive(false);
+                BotaoCreditos.gameObject.SetActive(false);
+                ConteudoDosCreditos.SetActive(false);
+                BotaoVoltarCreditos.gameObject.SetActive(false);
+                Joystick.gameObject.SetActive(false);
+                BotaoVirtual.gameObject.SetActive(false);
+                break;
+        }
     }
-    //===========VOIDS NORMAIS=========//
-    
+
     public void AtualizaVolume()
     {
-        AudioListener.volume = BarraVolume.value;
+        AudioListener.volume = SliderVolume.value;
+        SalvarPreferencias();
     }
-    private void Jogar()
+
+    public void AtualizaMudo()
+    {
+        AudioListener.pause = CaixaVolumeMudo.isOn;
+        SalvarPreferencias();
+    }
+
+    public void AtualizaInput(int config)
+    {
+        if(config == JOYSTICK)
+        {
+            inputConfig = JOYSTICK;
+        } else if (config == VIRTUAL)
+        {
+            inputConfig = VIRTUAL;
+        }
+
+        SalvarPreferencias();
+    }
+
+    //=========VOID DE SALVAMENTO==========//
+    private void SalvarPreferencias() //chamar sempre que alterar opcoes
+    {
+        if (CaixaVolumeMudo.isOn == true)
+        {
+            PlayerPrefs.SetInt("MUDO", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("MUDO", 0);
+        }
+
+        PlayerPrefs.SetFloat("VOLUME", SliderVolume.value);
+
+        PlayerPrefs.SetInt("INPUTCONFIG", inputConfig);
+    }
+
+    public void Jogar()
     {
         LivesController.InitVidas();
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
-    private void Sair()
+
+    public void Opcoes()
+    {
+        AtualizaMenu(OPCOES);
+    }
+
+    public void MostrarCreditos()
+    {
+        AtualizaMenu(CREDITOS);
+    }
+
+    public void VoltarOpcoes()
+    {
+        AtualizaMenu(INICIAL);
+    }
+
+    public void VoltarCreditos()
+    {
+        AtualizaMenu(OPCOES);
+    }
+
+    public void Sair()
     {
         Application.Quit();
     }
-
 }

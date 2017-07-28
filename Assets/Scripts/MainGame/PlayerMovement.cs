@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerMovement : MonoBehaviour {
 
@@ -12,6 +13,10 @@ public class PlayerMovement : MonoBehaviour {
     public bool imortal;// estado de imortalidade do falamaia
     public float Tempo_imortal;
     private float Tempo_imortal_original;
+
+    public bool imortal_backMinigame;
+    public float Tempo_imortal_backMinigame;
+    private float Tempo_imortal_backMinigame_original;
     public GameObject aureola;
 
     public ParticleSystem carinhaSubindo;
@@ -36,7 +41,13 @@ public class PlayerMovement : MonoBehaviour {
     private float currentJumpTime; // Tempo atual no qual o personagem está se deslocando para o alto enquanto pula
     public bool isJumping; // True se o personagem está se deslocando para o alto porque pulou
     private float horizontalInput;
-    private float jumpInput;
+    //private float jumpInput;
+    private bool jumpButtonDown;
+
+    public bool isCollidingWithScreenBorder; // True se o jogador estiver colidindo com a borda esquerda da tela
+    private bool isCollidingWithObstacle; // True se o jogador estiver colidindo com oalgum obstáculo
+
+    //private bool hasLetGoOfJumpButton;
 
     // Inicializa os atributos privados da classe
     void Start ()
@@ -50,24 +61,78 @@ public class PlayerMovement : MonoBehaviour {
         lastjump = Time.realtimeSinceStartup;
 
         Tempo_imortal_original = Tempo_imortal;
+        Tempo_imortal_backMinigame_original = Tempo_imortal_backMinigame;
         Tempo_benzido_original = Tempo_benzido;
+
+        isCollidingWithScreenBorder = false;
+        isCollidingWithObstacle = false;
+
+        //hasLetGoOfJumpButton = true;
+
+        horizontalInput = 0;
+        //jumpInput = 0;
+        jumpButtonDown = false;
     }
 	
 	void FixedUpdate ()
     {
         if (!SceneController.paused)
         {
+
+            // Despausar movimentação
+            if (rb2D.bodyType == RigidbodyType2D.Kinematic)
+            {
+                rb2D.bodyType = RigidbodyType2D.Dynamic;
+            }
+            if (animator.enabled == false)
+            {
+                animator.enabled = true;
+            }
+
+            ReceiveInput();
             Move();
-            JumpNew();
+            Jump();
             atualizaTempo();
+            SimulateJump();
         }
+
+        // Pausar movimentação numa colisão com inimigo
+        else if (!SceneController.hasGameFinished)
+        {
+            rb2D.bodyType = RigidbodyType2D.Kinematic;
+            rb2D.velocity = new Vector2(0, 0);
+        }
+
+        /*
+        if (jumpInput == 0)
+        {
+            hasLetGoOfJumpButton = true;
+        }
+        */
+    }
+
+    private void ReceiveInput()
+    {
+        // Obtém input do teclado
+        horizontalInput = CrossPlatformInputManager.GetAxisRaw("Horizontal");
+        //jumpInput = Input.GetAxisRaw("Jump");
+        jumpButtonDown = CrossPlatformInputManager.GetButtonDown("Jump");
+    }
+
+    // Movimentação do botão virtual (Android)
+    public void MoveRightButtonOnClick()
+    {
+        horizontalInput = 1;
+    }
+
+    // Movimentação do botão virtual (Android)
+    public void MoveLeftButtonOnCLick()
+    {
+        horizontalInput = -1;
     }
 
     private void Move()
     {
-        // Obtém input do teclado
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-
         // Se o jogador se mover para a direita
         if (horizontalInput > 0)
         {
@@ -95,16 +160,18 @@ public class PlayerMovement : MonoBehaviour {
 
         // Move o personagem
         Vector2 movement = new Vector2(horizontalInput, 0f);
-        rb2D.AddForce(movement * speed);
+        rb2D.AddForce(movement * speed * Time.fixedDeltaTime);
     }
 
-    private void JumpNew()
+    private void Jump()
     {
         bool isGrounded = IsGrounded();
 
         // Se o jogador pular
-        if (Input.GetAxisRaw("Jump") > 0 && isGrounded && (Time.realtimeSinceStartup - lastjump) > 0.3f) 
+        if (jumpButtonDown && isGrounded && (Time.realtimeSinceStartup - lastjump) > 0.3f /*&& hasLetGoOfJumpButton*/) 
         {
+            //hasLetGoOfJumpButton = false;
+
             // Registra que o movimento do pulo deverá começar
             isJumping = true;
             currentJumpTime = 0;
@@ -121,7 +188,7 @@ public class PlayerMovement : MonoBehaviour {
         if (isJumping)
         {
             // Realiza o movimento
-            rb2D.AddForce(new Vector2(0f, jumpSpeed));
+            rb2D.AddForce(new Vector2(0f, jumpSpeed * Time.fixedDeltaTime));
             currentJumpTime += Time.fixedDeltaTime;
         }
 
@@ -175,7 +242,13 @@ public class PlayerMovement : MonoBehaviour {
         imortal = true;
         Instantiate(aureola, transform);
         GetComponent<AudioSource>().PlayOneShot(paaai);
+    }
 
+    public void viraDeus_Backminigame()
+    {
+        imortal_backMinigame = true;
+        StartInvencibilidadeVisualFeedback();
+        //completar com animacao
     }
 
     public void ficaBenzido()
@@ -195,6 +268,16 @@ public class PlayerMovement : MonoBehaviour {
             imortal = false;
             Destroy(GameObject.Find("aureola(Clone)"));
             Tempo_imortal = Tempo_imortal_original;
+        }
+
+        if (Tempo_imortal_backMinigame > 0.0f && imortal_backMinigame == true)
+        {
+            Tempo_imortal_backMinigame -= Time.deltaTime;
+        }
+        else if (imortal_backMinigame == true)
+        {
+            imortal_backMinigame = false;
+            Tempo_imortal_backMinigame = Tempo_imortal_backMinigame_original;
         }
 
         if (Tempo_benzido > 0.0f && benzido == true)
@@ -231,5 +314,95 @@ public class PlayerMovement : MonoBehaviour {
     {
         yield return new WaitForSeconds(delay);
         sobeCarinha();
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Registra se o jogador está colidindo com a borda da tela
+        if (collision.gameObject.tag == "LeftCollider")
+        {
+            isCollidingWithScreenBorder = true;
+            //Debug.Log("borda sim");
+        }
+        // Registra se o jogador está colidindo com algum obstáculo
+        else if (collision.gameObject.tag == "Obstacle")
+        {
+            isCollidingWithObstacle = true;
+            //Debug.Log("obstáculo sim");
+        }
+    }
+
+    public void OnCollisionExit2D(Collision2D collision)
+    {
+        // Registra se o jogador parou de colidir com a borda da tela
+        if (collision.gameObject.tag == "LeftCollider")
+        {
+            isCollidingWithScreenBorder = false;
+            //Debug.Log("borda não");
+        }
+        // Registra se o jogador parou de colidir com algum obstáculo
+        else if (collision.gameObject.tag == "Obstacle")
+        {
+            isCollidingWithObstacle = false;
+            //Debug.Log("obstáculo não");
+        }
+    }
+
+    private void SimulateJump()
+    {
+        // Se o jogador ficar preso entre a borda da câmera e um obstáculo
+        if (isCollidingWithObstacle
+            && isCollidingWithScreenBorder
+            && IsGrounded()
+            && Time.realtimeSinceStartup - lastjump > 0.3f)
+        {
+            //Debug.Log("pula");
+            // Simula um pulo
+            isJumping = true;
+            currentJumpTime = 0;
+
+            //testa o tempo para evitar que o som se sobreponha
+            if ((Time.realtimeSinceStartup - lastjump) > 0.5f)
+            {
+                GetComponent<AudioSource>().PlayOneShot(jumpsound);
+                lastjump = Time.realtimeSinceStartup;
+            }
+        }
+    }
+
+    private void StartInvencibilidadeVisualFeedback()
+    {
+        StartCoroutine(InvencibilidadeVisualFeedback());
+
+        // Começa a ignorar colisões entre o jogador e os inimigos
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemies"));
+    }
+
+    IEnumerator InvencibilidadeVisualFeedback()
+    {
+        float tempo = Tempo_imortal_backMinigame_original;
+        inicio:
+        GetComponent<SpriteRenderer>().enabled = false;
+        tempo -= 0.1f;
+        yield return new WaitForSeconds(0.1f);
+        GetComponent<SpriteRenderer>().enabled = true;
+        tempo -= 0.1f;
+        yield return new WaitForSeconds(0.1f);
+        if (tempo > 0.0f)
+        {
+            goto inicio;
+        }
+        GetComponent<SpriteRenderer>().enabled = true;
+        
+        // Para de ignorar colisões entre o jogador e os inimigos
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemies"), false);
+    }
+
+    public bool isImortal()
+    {
+        if (imortal || imortal_backMinigame)
+            return true;
+        else
+            return false;
     }
 }

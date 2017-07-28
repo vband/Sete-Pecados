@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PostProcessing;
 using UnityEngine.UI;
+//REMOVED por causa do port para android
+//using UnityEngine.PostProcessing;
+
 
 public class PauseMenuController : MonoBehaviour {
 
-    public Button VoltarAoJogo, VoltarParaMenu;
+    public Button VoltarAoJogo, VoltarParaMenu, Pause;
     public Text Pausado;
     public GameObject Cam;
 
@@ -15,16 +17,28 @@ public class PauseMenuController : MonoBehaviour {
         switch (estado)
         {
             case true:
+#if UNITY_ANDROID
+                Pause.gameObject.SetActive(false);
+#endif
+                AudioListener.pause = true;
                 VoltarAoJogo.gameObject.SetActive(true);
                 VoltarParaMenu.gameObject.SetActive(true);
                 Pausado.gameObject.SetActive(true);
-                Cam.GetComponent<PostProcessingBehaviour>().enabled = true;
+                Time.timeScale = 0;
+
+                //Cam.GetComponent<PostProcessingBehaviour>().enabled = true;
                 break;
-            case false:
+            case false: 
+                Time.timeScale = 1;
+                AudioListener.pause = false;
+#if UNITY_ANDROID
+                Pause.gameObject.SetActive(true);
+#endif
                 VoltarAoJogo.gameObject.SetActive(false);
                 VoltarParaMenu.gameObject.SetActive(false);
                 Pausado.gameObject.SetActive(false);
-                Cam.GetComponent<PostProcessingBehaviour>().enabled = false;
+                //REMOVED por causa do port para android
+                //Cam.GetComponent<PostProcessingBehaviour>().enabled = false;
                 break;
         }
         

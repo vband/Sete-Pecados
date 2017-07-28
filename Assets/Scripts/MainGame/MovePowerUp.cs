@@ -7,11 +7,14 @@ public class MovePowerUp : MonoBehaviour {
     public float forca;
     public float despawn_time;
     private Rigidbody2D rb2D;
+    private GameObject Spawner;
     
 
     // Use this for initialization
     void Start () {
         rb2D = GetComponent<Rigidbody2D>();
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("FILHO-PANEL"), true);
+        Spawner = GameObject.Find("Spawner");
     }
 	
 	// Update is called once per frame
@@ -29,7 +32,7 @@ public class MovePowerUp : MonoBehaviour {
         
         if(collision.gameObject.tag == "FILHO-PANEL")
         {
-            GetComponentInParent<PowerUpController>().coleta(gameObject.tag);
+            Spawner.GetComponent<PowerUpController>().coleta(gameObject.tag);
 
             Destroy(this.gameObject);
         }
@@ -40,7 +43,7 @@ public class MovePowerUp : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player" && this.gameObject.tag == "aguabenta")
         {
-            GetComponentInParent<PowerUpController>().coleta(gameObject.tag);
+            Spawner.GetComponent<PowerUpController>().coleta(gameObject.tag);
             Destroy(this.gameObject);
         }
 

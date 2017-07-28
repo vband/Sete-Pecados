@@ -6,17 +6,17 @@ using UnityEngine.UI;
 
 public class Hotkeys : MonoBehaviour {
 
-	// Update is called once per frame
-	void Update () {
-      
+    // Update is called once per frame
+    void Update() {
+
         if (Input.GetKeyUp(KeyCode.G))
         {
-            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading( "MiniGame_Ganancia");
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MiniGame_Ganancia");
         }
 
         if (Input.GetKeyUp(KeyCode.I))
         {
-            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Ira");    
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Ira");
         }
 
         if (Input.GetKeyUp(KeyCode.M))
@@ -49,12 +49,13 @@ public class Hotkeys : MonoBehaviour {
                 AudioListener.pause = false;
                 GameObject.Find("PauseMenu").GetComponent<PauseMenuController>().AtivaMenu(false);
             }
-            else //nao está pausado
-            {
-                Time.timeScale = 0;
-                AudioListener.pause = true;
-                GameObject.Find("PauseMenu").GetComponent<PauseMenuController>().AtivaMenu(true);
-            }
+        
+        else //nao está pausado
+        {
+            Time.timeScale = 0;
+            AudioListener.pause = true;
+            GameObject.Find("PauseMenu").GetComponent<PauseMenuController>().AtivaMenu(true);
+        }
             fim:
             ;//nop operation
         }

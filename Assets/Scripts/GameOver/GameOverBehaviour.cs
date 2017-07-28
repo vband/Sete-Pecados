@@ -6,13 +6,28 @@ using UnityEngine.SceneManagement;
 
 public class GameOverBehaviour : MonoBehaviour
 {
-    public Text scoreText;
+    public Text scoreText, gameOverText, carregandoText;
+    public Button jogarButton, voltarButton;
 
     private GameObject cenaPrincipal;
 
+    public static bool restart = false;
+
 	void Start ()
     {
-        scoreText.text = "Você salvou " + PlayerMovement.getPessoasSalvas().ToString() + " almas";
+        if (restart)
+        {
+            carregandoText.gameObject.SetActive(true);
+            LoadGame();
+        }
+        else
+        {
+            scoreText.gameObject.SetActive(true);
+            gameOverText.gameObject.SetActive(true);
+            jogarButton.gameObject.SetActive(true);
+            voltarButton.gameObject.SetActive(true);
+            scoreText.text = "Você salvou " + PlayerMovement.getPessoasSalvas().ToString() + " almas";
+        }
     }
 	
 	void Update ()

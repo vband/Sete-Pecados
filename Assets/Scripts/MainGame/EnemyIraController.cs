@@ -44,7 +44,7 @@ public class EnemyIraController : MonoBehaviour
         isJumping = false;
     }
 	
-	void Update ()
+	void FixedUpdate ()
     {
         //Debug.Log(currentJumpCooldown);
         if (Time.timeScale != 0 && !SceneController.paused) //evita que atualize posicao enquanto jogo estiver pausado
@@ -52,7 +52,7 @@ public class EnemyIraController : MonoBehaviour
             // Diminui o cooldown de pulo
             if (currentJumpCooldown > 0)
             {
-                currentJumpCooldown -= Time.deltaTime;
+                currentJumpCooldown -= Time.fixedDeltaTime;
             }
 
             // Realiza o movimento do pulo, caso esteja pulando
@@ -137,14 +137,14 @@ public class EnemyIraController : MonoBehaviour
         if (player.position.x > transform.position.x)
         {
             // Anda para a direita
-            rb2D.AddForce(Vector2.right * speed);
+            rb2D.AddForce(Vector2.right * speed * Time.fixedDeltaTime);
             sprite.flipX = false;
         }
         // Verifica se o player está para a esquerda
         if (player.position.x < transform.position.x)
         {
             // Anda para a esquerda
-            rb2D.AddForce(Vector2.left * speed);
+            rb2D.AddForce(Vector2.left * speed * Time.fixedDeltaTime);
             sprite.flipX = true;
         }
     }
@@ -152,7 +152,7 @@ public class EnemyIraController : MonoBehaviour
     // Se desloca para a esquerda, não importando a posição do jogador
     private void MoveLeft()
     {
-        rb2D.AddForce(Vector2.left * speed);
+        rb2D.AddForce(Vector2.left * speed * Time.fixedDeltaTime);
         sprite.flipX = true;
     }
 
@@ -172,8 +172,8 @@ public class EnemyIraController : MonoBehaviour
     {
         if (jumpTimer < jumpMaxTime)
         {
-            rb2D.AddForce(Vector2.up * jumpForce);
-            jumpTimer += Time.deltaTime;
+            rb2D.AddForce(Vector2.up * jumpForce * Time.fixedDeltaTime);
+            jumpTimer += Time.fixedDeltaTime;
         }
         else
         {
@@ -206,13 +206,13 @@ public class EnemyIraController : MonoBehaviour
         if (isIdlingRight)
         {
             // Anda para a direita
-            rb2D.AddForce(Vector2.right * speed);
+            rb2D.AddForce(Vector2.right * speed * Time.fixedDeltaTime);
             sprite.flipX = false;
         }
         else if (isIdlingLeft)
         {
             // Anda para a esquerda
-            rb2D.AddForce(Vector2.left * speed);
+            rb2D.AddForce(Vector2.left * speed * Time.fixedDeltaTime);
             sprite.flipX = true;
         }
     }
@@ -224,16 +224,21 @@ public class EnemyIraController : MonoBehaviour
               
         if (collision.gameObject.tag == "Player")
         {
-            GameObject player = GameObject.Find("Player");
-            if (player.GetComponent<PlayerMovement>().imortal)
+            GameObject player = collision.gameObject;
+            if (player.GetComponent<PlayerMovement>().isImortal())
             {
                 player.GetComponent<PlayerMovement>().sobeCarinha();
                 goto Destruir;
             }
 
-            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Ira");
-        Destruir:
-            Destroy(gameObject);
+            player.GetComponent<Animator>().enabled = false;
+
+            GameObject.Find("FadeImage").GetComponent<FadeController>().FadeFromColision("Ira", transform.position);
+
+            
+
+            Destruir:
+                Destroy(gameObject);
         }
     }
 

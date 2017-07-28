@@ -10,29 +10,28 @@ public class EnemyGanancia : MonoBehaviour {
     public float forceX;
     public float MaxVelo;
     public float DropCooldown;
-    public float AutoDestroyTime;
 
     private float DropCooldownOriginal;
     private Vector2 offset;
     private Vector3 temp;
     private bool natela;
-    private bool EntrouNaTelaUmaVez;
+    private Rigidbody2D rb2D;
 
     private void Awake()
     {
         offset = transform.position;
+        rb2D = GetComponent<Rigidbody2D>();
     }
 
     // Use this for initialization
     void Start () {
         ArrebentaCordaStart();
         DropPaperStart();
-        DropCooldownOriginal = DropCooldown;
-        
+        DropCooldownOriginal = DropCooldown;   
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         if (!SceneController.paused)
         {
             MoveVacilante();
@@ -42,7 +41,6 @@ public class EnemyGanancia : MonoBehaviour {
             GetComponent<Rigidbody2D>().Sleep();
             
         }
-        AutoDestroy();
 
         natela = NaTela();
 
@@ -50,8 +48,23 @@ public class EnemyGanancia : MonoBehaviour {
         if (!SceneController.paused)
         {
             DropCooldown -= Time.deltaTime;
+
+            // TESTE - despausar movimentação
+            if (rb2D.bodyType == RigidbodyType2D.Kinematic)
+            {
+                rb2D.bodyType = RigidbodyType2D.Dynamic;
+                rb2D.freezeRotation = false;
+            }
         }
-       
+
+        // TESTE - pausar movimentação
+        else
+        {
+            rb2D.bodyType = RigidbodyType2D.Kinematic;
+            rb2D.velocity = new Vector2(0, 0);
+            rb2D.freezeRotation = true;
+        }
+
     }
 
     private void ArrebentaCordaStart()
@@ -62,12 +75,12 @@ public class EnemyGanancia : MonoBehaviour {
     IEnumerator ArrebentaCorda()
     {
         yield return new WaitUntil(() => natela == true);
-        EntrouNaTelaUmaVez = true;
         yield return new WaitForSeconds(Random.Range(0.5f,2f));
         
         if(Placa != null)
         {
-            Placa.transform.SetParent(GameObject.Find("Environment").transform);
+            //Placa.transform.SetParent(GameObject.Find("Environment").transform);
+            Placa.transform.SetParent(transform.parent.parent);//associa a placa ao segmento de origem.
         }
         
         Destroy(CordaPlaca);
@@ -82,28 +95,21 @@ public class EnemyGanancia : MonoBehaviour {
     IEnumerator DropPaper()
     {
         yield return new WaitUntil(() => natela == true);
-        
+
+        // Solta um papel logo quando aparece na tela
+        Instantiate(panfleto, new Vector3(transform.position.x - 1, transform.position.y - 1, 0), Quaternion.identity, transform.parent.parent);
+
         inicio:
 
         yield return new WaitUntil(() => DropCooldown < 0);
-        Instantiate(panfleto, new Vector3(transform.position.x - 1, transform.position.y - 1, 0), Quaternion.identity, transform.parent);
+
+        // Solta novos papéis, desta vez, periodicamente
+        Instantiate(panfleto, new Vector3(transform.position.x - 1, transform.position.y - 1, 0), Quaternion.identity, transform.parent.parent);
         DropCooldown = DropCooldownOriginal;
 
         goto inicio;
     }
 
-    public void AutoDestroy()
-    {
-        if ( !NaTela() && EntrouNaTelaUmaVez && Time.deltaTime != 0)
-        {
-            AutoDestroyTime -= Time.deltaTime;
-        }
-        if(AutoDestroyTime < 0)
-        {
-            Destroy(gameObject);
-        }
-        
-    }
 
     void moveHorizontalStart()
     {

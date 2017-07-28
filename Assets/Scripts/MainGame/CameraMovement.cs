@@ -8,6 +8,7 @@ public class CameraMovement : MonoBehaviour
 {
     public float cameraSpeed;
     public GameObject player;
+    public GameObject cenaPrincipal;
     public GameObject Limite_direita;
 
     //private Vector3 offset;
@@ -19,6 +20,7 @@ public class CameraMovement : MonoBehaviour
     private Transform leftCollider;
     private Vector3 cameraPos;
     private Rigidbody2D rb;
+    private float yPosition;
 
 
     void Start()
@@ -32,10 +34,14 @@ public class CameraMovement : MonoBehaviour
         leftCollider.name = "LeftCollider";
         //Adiciona o colisor
         leftCollider.gameObject.AddComponent<BoxCollider2D>();
+        leftCollider.gameObject.AddComponent<Rigidbody2D>();
+        leftCollider.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         //faz do colisor filho da camera para que se mova junto com ela
         leftCollider.parent = transform;
         //dá a layer de "LeftCollider" ao colisor
         leftCollider.gameObject.layer = LayerMask.NameToLayer("LeftCollider");
+        // Dá a tag de "LeftCollider" ao colisor
+        leftCollider.gameObject.tag = "LeftCollider";
         //determina que as colisões entre os inimigos e o leftCollider serão ignoradas
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("LeftCollider"));
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Environment"), LayerMask.NameToLayer("LeftCollider"));
@@ -51,8 +57,7 @@ public class CameraMovement : MonoBehaviour
         //limite direita
         Limite_direita.transform.position = new Vector3(cameraPos.x + screenSize.x , cameraPos.y, zPosition);
 
-
-
+        yPosition = transform.position.y;
     }
 
     private void Update()
@@ -71,24 +76,49 @@ public class CameraMovement : MonoBehaviour
         {
             Movimentacao();
         }
+        // Trava a coordenada y da câmera
+        transform.position = new Vector3(transform.position.x, yPosition, transform.position.z);
     }
 
     void Movimentacao()
     {
-        // Se o jogador se mover para a direita
-        /*if (player.transform.position.x > (transform.position.x - offset.x))
+
+        // Variáveis locais
+        float actualCameraSpeed, playerPositionRelativeToCamera, t, speedModifier;
+        float defaultSpeedModifier = 1.15f;
+        float maxSpeedModifier = 3f;
+        float minSpeedModifier = 0.3f;
+
+        // Se o jogador estiver à direita do centro da tela
+        if (player.transform.position.x > transform.position.x)
         {
-            transform.position = new Vector3(player.transform.position.x, offset.y, offset.z);
-            //transform.position = player.transform.position + offset;
+            // Determina que quanto mais perto da borda direita, mais rápido a câmera irá se mover
+            playerPositionRelativeToCamera = player.transform.position.x - transform.position.x;
+            t = playerPositionRelativeToCamera / screenSize.x;
+            speedModifier = maxSpeedModifier * t + defaultSpeedModifier * (1 - t);
         }
-        // Se o jogador se mover para a esquerda ou ficar parado
+
+        // Se o jogador estiver à esquerda do centro da tela
+        else if (player.transform.position.x < transform.position.x)
+        {
+            // Determina que quanto mais perto da borda esquerda, mais lento a câmera irá se mover
+            playerPositionRelativeToCamera = transform.position.x - player.transform.position.x;
+            t = playerPositionRelativeToCamera / screenSize.x;
+            speedModifier = minSpeedModifier * t + defaultSpeedModifier * (1 - t);
+        }
+
+        // Se o jogador estiver no centro da tela
         else
         {
-            transform.position = new Vector3(transform.position.x, offset.y, offset.z);
-        }*/
+            // A câmera se move à mesma velocidade do jogador
+            speedModifier = defaultSpeedModifier;
+        }
 
+        actualCameraSpeed = cameraSpeed * speedModifier;
+
+        // Movimenta a câmera
         Vector2 pos = (Vector2) transform.position;
-        Vector2 speed = new Vector2(cameraSpeed,0);
+        Vector2 speed = new Vector2(actualCameraSpeed, 0);
         rb.MovePosition(pos + speed);
     }
     

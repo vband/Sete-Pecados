@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Environment
+  - espirito
+  - filho
+  - pai
+  - aguabenta
+  - aguabentapowerup
+  - Certo
+  - FILHO-PANEL
+  - Igreja
+  - EnemyGanancia
+  - EnemyPreguica
+  - SpawnPoint
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Environment
+  - Enemies
+  - LeftCollider
+  - AguaBentaPowerUp
+  - PowerUps
+  - FILHO-PANEL
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1798721689
+    locked: 0
+  - name: Environment
+    uniqueID: 4214533791
+    locked: 0
+  - name: Enemies
+    uniqueID: 2698653247
+    locked: 0
+  - name: Player
+    uniqueID: 135828329
+    locked: 0

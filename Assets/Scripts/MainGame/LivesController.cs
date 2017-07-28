@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class LivesController : MonoBehaviour {
 
     public GameObject LivesPrefab;
+    public SceneController sceneController;
 
     static private int vidas = 3;
     private int showingLives;
@@ -24,7 +25,20 @@ public class LivesController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         updatePanel();
+        WarnPlayer();
 	}
+
+    private void WarnPlayer()
+    {
+        if (!SceneController.paused && vidas == 1 && !sceneController.isWarning)
+        {
+            sceneController.StartWarning();
+        }
+        else if (vidas != 1 && sceneController.isWarning)
+        {
+            sceneController.StopWarning();
+        }
+    }
 
     void updatePanel()
     {
@@ -44,7 +58,7 @@ public class LivesController : MonoBehaviour {
             StartVidaVisualFeedback(transform.GetChild(vidas).gameObject);
             //Destroy(transform.GetChild(vidas).gameObject);
             
-        }      
+        }
     }
 
     public static void addVidas()
@@ -78,18 +92,15 @@ public class LivesController : MonoBehaviour {
 
     IEnumerator VidaVisualFeedBack(GameObject vidaPraPerder)
     {
-        float tempo = 1;
-        inicio:
-        vidaPraPerder.SetActive(false);
-        yield return new WaitForSeconds(tempo);
-        vidaPraPerder.SetActive(true);
-        tempo -= 0.1f;
-        yield return new WaitForSeconds(tempo);
-        if(tempo > 0.2f)
-        {
-            goto inicio;
-        }
+        float totalTime = 3, timeInterval = 0.25f;
 
+        for (float i = totalTime; i > 0; i -= 2*timeInterval)
+        {
+            vidaPraPerder.SetActive(false);
+            yield return new WaitForSeconds(timeInterval);
+            vidaPraPerder.SetActive(true);
+            yield return new WaitForSeconds(timeInterval);
+        }
         Destroy(vidaPraPerder);
     }
 }

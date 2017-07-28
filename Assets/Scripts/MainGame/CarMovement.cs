@@ -5,23 +5,13 @@ using UnityEngine;
 public class CarMovement : MonoBehaviour
 {
     public float speed; // Velocidade do carro
-    public float lifeTime; // Tempo que o carro permanece na Scene
 
-    private float timer;
-
-	void Start ()
-    {
-        timer = 0;
-	}
-	
 	void FixedUpdate ()
     {
         
-        if (!SceneController.paused)
+        if (!SceneController.paused || SceneController.hasGameFinished)
         {
-            timer += Time.fixedDeltaTime;
             Move();
-            Despawn(); 
         }
         
 	}
@@ -31,12 +21,4 @@ public class CarMovement : MonoBehaviour
         GetComponent<Rigidbody2D>().MovePosition((Vector2)transform.position + Vector2.left * speed);
     }
 
-    private void Despawn()
-    {
-        if (timer >= lifeTime)
-        {
-            gameObject.SetActive(false);
-            Destroy(this);
-        }
-    }
 }

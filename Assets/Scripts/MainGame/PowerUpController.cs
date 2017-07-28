@@ -5,11 +5,7 @@ using UnityEngine.UI;
 
 public class PowerUpController : MonoBehaviour
 {
-    public float IntervaloSpawn;
-    [Space(20)]
-    public GameObject Player;
-    public GameObject Limite_camera;
-    [Space(20)]
+    private GameObject Player;
     public GameObject Pai;
     public GameObject Filho;
     public GameObject Espirito;
@@ -21,7 +17,6 @@ public class PowerUpController : MonoBehaviour
 
 
     private bool pai, filho, espirito, benzido;
-    private float lastSpawn;
     private GameObject[] Pais;
     private GameObject[] Filhos;
     private GameObject[] Espiritos;
@@ -30,70 +25,45 @@ public class PowerUpController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        lastSpawn = 0;
+        Player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!SceneController.paused && !SceneController.winGame)
+        if (!SceneController.paused && !SceneController.hasGameFinished)
         {
-            SpawnPowerUp();
             verificaBencao();
             atualizaPainel();
         }
 
     }
 
-    private void SpawnPowerUp() //a cada 5 segundos sorteia um power up para espawnar
+    public void SpawnPowerUp(Vector3 position, Transform segmentoPai)
     {
-        if ((Time.fixedTime - lastSpawn) > IntervaloSpawn && Player.GetComponent<PlayerMovement>().imortal == false)
+        if(Random.Range(0, 100) > 50)
         {
-
-            switch (Random.Range(0, 3))
+            if (!pai)
             {
-                case 0:
-                    if (pai == false)
-                    {
-                        Instantiate(Pai, Limite_camera.transform.position + new Vector3(5, Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
-                    }
-                    else
-                    {
-                        Instantiate(AguaBenta, Limite_camera.transform.position + new Vector3(5, Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
-                    }
-                    break;
-                case 1:
-                    if (filho == false)
-                    {
-                        Instantiate(Filho, Limite_camera.transform.position + new Vector3(5, Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
-                    }
-                    else
-                    {
-                        Instantiate(AguaBenta, Limite_camera.transform.position + new Vector3(5, Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
-                    }
-                    break;
-                case 2:
-                    if (espirito == false)
-                    {
-                        Instantiate(Espirito, Limite_camera.transform.position + new Vector3(5, Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
-                    }
-                    else
-                    {
-                        Instantiate(AguaBenta, Limite_camera.transform.position + new Vector3(5, Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
-                    }
-                    break;
-                case 3:
-                    if (benzido == false)
-                    {
-                        Instantiate(AguaBenta, Limite_camera.transform.position + new Vector3(5, Random.Range(2, 7), 0), Quaternion.identity, GetComponent<Transform>());
-                    }
-                    break;
+                Instantiate(Pai, position, Quaternion.identity, segmentoPai);
             }
-            lastSpawn = Time.fixedTime;
-
+            else if (!filho)
+            {
+                Instantiate(Filho, position, Quaternion.identity, segmentoPai);
+            }
+            else if (!espirito)
+            {
+                Instantiate(Espirito, position, Quaternion.identity, segmentoPai);
+            }
+            else
+            {
+                Instantiate(AguaBenta, position, Quaternion.identity, segmentoPai);
+            }
         }
-
-
+        else
+        {
+            Instantiate(AguaBenta, position, Quaternion.identity, segmentoPai);
+        }
     }
     // evita spawnar palavras ja coletadas e elimina palavras ja coletadas presentes na tela
     public void coleta(string nome)

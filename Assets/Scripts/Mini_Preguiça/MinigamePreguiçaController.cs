@@ -13,6 +13,7 @@ public class MinigamePreguiçaController : MonoBehaviour
     public Transform bedDownPrefab;
     public Transform bedUpAndDownPrefab;
     public ParticleSystem okPartSys, greatPartSys;
+    public RectTransform use;
 
     private int numberOfBeds; // Número de camas que irão aparecer
     private float bedSpeed; // Velocidade de deslocamento das camas
@@ -46,6 +47,17 @@ public class MinigamePreguiçaController : MonoBehaviour
 
     void Start ()
     {
+        // Ajusta as instruções para dispositivos Android: no lugar de "use as setas", aparece "toque na tela"
+#if UNITY_ANDROID
+        Image[] children = use.GetComponentsInChildren<Image>();
+        foreach (Image child in children)
+        {
+            child.gameObject.SetActive(false);
+        }
+        use.GetComponent<Text>().text = "Toque na tela";
+#endif
+
+
         // Inicialização
         isTouchingBed = false;
         nBedsTouched = 0;
@@ -307,24 +319,48 @@ public class MinigamePreguiçaController : MonoBehaviour
         }
     }
 
-    // Computa o tempo em que recebeu uma tecla
+    // Computa o tempo em que recebeu uma tecla (no PC) ou um toque (no Android)
     private void ReceiveKeyPress()
     {
+#if UNITY_STANDALONE_WIN
         if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             buttonPressedTime = Time.time;
         }
+#endif
+#if UNITY_ANDROID
+        if (Input.touchCount > 0)
+        {
+            buttonPressedTime = Time.time;
+        }
+#endif
     }
 
-    // Retorna true se, no frame atual, o jogador pressionou no mínimo uma tecla
+    // Retorna true se, no frame atual, o jogador pressionou no mínimo uma tecla (no PC) ou um toque (no Android)
     private bool PlayerPressedKey()
     {
+#if UNITY_STANDALONE_WIN
         return (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow));
+#endif
+#if UNITY_ANDROID
+        if (Input.touchCount > 0)
+        {
+            foreach (Touch touch in Input.touches)
+            {
+                if (touch.phase == TouchPhase.Began)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+#endif
     }
 
-    // Retorna true se, em um tempo muito rápido, o jogador pressionou exatamente duas teclas
+    // Retorna true se, em um tempo muito rápido, o jogador pressionou exatamente duas teclas (no PC) ou dois toques (no Android)
     private bool PlayerPressedDoubleKeys()
     {
+#if UNITY_STANDALONE_WIN
         if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.DownArrow))
         {
             if (Time.time - buttonPressedTime <= timeWindow)
@@ -332,7 +368,53 @@ public class MinigamePreguiçaController : MonoBehaviour
                 return true;
             }
         }
+#endif
+#if UNITY_ANDROID
+        if (Input.touchCount == 2 && Time.time - buttonPressedTime <= timeWindow)
+        {
+            foreach (Touch touch in Input.touches)
+            {
+                if (touch.phase != TouchPhase.Began)
+                {
+                    return false;
+                }
+            }
 
+            if ((Input.GetTouch(0).position.y > Screen.height / 2 && Input.GetTouch(1).position.y <= Screen.height / 2)
+                || (Input.GetTouch(0).position.y <= Screen.height / 2 && Input.GetTouch(1).position.y > Screen.height / 2))
+            {
+                return true;
+            }
+        }
+#endif
+        return false;
+    }
+
+    // Retorna true se o jogador tocou a parte de baixo da tela no frame atual. Apenas para a build Android
+    private bool PlayerTouchedBottom()
+    {
+        if (Input.touchCount == 1)
+        {
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began && touch.position.y < Screen.height/2)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Retorna true se o jogador tocou a parte de cima da tela no frame atual. Apenas para a build Android
+    private bool PlayerTouchedTop()
+    {
+        if (Input.touchCount == 1)
+        {
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began && touch.position.y >= Screen.height/2)
+            {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -352,7 +434,12 @@ public class MinigamePreguiçaController : MonoBehaviour
             // Se o jogador apertou apenas uma seta
             if (PlayerPressedKey())
             {
+#if UNITY_STANDALONE_WIN
                 if (Input.GetKeyDown(KeyCode.UpArrow) && bedControls[nBedsTouched - 1] == UP)
+#endif
+#if UNITY_ANDROID
+                if (PlayerTouchedTop() && bedControls[nBedsTouched - 1] == UP)
+#endif
                 {
                     // Acertou
                     beds[nBedsTouched - 1].GetComponent<Animator>().SetTrigger("hitBed");
@@ -376,7 +463,12 @@ public class MinigamePreguiçaController : MonoBehaviour
                         okPartSys.Play();
                     }
                 }
+#if UNITY_STANDALONE_WIN
                 else if (Input.GetKeyDown(KeyCode.DownArrow) && bedControls[nBedsTouched - 1] == DOWN)
+#endif
+#if UNITY_ANDROID
+                else if (PlayerTouchedBottom() && bedControls[nBedsTouched - 1] == DOWN)
+#endif
                 {
                     // Acertou
                     beds[nBedsTouched - 1].GetComponent<Animator>().SetTrigger("hitBed");

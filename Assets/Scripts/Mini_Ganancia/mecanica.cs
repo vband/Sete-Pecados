@@ -25,6 +25,8 @@ public class mecanica : MonoBehaviour {
     private List<GameObject> listaCerto = new List<GameObject>();
     private List<GameObject> listaErrado = new List<GameObject>();
 
+    private List<GameObject> listaDeBotoesInstanciados = new List<GameObject>();
+
     [HideInInspector] public Vector2 screenSize;
     [HideInInspector] public bool syncBool = false; //variavel que controla o tempo certo para ativar a contagem e a acao do minigame
     [HideInInspector] public Sprite rosto_correto;
@@ -67,9 +69,10 @@ public class mecanica : MonoBehaviour {
         {
             go.GetComponent<Image>().sprite = rosto_correto;
             
-            Instantiate(go, new Vector3(Random.Range(Cam.transform.position.x - (screenSize.x - 2), Cam.transform.position.x + (screenSize.x - 2)),
+            GameObject instance = Instantiate(go, new Vector3(Random.Range(Cam.transform.position.x - (screenSize.x - 2), Cam.transform.position.x + (screenSize.x - 2)),
                                         Random.Range(Cam.transform.position.y - (screenSize.y - 2), Cam.transform.position.y + (screenSize.y - 2)),
                                         zPosition), Quaternion.identity, minigame.transform);
+            listaDeBotoesInstanciados.Add(instance);
         }
 
         foreach (GameObject go in listaErrado)
@@ -77,9 +80,10 @@ public class mecanica : MonoBehaviour {
             
             go.GetComponent<Image>().sprite = album_faces[Random.Range(0, album_faces.Count)];
             
-            Instantiate(go, new Vector3(Random.Range(Cam.transform.position.x - (screenSize.x - 2), Cam.transform.position.x + (screenSize.x - 2)),
+            GameObject instance = Instantiate(go, new Vector3(Random.Range(Cam.transform.position.x - (screenSize.x - 2), Cam.transform.position.x + (screenSize.x - 2)),
                                         Random.Range(Cam.transform.position.y - (screenSize.y - 2), Cam.transform.position.y + (screenSize.y - 2)),
                                         zPosition), Quaternion.identity, minigame.transform);
+            listaDeBotoesInstanciados.Add(instance);
         }
         
         syncBool = true;
@@ -129,6 +133,12 @@ public class mecanica : MonoBehaviour {
         {
             ganhou.gameObject.SetActive(true);
         }
+
+        foreach (GameObject botao in listaDeBotoesInstanciados)
+        {
+            botao.GetComponent<Button>().enabled = false;
+        }
+
         GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
@@ -141,6 +151,12 @@ public class mecanica : MonoBehaviour {
             certo.gameObject.transform.GetChild(0).gameObject.SetActive(true);
         }
         LivesController.RemVidas();
+
+        foreach (GameObject botao in listaDeBotoesInstanciados)
+        {
+            botao.GetComponent<Button>().enabled = false;
+        }
+
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
 
