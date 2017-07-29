@@ -41,13 +41,12 @@ public class PlayerMovement : MonoBehaviour {
     private float currentJumpTime; // Tempo atual no qual o personagem está se deslocando para o alto enquanto pula
     public bool isJumping; // True se o personagem está se deslocando para o alto porque pulou
     private float horizontalInput;
-    //private float jumpInput;
-    private bool jumpButtonDown;
+    private float jumpInput;
 
     public bool isCollidingWithScreenBorder; // True se o jogador estiver colidindo com a borda esquerda da tela
     private bool isCollidingWithObstacle; // True se o jogador estiver colidindo com oalgum obstáculo
 
-    //private bool hasLetGoOfJumpButton;
+    private bool hasLetGoOfJumpButton;
 
     // Inicializa os atributos privados da classe
     void Start ()
@@ -67,14 +66,18 @@ public class PlayerMovement : MonoBehaviour {
         isCollidingWithScreenBorder = false;
         isCollidingWithObstacle = false;
 
-        //hasLetGoOfJumpButton = true;
+        hasLetGoOfJumpButton = true;
 
         horizontalInput = 0;
-        //jumpInput = 0;
-        jumpButtonDown = false;
+        jumpInput = 0;
     }
-	
-	void FixedUpdate ()
+
+    private void Update()
+    {
+        ReceiveInput();
+    }
+
+    void FixedUpdate ()
     {
         if (!SceneController.paused)
         {
@@ -89,7 +92,6 @@ public class PlayerMovement : MonoBehaviour {
                 animator.enabled = true;
             }
 
-            ReceiveInput();
             Move();
             Jump();
             atualizaTempo();
@@ -103,29 +105,17 @@ public class PlayerMovement : MonoBehaviour {
             rb2D.velocity = new Vector2(0, 0);
         }
 
-        /*
         if (jumpInput == 0)
         {
             hasLetGoOfJumpButton = true;
         }
-        */
     }
 
     private void ReceiveInput()
     {
         // Obtém input do teclado
         horizontalInput = CrossPlatformInputManager.GetAxisRaw("Horizontal");
-        //jumpInput = Input.GetAxisRaw("Jump"); //Older
-        //jumpButtonDown = CrossPlatformInputManager.GetButtonDown("Jump"); //old
-        //Debug Pulo bugado e corrigido para mobile.
-        if(CrossPlatformInputManager.GetAxisRaw("Jump") != 0)
-        {
-            jumpButtonDown = true;
-        } else
-        {
-            jumpButtonDown = false;
-        }
-        
+        jumpInput = CrossPlatformInputManager.GetAxisRaw("Jump");
     }
 
     // Movimentação do botão virtual (Android)
@@ -177,9 +167,9 @@ public class PlayerMovement : MonoBehaviour {
         bool isGrounded = IsGrounded();
 
         // Se o jogador pular
-        if (jumpButtonDown && isGrounded && (Time.realtimeSinceStartup - lastjump) > 0.3f /*&& hasLetGoOfJumpButton*/) 
+        if (jumpInput > 0 && isGrounded && (Time.realtimeSinceStartup - lastjump) > 0.3f && hasLetGoOfJumpButton)
         {
-            //hasLetGoOfJumpButton = false;
+            hasLetGoOfJumpButton = false;
 
             // Registra que o movimento do pulo deverá começar
             isJumping = true;
@@ -331,13 +321,11 @@ public class PlayerMovement : MonoBehaviour {
         if (collision.gameObject.tag == "LeftCollider")
         {
             isCollidingWithScreenBorder = true;
-            //Debug.Log("borda sim");
         }
         // Registra se o jogador está colidindo com algum obstáculo
         else if (collision.gameObject.tag == "Obstacle")
         {
             isCollidingWithObstacle = true;
-            //Debug.Log("obstáculo sim");
         }
     }
 
@@ -347,13 +335,11 @@ public class PlayerMovement : MonoBehaviour {
         if (collision.gameObject.tag == "LeftCollider")
         {
             isCollidingWithScreenBorder = false;
-            //Debug.Log("borda não");
         }
         // Registra se o jogador parou de colidir com algum obstáculo
         else if (collision.gameObject.tag == "Obstacle")
         {
             isCollidingWithObstacle = false;
-            //Debug.Log("obstáculo não");
         }
     }
 
@@ -365,7 +351,6 @@ public class PlayerMovement : MonoBehaviour {
             && IsGrounded()
             && Time.realtimeSinceStartup - lastjump > 0.3f)
         {
-            //Debug.Log("pula");
             // Simula um pulo
             isJumping = true;
             currentJumpTime = 0;
