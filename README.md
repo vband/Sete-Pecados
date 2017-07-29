@@ -8,7 +8,7 @@ O jogo Consiste em um jogo de plataforma que faz uso de minigames como micro com
 O nome do projeto e do jogo originalmente era Sete Pecados. Entretanto, esse nome era muito genérico e foi atualizado para CCXP18 que significa Comic Culto eXperience 2018. Esse nome faz uma brincadeira com o grande evento de revistas em quadrinho chamado Comic Con Experience ([CCXP](https://www.ccxp.com.br/)) e faz sentido no jogo, afinal, nosso querido Falamaia deseja chegar em um grande encontro de religiosos no centro da cidade grande!
 
 
-O jogo ainda está em producao e seu time de desenvolvimento tem como integrantes:
+O jogo ainda está em produção e seu time de desenvolvimento tem como integrantes:
 * Programdores:
   * [Alonso Matos](https://github.com/sottam)
   * [Vitor Barcelos](https://github.com/vband)
