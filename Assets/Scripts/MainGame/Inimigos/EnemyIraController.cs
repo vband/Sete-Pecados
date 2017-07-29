@@ -233,7 +233,7 @@ public class EnemyIraController : MonoBehaviour
 
             player.GetComponent<Animator>().enabled = false;
 
-            GameObject.Find("FadeImage").GetComponent<FadeController>().FadeFromColision("Ira", transform.position);
+            GameObject.Find("FadeImage").GetComponent<FadeController>().FadeFromColision("Ira", transform.position, FadeController.IRA);
 
             
 

@@ -56,7 +56,7 @@ public class PanfletoController : MonoBehaviour
 
             player.GetComponent<Animator>().enabled = false;
 
-            GameObject.Find("FadeImage").GetComponent<FadeController>().FadeFromColision("MiniGame_Ganancia", transform.position);
+            GameObject.Find("FadeImage").GetComponent<FadeController>().FadeFromColision("MiniGame_Ganancia", transform.position,FadeController.GANANCIA);
         Destruir:
             Destroy(gameObject);
         }

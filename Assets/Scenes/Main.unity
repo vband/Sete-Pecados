@@ -158,7 +158,7 @@ Prefab:
     - target: {fileID: 224011574420333736, guid: 12313687b9eea6141bed3e8a3a7b0d18,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000030517578
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224011574420333736, guid: 12313687b9eea6141bed3e8a3a7b0d18,
         type: 2}
@@ -527,7 +527,7 @@ Prefab:
     - target: {fileID: 224011574420333736, guid: 12313687b9eea6141bed3e8a3a7b0d18,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000030517578
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224011574420333736, guid: 12313687b9eea6141bed3e8a3a7b0d18,
         type: 2}
@@ -1136,7 +1136,37 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1258253605740172, guid: d664a794cd9ea0447b5fceb1e30e44ab, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114660716879958108, guid: d664a794cd9ea0447b5fceb1e30e44ab,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114660716879958108, guid: d664a794cd9ea0447b5fceb1e30e44ab,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114660716879958108, guid: d664a794cd9ea0447b5fceb1e30e44ab,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114285106257237350, guid: d664a794cd9ea0447b5fceb1e30e44ab,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114285106257237350, guid: d664a794cd9ea0447b5fceb1e30e44ab,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114285106257237350, guid: d664a794cd9ea0447b5fceb1e30e44ab,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114750223153055738, guid: d664a794cd9ea0447b5fceb1e30e44ab, type: 2}
@@ -6857,7 +6887,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1344421052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10821,7 +10851,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2096987687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10853,7 +10883,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 2096987687}
-          m_MethodName: SetDownState
+          m_MethodName: SetAxisPositiveState
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -10870,7 +10900,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 2096987687}
-          m_MethodName: SetUpState
+          m_MethodName: SetAxisNeutralState
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

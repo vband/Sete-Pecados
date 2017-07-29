@@ -115,8 +115,17 @@ public class PlayerMovement : MonoBehaviour {
     {
         // Obtém input do teclado
         horizontalInput = CrossPlatformInputManager.GetAxisRaw("Horizontal");
-        //jumpInput = Input.GetAxisRaw("Jump");
-        jumpButtonDown = CrossPlatformInputManager.GetButtonDown("Jump");
+        //jumpInput = Input.GetAxisRaw("Jump"); //Older
+        //jumpButtonDown = CrossPlatformInputManager.GetButtonDown("Jump"); //old
+        //Debug Pulo bugado e corrigido para mobile.
+        if(CrossPlatformInputManager.GetAxisRaw("Jump") != 0)
+        {
+            jumpButtonDown = true;
+        } else
+        {
+            jumpButtonDown = false;
+        }
+        
     }
 
     // Movimentação do botão virtual (Android)

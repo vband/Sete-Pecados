@@ -14,11 +14,15 @@ public class FadeController : MonoBehaviour {
     private GameObject Player;
     private GameObject cam;
     public GameObject circleImage;
+    public static Color IRA, GULA, PREGUICA, GANANCIA, LUXURIA, INVEJA, SOBERBA, PADRAO;
+                //vermelho, laranja, azul, amarelo, rosa, verde, purpura
 
     private void Start()
     {
         Player = GameObject.Find("Player");
         cam = GameObject.Find("Main Camera");
+        InicializaCores();
+        SetColor(PADRAO);
     }
 
     //metodo padrao para chamar fade e alteracao de cenas a partir de qualquer gameobject
@@ -27,6 +31,13 @@ public class FadeController : MonoBehaviour {
     public void FadeFromColision(string NextScene, Vector3 ColisionLocal)
     {
         setCircleFadePosition(ColisionLocal);
+        CallFading(NextScene);
+    }
+
+    public void FadeFromColision(string NextScene, Vector3 ColisionLocal, Color cor)
+    {
+        setCircleFadePosition(ColisionLocal);
+        SetColor(cor);
         CallFading(NextScene);
     }
 
@@ -50,7 +61,6 @@ public class FadeController : MonoBehaviour {
         {
             GetComponent<Animator>().SetBool("AtivaFade", true);
             yield return new WaitUntil(() => circleImage.GetComponent<RectTransform>().localScale.x == 1900);
-            //yield return new WaitForSeconds(1.0f);
 
             SceneManager.LoadScene(NextScene, LoadSceneMode.Single);
 
@@ -67,7 +77,11 @@ public class FadeController : MonoBehaviour {
         }
         else
         {
-           
+            if (NextScene == "MainMenu" || NextScene == "GameOver")
+            {
+                SetColor(PADRAO);
+            }
+
             GetComponent<Animator>().SetBool("Fade", true);
             yield return new WaitUntil(() => GetComponent<Image>().color.a == 1);
 
@@ -94,4 +108,23 @@ public class FadeController : MonoBehaviour {
        
     }
     
+    void SetColor(Color cor)
+    {
+        Debug.Log("pintou");
+        GetComponent<Image>().color = cor;
+        circleImage.GetComponent<Image>().color = cor;
+    }
+
+    private void InicializaCores()
+    {
+        IRA = new Color(255, 0, 0);
+        GULA = new Color(255,191,0);
+        PREGUICA = new Color(0, 0, 255);
+        GANANCIA = new Color(255, 255, 0);
+        LUXURIA = new Color(255, 0, 255);
+        INVEJA = new Color(0, 255, 0);
+        SOBERBA = new Color(128, 0, 128);
+
+        PADRAO = new Color(0, 0, 0);
+    }
 }

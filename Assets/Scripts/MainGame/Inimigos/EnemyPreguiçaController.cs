@@ -28,7 +28,7 @@ public class EnemyPreguiçaController : MonoBehaviour
                         
             player.GetComponent<Animator>().enabled = false;
 
-            GameObject.Find("FadeImage").GetComponent<FadeController>().FadeFromColision("Preguiça", transform.position);
+            GameObject.Find("FadeImage").GetComponent<FadeController>().FadeFromColision("Preguiça", transform.position, FadeController.PREGUICA);
             
 
             Destruir:
