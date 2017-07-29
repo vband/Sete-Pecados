@@ -108,6 +108,12 @@ namespace UnityStandardAssets.CrossPlatformInput
 
 		public void OnPointerDown(PointerEventData data) { }
 
+        public void ResetPosition()
+        {
+            transform.position = m_StartPos;
+            UpdateVirtualAxes(m_StartPos);
+        }
+
 		void OnDisable()
 		{
 			// remove the joysticks from the cross platform input

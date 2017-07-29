@@ -75,6 +75,7 @@ public class PlayerMovement : MonoBehaviour {
     private void Update()
     {
         ReceiveInput();
+        atualizaTempo();
     }
 
     void FixedUpdate ()
@@ -94,7 +95,6 @@ public class PlayerMovement : MonoBehaviour {
 
             Move();
             Jump();
-            atualizaTempo();
             SimulateJump();
         }
 
