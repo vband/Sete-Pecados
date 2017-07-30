@@ -110,7 +110,6 @@ public class FadeController : MonoBehaviour {
     
     void SetColor(Color cor)
     {
-        Debug.Log("pintou");
         GetComponent<Image>().color = cor;
         circleImage.GetComponent<Image>().color = cor;
     }

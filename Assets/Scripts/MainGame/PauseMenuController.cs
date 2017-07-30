@@ -20,7 +20,9 @@ public class PauseMenuController : MonoBehaviour {
 #if UNITY_ANDROID
                 Pause.gameObject.SetActive(false);
 #endif
+
                 AudioListener.pause = true;
+
                 VoltarAoJogo.gameObject.SetActive(true);
                 VoltarParaMenu.gameObject.SetActive(true);
                 Pausado.gameObject.SetActive(true);
@@ -30,7 +32,10 @@ public class PauseMenuController : MonoBehaviour {
                 break;
             case false: 
                 Time.timeScale = 1;
-                AudioListener.pause = false;
+                if (PlayerPrefs.GetInt("MUDO") == 0)
+                {
+                    AudioListener.pause = false;
+                }
 #if UNITY_ANDROID
                 Pause.gameObject.SetActive(true);
 #endif
@@ -46,8 +51,6 @@ public class PauseMenuController : MonoBehaviour {
 
     public void VoltarAoJogoOnClick()
     {
-        Time.timeScale = 1;
-        AudioListener.pause = false;
         AtivaMenu(false);
     }
 

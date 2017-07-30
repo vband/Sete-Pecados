@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 public class MainMenu : MonoBehaviour
 {
@@ -26,68 +27,43 @@ public class MainMenu : MonoBehaviour
     public Toggle BotaoVirtual;
 
     private float VOLUME;
-    private int menu, inputConfig;
+    private int Menu, InputKey;
+    private bool MudoKey;
     private const int INICIAL = 0, OPCOES = 1, CREDITOS = 2;
     private const int JOYSTICK = 0, VIRTUAL = 1;
 
+    private void Awake() //nao remover o conteudo desse awake, sob pena de parar de funcionar
+    {
+        //=============== FAZ A LEITURA DOS PREFS E SALVA EM UMA VARIAVEL ===========//
+        VOLUME = PlayerPrefs.GetFloat("VOLUME", 1);
+        MudoKey = Convert.ToBoolean(PlayerPrefs.GetInt("MUDO", 0));
+        InputKey = PlayerPrefs.GetInt("INPUTCONFIG", 0);
+    }
+
     void Start()
     {
-        menu = INICIAL;
-        AtualizaMenu(menu);
+        Menu = INICIAL;
 
         Cursor.visible = true;
         Time.timeScale = 1;
-  
-        //=============== CARREGA SALVOS OU DEFINE AS CONFIG PADRAO NO ELSE ===========//
-        if (PlayerPrefs.HasKey("VOLUME"))
-        {
-            VOLUME = PlayerPrefs.GetFloat("VOLUME");
-            SliderVolume.value = VOLUME;
-        }
-        else
-        {
-            PlayerPrefs.SetFloat("VOLUME", 1);
-            SliderVolume.value = 1;
-        }
 
-        if (PlayerPrefs.HasKey("MUDO"))
-        {
-            if(PlayerPrefs.GetInt("MUDO") == 0)
-            {
-                CaixaVolumeMudo.isOn = false;
-                AtualizaMudo();
-            }
-            else
-            {
-                CaixaVolumeMudo.isOn = true;
-                AtualizaMudo();
-            }
-        }
-        else
-        {
-            PlayerPrefs.SetInt("MUDO", 0);
-            CaixaVolumeMudo.isOn = false;
-            AtualizaMudo();
-        }
+        //=============== CARREGA VALORES NOS BOTOES ===========//
 
-        if (PlayerPrefs.HasKey("INPUTCONFIG"))
+        SliderVolume.value = VOLUME;
+
+        CaixaVolumeMudo.isOn = MudoKey;
+        AudioListener.pause = MudoKey;
+
+        if (InputKey == JOYSTICK)
         {
-            if(PlayerPrefs.GetInt("INPUTCONFIG") == JOYSTICK)
-            {
-                Joystick.isOn = true;
-                AtualizaInput(JOYSTICK);
-            } else
-            {
-                BotaoVirtual.isOn = true;
-                AtualizaInput(VIRTUAL);
-            }
-        }
-        else
-        {
-            PlayerPrefs.SetInt("INPUTCONFIG", JOYSTICK);
             Joystick.isOn = true;
-            AtualizaInput(JOYSTICK);
         }
+        else if (InputKey == VIRTUAL)
+        {
+            BotaoVirtual.isOn = true;
+        }
+
+        AtualizaMenu(Menu);
 
     }
     //========= VOIDS DE ATUALIZACAO ==========//
@@ -177,38 +153,34 @@ public class MainMenu : MonoBehaviour
 
     public void AtualizaMudo()
     {
-        AudioListener.pause = CaixaVolumeMudo.isOn;
+        MudoKey = CaixaVolumeMudo.isOn;
+        AudioListener.pause = MudoKey;
         SalvarPreferencias();
     }
 
     public void AtualizaInput(int config)
     {
-        if(config == JOYSTICK)
+        if (config == JOYSTICK)
         {
-            inputConfig = JOYSTICK;
-        } else if (config == VIRTUAL)
+            InputKey = JOYSTICK;
+        }
+        else if (config == VIRTUAL)
         {
-            inputConfig = VIRTUAL;
+            InputKey = VIRTUAL;
         }
 
         SalvarPreferencias();
     }
 
     //=========VOID DE SALVAMENTO==========//
-    private void SalvarPreferencias() //chamar sempre que alterar opcoes
+    public void SalvarPreferencias() //chamar sempre que alterar opcoes
     {
-        if (CaixaVolumeMudo.isOn == true)
-        {
-            PlayerPrefs.SetInt("MUDO", 1);
-        }
-        else
-        {
-            PlayerPrefs.SetInt("MUDO", 0);
-        }
-
+        
+        PlayerPrefs.SetInt("MUDO", Convert.ToInt32(MudoKey));
         PlayerPrefs.SetFloat("VOLUME", SliderVolume.value);
+        PlayerPrefs.SetInt("INPUTCONFIG", InputKey);
 
-        PlayerPrefs.SetInt("INPUTCONFIG", inputConfig);
+        PlayerPrefs.Save();
     }
 
     public void Jogar()
