@@ -14,6 +14,14 @@ public class MainMenu : MonoBehaviour
     public Button BotaoOpcoes;
     public Button BotaoSair;
     [Space(20)]
+    public Button BotaoClassico;
+    public Button BotaoMinigames;
+    public Button BotaoSemFim;
+    public Text DescricaoClassico;
+    public Text DescricaoMinigames;
+    public Text DescricaoSemFim;
+    public Button BotaoVoltarModoDeJogo;
+    [Space(20)]
     public Text TextoVolume;
     public Slider SliderVolume;
     public Toggle CaixaVolumeMudo;
@@ -31,7 +39,7 @@ public class MainMenu : MonoBehaviour
     private float VOLUME;
     private int Menu, InputKey;
     private bool MudoKey;
-    private const int INICIAL = 0, OPCOES = 1, CREDITOS = 2;
+    private const int INICIAL = 0, OPCOES = 1, MODODEJOGO = 2, CREDITOS = 3;
     private const int JOYSTICK = 0, VIRTUAL = 1;
 
     private void Awake() //nao remover o conteudo desse awake, sob pena de parar de funcionar
@@ -81,6 +89,13 @@ public class MainMenu : MonoBehaviour
                 BotaoOpcoes.gameObject.SetActive(true);
                 BotaoSair.gameObject.SetActive(true);
 
+                BotaoClassico.gameObject.SetActive(false);
+                BotaoMinigames.gameObject.SetActive(false);
+                BotaoSemFim.gameObject.SetActive(false);
+                DescricaoClassico.gameObject.SetActive(false);
+                DescricaoMinigames.gameObject.SetActive(false);
+                DescricaoSemFim.gameObject.SetActive(false);
+                BotaoVoltarModoDeJogo.gameObject.SetActive(false);
                 TextoVolume.gameObject.SetActive(false);
                 SliderVolume.gameObject.SetActive(false);
                 CaixaVolumeMudo.gameObject.SetActive(false);
@@ -92,12 +107,46 @@ public class MainMenu : MonoBehaviour
                 BotaoVirtual.gameObject.SetActive(false);
                 LogoGDP.gameObject.SetActive(false);
                 break;
+            case MODODEJOGO:
+                titulo.gameObject.SetActive(true);
+
+                BotaoJogar.gameObject.SetActive(false);
+                BotaoOpcoes.gameObject.SetActive(false);
+                BotaoSair.gameObject.SetActive(false);
+
+                BotaoClassico.gameObject.SetActive(true);
+                BotaoMinigames.gameObject.SetActive(true);
+                BotaoSemFim.gameObject.SetActive(true);
+                DescricaoClassico.gameObject.SetActive(true);
+                DescricaoMinigames.gameObject.SetActive(true);
+                DescricaoSemFim.gameObject.SetActive(true);
+                BotaoVoltarModoDeJogo.gameObject.SetActive(true);
+
+                TextoVolume.gameObject.SetActive(false);
+                SliderVolume.gameObject.SetActive(false);
+                CaixaVolumeMudo.gameObject.SetActive(false);
+                BotaoVoltarOpcoes.gameObject.SetActive(false);
+                BotaoCreditos.gameObject.SetActive(false);
+                ConteudoDosCreditos.SetActive(false);
+                BotaoVoltarCreditos.gameObject.SetActive(false);
+                Joystick.gameObject.SetActive(false);
+                BotaoVirtual.gameObject.SetActive(false);
+                LogoGDP.gameObject.SetActive(false);
+                break;
+
             case OPCOES:
                 titulo.gameObject.SetActive(true);
 
                 BotaoJogar.gameObject.SetActive(false);
                 BotaoOpcoes.gameObject.SetActive(false);
                 BotaoSair.gameObject.SetActive(false);
+                BotaoClassico.gameObject.SetActive(false);
+                BotaoMinigames.gameObject.SetActive(false);
+                BotaoSemFim.gameObject.SetActive(false);
+                DescricaoClassico.gameObject.SetActive(false);
+                DescricaoMinigames.gameObject.SetActive(false);
+                DescricaoSemFim.gameObject.SetActive(false);
+                BotaoVoltarModoDeJogo.gameObject.SetActive(false);
 
                 TextoVolume.gameObject.SetActive(true);
                 SliderVolume.gameObject.SetActive(true);
@@ -111,20 +160,24 @@ public class MainMenu : MonoBehaviour
                 Joystick.gameObject.SetActive(true);
                 BotaoVirtual.gameObject.SetActive(true);
                 LogoGDP.gameObject.SetActive(false);
-
 #elif UNITY_STANDALONE
                 Joystick.gameObject.SetActive(false);
                 BotaoVirtual.gameObject.SetActive(false);
                 LogoGDP.gameObject.SetActive(true);
 #endif
-
                 break;
             case CREDITOS:
                 titulo.gameObject.SetActive(false);
                 BotaoJogar.gameObject.SetActive(false);
                 BotaoOpcoes.gameObject.SetActive(false);
                 BotaoSair.gameObject.SetActive(false);
-
+                BotaoClassico.gameObject.SetActive(false);
+                BotaoMinigames.gameObject.SetActive(false);
+                BotaoSemFim.gameObject.SetActive(false);
+                DescricaoClassico.gameObject.SetActive(false);
+                DescricaoMinigames.gameObject.SetActive(false);
+                DescricaoSemFim.gameObject.SetActive(false);
+                BotaoVoltarModoDeJogo.gameObject.SetActive(false);
                 TextoVolume.gameObject.SetActive(false);
                 SliderVolume.gameObject.SetActive(false);
                 CaixaVolumeMudo.gameObject.SetActive(false);
@@ -144,6 +197,13 @@ public class MainMenu : MonoBehaviour
                 BotaoOpcoes.gameObject.SetActive(true);
                 BotaoSair.gameObject.SetActive(true);
 
+                BotaoClassico.gameObject.SetActive(false);
+                BotaoMinigames.gameObject.SetActive(false);
+                BotaoSemFim.gameObject.SetActive(false);
+                DescricaoClassico.gameObject.SetActive(false);
+                DescricaoMinigames.gameObject.SetActive(false);
+                DescricaoSemFim.gameObject.SetActive(false);
+                BotaoVoltarModoDeJogo.gameObject.SetActive(false);
                 TextoVolume.gameObject.SetActive(false);
                 SliderVolume.gameObject.SetActive(false);
                 CaixaVolumeMudo.gameObject.SetActive(false);
@@ -156,8 +216,6 @@ public class MainMenu : MonoBehaviour
                 LogoGDP.gameObject.SetActive(false);
                 break;
         }
-
-
     }
 
     public void AtualizaVolume()
@@ -200,8 +258,23 @@ public class MainMenu : MonoBehaviour
 
     public void Jogar()
     {
+        AtualizaMenu(MODODEJOGO);
+    }
+
+    public void Classico()
+    {
         LivesController.InitVidas();
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+    }
+
+    public void Minigames()
+    {
+
+    }
+
+    public void SemFim()
+    {
+
     }
 
     public void Opcoes()
@@ -222,6 +295,11 @@ public class MainMenu : MonoBehaviour
     public void VoltarCreditos()
     {
         AtualizaMenu(OPCOES);
+    }
+
+    public void VoltarModoDeJogo()
+    {
+        AtualizaMenu(INICIAL);
     }
 
     public void Sair()
