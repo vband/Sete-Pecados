@@ -117,9 +117,15 @@ public class MainMenu : MonoBehaviour
                 BotaoClassico.gameObject.SetActive(true);
                 BotaoMinigames.gameObject.SetActive(true);
                 BotaoSemFim.gameObject.SetActive(true);
+#if UNITY_ANDROID
                 DescricaoClassico.gameObject.SetActive(true);
                 DescricaoMinigames.gameObject.SetActive(true);
                 DescricaoSemFim.gameObject.SetActive(true);
+#elif UNITY_STANDALONE
+                DescricaoClassico.gameObject.SetActive(false);
+                DescricaoMinigames.gameObject.SetActive(false);
+                DescricaoSemFim.gameObject.SetActive(false);
+#endif
                 BotaoVoltarModoDeJogo.gameObject.SetActive(true);
 
                 TextoVolume.gameObject.SetActive(false);

@@ -1206,6 +1206,7 @@ GameObject:
   - component: {fileID: 564134466}
   - component: {fileID: 564134465}
   - component: {fileID: 564134464}
+  - component: {fileID: 564134467}
   m_Layer: 0
   m_Name: BotaoMinigames
   m_TagString: Untagged
@@ -1317,6 +1318,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 564134462}
+--- !u!114 &564134467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 564134462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2418332e231ff04a9d6390d0c7e9a42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Descricao: {fileID: 1854142520}
 --- !u!1 &600169068
 GameObject:
   m_ObjectHideFlags: 0
@@ -1624,6 +1637,7 @@ GameObject:
   - component: {fileID: 642849576}
   - component: {fileID: 642849575}
   - component: {fileID: 642849574}
+  - component: {fileID: 642849577}
   m_Layer: 0
   m_Name: "Botao Cl\xE1ssico"
   m_TagString: Untagged
@@ -1735,6 +1749,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 642849572}
+--- !u!114 &642849577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 642849572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2418332e231ff04a9d6390d0c7e9a42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Descricao: {fileID: 758794104}
 --- !u!1 &714896643
 GameObject:
   m_ObjectHideFlags: 0
@@ -1998,7 +2024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 1, g: 1, b: 1, a: 0.528}
-  m_EffectDistance: {x: 2, y: -2}
+  m_EffectDistance: {x: 2, y: 2}
   m_UseGraphicAlpha: 1
 --- !u!114 &758794104
 MonoBehaviour:
@@ -2125,6 +2151,7 @@ GameObject:
   - component: {fileID: 804118779}
   - component: {fileID: 804118778}
   - component: {fileID: 804118777}
+  - component: {fileID: 804118780}
   m_Layer: 0
   m_Name: Botao Sem Fim
   m_TagString: Untagged
@@ -2236,6 +2263,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 804118775}
+--- !u!114 &804118780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 804118775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2418332e231ff04a9d6390d0c7e9a42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Descricao: {fileID: 1315139464}
 --- !u!1 &896021033
 GameObject:
   m_ObjectHideFlags: 0
@@ -3068,7 +3107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 1, g: 1, b: 1, a: 0.528}
-  m_EffectDistance: {x: 2, y: -2}
+  m_EffectDistance: {x: 2, y: 2}
   m_UseGraphicAlpha: 1
 --- !u!114 &1315139464
 MonoBehaviour:
@@ -4047,7 +4086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 1, g: 1, b: 1, a: 0.528}
-  m_EffectDistance: {x: 2, y: -2}
+  m_EffectDistance: {x: 2, y: 2}
   m_UseGraphicAlpha: 1
 --- !u!114 &1854142520
 MonoBehaviour:

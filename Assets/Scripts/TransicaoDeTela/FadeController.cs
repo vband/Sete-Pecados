@@ -97,8 +97,8 @@ public class FadeController : MonoBehaviour {
 
             GetComponent<Animator>().SetBool("Fade", false);
         }
-        yield return new WaitForSeconds(1.5f);
-
+        //yield return new WaitForSeconds(1.5f);
+        yield return new WaitUntil(() => GetComponent<Image>().color.a == 0);
         if (NextScene == "Main")
         {
             SceneController.paused = false;
