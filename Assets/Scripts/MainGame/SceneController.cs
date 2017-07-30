@@ -116,12 +116,15 @@ public class SceneController : MonoBehaviour
 
             if (PlayerPrefs.GetInt("INPUTCONFIG") == JOYSTICK && mobileJoystick.GetComponent<Image>().enabled == true)
             {
+                mobileJoystick.GetComponent<Joystick>().ResetPosition();
+                CrossPlatformInputManager.SetAxisZero("Horizontal");
                 mobileJoystick.GetComponent<Image>().enabled = false;
                 mobileJumpButton.GetComponent<Image>().enabled = false;
             }
 
             else if (PlayerPrefs.GetInt("INPUTCONFIG") == VIRTUAL && mobileVirtualButtonsController.gameObject.activeSelf)
             {
+                CrossPlatformInputManager.SetAxisZero("Horizontal");
                 mobileVirtualButtonsController.gameObject.SetActive(false);
             }
 #endif
