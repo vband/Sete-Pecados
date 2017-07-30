@@ -18,6 +18,7 @@ public class EnemyIraController : MonoBehaviour
     private Rigidbody2D rb2D;
     private SpriteRenderer sprite;
     private Animator animator;
+    private FadeController FadeImage;
     private float currentJumpCooldown;
     private float jumpTimer;
     private float originPosition;
@@ -33,6 +34,7 @@ public class EnemyIraController : MonoBehaviour
     void Start ()
     {
         player = GameObject.Find("Player").transform;
+        FadeImage = GameObject.Find("FadeImage").GetComponent<FadeController>();
         rb2D = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -225,6 +227,7 @@ public class EnemyIraController : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             GameObject player = collision.gameObject;
+
             if (player.GetComponent<PlayerMovement>().isImortal())
             {
                 player.GetComponent<PlayerMovement>().sobeCarinha();
@@ -233,10 +236,8 @@ public class EnemyIraController : MonoBehaviour
 
             player.GetComponent<Animator>().enabled = false;
 
-            GameObject.Find("FadeImage").GetComponent<FadeController>().FadeFromColision("Ira", transform.position, FadeController.IRA);
-
+            FadeImage.FadeFromColision("Ira", transform.position, FadeController.IRA);
             
-
             Destruir:
                 Destroy(gameObject);
         }

@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class EnemyPreguiçaController : MonoBehaviour
 {
+    private FadeController FadeImage;
 
     private void Start()
     {
         //debug para inimigo da preguiça spawnar deitado
         transform.Rotate(Vector3.forward, 90);
+        FadeImage = GameObject.Find("FadeImage").GetComponent<FadeController>();
     }
 
     // Essa função é chamada quando o inimigo colidir
@@ -28,7 +30,7 @@ public class EnemyPreguiçaController : MonoBehaviour
                         
             player.GetComponent<Animator>().enabled = false;
 
-            GameObject.Find("FadeImage").GetComponent<FadeController>().FadeFromColision("Preguiça", transform.position, FadeController.PREGUICA);
+            FadeImage.FadeFromColision("Preguiça", transform.position, FadeController.PREGUICA);
             
 
             Destruir:

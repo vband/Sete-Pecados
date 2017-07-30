@@ -1136,7 +1136,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1258253605740172, guid: d664a794cd9ea0447b5fceb1e30e44ab, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114660716879958108, guid: d664a794cd9ea0447b5fceb1e30e44ab,
         type: 2}
@@ -6672,7 +6672,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!4 &1297590616
 Transform:
@@ -6887,7 +6887,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1344421052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10851,7 +10851,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2096987687
 MonoBehaviour:
   m_ObjectHideFlags: 0

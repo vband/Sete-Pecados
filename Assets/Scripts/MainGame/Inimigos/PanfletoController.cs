@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class PanfletoController : MonoBehaviour
 {
-    public float autoDestroyTimer;
+    
 
     private Rigidbody2D rb2D;
+    private FadeController FadeImage;
 
     private void Start()
     {
-        //AutoDestroyStart(autoDestroyTimer);
+  
         rb2D = GetComponent<Rigidbody2D>();
+        FadeImage = GameObject.Find("FadeImage").GetComponent<FadeController>();
     }
 
     void FixedUpdate()
@@ -56,21 +58,10 @@ public class PanfletoController : MonoBehaviour
 
             player.GetComponent<Animator>().enabled = false;
 
-            GameObject.Find("FadeImage").GetComponent<FadeController>().FadeFromColision("MiniGame_Ganancia", transform.position,FadeController.GANANCIA);
+            FadeImage.FadeFromColision("MiniGame_Ganancia", transform.position,FadeController.GANANCIA);
         Destruir:
             Destroy(gameObject);
         }
 
-    }
-
-
-    void AutoDestroyStart(float timer)
-    {
-        StartCoroutine(AutoDestroy(timer));
-    }
-    IEnumerator AutoDestroy(float time)
-    {
-        yield return new WaitForSeconds(time);
-        Destroy(this.gameObject);
     }
 }

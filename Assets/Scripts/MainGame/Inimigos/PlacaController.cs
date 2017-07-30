@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class PlacaController : MonoBehaviour
 {
-    public float AutoDestructionTime;
-
     private Rigidbody2D rb2D;
+    private FadeController FadeImage;
 
     private void Start()
     {
-        //AutoDestroyStart(AutoDestructionTime);
+        
         rb2D = GetComponent<Rigidbody2D>();
+        FadeImage = GameObject.Find("FadeImage").GetComponent<FadeController>();
+        
     }
 
     void FixedUpdate()
@@ -50,20 +51,9 @@ public class PlacaController : MonoBehaviour
 
             player.GetComponent<Animator>().enabled = false;
 
-            GameObject.Find("FadeImage").GetComponent<FadeController>().FadeFromColision("MiniGame_Ganancia", transform.position, FadeController.GANANCIA);
+            FadeImage.FadeFromColision("MiniGame_Ganancia", transform.position, FadeController.GANANCIA);
         Destruir:
             Destroy(gameObject);
         }
     }
-
-    void AutoDestroyStart(float timer)
-    {
-        StartCoroutine(AutoDestroy(timer));
-    }
-    IEnumerator AutoDestroy(float time)
-    {
-        yield return new WaitForSeconds(time);
-        Destroy(this.gameObject);
-    }
-
 }

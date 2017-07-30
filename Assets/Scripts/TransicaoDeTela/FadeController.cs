@@ -126,4 +126,9 @@ public class FadeController : MonoBehaviour {
 
         PADRAO = new Color(0, 0, 0);
     }
+
+    public void LoadedPointer()
+    {
+        Debug.Log("loaded");
+    }
 }
