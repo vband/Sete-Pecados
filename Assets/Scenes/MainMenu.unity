@@ -2058,8 +2058,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Esse modo de jogo tem inicio meio e fim. O seu objetivo nesse modo de jogo
-    \xE9 alcan\xE7ar o grande culto no centro da cidade grande!"
+  m_Text: "Esse modo de jogo tem in\xEDcio, meio e fim. O seu objetivo \xE9 alcan\xE7ar
+    o grande culto no centro da cidade grande!"
 --- !u!222 &758794105
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3142,7 +3142,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Esse modo \xE9 para quem gosta muito da plataforma e deseja que o Falamaia
-    jamais alcance o culto. Andando em circulos pela cidade eternamente!"
+    jamais alcance o culto, andando em c\xEDrculos pela cidade eternamente!"
 --- !u!222 &1315139465
 CanvasRenderer:
   m_ObjectHideFlags: 0
