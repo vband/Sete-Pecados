@@ -72,6 +72,16 @@ public class PlayerMovement : MonoBehaviour {
         jumpInput = 0;
     }
 
+    private void Awake()
+    {
+        // Se estiver ignorando colisões com inimigos
+        if (Physics2D.GetIgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemies")))
+        {
+            // Para de ignorar
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemies"), false);
+        }
+    }
+
     private void Update()
     {
         ReceiveInput();
