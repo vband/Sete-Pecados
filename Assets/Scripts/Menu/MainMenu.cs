@@ -25,6 +25,8 @@ public class MainMenu : MonoBehaviour
     [Space(20)]
     public Toggle Joystick;
     public Toggle BotaoVirtual;
+    [Space(20)]
+    public Image LogoGDP;
 
     private float VOLUME;
     private int Menu, InputKey;
@@ -88,6 +90,7 @@ public class MainMenu : MonoBehaviour
                 BotaoVoltarCreditos.gameObject.SetActive(false);
                 Joystick.gameObject.SetActive(false);
                 BotaoVirtual.gameObject.SetActive(false);
+                LogoGDP.gameObject.SetActive(false);
                 break;
             case OPCOES:
                 titulo.gameObject.SetActive(true);
@@ -104,9 +107,17 @@ public class MainMenu : MonoBehaviour
 
                 ConteudoDosCreditos.SetActive(false);
                 BotaoVoltarCreditos.gameObject.SetActive(false);
-
+#if UNITY_ANDROID
                 Joystick.gameObject.SetActive(true);
                 BotaoVirtual.gameObject.SetActive(true);
+                LogoGDP.gameObject.SetActive(false);
+
+#elif UNITY_STANDALONE
+                Joystick.gameObject.SetActive(false);
+                BotaoVirtual.gameObject.SetActive(false);
+                LogoGDP.gameObject.SetActive(true);
+#endif
+
                 break;
             case CREDITOS:
                 titulo.gameObject.SetActive(false);
@@ -125,6 +136,7 @@ public class MainMenu : MonoBehaviour
 
                 Joystick.gameObject.SetActive(false);
                 BotaoVirtual.gameObject.SetActive(false);
+                LogoGDP.gameObject.SetActive(false);
                 break;
             default: //carrega inicial, caso receba um parametro invalido
                 titulo.gameObject.SetActive(true);
@@ -141,8 +153,11 @@ public class MainMenu : MonoBehaviour
                 BotaoVoltarCreditos.gameObject.SetActive(false);
                 Joystick.gameObject.SetActive(false);
                 BotaoVirtual.gameObject.SetActive(false);
+                LogoGDP.gameObject.SetActive(false);
                 break;
         }
+
+
     }
 
     public void AtualizaVolume()
