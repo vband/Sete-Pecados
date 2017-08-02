@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 95516137124140526}
   m_Layer: 9
   m_Name: EnemyIra
-  m_TagString: Untagged
+  m_TagString: EnemyIra
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

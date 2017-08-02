@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 114880215143064374}
   m_Layer: 9
   m_Name: PlacaPolitico
-  m_TagString: Untagged
+  m_TagString: EnemyGanancia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -527,7 +527,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776b7385228ec9d448f260ae4d56a32f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AutoDestructionTime: 15
 --- !u!212 &212035268590766460
 SpriteRenderer:
   m_ObjectHideFlags: 1

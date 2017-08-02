@@ -5482,6 +5482,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1258253605740172, guid: d664a794cd9ea0447b5fceb1e30e44ab,
     type: 2}
   m_PrefabInternal: {fileID: 284413520}
+--- !u!114 &894305865 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114221607666587650, guid: d664a794cd9ea0447b5fceb1e30e44ab,
+    type: 2}
+  m_PrefabInternal: {fileID: 284413520}
+  m_Script: {fileID: 11500000, guid: 046087c7ff15f194e9626b777189dd01, type: 3}
 --- !u!1 &902474918
 GameObject:
   m_ObjectHideFlags: 0
@@ -6551,6 +6557,7 @@ GameObject:
   - component: {fileID: 1297590617}
   - component: {fileID: 1297590615}
   - component: {fileID: 1297590614}
+  - component: {fileID: 1297590620}
   - component: {fileID: 1297590613}
   m_Layer: 14
   m_Name: Player
@@ -6794,6 +6801,18 @@ SpriteRenderer:
   m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+--- !u!114 &1297590620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1297590612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 700677362bf92384f823a85178079c79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeImage: {fileID: 894305865}
 --- !u!1 &1310162968
 GameObject:
   m_ObjectHideFlags: 0
