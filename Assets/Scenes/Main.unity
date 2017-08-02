@@ -6661,7 +6661,7 @@ MonoBehaviour:
   imortal: 0
   Tempo_imortal: 10
   imortal_backMinigame: 0
-  Tempo_imortal_backMinigame: 3
+  Tempo_imortal_backMinigame: 1.5
   aureola: {fileID: 1642755397636902, guid: 5c1eb532703403941ac959aec8cdd2ae, type: 2}
   carinhaSubindo: {fileID: 632340408}
   benzido: 0

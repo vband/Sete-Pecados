@@ -97,7 +97,7 @@ public class EnemyGanancia : MonoBehaviour {
         yield return new WaitUntil(() => natela == true);
 
         // Solta um papel logo quando aparece na tela
-        Instantiate(panfleto, new Vector3(transform.position.x - 1, transform.position.y - 1, 0), Quaternion.identity, transform.parent.parent);
+        //Instantiate(panfleto, new Vector3(transform.position.x - 1, transform.position.y - 1, 0), Quaternion.identity, transform.parent.parent);
 
         inicio:
 
