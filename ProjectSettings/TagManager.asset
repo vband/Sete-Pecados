@@ -19,6 +19,7 @@ TagManager:
   - Obstacle
   - LeftCollider
   - street
+  - EnemyIra
   layers:
   - Default
   - TransparentFX

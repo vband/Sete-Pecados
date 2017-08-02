@@ -5,14 +5,10 @@ using UnityEngine;
 public class PlacaController : MonoBehaviour
 {
     private Rigidbody2D rb2D;
-    private FadeController FadeImage;
 
     private void Start()
     {
-        
         rb2D = GetComponent<Rigidbody2D>();
-        FadeImage = GameObject.Find("FadeImage").GetComponent<FadeController>();
-        
     }
 
     void FixedUpdate()
@@ -20,7 +16,7 @@ public class PlacaController : MonoBehaviour
         if (!SceneController.paused)
         {
 
-            // TESTE - despausar movimentação
+            // Despausar movimentação
             if (rb2D.bodyType == RigidbodyType2D.Kinematic)
             {
                 rb2D.bodyType = RigidbodyType2D.Dynamic;
@@ -28,32 +24,12 @@ public class PlacaController : MonoBehaviour
             }
         }
 
-        // TESTE - pausar movimentação
+        // Pausar movimentação
         else
         {
             rb2D.bodyType = RigidbodyType2D.Kinematic;
             rb2D.velocity = new Vector2(0, 0);
             rb2D.freezeRotation = true;
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            GameObject player = collision.gameObject;
-            if (player.GetComponent<PlayerMovement>().isImortal() || SceneController.paused)
-            {
-                //caso o player esteja imortal ou o jogo estiver pausado, destroi o panfleto.
-                player.GetComponent<PlayerMovement>().sobeCarinha();
-                goto Destruir;
-            }
-
-            player.GetComponent<Animator>().enabled = false;
-
-            FadeImage.FadeFromColision("MiniGame_Ganancia", transform.position, FadeController.GANANCIA);
-        Destruir:
-            Destroy(gameObject);
         }
     }
 }
