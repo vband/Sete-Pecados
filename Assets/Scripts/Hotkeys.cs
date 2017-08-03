@@ -6,12 +6,16 @@ using UnityEngine.UI;
 
 public class Hotkeys : MonoBehaviour {
 
-    // Update is called once per frame
     void Update() {
+
+        if (Input.GetKeyUp(KeyCode.M))
+        {
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+        }
 
         if (Input.GetKeyUp(KeyCode.G))
         {
-            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MiniGame_Ganancia");
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Ganancia");
         }
 
         if (Input.GetKeyUp(KeyCode.I))
@@ -19,19 +23,29 @@ public class Hotkeys : MonoBehaviour {
             GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Ira");
         }
 
-        if (Input.GetKeyUp(KeyCode.M))
-        {
-            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
-        }
-
         if (Input.GetKeyUp(KeyCode.P))
         {
             GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Preguiça");
         }
 
+        if (Input.GetKeyUp(KeyCode.V))
+        {
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Inveja");
+        }
+
+        if (Input.GetKeyUp(KeyCode.C))
+        {
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Gula");
+        }
+
         if (Input.GetKeyUp(KeyCode.S))
         {
-            GameObject.Find("Player").GetComponent<PlayerMovement>().sobeCarinha();
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Soberba"); //Orgulho
+        }
+
+        if (Input.GetKeyUp(KeyCode.L))
+        {
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Luxuria");
         }
 
         //BotaoPausa
