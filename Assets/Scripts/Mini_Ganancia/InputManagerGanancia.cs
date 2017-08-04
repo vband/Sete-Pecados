@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,48 +9,55 @@ public class InputManagerGanancia : MonoBehaviour
 {
     [SerializeField]
     private GameObject Arena;
+    [SerializeField]
+    private GameObject Bolinha;
 
     public Text AccX;
     public Text AccY;
     public Text AccZ;
 
-    public Quaternion to;
-    public float speed = 2f;
+    private Vector3 NewPosition;
 
+    private float sen, input;
+    
     // Use this for initialization
     void Start()
     {
-
+        NewPosition = new Vector3();
     }
 
     // Update is called once per frame
     void Update()
     { 
 
-        AccX.GetComponent<Text>().text = "x: " + Input.acceleration.x;
-        AccY.GetComponent<Text>().text = "y: " + Input.acceleration.y;
-        AccZ.GetComponent<Text>().text = "z: " + Input.acceleration.z;
-        if(Input.acceleration.x < -0.1 )
+        AccX.GetComponent<Text>().text = "x: " + Math.Round( Input.acceleration.x, 2) + "|" + Arena.transform.rotation.x;
+        AccY.GetComponent<Text>().text = "y: " + Math.Round( Input.acceleration.y, 2) + "|" + Arena.transform.rotation.y;
+        AccZ.GetComponent<Text>().text = "z: " + Math.Round( Input.acceleration.z, 2) + "|" + Arena.transform.rotation.x;
+
+
+        input = (float)Math.Round(Input.acceleration.x * 4, 2);
+        if (input > 1f)
+            input = 1f;
+        else if (input < -1f)
+            input = -1f;
+        
+        sen = (float)Math.Sqrt(1 - Math.Pow(input, 2));
+               
+        
+        if (Input.acceleration.y < 0 )
         {
-            Arena.transform.Rotate(Vector3.forward);
+            NewPosition = new Vector3(input * 4, 0, -sen * 4);
         }
-        else if(Input.acceleration.x > 0.1 )
+        else
         {
-            Arena.transform.Rotate(Vector3.back);
+            NewPosition = new Vector3(input * 4, 0, sen * 4);
         }
+        
+        
+        
 
-
-        if (Input.acceleration.y < -0.1 )
-        {
-            Arena.transform.Rotate(Vector3.left);
-        }
-        else if (Input.acceleration.y > 0.1 )
-        {
-            Arena.transform.Rotate(Vector3.right);
-        }
-
-
-        Arena.transform.rotation = new Quaternion(Arena.transform.rotation.x, 0, Arena.transform.rotation.z, 1);
-
+        
+        Bolinha.transform.position = NewPosition;
+        
     }
 }
