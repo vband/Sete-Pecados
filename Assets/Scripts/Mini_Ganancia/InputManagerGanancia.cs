@@ -46,7 +46,7 @@ public class InputManagerGanancia : MonoBehaviour
         yRotation += -Input.gyro.rotationRateUnbiased.y;
         zRotation += -Input.gyro.rotationRateUnbiased.z;
 
-        //Bolinha.GetComponent<Rigidbody>().AddForce(xRotation, 0, yRotation);
+        
         Arena.transform.eulerAngles = new Vector3(xRotation, 0, yRotation);
 
         AccX.GetComponent<Text>().text = "x: " + xRotation;
