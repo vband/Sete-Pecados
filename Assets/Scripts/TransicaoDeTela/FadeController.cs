@@ -9,7 +9,6 @@ public class FadeController : MonoBehaviour {
 
     //proibir pause na transicao de cena
     [HideInInspector] public bool EmTransicao = false;
-    //[HideInInspector] 
     private bool enemyColision = false;
     private GameObject Player;
     private GameObject cam;

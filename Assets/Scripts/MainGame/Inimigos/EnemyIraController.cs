@@ -18,7 +18,6 @@ public class EnemyIraController : MonoBehaviour
     private Rigidbody2D rb2D;
     private SpriteRenderer sprite;
     private Animator animator;
-    private FadeController FadeImage;
     private float currentJumpCooldown;
     private float jumpTimer;
     private float originPosition;
@@ -34,7 +33,6 @@ public class EnemyIraController : MonoBehaviour
     void Start ()
     {
         player = GameObject.Find("Player").transform;
-        FadeImage = GameObject.Find("FadeImage").GetComponent<FadeController>();
         rb2D = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -71,9 +69,6 @@ public class EnemyIraController : MonoBehaviour
             {
                 // Se o inimigo estiver perseguindo o jogador...
                 case CHASE:
-                    // Corre atrás do jogador
-                    //MoveToPlayer();
-
                     // Anda para a esquerda
                     MoveLeft();
 
@@ -88,9 +83,6 @@ public class EnemyIraController : MonoBehaviour
                 case IDLE:
                     // Move-se em volta do seu "spawn point", ocioso
                     IdleAround();
-
-                    //MoveLeft();
-
                     break;
             }
 
@@ -218,30 +210,6 @@ public class EnemyIraController : MonoBehaviour
             sprite.flipX = true;
         }
     }
-    
-    // Essa função é chamada quando o inimigo colidir
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Se o inimigo colidir com o player...
-              
-        if (collision.gameObject.tag == "Player")
-        {
-            GameObject player = collision.gameObject;
-
-            if (player.GetComponent<PlayerMovement>().isImortal())
-            {
-                player.GetComponent<PlayerMovement>().sobeCarinha();
-                goto Destruir;
-            }
-
-            player.GetComponent<Animator>().enabled = false;
-
-            FadeImage.FadeFromColision("Ira", transform.position, FadeController.IRA);
-            
-            Destruir:
-                Destroy(gameObject);
-        }
-    }
 
     // Retorna true se o inimigo estiver tocando o chão
     private bool IsGrounded()
@@ -249,9 +217,7 @@ public class EnemyIraController : MonoBehaviour
         float distanceToGround = GetComponent<BoxCollider2D>().bounds.extents.y;
         Vector3 origin = transform.position - new Vector3(0, distanceToGround, 0);
         float distance = 0.2f;
-        //GetComponent<BoxCollider2D>().enabled = false;
         RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, distance, environmentLayer);
-        //GetComponent<BoxCollider2D>().enabled = true;
 
         if (hit.collider != null)
         {
@@ -263,10 +229,8 @@ public class EnemyIraController : MonoBehaviour
     // Retorna true quando existe uma plataforma sobre o inimigo
     private bool IsBelowPlatform()
     {
-        //GetComponent<BoxCollider2D>().enabled = false;
         RaycastHit2D hit1 = Physics2D.Raycast((Vector2)transform.position, Vector2.up, 4f, environmentLayer);
         RaycastHit2D hit2 = Physics2D.Raycast((Vector2)transform.position, Vector2.up + Vector2.left, 4f, environmentLayer);
-        //GetComponent<BoxCollider2D>().enabled = true;
 
         if (hit1.collider != null || hit2.collider != null)
         {

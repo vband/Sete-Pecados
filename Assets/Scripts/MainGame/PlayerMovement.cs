@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour {
     public float Tempo_imortal_backMinigame;
     private float Tempo_imortal_backMinigame_original;
     public GameObject aureola;
+    public float PFES_SpeedMultiplier; // Multiplicador de velocidade que é posto em uso quando o jogador está com a auréola
 
     public ParticleSystem carinhaSubindo;
     public static int pessoasSalvas = 0;
@@ -48,6 +49,8 @@ public class PlayerMovement : MonoBehaviour {
 
     private bool hasLetGoOfJumpButton;
 
+    private float currentSpeedMultiplier;
+
     // Inicializa os atributos privados da classe
     void Start ()
     {
@@ -70,6 +73,8 @@ public class PlayerMovement : MonoBehaviour {
 
         horizontalInput = 0;
         jumpInput = 0;
+
+        currentSpeedMultiplier = 1;
     }
 
     private void Awake()
@@ -169,7 +174,7 @@ public class PlayerMovement : MonoBehaviour {
 
         // Move o personagem
         Vector2 movement = new Vector2(horizontalInput, 0f);
-        rb2D.AddForce(movement * speed * Time.fixedDeltaTime);
+        rb2D.AddForce(movement * speed * currentSpeedMultiplier * Time.fixedDeltaTime);
     }
 
     private void Jump()
@@ -251,6 +256,9 @@ public class PlayerMovement : MonoBehaviour {
         imortal = true;
         Instantiate(aureola, transform);
         GetComponent<AudioSource>().PlayOneShot(paaai);
+
+        // Põe em uso o multiplicador de velocidade
+        currentSpeedMultiplier = PFES_SpeedMultiplier;
     }
 
     public void viraDeus_Backminigame()
@@ -268,31 +276,38 @@ public class PlayerMovement : MonoBehaviour {
 
     void atualizaTempo()
     {
+        // Atualiza o tempo da auréola
         if (Tempo_imortal > 0.0f && imortal == true)
         {
             Tempo_imortal -= Time.deltaTime;
         }
+        // Se terminou o tempo da auréola
         else if (imortal == true)
         {
             imortal = false;
             Destroy(GameObject.Find("aureola(Clone)"));
             Tempo_imortal = Tempo_imortal_original;
+            currentSpeedMultiplier = 1;
         }
 
+        // Atualiza o tempo da invencibilidade piscante
         if (Tempo_imortal_backMinigame > 0.0f && imortal_backMinigame == true)
         {
             Tempo_imortal_backMinigame -= Time.deltaTime;
         }
+        // Se terminou o tempo da invencibilidade piscante
         else if (imortal_backMinigame == true)
         {
             imortal_backMinigame = false;
             Tempo_imortal_backMinigame = Tempo_imortal_backMinigame_original;
         }
 
+        // Atualiza o tempo da água benta
         if (Tempo_benzido > 0.0f && benzido == true)
         {
             Tempo_benzido -= Time.deltaTime;
         }
+        //Se terminou o tempo sa água benta
         else if (benzido == true)
         {
             benzido = false;

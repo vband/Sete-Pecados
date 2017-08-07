@@ -116,6 +116,13 @@ public class CameraMovement : MonoBehaviour
 
         actualCameraSpeed = cameraSpeed * speedModifier;
 
+        // Caso o jogador esteja com a auréola, a câmera irá se mover mais rápido,
+        // e esse aumento de velocidade será o mesmo aumento que a velocidade do jogador sofre
+        if (player.GetComponent<PlayerMovement>().imortal)
+        {
+            actualCameraSpeed = actualCameraSpeed * player.GetComponent<PlayerMovement>().PFES_SpeedMultiplier;
+        }
+
         // Movimenta a câmera
         Vector2 pos = (Vector2) transform.position;
         Vector2 speed = new Vector2(actualCameraSpeed, 0);

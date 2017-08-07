@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: fde99912583f4174299f798cbecba63a
   - enabled: 1
-    path: Assets/Scenes/MiniGame_Ganancia.unity
+    path: Assets/Scenes/Inveja.unity
     guid: 3fe5384ac74244f4f8e2e5a3906f83bc
   - enabled: 1
     path: Assets/Scenes/Ira.unity
@@ -23,3 +23,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 1ce32f0e953a54d4aa296bb89888b83a
+  - enabled: 1
+    path: Assets/Scenes/Ganancia.unity
+    guid: 000f1818c13090446aade1c8d4cfab09
