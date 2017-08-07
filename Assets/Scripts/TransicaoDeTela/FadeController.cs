@@ -15,13 +15,17 @@ public class FadeController : MonoBehaviour {
     private GameObject cam;
     public GameObject circleImage;
     public static Color IRA, GULA, PREGUICA, GANANCIA, LUXURIA, INVEJA, SOBERBA, PADRAO;
-                //vermelho, laranja, azul, amarelo, rosa, verde, purpura
+    //vermelho, laranja, azul, amarelo, rosa, verde, purpura
+
+    private void Awake()
+    {
+        InicializaCores();
+    }
 
     private void Start()
     {
         Player = GameObject.Find("Player");
         cam = GameObject.Find("Main Camera");
-        InicializaCores();
         SetColor(PADRAO);
     }
 
