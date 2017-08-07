@@ -13,7 +13,7 @@ public class FadeController : MonoBehaviour {
     private GameObject Player;
     private GameObject cam;
     public GameObject circleImage;
-    public static Color IRA, GULA, PREGUICA, GANANCIA, LUXURIA, INVEJA, SOBERBA, PADRAO;
+    public static Color IRA, GULA, PREGUICA, GANANCIA, LUXURIA, INVEJA, SOBERBA, PADRAO, BRANCO;
     //vermelho, laranja, azul, amarelo, rosa, verde, purpura
 
     private void Awake()
@@ -77,14 +77,16 @@ public class FadeController : MonoBehaviour {
 
             GetComponent<Animator>().SetBool("AtivaFade", false);
             enemyColision = false;
+            
         }
         else
         {
-            if (NextScene == "MainMenu" || NextScene == "GameOver")
-            {
-                SetColor(PADRAO);
-            }
+            if(NextScene == "Main" && SceneManager.GetActiveScene().name != "MainMenu")
+                SetColor(BRANCO);
 
+            if (NextScene == "MainMenu" || NextScene == "GameOver")
+                SetColor(PADRAO);
+            
             GetComponent<Animator>().SetBool("Fade", true);
             yield return new WaitUntil(() => GetComponent<Image>().color.a == 1);
 
@@ -100,7 +102,6 @@ public class FadeController : MonoBehaviour {
 
             GetComponent<Animator>().SetBool("Fade", false);
         }
-        //yield return new WaitForSeconds(1.5f);
         yield return new WaitUntil(() => GetComponent<Image>().color.a == 0);
         if (NextScene == "Main")
         {
@@ -119,15 +120,17 @@ public class FadeController : MonoBehaviour {
 
     private void InicializaCores()
     {
-        IRA = new Color(255, 0, 0);
-        GULA = new Color(255,191,0);
-        PREGUICA = new Color(0, 0, 255);
-        GANANCIA = new Color(255, 255, 0);
-        LUXURIA = new Color(255, 0, 255);
-        INVEJA = new Color(0, 255, 0);
-        SOBERBA = new Color(128, 0, 128);
+        IRA = new Color(1, 0, 0);
+        GULA = new Color(1, 0.749f, 0);
+        PREGUICA = new Color(0, 0, 1);
+        GANANCIA = new Color(1, 1, 0);
+        LUXURIA = new Color(1, 0, 1);
+        INVEJA = new Color(0, 1, 0);
+        SOBERBA = new Color(0.501f, 0, 0.501f);
 
         PADRAO = new Color(0, 0, 0);
+        BRANCO = new Color(1, 1, 1, 0);
+       
     }
 
     public void LoadedPointer()
