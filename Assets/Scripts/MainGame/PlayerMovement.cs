@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public AudioClip jumpsound; //Som de pulo
     public AudioClip paaai; //som da imortalidade
+    public AudioClip SobeCara;
     private float lastjump; //instante do ultimo pulo
 
     private Rigidbody2D rb2D;
@@ -320,6 +321,7 @@ public class PlayerMovement : MonoBehaviour {
     public void sobeCarinha()
     {
         carinhaSubindo.Play();
+        GetComponent<AudioSource>().PlayOneShot(SobeCara,0.5f);
         pessoasSalvas++;
     }
 

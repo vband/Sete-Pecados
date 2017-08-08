@@ -1572,7 +1572,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1725954465
+  randomSeed: -306841689
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6787,6 +6787,7 @@ MonoBehaviour:
   inverte: 0
   jumpsound: {fileID: 8300000, guid: 5a8c84bdaa9d76b469f931c0a207c7ca, type: 3}
   paaai: {fileID: 8300000, guid: 9db9fa422bbe9d041b23f026a4f9fd96, type: 3}
+  SobeCara: {fileID: 8300000, guid: 3458c77826ef637418795d582c334c3d, type: 3}
   isJumping: 0
   isCollidingWithScreenBorder: 0
 --- !u!50 &1297590615
