@@ -6776,7 +6776,7 @@ MonoBehaviour:
   imortal: 0
   Tempo_imortal: 10
   imortal_backMinigame: 0
-  Tempo_imortal_backMinigame: 1.5
+  Tempo_imortal_backMinigame: 2
   aureola: {fileID: 1642755397636902, guid: 5c1eb532703403941ac959aec8cdd2ae, type: 2}
   PFES_SpeedMultiplier: 1.5
   carinhaSubindo: {fileID: 632340408}
@@ -7036,7 +7036,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1344421052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11369,7 +11369,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2096987687
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -375,4 +375,14 @@ public class SceneController : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    public void SpeedUpMusic(float Multiplier)
+    {
+        GetComponent<AudioSource>().pitch = Multiplier;
+    }
+
+    public void SpeedDownMusic()
+    {
+        GetComponent<AudioSource>().pitch = 1.0f;
+    }
 }

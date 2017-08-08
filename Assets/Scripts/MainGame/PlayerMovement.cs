@@ -52,6 +52,8 @@ public class PlayerMovement : MonoBehaviour {
 
     private float currentSpeedMultiplier;
 
+    private GameObject CenaPrincipal;
+
     // Inicializa os atributos privados da classe
     void Start ()
     {
@@ -76,6 +78,8 @@ public class PlayerMovement : MonoBehaviour {
         jumpInput = 0;
 
         currentSpeedMultiplier = 1;
+
+        CenaPrincipal = GameObject.Find("CenaPrincipal");
     }
 
     private void Awake()
@@ -260,6 +264,7 @@ public class PlayerMovement : MonoBehaviour {
 
         // Põe em uso o multiplicador de velocidade
         currentSpeedMultiplier = PFES_SpeedMultiplier;
+        CenaPrincipal.GetComponent<SceneController>().SpeedUpMusic(PFES_SpeedMultiplier);
     }
 
     public void viraDeus_Backminigame()
@@ -289,6 +294,7 @@ public class PlayerMovement : MonoBehaviour {
             Destroy(GameObject.Find("aureola(Clone)"));
             Tempo_imortal = Tempo_imortal_original;
             currentSpeedMultiplier = 1;
+            CenaPrincipal.GetComponent<SceneController>().SpeedDownMusic();
         }
 
         // Atualiza o tempo da invencibilidade piscante
