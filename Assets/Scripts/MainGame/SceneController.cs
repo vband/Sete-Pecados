@@ -112,6 +112,7 @@ public class SceneController : MonoBehaviour
             lowLivesWarning.gameObject.SetActive(false);
 
 #if UNITY_ANDROID
+
             pauseButton.gameObject.SetActive(false);
 
             if (PlayerPrefs.GetInt("INPUTCONFIG") == JOYSTICK && mobileJoystick.GetComponent<Image>().enabled == true)
