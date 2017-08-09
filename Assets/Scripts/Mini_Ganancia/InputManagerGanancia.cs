@@ -30,30 +30,28 @@ public class InputManagerGanancia : MonoBehaviour
     public Rigidbody _Ball;
     public Transform _Cylinder;
 
+    private bool isFlat = true;
+    private Vector3 tilt;
+
     // Use this for initialization
     void Start()
-    {
-        Input.gyro.enabled = true;
+    { 
         _Cylinder.position = Vector3.zero;
         _Ball.transform.position = new Vector3(_Radius, _StartAltitude, 0f);
-        //_Ball.AddForce(Vector3.forward * 200);
+        
     }
 
     void Update()
     {
+        //obtem input
+        tilt = Input.acceleration;
 
-        xRotation += -Input.gyro.rotationRateUnbiased.x;
-        yRotation += -Input.gyro.rotationRateUnbiased.y;
-        zRotation += -Input.gyro.rotationRateUnbiased.z;
+        if (isFlat)
+            tilt = Quaternion.Euler(90, 0, 0) * tilt;
 
-        
-        Arena.transform.eulerAngles = new Vector3(xRotation, 0, yRotation);
+        _Ball.AddForce(tilt.x * 20 , 0, tilt.z * 20 );
 
-        AccX.GetComponent<Text>().text = "x: " + xRotation;
-        AccY.GetComponent<Text>().text = "y: " + yRotation;
-        AccZ.GetComponent<Text>().text = "z: " + zRotation;
-
-
+        //cuida da trajetoria circular
         Vector3 v = _Ball.velocity;
         // any vecotr from cylinders up axis to ball pos
         Vector3 radius = _Ball.transform.position - _Cylinder.transform.position;
