@@ -38,8 +38,8 @@ public class PlayerColisionController : MonoBehaviour
                 Handheld.Vibrate();
                 GetComponent<Animator>().enabled = false;
                 //redireciona para inveja temporarimanete para nao quebrar o jogo
-                fadeImage.FadeFromColision("Inveja", collision.transform.position, FadeController.INVEJA);
-                //fadeImage.FadeFromColision("Ganancia", collision.transform.position, FadeController.GANANCIA);
+                //fadeImage.FadeFromColision("Inveja", collision.transform.position, FadeController.INVEJA);
+                fadeImage.FadeFromColision("Ganancia", collision.transform.position, FadeController.GANANCIA);
                 Destroy(collision.gameObject);
                 break;
 
