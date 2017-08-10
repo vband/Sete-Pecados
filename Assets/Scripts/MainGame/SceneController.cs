@@ -250,30 +250,35 @@ public class SceneController : MonoBehaviour
             MinigameIraController.SetDifficulty(1);
             MinigamePreguiçaController.SetDifficulty(1);
             mecanica.SetDifficulty(1);
+            MinigameGulaController.SetDifficulty(1);
         }
         else if (progressBar.fillAmount <= 0.4)
         {
             MinigameIraController.SetDifficulty(2);
             MinigamePreguiçaController.SetDifficulty(2);
             mecanica.SetDifficulty(2);
+            MinigameGulaController.SetDifficulty(2);
         }
         else if (progressBar.fillAmount <= 0.6)
         {
             MinigameIraController.SetDifficulty(3);
             MinigamePreguiçaController.SetDifficulty(3);
             mecanica.SetDifficulty(3);
+            MinigameGulaController.SetDifficulty(3);
         }
         else if (progressBar.fillAmount <= 0.8)
         {
             MinigameIraController.SetDifficulty(4);
             MinigamePreguiçaController.SetDifficulty(4);
             mecanica.SetDifficulty(4);
+            MinigameGulaController.SetDifficulty(4);
         }
         else
         {
             MinigameIraController.SetDifficulty(5);
             MinigamePreguiçaController.SetDifficulty(5);
             mecanica.SetDifficulty(5);
+            MinigameGulaController.SetDifficulty(5);
         }
     }
 
