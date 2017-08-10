@@ -5,21 +5,17 @@ using UnityEngine;
 public class MovimentaZoiudoScript : MonoBehaviour {
 
     [SerializeField] private float rotationTime;
-
+    [SerializeField] private GameObject GM;
     private Quaternion inicio;
     private Quaternion fim;
 
     private float timeStartedLerping;
     private bool isLerping = false;
 
-    
-
-    // Use this for initialization
-    void Start () {
+    private void Start()
+    {
         StartAI();
     }
-	
-	
 
     private void FixedUpdate()
     {
@@ -36,6 +32,12 @@ public class MovimentaZoiudoScript : MonoBehaviour {
             {
                 isLerping = false;
             }
+        }
+
+        if (GM.GetComponent<MiniGameGananciaController>().GetPerdeu())
+        {
+            StopCoroutine(AIRoutine());
+            IniciaRotacao(0);
         }
     }
 
@@ -56,6 +58,7 @@ public class MovimentaZoiudoScript : MonoBehaviour {
 
     IEnumerator AIRoutine()
     {
+        yield return new WaitUntil(() => GM.GetComponent<MiniGameGananciaController>().isPlaying == true);
         inicio:
         IniciaRotacao(Random.Range(-360, 360));
         yield return new WaitUntil(() => isLerping == false);

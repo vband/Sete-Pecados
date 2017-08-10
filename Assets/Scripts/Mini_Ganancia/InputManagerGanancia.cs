@@ -7,22 +7,9 @@ using UnityEngine.UI;
 
 public class InputManagerGanancia : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject Arena;
-    [SerializeField]
-    private GameObject Bolinha;
+    [SerializeField] private GameObject Arena;
+    [SerializeField] private GameObject Bolinha;
 
-    public Text AccX;
-    public Text AccY;
-    public Text AccZ;
-
-    private Vector3 NewPosition;
-
-    private float sen, input;
-
-    float xRotation;
-    float yRotation;
-    float zRotation;
 
     public float _StartAltitude;
     public float _Radius;
@@ -35,10 +22,10 @@ public class InputManagerGanancia : MonoBehaviour
 
     // Use this for initialization
     void Start()
-    { 
+    {
         _Cylinder.position = Vector3.zero;
         _Ball.transform.position = new Vector3(_Radius, _StartAltitude, 0f);
-        
+
     }
 
     void Update()
@@ -49,7 +36,7 @@ public class InputManagerGanancia : MonoBehaviour
         if (isFlat)
             tilt = Quaternion.Euler(90, 0, 0) * tilt;
 
-        _Ball.AddForce(tilt.x * 20 , 0, tilt.z * 20 );
+        _Ball.AddForce(tilt.x * 20, 0, tilt.z * 20);
 
         //cuida da trajetoria circular
         Vector3 v = _Ball.velocity;
@@ -80,5 +67,5 @@ public class InputManagerGanancia : MonoBehaviour
         radius.y = _Ball.transform.position.y;
 
         _Ball.transform.position = radius;
-    }   
+    }
 }
