@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public AudioClip jumpsound; //Som de pulo
     public AudioClip paaai; //som da imortalidade
+    public AudioClip SobeCara;
     private float lastjump; //instante do ultimo pulo
 
     private Rigidbody2D rb2D;
@@ -50,6 +51,8 @@ public class PlayerMovement : MonoBehaviour {
     private bool hasLetGoOfJumpButton;
 
     private float currentSpeedMultiplier;
+
+    private GameObject CenaPrincipal;
 
     // Inicializa os atributos privados da classe
     void Start ()
@@ -75,6 +78,8 @@ public class PlayerMovement : MonoBehaviour {
         jumpInput = 0;
 
         currentSpeedMultiplier = 1;
+
+        CenaPrincipal = GameObject.Find("CenaPrincipal");
     }
 
     private void Awake()
@@ -259,6 +264,7 @@ public class PlayerMovement : MonoBehaviour {
 
         // Põe em uso o multiplicador de velocidade
         currentSpeedMultiplier = PFES_SpeedMultiplier;
+        CenaPrincipal.GetComponent<SceneController>().SpeedUpMusic(PFES_SpeedMultiplier);
     }
 
     public void viraDeus_Backminigame()
@@ -288,6 +294,7 @@ public class PlayerMovement : MonoBehaviour {
             Destroy(GameObject.Find("aureola(Clone)"));
             Tempo_imortal = Tempo_imortal_original;
             currentSpeedMultiplier = 1;
+            CenaPrincipal.GetComponent<SceneController>().SpeedDownMusic();
         }
 
         // Atualiza o tempo da invencibilidade piscante
@@ -320,6 +327,7 @@ public class PlayerMovement : MonoBehaviour {
     public void sobeCarinha()
     {
         carinhaSubindo.Play();
+        GetComponent<AudioSource>().PlayOneShot(SobeCara,0.5f);
         pessoasSalvas++;
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ZoiudoScript : MonoBehaviour {
+    [SerializeField] private GameObject GM;
     [SerializeField] private GameObject OlhoEsquerdo;
     [SerializeField] private GameObject OlhoDireito;
 	[SerializeField] private float VelocidadeDeAumento;
@@ -18,16 +19,22 @@ public class ZoiudoScript : MonoBehaviour {
     {
         Unidade = new Vector3(VelocidadeDeAumento, VelocidadeDeAumento, VelocidadeDeAumento);
         TamanhoInicial = OlhoEsquerdo.transform.localScale.x;
-        print(TamanhoInicial);
+        //print(TamanhoInicial);
         
     }
 
     private void Update()
     {
-        if (IsSeeeing)
-            AumentaOlho();
-        else
-            DiminuiOlho();
+        if (!GM.GetComponent<MiniGameGananciaController>().GetPerdeu())
+        {
+            if (IsSeeeing)
+                AumentaOlho();
+            else
+                DiminuiOlho();
+
+            if (OlhoEsquerdo.transform.localScale.x >= TamanhoMax)
+                GM.GetComponent<MiniGameGananciaController>().SetPerdeu();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,7 +51,8 @@ public class ZoiudoScript : MonoBehaviour {
 
     private void AumentaOlho()
     {
-        if(OlhoEsquerdo.transform.localScale.x < TamanhoMax)
+        GM.GetComponent<MiniGameGananciaController>().SetUnperfect();
+        if (OlhoEsquerdo.transform.localScale.x < TamanhoMax)
         {
             OlhoEsquerdo.transform.localScale += Unidade;
             OlhoDireito.transform.localScale += Unidade;

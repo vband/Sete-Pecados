@@ -7,22 +7,9 @@ using UnityEngine.UI;
 
 public class InputManagerGanancia : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject Arena;
-    [SerializeField]
-    private GameObject Bolinha;
+    [SerializeField] private GameObject Arena;
+    [SerializeField] private GameObject Bolinha;
 
-    public Text AccX;
-    public Text AccY;
-    public Text AccZ;
-
-    private Vector3 NewPosition;
-
-    private float sen, input;
-
-    float xRotation;
-    float yRotation;
-    float zRotation;
 
     public float _StartAltitude;
     public float _Radius;
@@ -30,30 +17,28 @@ public class InputManagerGanancia : MonoBehaviour
     public Rigidbody _Ball;
     public Transform _Cylinder;
 
+    private bool isFlat = true;
+    private Vector3 tilt;
+
     // Use this for initialization
     void Start()
     {
-        Input.gyro.enabled = true;
         _Cylinder.position = Vector3.zero;
         _Ball.transform.position = new Vector3(_Radius, _StartAltitude, 0f);
-        //_Ball.AddForce(Vector3.forward * 200);
+
     }
 
     void Update()
     {
+        //obtem input
+        tilt = Input.acceleration;
 
-        xRotation += -Input.gyro.rotationRateUnbiased.x;
-        yRotation += -Input.gyro.rotationRateUnbiased.y;
-        zRotation += -Input.gyro.rotationRateUnbiased.z;
+        if (isFlat)
+            tilt = Quaternion.Euler(90, 0, 0) * tilt;
 
-        
-        Arena.transform.eulerAngles = new Vector3(xRotation, 0, yRotation);
+        _Ball.AddForce(tilt.x * 20, 0, tilt.z * 20);
 
-        AccX.GetComponent<Text>().text = "x: " + xRotation;
-        AccY.GetComponent<Text>().text = "y: " + yRotation;
-        AccZ.GetComponent<Text>().text = "z: " + zRotation;
-
-
+        //cuida da trajetoria circular
         Vector3 v = _Ball.velocity;
         // any vecotr from cylinders up axis to ball pos
         Vector3 radius = _Ball.transform.position - _Cylinder.transform.position;
@@ -82,119 +67,5 @@ public class InputManagerGanancia : MonoBehaviour
         radius.y = _Ball.transform.position.y;
 
         _Ball.transform.position = radius;
-    }
-
-
-
-
-    /*
-    float xRotation;
-    float yRotation;
-    float zRotation;
-    */
-    /*
-
-    // Use this for initialization
-    void Start()
-    {
-        NewPosition = new Vector3();
-        Input.gyro.enabled = true;
-        print(Input.gyro.enabled);
-        circleCenter = Vector3.zero;
-    }
-
-    private void Update()
-    {
-        xRotation += -Input.gyro.rotationRateUnbiased.x;
-        yRotation += -Input.gyro.rotationRateUnbiased.y;
-        zRotation += -Input.gyro.rotationRateUnbiased.z;
-
-        Arena.transform.eulerAngles = new Vector3(xRotation, 0, yRotation);
-
-        AccX.GetComponent<Text>().text = "x: " + xRotation;
-        AccY.GetComponent<Text>().text = "y: " + yRotation;
-        AccZ.GetComponent<Text>().text = "z: " + zRotation; 
-
-        
-
-        /*
-            void Update()
-            {
-
-
-
-                xRotation += -Input.gyro.rotationRateUnbiased.x;
-                yRotation += -Input.gyro.rotationRateUnbiased.y;
-                zRotation += -Input.gyro.rotationRateUnbiased.z;
-
-                Arena.transform.eulerAngles = new Vector3(xRotation, 0, yRotation);
-
-                AccX.GetComponent<Text>().text = "x: " + xRotation;
-                AccY.GetComponent<Text>().text = "y: " + yRotation;
-                AccZ.GetComponent<Text>().text = "z: " + zRotation;
-
-                // Do all other movement first
-                // Constrain to a circle with the following
-                Vector3 offset = Bolinha.transform.position - circleCenter;
-                offset.Normalize();
-                offset = offset * radius;
-                //Bolinha.transform.position = offset;
-            }
-            */
-    /*
-        //Update is called once per frame
-        void Update()
-        {
-
-            //AccX.GetComponent<Text>().text = "x: " + Math.Round( Input.acceleration.x, 2) + "|" + Arena.transform.rotation.x;
-            //AccY.GetComponent<Text>().text = "y: " + Math.Round( Input.acceleration.y, 2) + "|" + Arena.transform.rotation.y;
-            //AccZ.GetComponent<Text>().text = "z: " + Math.Round( Input.acceleration.z, 2) + "|" + Arena.transform.rotation.x;
-
-            //input = (float)Math.Round(Input.acceleration.x/0.25f, 3);
-
-            input = (float)Math.Round(AdjustSensivity(0.25f), 3);
-
-            sen = (float)Math.Sqrt(1 - Math.Pow(input, 2));
-
-
-            if (Input.acceleration.y < 0)
-            {
-                NewPosition = new Vector3(input * 4, 0.7f, -sen * 4);
-            }
-            else
-            {
-                NewPosition = new Vector3(input * 4, 0.7f, sen * 4);
-            }
-
-
-            //Bolinha.transform.position = NewPosition;
-
-
-            xRotation += -Input.gyro.rotationRateUnbiased.x;
-            yRotation += -Input.gyro.rotationRateUnbiased.y;
-            zRotation += -Input.gyro.rotationRateUnbiased.z;
-
-            Arena.transform.eulerAngles = new Vector3(xRotation, 0, yRotation);
-
-            AccX.GetComponent<Text>().text = "x: " + xRotation;
-            AccY.GetComponent<Text>().text = "y: " + yRotation;
-            AccZ.GetComponent<Text>().text = "z: " + zRotation;
-
-
-
-            //Arena.transform.rotation = Input.gyro.attitude;
-
-        }
-    }
-    */
-
-    private float AdjustSensivity(float quociente)
-    {
-        float temp = Input.acceleration.x / quociente;
-
-        if (temp >= 1)
-            return 1;
-        else
-            return temp;
     }
 }

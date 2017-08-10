@@ -112,6 +112,7 @@ public class SceneController : MonoBehaviour
             lowLivesWarning.gameObject.SetActive(false);
 
 #if UNITY_ANDROID
+
             pauseButton.gameObject.SetActive(false);
 
             if (PlayerPrefs.GetInt("INPUTCONFIG") == JOYSTICK && mobileJoystick.GetComponent<Image>().enabled == true)
@@ -378,5 +379,15 @@ public class SceneController : MonoBehaviour
             // this must be a duplicate from a scene reload - DESTROY!
             Destroy(this.gameObject);
         }
+    }
+
+    public void SpeedUpMusic(float Multiplier)
+    {
+        GetComponent<AudioSource>().pitch = Multiplier;
+    }
+
+    public void SpeedDownMusic()
+    {
+        GetComponent<AudioSource>().pitch = 1.0f;
     }
 }

@@ -509,7 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d97e7519d8b34f748be49831af19f018, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panfleto: {fileID: 1710275686165994, guid: 4faa768955f37c44db167aaf121b9262, type: 2}
+  panfleto: {fileID: 1233479111633042, guid: a655aa0f1f5145e4d97af3d32aae1dcf, type: 2}
   Placa: {fileID: 1457285393171436}
   CordaPlaca: {fileID: 233987003784125982}
   forceY: 500
