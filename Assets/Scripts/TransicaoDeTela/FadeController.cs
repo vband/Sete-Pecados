@@ -77,7 +77,7 @@ public class FadeController : MonoBehaviour {
 
             GetComponent<Animator>().SetBool("AtivaFade", false);
             enemyColision = false;
-            
+
         }
         else
         {

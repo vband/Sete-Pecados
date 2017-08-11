@@ -21,6 +21,8 @@ public class MinigameGulaController : MonoBehaviour
     // Lista com todas as comidas
     private List<GameObject>[] foods;
 
+    private bool hasGameEnded;
+
     // Dificuldade
     private static int difficulty = 1;
 
@@ -34,6 +36,7 @@ public class MinigameGulaController : MonoBehaviour
         goodFoodsEaten = 0;
         goodFoodsNotEaten = 0;
         badFoodsNotEaten = 0;
+        hasGameEnded = false;
 
         // Ajusta os parâmetros de dificuldade
         AdjustParameters();
@@ -48,18 +51,21 @@ public class MinigameGulaController : MonoBehaviour
             SetUpFoods();
         }
 
-        // Verifica se o jogador fez um Perfect
-        // (se ele comeu todas as comidas boas e deixou de comer todas as ruins)
-        if (goodFoodsEaten + badFoodsNotEaten == nTotalFoods && goodFoodsNotEaten == 0)
+        if (!hasGameEnded)
         {
-            Perfect();
-        }
+            // Verifica se o jogador fez um Perfect
+            // (se ele comeu todas as comidas boas e deixou de comer todas as ruins)
+            if (goodFoodsEaten + badFoodsNotEaten == nTotalFoods && goodFoodsNotEaten == 0)
+            {
+                Perfect();
+            }
 
-        // Verifica se ele ganhou
-        // (se deixou de comer todas as comidas ruins)
-        else if (goodFoodsEaten + badFoodsNotEaten + goodFoodsNotEaten == nTotalFoods)
-        {
-            Win();
+            // Verifica se ele ganhou
+            // (se deixou de comer todas as comidas ruins)
+            else if (goodFoodsEaten + badFoodsNotEaten + goodFoodsNotEaten == nTotalFoods)
+            {
+                Win();
+            }
         }
 	}
 
@@ -221,6 +227,7 @@ public class MinigameGulaController : MonoBehaviour
     // Perde o minigame
     private void Lose()
     {
+        hasGameEnded = true;
         DestroyAllFoods();
         GetComponent<Animator>().SetTrigger("Lose");
         LivesController.RemVidas();
@@ -230,6 +237,7 @@ public class MinigameGulaController : MonoBehaviour
     // Vence o minigame
     private void Win()
     {
+        hasGameEnded = true;
         GetComponent<Animator>().SetTrigger("Win");
         GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
@@ -238,6 +246,7 @@ public class MinigameGulaController : MonoBehaviour
     // Vence o minigame com Perfect
     private void Perfect()
     {
+        hasGameEnded = true;
         GetComponent<Animator>().SetTrigger("Perfect");
         LivesController.addVidas();
         GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
