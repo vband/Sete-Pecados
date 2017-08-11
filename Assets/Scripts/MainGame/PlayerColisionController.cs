@@ -15,7 +15,9 @@ public class PlayerColisionController : MonoBehaviour
                 if (GetComponent<PlayerMovement>().isImortal())
                     goto imortal;
 
+#if UNITY_ANDROID
                 Handheld.Vibrate();
+#endif
                 GetComponent<Animator>().enabled = false;
                 fadeImage.FadeFromColision("Ira", collision.transform.position, FadeController.IRA);
                 Destroy(collision.gameObject);
@@ -25,7 +27,9 @@ public class PlayerColisionController : MonoBehaviour
                 if (GetComponent<PlayerMovement>().isImortal())
                     goto imortal;
 
+#if UNITY_ANDROID
                 Handheld.Vibrate();
+#endif
                 GetComponent<Animator>().enabled = false;
                 fadeImage.FadeFromColision("Preguiça", collision.transform.position, FadeController.PREGUICA);
                 Destroy(collision.gameObject);
@@ -34,8 +38,9 @@ public class PlayerColisionController : MonoBehaviour
             case "EnemyGanancia":
                 if (GetComponent<PlayerMovement>().isImortal())
                     goto imortal;
-
+#if UNITY_ANDROID
                 Handheld.Vibrate();
+#endif
                 GetComponent<Animator>().enabled = false;
                 //redireciona para inveja temporarimanete para nao quebrar o jogo
                 //fadeImage.FadeFromColision("Inveja", collision.transform.position, FadeController.INVEJA);
@@ -47,7 +52,9 @@ public class PlayerColisionController : MonoBehaviour
                 if (GetComponent<PlayerMovement>().isImortal())
                     goto imortal;
 
+#if UNITY_ANDROID
                 Handheld.Vibrate();
+#endif
                 GetComponent<Animator>().enabled = false;
                 fadeImage.FadeFromColision("Inveja", collision.transform.position, FadeController.INVEJA);
                 Destroy(collision.gameObject);
@@ -56,7 +63,9 @@ public class PlayerColisionController : MonoBehaviour
                 if (GetComponent<PlayerMovement>().isImortal())
                     goto imortal;
 
+#if UNITY_ANDROID
                 Handheld.Vibrate();
+#endif
                 GetComponent<Animator>().enabled = false;
                 fadeImage.FadeFromColision("Gula", collision.transform.position, FadeController.GULA);
                 Destroy(collision.gameObject);
@@ -65,7 +74,9 @@ public class PlayerColisionController : MonoBehaviour
                 if (GetComponent<PlayerMovement>().isImortal())
                     goto imortal;
 
+#if UNITY_ANDROID
                 Handheld.Vibrate();
+#endif
                 GetComponent<Animator>().enabled = false;
                 fadeImage.FadeFromColision("Orgulho", collision.transform.position, FadeController.SOBERBA);
                 Destroy(collision.gameObject);
@@ -74,7 +85,9 @@ public class PlayerColisionController : MonoBehaviour
                 if (GetComponent<PlayerMovement>().isImortal())
                     goto imortal;
 
+#if UNITY_ANDROID
                 Handheld.Vibrate();
+#endif
                 GetComponent<Animator>().enabled = false;
                 fadeImage.FadeFromColision("Luxuria", collision.transform.position, FadeController.LUXURIA);
                 Destroy(collision.gameObject);
