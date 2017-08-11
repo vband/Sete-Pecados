@@ -18,7 +18,7 @@ public class InputManagerGanancia : MonoBehaviour
     public Transform _Cylinder;
 
     private bool isFlat = true;
-    private Vector3 tilt;
+    private Vector3 tilt, mousePosition, temp;
 
     // Use this for initialization
     void Start()
@@ -30,6 +30,8 @@ public class InputManagerGanancia : MonoBehaviour
 
     void Update()
     {
+
+#if UNITY_ANDROID
         //obtem input
         tilt = Input.acceleration;
 
@@ -37,7 +39,12 @@ public class InputManagerGanancia : MonoBehaviour
             tilt = Quaternion.Euler(90, 0, 0) * tilt;
 
         _Ball.AddForce(tilt.x * 20, 0, tilt.z * 20);
+#elif UNITY_STANDALONE
 
+        mousePosition = Input.mousePosition + new Vector3(0, 0, 10);
+        temp = Camera.main.ScreenToWorldPoint(mousePosition);
+        _Ball.transform.transform.position = new Vector3(temp.x, temp.y, temp.z);
+#endif
         //cuida da trajetoria circular
         Vector3 v = _Ball.velocity;
         // any vecotr from cylinders up axis to ball pos
