@@ -17,7 +17,9 @@ public class InputManagerGanancia : MonoBehaviour
     public Rigidbody _Ball;
     public Transform _Cylinder;
 
+#if UNITY_ANDROID
     private bool isFlat = true;
+#endif
     private Vector3 tilt, mousePosition, temp;
 
     // Use this for initialization
