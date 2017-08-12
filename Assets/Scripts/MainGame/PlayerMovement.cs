@@ -245,15 +245,15 @@ public class PlayerMovement : MonoBehaviour {
     // Falamaia se agacha
     private void Crouch()
     {
-        if (verticalInput < 0 && Time.time - negativeVerticalInputTime > timeBetweenArrowDownPresses)
+        if (verticalInput < 0 && Time.time - negativeVerticalInputTime > timeBetweenArrowDownPresses && !animator.GetBool("isCrouching"))
         {
             // Se agacha
-            //animator.SetBool("Crouch", true);
+            animator.SetBool("isCrouching", true);
         }
 
-        if (verticalInput >= 0 /* && animator.GetBool("Crouch") */)
+        if (verticalInput >= 0 && animator.GetBool("isCrouching"))
         {
-            //animator.SetBool("Crouch", false);
+            animator.SetBool("isCrouching", false);
         }
     }
 
