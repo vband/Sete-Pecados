@@ -150,18 +150,6 @@ public class PlayerMovement : MonoBehaviour {
         verticalInput = CrossPlatformInputManager.GetAxisRaw("Vertical");
     }
 
-    // Movimentação do botão virtual (Android)
-    public void MoveRightButtonOnClick()
-    {
-        horizontalInput = 1;
-    }
-
-    // Movimentação do botão virtual (Android)
-    public void MoveLeftButtonOnCLick()
-    {
-        horizontalInput = -1;
-    }
-
     // Falamaia corre para os lados
     private void Move()
     {
