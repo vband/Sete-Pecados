@@ -9,6 +9,7 @@ public class InputManagerGanancia : MonoBehaviour
 {
     [SerializeField] private GameObject Arena;
     [SerializeField] private GameObject Bolinha;
+    [SerializeField] private Camera cam;
 
 
     public float _StartAltitude;
@@ -16,8 +17,9 @@ public class InputManagerGanancia : MonoBehaviour
 
     public Rigidbody _Ball;
     public Transform _Cylinder;
-
+#if UNITY_ANDROID
     private bool isFlat = true;
+#endif
     private Vector3 tilt, mousePosition, temp;
 
     // Use this for initialization
@@ -42,7 +44,7 @@ public class InputManagerGanancia : MonoBehaviour
 #elif UNITY_STANDALONE
 
         mousePosition = Input.mousePosition + new Vector3(0, 0, 10);
-        temp = Camera.main.ScreenToWorldPoint(mousePosition);
+        temp = cam.ScreenToWorldPoint(mousePosition);
         _Ball.transform.transform.position = new Vector3(temp.x, temp.y, temp.z);
 #endif
         //cuida da trajetoria circular

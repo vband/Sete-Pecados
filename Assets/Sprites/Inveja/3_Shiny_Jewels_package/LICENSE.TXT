@@ -1,0 +1,36 @@
+Product License
+
+Software Atelier Kamber maintains an open and compliant licensing.
+We endeavor to uphold a flexible license that accommodates itself
+for any valid use within a game or application development perspective.
+A one-time fee is paid by users for the use of an asset within a game or
+application.
+With this, the user now has the rights to utilize the asset in which they
+can then use that asset for personal and commercial games and applications.
+You will have a degree of ownership rights with the assets.
+Below is a list where the assets can be applied and where it is not allowed.
+
+Allowed uses:
++ Assets are free for use in commercial and personal projects
++ Reference to Software Atelier Kamber is nonessential
++ You may also use the assets offered in your publicity and promotion
++ You may also amend the assets if you deem it fit, but solely
+  for usage in your application or project.
+
+Non permitted use:
+- Assets are not company logos and trademarks, and should not be
+  used as such for clear reasons. 
+- Directly selling any assets as your own work is prohibited.
+- Any asset is protected by copyright so you CANNOT claim or own
+  any copyright over any of the assets
+- An altered graphic is still a property of Software Atelier Kamber
+  so you CANNOT claim or own any copyright over an altered graphic.
+- Do NOT include assets for direct download from any website,
+  game or any other project.
+- Assets cannot be used and is PROHIBITED in any application of
+  an illegal, immoral or unethical nature.
+
+
+© 2015 Software Atelier Kamber
+
+http://shop.software-atelier.ch

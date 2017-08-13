@@ -21,6 +21,7 @@ TagManager:
   - street
   - EnemyIra
   - EnemyGula
+  - car
   layers:
   - Default
   - TransparentFX
