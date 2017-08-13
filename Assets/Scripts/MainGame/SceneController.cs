@@ -8,7 +8,7 @@ public class SceneController : MonoBehaviour
 {
     public Transform player;
     public RectTransform mobileVirtualButtonsController;
-    public RectTransform mobileJoystickController, mobileJoystick, mobileJumpButton;
+    public RectTransform freeJoystick;
     public RectTransform pauseButton;
     public Animator introAnim;
     public Image progressBar;
@@ -74,12 +74,12 @@ public class SceneController : MonoBehaviour
         // Verifica as configurações e ajusta os controles
         if (PlayerPrefs.GetInt("INPUTCONFIG") == JOYSTICK)
         {
-            mobileJoystickController.gameObject.SetActive(true);
+            freeJoystick.gameObject.SetActive(true);
             mobileVirtualButtonsController.gameObject.SetActive(false);
         }
         else if (PlayerPrefs.GetInt("INPUTCONFIG") == VIRTUAL)
         {
-            mobileJoystickController.gameObject.SetActive(false);
+            freeJoystick.gameObject.SetActive(false);
             mobileVirtualButtonsController.gameObject.SetActive(true);
         }
 #endif
@@ -115,17 +115,16 @@ public class SceneController : MonoBehaviour
 
             pauseButton.gameObject.SetActive(false);
 
-            if (PlayerPrefs.GetInt("INPUTCONFIG") == JOYSTICK && mobileJoystick.GetComponent<Image>().enabled == true)
+            if (PlayerPrefs.GetInt("INPUTCONFIG") == JOYSTICK && freeJoystick.gameObject.activeSelf)
             {
-                mobileJoystick.GetComponent<Joystick>().ResetPosition();
-                CrossPlatformInputManager.SetAxisZero("Horizontal");
-                mobileJoystick.GetComponent<Image>().enabled = false;
-                mobileJumpButton.GetComponent<Image>().enabled = false;
+                freeJoystick.GetComponent<AnalógicoLivre>().NeutralizeInput();
+                freeJoystick.gameObject.SetActive(false);
             }
 
             else if (PlayerPrefs.GetInt("INPUTCONFIG") == VIRTUAL && mobileVirtualButtonsController.gameObject.activeSelf)
             {
                 CrossPlatformInputManager.SetAxisZero("Horizontal");
+                CrossPlatformInputManager.SetAxisZero("Vertical");
                 mobileVirtualButtonsController.gameObject.SetActive(false);
             }
 #endif
@@ -139,10 +138,9 @@ public class SceneController : MonoBehaviour
 #if UNITY_ANDROID
             pauseButton.gameObject.SetActive(true);
 
-            if (PlayerPrefs.GetInt("INPUTCONFIG") == JOYSTICK && mobileJoystick.GetComponent<Image>().enabled == false)
+            if (PlayerPrefs.GetInt("INPUTCONFIG") == JOYSTICK && !freeJoystick.gameObject.activeSelf)
             {
-                mobileJoystick.GetComponent<Image>().enabled = true;
-                mobileJumpButton.GetComponent<Image>().enabled = true;
+                freeJoystick.gameObject.SetActive(true);
             }
 
             else if (PlayerPrefs.GetInt("INPUTCONFIG") == VIRTUAL && !mobileVirtualButtonsController.gameObject.activeSelf)
@@ -297,10 +295,17 @@ public class SceneController : MonoBehaviour
         player.GetComponent<Animator>().SetBool("isJumping", false);
 
 #if UNITY_ANDROID
-        mobileJoystick.GetComponent<Image>().enabled = false;
-        mobileJumpButton.GetComponent<Image>().enabled = false;
+
+        if (PlayerPrefs.GetInt("INPUTCONFIG") == VIRTUAL)
+        {
+            mobileVirtualButtonsController.gameObject.SetActive(false);
+        }
+        else if (PlayerPrefs.GetInt("INPUTCONFIG") == JOYSTICK)
+        {
+            freeJoystick.gameObject.SetActive(false);
+        }
 #endif
-        
+
 
         igreja = GameObject.FindGameObjectWithTag("Igreja");
     }
