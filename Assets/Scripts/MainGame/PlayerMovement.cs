@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour {
     public float speed; // Velocidade na qual o personagem anda para os lados
     public float jumpSpeed; // Velocidade na qual o personagem se move para o alto quando pula
     public float maxJumpTime; // Tempo máximo em segundos no qual o personagem pode se deslocar para o alto quando pula
+    public float timeBetweenArrowDownPresses; // Intervalo máximo de tempo entre dois toques no botão para descer de plataformas
     public LayerMask environmentLayer; // Layer do ambiente do jogo: chão, paredes, obstáculos, etc.
 
     public bool imortal;// estado de imortalidade do falamaia
@@ -43,6 +44,7 @@ public class PlayerMovement : MonoBehaviour {
     private float currentJumpTime; // Tempo atual no qual o personagem está se deslocando para o alto enquanto pula
     public bool isJumping; // True se o personagem está se deslocando para o alto porque pulou
     private float horizontalInput;
+    private float verticalInput = 0, negativeVerticalInputTime = 0, startLeavingPlatformTime;
     private float jumpInput;
 
     public bool isCollidingWithScreenBorder; // True se o jogador estiver colidindo com a borda esquerda da tela
@@ -115,6 +117,8 @@ public class PlayerMovement : MonoBehaviour {
 
             Move();
             Jump();
+            Crouch();
+            LeavePlatform();
             SimulateJump();
         }
 
@@ -136,20 +140,17 @@ public class PlayerMovement : MonoBehaviour {
         // Obtém input do teclado
         horizontalInput = CrossPlatformInputManager.GetAxisRaw("Horizontal");
         jumpInput = CrossPlatformInputManager.GetAxisRaw("Jump");
+
+        // Registra o tempo em que o jogador soltou o botão para baixo
+        if (verticalInput < 0 && CrossPlatformInputManager.GetAxisRaw("Vertical") == 0)
+        {
+            negativeVerticalInputTime = Time.time;
+        }
+
+        verticalInput = CrossPlatformInputManager.GetAxisRaw("Vertical");
     }
 
-    // Movimentação do botão virtual (Android)
-    public void MoveRightButtonOnClick()
-    {
-        horizontalInput = 1;
-    }
-
-    // Movimentação do botão virtual (Android)
-    public void MoveLeftButtonOnCLick()
-    {
-        horizontalInput = -1;
-    }
-
+    // Falamaia corre para os lados
     private void Move()
     {
         // Se o jogador se mover para a direita
@@ -182,6 +183,7 @@ public class PlayerMovement : MonoBehaviour {
         rb2D.AddForce(movement * speed * currentSpeedMultiplier * Time.fixedDeltaTime);
     }
 
+    // Falamaia pula
     private void Jump()
     {
         bool isGrounded = IsGrounded();
@@ -225,6 +227,44 @@ public class PlayerMovement : MonoBehaviour {
         else
         {
             animator.SetBool("isJumping", false);
+        }
+    }
+
+    // Falamaia se agacha
+    private void Crouch()
+    {
+        if (verticalInput < 0 && Time.time - negativeVerticalInputTime > timeBetweenArrowDownPresses && !animator.GetBool("isCrouching"))
+        {
+            // Se agacha
+            animator.SetBool("isCrouching", true);
+        }
+
+        if (verticalInput >= 0 && animator.GetBool("isCrouching"))
+        {
+            animator.SetBool("isCrouching", false);
+        }
+    }
+
+    // Falamaia desce da plataforma
+    private void LeavePlatform()
+    {
+        if (verticalInput < 0 && Time.time - negativeVerticalInputTime <= timeBetweenArrowDownPresses)
+        {
+            // Começa a ignorar colisões entre o jogador e as plataformas
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Environment"), true);
+            GetComponent<BoxCollider2D>().enabled = false;
+            GetComponent<BoxCollider2D>().enabled = true;
+
+            // Registra o tempo em que isso ocorreu
+            startLeavingPlatformTime = Time.time;
+        }
+
+        // Verifica se acabou o tempo de ignorar colisões
+        if (Physics2D.GetIgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Environment")) && Time.time - startLeavingPlatformTime >= 0.2f)
+        {
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Environment"), false);
+            GetComponent<BoxCollider2D>().enabled = false;
+            GetComponent<BoxCollider2D>().enabled = true;
         }
     }
     
