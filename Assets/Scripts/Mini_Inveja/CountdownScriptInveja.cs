@@ -16,7 +16,7 @@ public class CountdownScriptInveja : MonoBehaviour {
         if (GetComponent<MinigameInvejaController>().syncBool)
         {
             display.gameObject.SetActive(true);
-            if (TempoContagem > 0.0f && !GetComponent<MinigameInvejaController> ().faceClick)
+            if (TempoContagem > 0.0f && !GetComponent<MinigameInvejaController>().faceClick)
             {
                 TempoContagem -= Time.deltaTime;
                 display.text = TempoContagem.ToString("F1");

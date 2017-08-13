@@ -26,7 +26,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1262727389920832
 GameObject:
   m_ObjectHideFlags: 1
@@ -174,6 +174,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iris: {fileID: 4557441248062908}
+  target: {fileID: 0}
+  modo: 0
 --- !u!114 &114663617757519296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,6 +188,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iris: {fileID: 4781171742938190}
+  target: {fileID: 0}
+  modo: 0
 --- !u!114 &114763859024832760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -198,7 +202,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RamdomColor: 1
-  target: {fileID: 0}
   iris_max_raio: 0.4
 --- !u!212 &212027073204028778
 SpriteRenderer:
@@ -233,13 +236,15 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7e163021d9d7bf14f805fdb6279fcb83, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!212 &212776899972451090
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -280,6 +285,8 @@ SpriteRenderer:
   m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!212 &212848239505086020
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -320,6 +327,8 @@ SpriteRenderer:
   m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!212 &212865762671476560
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -353,10 +362,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7e163021d9d7bf14f805fdb6279fcb83, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0

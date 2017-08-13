@@ -6,17 +6,16 @@ public class ParDeOlhosController : MonoBehaviour {
 
     [SerializeField] bool RamdomColor;
 
-    public GameObject Target; //invejoso
     public float iris_max_raio; //raio em relacao ao centro do olho
-
-    
 
     //cores dos olhos inveja
     public static Color PRETO, CASTANHO, AZUL, VERDE;
 
+    const int CORRETO = 0, FRENTE = 1, OPOSTO = 2, ALEATORIO = 3;
+
 
     // Use this for initialization
-    void Start () {
+    void Start() {
         PRETO = new Color(0, 0, 0);
         CASTANHO = new Color(0.588f, 0.435f, 0.231f);
         AZUL = Color.cyan;
@@ -28,7 +27,7 @@ public class ParDeOlhosController : MonoBehaviour {
         {
             transform.GetChild(i).GetComponent<SingleEyeLook>().SetIrisColor(cor);
         }
-	}
+    }
 
     private Color PickRandomColor()
     {
@@ -48,9 +47,22 @@ public class ParDeOlhosController : MonoBehaviour {
         return PRETO;
 
     }
-	public void SetTarget(GameObject target)
+
+    public void SetTarget(Transform target)
     {
-        Debug.Log(target.transform.position);
-        Target = target;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).GetComponent<SingleEyeLook>().target = target;
+        }
     }
+
+    public void SetTarget(Transform target, int modo)
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).GetComponent<SingleEyeLook>().target = target;
+            transform.GetChild(i).GetComponent<SingleEyeLook>().modo = modo;
+        }
+    }
+	
 }

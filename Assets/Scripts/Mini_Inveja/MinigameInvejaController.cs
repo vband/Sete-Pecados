@@ -17,14 +17,14 @@ public class MinigameInvejaController: MonoBehaviour {
     private static int difficulty;
     private int tot_errado;
     private int tot_certo;
+    private int modo;
+    const int CORRETO = 0, FRENTE = 1, OPOSTO = 2, ALEATORIO = 3;
 
-    private float zPosition = 0f;
+    private float zPosition = 90f;
     private float tempo = 3.5f;
 
     private List<GameObject> listaCerto = new List<GameObject>();
     private List<GameObject> listaErrado = new List<GameObject>();
-
-    private List<GameObject> listaDeBotoesInstanciados = new List<GameObject>();
 
     [HideInInspector] public Vector2 screenSize;
     [HideInInspector] public bool syncBool = false; //variavel que controla o tempo certo para ativar a contagem e a acao do minigame
@@ -54,7 +54,9 @@ public class MinigameInvejaController: MonoBehaviour {
             GameObject instance = Instantiate(rosto_correto, new Vector3(Random.Range(Cam.transform.position.x - (screenSize.x - 2), Cam.transform.position.x + (screenSize.x - 2)),
                                         Random.Range(Cam.transform.position.y - (screenSize.y - 2), Cam.transform.position.y + (screenSize.y - 2)),
                                         zPosition), Quaternion.identity, transform);
-            
+            instance.GetComponentInChildren<ParDeOlhosController>().SetTarget(Target.transform);
+
+            instance.GetComponent<Button>().onClick.AddListener(delegate { RostoCerto(); });
 
             listaCerto.Add(instance);
         }
@@ -64,13 +66,18 @@ public class MinigameInvejaController: MonoBehaviour {
             GameObject instance = Instantiate(errado, new Vector3(Random.Range(Cam.transform.position.x - (screenSize.x - 2), Cam.transform.position.x + (screenSize.x - 2)),
                                         Random.Range(Cam.transform.position.y - (screenSize.y - 2), Cam.transform.position.y + (screenSize.y - 2)),
                                         zPosition), Quaternion.identity, transform);
+
+            instance.GetComponentInChildren<ParDeOlhosController>().SetTarget(Target.transform, modo);
+
+            instance.GetComponent<Button>().onClick.AddListener(delegate { RostoErrado(); });
+
             listaErrado.Add(instance);
         }
 
-        StartCoroutine(timer(tempo));
+        StartCoroutine(Timer(tempo));
     }
 
-    IEnumerator timer(float segundos)
+    IEnumerator Timer(float segundos)
     {
         yield return new WaitForSeconds(segundos);
         //aplicando rostos corretos em cada um dos objetos presentes na cena e definindo uma posicao aleatoria
@@ -78,12 +85,13 @@ public class MinigameInvejaController: MonoBehaviour {
         {
             
             go.SetActive(true);
-            go.GetComponentInChildren<ParDeOlhosController>().SetTarget(Target);
+            go.GetComponent<Animator>().SetBool("FadeIn", true);
         }
 
         foreach (GameObject go in listaErrado)
         {
             go.SetActive(true);
+            go.GetComponent<Animator>().SetBool("FadeIn", true);
         }
 
         syncBool = true;
@@ -95,71 +103,85 @@ public class MinigameInvejaController: MonoBehaviour {
         switch (dif)
         {
             case 1:
-                tot_certo = 5;
-                tot_errado = 30;
+                tot_certo = 1;
+                tot_errado = 10;
+                modo = FRENTE;
                 break;
             case 2:
-                tot_certo = 4;
-                tot_errado = 35;
+                tot_certo = 1;
+                tot_errado = 15;
+                modo = OPOSTO;
                 break;
             case 3:
-                tot_certo = 3;
-                tot_errado = 40;
+                tot_certo = 1;
+                tot_errado = 20;
+                modo = ALEATORIO;
                 break;
             case 4:
-                tot_certo = 2;
-                tot_errado = 45;
+                tot_certo = 1;
+                tot_errado = 25;
+                modo = ALEATORIO;
                 break;
             case 5:
                 tot_certo = 1;
-                tot_errado = 50;
+                tot_errado = 25;
+                modo = ALEATORIO;
                 break;
             default: //case sem entrada, ativa o mais facil
-                tot_certo = 5;
-                tot_errado = 30;
+                tot_certo = 1;
+                tot_errado = 20;
+                modo = ALEATORIO;
                 break;
         }
     }
 
     public void RostoCerto()
     {
-        faceClick = true;
-        if (GetComponent<CountdownScript>().TempoContagem > 10 - difficulty - 1)
+        if (!faceClick)
         {
-            perfect.gameObject.SetActive(true);
-            LivesController.addVidas();
-        }
-        else
-        {
-            ganhou.gameObject.SetActive(true);
-        }
+            if (GetComponent<CountdownScriptInveja>().TempoContagem > 10 - difficulty - 1)
+            {
+                perfect.gameObject.SetActive(true);
+                LivesController.addVidas();
+            }
+            else
+            {
+                ganhou.gameObject.SetActive(true);
+            }
 
-        foreach (GameObject botao in listaDeBotoesInstanciados)
-        {
-            botao.GetComponent<Button>().enabled = false;
-        }
+            foreach (GameObject errado in listaErrado)
+            {
+                errado.GetComponent<Animator>().SetBool("FadeOut", true);
+                errado.GetComponent<Button>().enabled = false;
+            }
+            faceClick = true;
 
-        GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
-        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+            GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+            
+        }
+        
     }
 
     public void RostoErrado()
     {
-        faceClick = true;
-        GameObject[] certos = GameObject.FindGameObjectsWithTag("Certo");
-        foreach (GameObject certo in certos)
-        {
-            certo.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-        }
-        LivesController.RemVidas();
 
-        foreach (GameObject botao in listaDeBotoesInstanciados)
+        if (!faceClick)
         {
-            botao.GetComponent<Button>().enabled = false;
-        }
+            foreach (GameObject errado in listaErrado)
+            {
+                errado.GetComponent<Animator>().SetBool("FadeOut", true);
+                errado.GetComponent<Button>().enabled = false;
+            }
+            LivesController.RemVidas();
 
-        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+            faceClick = true;
+
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+            
+        }
     }
+
 
     public static void SetDifficulty(int dif)
     {
