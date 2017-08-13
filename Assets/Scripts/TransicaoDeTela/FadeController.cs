@@ -72,7 +72,9 @@ public class FadeController : MonoBehaviour {
                 SceneController.created = false;
                 SceneController.paused = false;
                 Destroy(GameObject.Find("CenaPrincipal"));
-                Joystick.hasCreatedAxes = false;
+                AnalógicoLivre.hasCreatedAxes = false;
+                AnalógicoLivre.UnRegisterAxis("Horizontal");
+                AnalógicoLivre.UnRegisterAxis("Vertical");
             }
 
             GetComponent<Animator>().SetBool("AtivaFade", false);
@@ -97,7 +99,9 @@ public class FadeController : MonoBehaviour {
                 SceneController.created = false;
                 SceneController.paused = false;
                 Destroy(GameObject.Find("CenaPrincipal"));
-                Joystick.hasCreatedAxes = false;
+                AnalógicoLivre.hasCreatedAxes = false;
+                AnalógicoLivre.UnRegisterAxis("Horizontal");
+                AnalógicoLivre.UnRegisterAxis("Vertical");
             }
 
             GetComponent<Animator>().SetBool("Fade", false);
