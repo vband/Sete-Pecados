@@ -42,7 +42,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 11
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 8
+    serializedVersion: 9
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -71,7 +71,7 @@ LightmapSettings:
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
-    m_MixedBakeMode: 3
+    m_MixedBakeMode: 2
     m_BakeBackend: 0
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
@@ -87,7 +87,7 @@ LightmapSettings:
     m_PVRFilteringAtrousNormalSigma: 1
     m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
-  m_ShadowMaskMode: 2
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -743,9 +743,23 @@ MonoBehaviour:
   - {fileID: 1733768481}
   - {fileID: 700135585}
   goodFoodSprites:
-  - {fileID: 21300000, guid: 196bde23f600c314e9e76f7e049d3bdf, type: 3}
+  - {fileID: 21300000, guid: 6c9c220b33dc0a14b897f0e744ff3488, type: 3}
+  - {fileID: 21300000, guid: 4dc527c345ef2ff42b52ef3cd8ce1dd4, type: 3}
+  - {fileID: 21300000, guid: 71b56965f3d028c449fbd76605452cbc, type: 3}
+  - {fileID: 21300000, guid: 61f1da5eb58ccb6429c13dd83ece834b, type: 3}
+  - {fileID: 21300000, guid: 325f2b3e756e59745b64a66c9fecae75, type: 3}
+  - {fileID: 21300000, guid: 48f82c6bdfdb0474e92768dcc8066dcd, type: 3}
+  - {fileID: 21300000, guid: 85c3860d5744d7b49aaba6ca27edd6b8, type: 3}
+  - {fileID: 21300000, guid: 5f39dd0f37bfce9459c83118575157e5, type: 3}
   badFoodSprites:
-  - {fileID: 21300002, guid: 196bde23f600c314e9e76f7e049d3bdf, type: 3}
+  - {fileID: 21300000, guid: 5afea1bfc11207843b48cef1be767a37, type: 3}
+  - {fileID: 21300000, guid: c9d0b32aa41b7db4b9cd131ba57ec6b4, type: 3}
+  - {fileID: 21300000, guid: a90774f7d3fe2bd4d938bd86881c6d7d, type: 3}
+  - {fileID: 21300000, guid: a10ce5352f47b8944b3fc369b2903f61, type: 3}
+  - {fileID: 21300000, guid: 7941c38ad3c325346becf6643870d01f, type: 3}
+  - {fileID: 21300000, guid: f37246e3314166a49918cb62fa44c4db, type: 3}
+  - {fileID: 21300000, guid: 45e4f63c9314b394d8d3d9c1fd3b1847, type: 3}
+  - {fileID: 21300000, guid: 5e01f374135ff8c458c0c99c705f4e7c, type: 3}
   foodPrefab: {fileID: 1216007139607020, guid: 9516298e857e451408721f0c154d78c6, type: 2}
   foodDeltaDist: 200
 --- !u!1 &1300350491
