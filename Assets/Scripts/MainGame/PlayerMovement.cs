@@ -206,7 +206,7 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         // Se o movimento do pulo está acontecendo
-        if (isJumping)
+        if (isJumping && jumpInput > 0 && !hasLetGoOfJumpButton) // (com pulo controlado)
         {
             // Realiza o movimento
             rb2D.AddForce(new Vector2(0f, jumpSpeed * Time.fixedDeltaTime));
