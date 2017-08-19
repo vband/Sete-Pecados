@@ -47,6 +47,8 @@ public class PlayerMovement : MonoBehaviour {
     private float verticalInput = 0, negativeVerticalInputTime = 0, startLeavingPlatformTime;
     private float jumpInput;
 
+    private bool simulateJump;
+
     public bool isCollidingWithScreenBorder; // True se o jogador estiver colidindo com a borda esquerda da tela
     private bool isCollidingWithObstacle; // True se o jogador estiver colidindo com oalgum obstáculo
 
@@ -78,6 +80,8 @@ public class PlayerMovement : MonoBehaviour {
 
         horizontalInput = 0;
         jumpInput = 0;
+
+        simulateJump = false;
 
         currentSpeedMultiplier = 1;
 
@@ -206,7 +210,8 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         // Se o movimento do pulo está acontecendo
-        if (isJumping && jumpInput > 0 && !hasLetGoOfJumpButton) // (com pulo controlado)
+        if ((isJumping && jumpInput > 0 && !hasLetGoOfJumpButton) // (com pulo variável)
+            || simulateJump)
         {
             // Realiza o movimento
             rb2D.AddForce(new Vector2(0f, jumpSpeed * Time.fixedDeltaTime));
@@ -421,12 +426,12 @@ public class PlayerMovement : MonoBehaviour {
         // Se o jogador ficar preso entre a borda da câmera e um obstáculo
         if (isCollidingWithObstacle
             && isCollidingWithScreenBorder
-            && IsGrounded()
+            //&& IsGrounded()
             && Time.realtimeSinceStartup - lastjump > 0.3f)
         {
             // Simula um pulo
-            isJumping = true;
             currentJumpTime = 0;
+            simulateJump = true;
 
             //testa o tempo para evitar que o som se sobreponha
             if ((Time.realtimeSinceStartup - lastjump) > 0.5f)
@@ -434,6 +439,10 @@ public class PlayerMovement : MonoBehaviour {
                 GetComponent<AudioSource>().PlayOneShot(jumpsound);
                 lastjump = Time.realtimeSinceStartup;
             }
+        }
+        else
+        {
+            simulateJump = false;
         }
     }
 
