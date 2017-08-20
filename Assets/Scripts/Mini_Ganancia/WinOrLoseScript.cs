@@ -7,11 +7,13 @@ public class WinOrLoseScript : MonoBehaviour {
     public void Venceu()
     {
         GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
+        Screen.orientation = ScreenOrientation.AutoRotation;
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
 
     public void Perdeu()
     {
+        Screen.orientation = ScreenOrientation.AutoRotation;
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
         LivesController.RemVidas();
     }
@@ -20,6 +22,7 @@ public class WinOrLoseScript : MonoBehaviour {
     {
         LivesController.addVidas();
         GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
+        Screen.orientation = ScreenOrientation.AutoRotation;
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
 }

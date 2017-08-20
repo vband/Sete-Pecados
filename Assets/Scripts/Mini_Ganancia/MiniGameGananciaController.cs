@@ -18,6 +18,16 @@ public class MiniGameGananciaController : MonoBehaviour {
     void Start() {
         //inicializa o contador de tempo
         display_Tempo.GetComponent<Text>().text = tempo.ToString("F1");
+
+        // Trava a rotação de tela
+        if (Screen.orientation == ScreenOrientation.LandscapeLeft)
+        {
+            Screen.orientation = ScreenOrientation.LandscapeLeft;
+        }
+        else if (Screen.orientation == ScreenOrientation.LandscapeRight)
+        {
+            Screen.orientation = ScreenOrientation.LandscapeRight;
+        }
     }
 
     // Update is called once per frame
