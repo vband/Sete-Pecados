@@ -24,12 +24,20 @@ public class MinigameGulaController : MonoBehaviour
     private bool hasGameEnded;
 
     // Dificuldade
-    private static int difficulty = 1;
+    private static int difficulty = 4;
 
     // Constantes
     private const int MEIO = 0, ESQUERDA = 1, DIREITA = 2;
 
-	void Start ()
+    private void Awake()
+    {
+#if UNITY_ANDROID
+        // Muda a orientação da tela
+        Screen.orientation = ScreenOrientation.Portrait;
+#endif
+    }
+
+    void Start ()
     {
         // Inicialização
         hasSetUpFoods = false;
@@ -40,6 +48,15 @@ public class MinigameGulaController : MonoBehaviour
 
         // Ajusta os parâmetros de dificuldade
         AdjustParameters();
+
+#if UNITY_STANDALONE_WIN
+        mouths[ESQUERDA].GetComponent<RectTransform>().anchorMin = new Vector2(0.25f, 0f);
+        mouths[ESQUERDA].GetComponent<RectTransform>().anchorMax = new Vector2(0.25f, 0f);
+        mouths[ESQUERDA].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -270);
+        mouths[DIREITA].GetComponent<RectTransform>().anchorMin = new Vector2(0.75f, 0f);
+        mouths[DIREITA].GetComponent<RectTransform>().anchorMax = new Vector2(0.75f, 0f);
+        mouths[ESQUERDA].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -270);
+#endif
     }
 
     void Update ()
@@ -92,19 +109,19 @@ public class MinigameGulaController : MonoBehaviour
                 nTotalFoods = 20;
                 nBadFoods = 5;
                 nGoodFoods = 10;
-                globalFoodSpeed = 30;
+                globalFoodSpeed = 20;
                 break;
             case 4:
                 nTotalFoods = 30;
                 nBadFoods = 10;
                 nGoodFoods = 20;
-                globalFoodSpeed = 30;
+                globalFoodSpeed = 20;
                 break;
             case 5:
                 nTotalFoods = 40;
                 nBadFoods = 10;
                 nGoodFoods = 30;
-                globalFoodSpeed = 40;
+                globalFoodSpeed = 25;
                 break;
         }
     }
@@ -232,6 +249,8 @@ public class MinigameGulaController : MonoBehaviour
         GetComponent<Animator>().SetTrigger("Lose");
         LivesController.RemVidas();
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+        Screen.orientation = ScreenOrientation.Landscape;
+        Screen.orientation = ScreenOrientation.AutoRotation;
     }
 
     // Vence o minigame
@@ -241,6 +260,8 @@ public class MinigameGulaController : MonoBehaviour
         GetComponent<Animator>().SetTrigger("Win");
         GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+        Screen.orientation = ScreenOrientation.Landscape;
+        Screen.orientation = ScreenOrientation.AutoRotation;
     }
 
     // Vence o minigame com Perfect
@@ -251,6 +272,8 @@ public class MinigameGulaController : MonoBehaviour
         LivesController.addVidas();
         GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+        Screen.orientation = ScreenOrientation.Landscape;
+        Screen.orientation = ScreenOrientation.AutoRotation;
     }
 
     // Abre todas as bocas

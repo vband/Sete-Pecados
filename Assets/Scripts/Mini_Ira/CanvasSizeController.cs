@@ -9,19 +9,12 @@ public class CanvasSizeController : MonoBehaviour
 
     public Camera mainCamera;
 
-	void Start ()
+    public void Start ()
     {
-        // Obtém o tamanho da tela
         Vector2 screenSize;
+
         screenSize.y = mainCamera.orthographicSize * 2;
         screenSize.x = mainCamera.aspect * screenSize.y;
-
-        // Seta o tamanho do canvas para ser igual ao tamanho da tela
         GetComponent<RectTransform>().sizeDelta = screenSize;
     }
-
-    void Update ()
-    {
-		
-	}
 }
