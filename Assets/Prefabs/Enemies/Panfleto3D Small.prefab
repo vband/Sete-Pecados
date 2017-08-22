@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 50239481857920952}
   - component: {fileID: 114098857876322196}
   - component: {fileID: 60953809216301486}
+  - component: {fileID: 114805106400400042}
   m_Layer: 9
   m_Name: Panfleto3D Small
   m_TagString: EnemyGanancia
@@ -158,6 +159,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8018be0443e6dd146a0a5a3ddd8abed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114805106400400042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1233479111633042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4c364b73ee8fa54da139bf8c4019db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxTime: 5
 --- !u!212 &212307036138489338
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -198,6 +211,8 @@ SpriteRenderer:
   m_Size: {x: 2.48, y: 0.84}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!231 &231269601117256326
 SpringJoint2D:
   m_ObjectHideFlags: 1

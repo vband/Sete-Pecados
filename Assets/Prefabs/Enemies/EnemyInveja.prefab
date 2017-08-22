@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 250160194656837222}
   - component: {fileID: 61061232268079742}
   - component: {fileID: 114683226954985730}
+  - component: {fileID: 114458795478277912}
   m_Layer: 9
   m_Name: Carro Luxuoso
   m_TagString: EnemyInveja
@@ -58,6 +59,7 @@ GameObject:
   - component: {fileID: 50782855028005838}
   - component: {fileID: 58913611741560652}
   - component: {fileID: 114809391267302592}
+  - component: {fileID: 114428358997890842}
   m_Layer: 16
   m_Name: Invejoso
   m_TagString: EnemyInveja
@@ -186,6 +188,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10, y: 5}
   m_EdgeRadius: 0
+--- !u!114 &114428358997890842
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1850174344129696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4c364b73ee8fa54da139bf8c4019db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxTime: 5
+--- !u!114 &114458795478277912
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1499342869734962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4c364b73ee8fa54da139bf8c4019db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxTime: 5
 --- !u!114 &114683226954985730
 MonoBehaviour:
   m_ObjectHideFlags: 1

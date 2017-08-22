@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 82448740025717920}
   - component: {fileID: 61214748953373830}
   - component: {fileID: 212620145566262794}
+  - component: {fileID: 114968759868795178}
   m_Layer: 0
   m_Name: Car3 sem teto
   m_TagString: car
@@ -242,6 +243,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.1
+--- !u!114 &114968759868795178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1747663232657028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4c364b73ee8fa54da139bf8c4019db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxTime: 5
 --- !u!198 &198759686338896990
 ParticleSystem:
   m_ObjectHideFlags: 1
