@@ -5,9 +5,11 @@ using UnityEngine;
 public class CarroLuxuosoController : MonoBehaviour
 {
     public float speed;
+    public InvejosoController invejoso;
 
     private PointEffector2D pointEffector;
     private SpriteRenderer spriteRenderer;
+    //private bool hasActivated = false;
 
 	void Start ()
     {
@@ -27,6 +29,7 @@ public class CarroLuxuosoController : MonoBehaviour
         }
 
         DestroyNearbyCars();
+        //ActivateInvejoso();
     }
 
     private void Move()
@@ -50,8 +53,22 @@ public class CarroLuxuosoController : MonoBehaviour
         }
     }
 
+    /*
+    // Ativa o invejoso quando o carro atinge metade da tela
+    private void ActivateInvejoso()
+    {
+        if (!hasActivated && transform.position.x <= Camera.main.transform.position.x)
+        {
+            hasActivated = true;
+            invejoso.OnActivate();
+            pointEffector.enabled = true;
+        }
+    }
+    */
+    
     public void OnInvejosoVisible()
     {
         pointEffector.enabled = true;
     }
+    
 }

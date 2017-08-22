@@ -17,6 +17,7 @@ public class InvejosoController : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb2D = GetComponent<Rigidbody2D>();
+        rb2D.constraints = RigidbodyConstraints2D.FreezePosition;
 
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Invejoso"), LayerMask.NameToLayer("Enemies"));
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Invejoso"), LayerMask.NameToLayer("Environment"));
@@ -26,6 +27,7 @@ public class InvejosoController : MonoBehaviour
 
     void Update ()
     {
+        
         // Quando o invejoso aparecer na tela...
 		if (!hasJumped && spriteRenderer.isVisible)
         {
@@ -34,6 +36,7 @@ public class InvejosoController : MonoBehaviour
             // Pula para agarrar o carro luxuoso
             Jump();
         }
+        
 
         // Após o pulo...
         if (hasJumped && !hasGrippedCar)
@@ -54,4 +57,15 @@ public class InvejosoController : MonoBehaviour
         rb2D.AddForce(new Vector2(0, jumpForce));
         carro.OnInvejosoVisible();
     }
+
+    /*
+    // Chamada quando o carro manda o invejoso se ativar
+    public void OnActivate()
+    {
+        hasJumped = true;
+
+        // Pula para agarrar o carro luxuoso
+        Jump();
+    }
+    */
 }
