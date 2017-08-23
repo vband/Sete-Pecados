@@ -1290,7 +1290,7 @@ MonoBehaviour:
   player: {fileID: 1297590616}
   segmento1: {fileID: 4707358409897986, guid: 155ead8c3fa16174ab238928cde4bd41, type: 2}
   segmento2: {fileID: 4478827883086370, guid: 3e245eba22782a548a45197929896e01, type: 2}
-  segmento3: {fileID: 4821646603518694, guid: f0c859cf695b88b4a82b8303ca6b5edd, type: 2}
+  segmento3: {fileID: 4877646098626096, guid: f0c859cf695b88b4a82b8303ca6b5edd, type: 2}
   beginnigOfSection1: {fileID: 1591121102}
   endOfSection1: {fileID: 49454604}
   beginnigOfSection2: {fileID: 1555746392}
@@ -5363,7 +5363,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4765082268599812, guid: f28cc76efa4522346a83c9c1932f068b, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1995836970498708, guid: f28cc76efa4522346a83c9c1932f068b, type: 2}
       propertyPath: m_IsActive
