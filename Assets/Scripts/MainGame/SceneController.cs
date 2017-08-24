@@ -250,6 +250,7 @@ public class SceneController : MonoBehaviour
             MinigamePreguiçaController.SetDifficulty(1);
             mecanica.SetDifficulty(1);
             MinigameGulaController.SetDifficulty(1);
+            MinigameOrgulhoController.SetDifficulty(1);
         }
         else if (progressBar.fillAmount <= 0.4)
         {
@@ -257,6 +258,7 @@ public class SceneController : MonoBehaviour
             MinigamePreguiçaController.SetDifficulty(2);
             mecanica.SetDifficulty(2);
             MinigameGulaController.SetDifficulty(2);
+            MinigameOrgulhoController.SetDifficulty(2);
         }
         else if (progressBar.fillAmount <= 0.6)
         {
@@ -264,6 +266,7 @@ public class SceneController : MonoBehaviour
             MinigamePreguiçaController.SetDifficulty(3);
             mecanica.SetDifficulty(3);
             MinigameGulaController.SetDifficulty(3);
+            MinigameOrgulhoController.SetDifficulty(3);
         }
         else if (progressBar.fillAmount <= 0.8)
         {
@@ -271,6 +274,7 @@ public class SceneController : MonoBehaviour
             MinigamePreguiçaController.SetDifficulty(4);
             mecanica.SetDifficulty(4);
             MinigameGulaController.SetDifficulty(4);
+            MinigameOrgulhoController.SetDifficulty(4);
         }
         else
         {
@@ -278,6 +282,7 @@ public class SceneController : MonoBehaviour
             MinigamePreguiçaController.SetDifficulty(5);
             mecanica.SetDifficulty(5);
             MinigameGulaController.SetDifficulty(5);
+            MinigameOrgulhoController.SetDifficulty(5);
         }
     }
 
