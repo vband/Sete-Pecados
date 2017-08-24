@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class InputManagerGanancia : MonoBehaviour
 {
     [SerializeField] private GameObject Arena;
-    [SerializeField] private GameObject Bolinha;
     [SerializeField] private Camera cam;
 
 
@@ -25,9 +24,7 @@ public class InputManagerGanancia : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        _Cylinder.position = Vector3.zero;
-        _Ball.transform.position = new Vector3(_Radius, _StartAltitude, 0f);
-
+        _Ball.transform.position = new Vector3(_Radius + _Cylinder.position.x, _Cylinder.position.y + _StartAltitude, _Cylinder.position.z);
     }
 
     void Update()
@@ -41,6 +38,7 @@ public class InputManagerGanancia : MonoBehaviour
             tilt = Quaternion.Euler(90, 0, 0) * tilt;
 
         _Ball.AddForce(tilt.x * 30, 0, tilt.z * 30);
+
 #elif UNITY_STANDALONE
 
         mousePosition = Input.mousePosition + new Vector3(0, 0, 10);
@@ -48,8 +46,9 @@ public class InputManagerGanancia : MonoBehaviour
         _Ball.transform.transform.position = new Vector3(temp.x, temp.y, temp.z);
 #endif
         //cuida da trajetoria circular
+        
         Vector3 v = _Ball.velocity;
-        // any vecotr from cylinders up axis to ball pos
+        // any vector from cylinders up axis to ball pos
         Vector3 radius = _Ball.transform.position - _Cylinder.transform.position;
 
         if (v.x == 0 && v.z == 0)
@@ -70,11 +69,12 @@ public class InputManagerGanancia : MonoBehaviour
 
             _Ball.GetComponent<Rigidbody>().velocity = newVelo;
         }
-        // set the ball to the correct distance from the cylinder axis (assuming the vertical axis of cylinder is at X==0 && Z==0)
+        // set the ball to the correct distance from the cylinder axis 
         radius.y = 0;
-        radius = radius.normalized * _Radius;
+        radius = radius.normalized * _Radius + _Cylinder.transform.position;
         radius.y = _Ball.transform.position.y;
 
         _Ball.transform.position = radius;
+        
     }
 }

@@ -24,9 +24,17 @@ public class MovimentaZoiudoScript : MonoBehaviour {
             
             float timeSinceStarted = Time.time - timeStartedLerping;
             float percentageComplete = timeSinceStarted / rotationTime;
- 
-            if(!GetComponent<ZoiudoScript>().IsSeeeing)
+
+            if (!GetComponent<ZoiudoScript>().IsSeeeing)
+            {
                 transform.rotation = Quaternion.Lerp(inicio, fim, percentageComplete);
+
+            }
+            else
+            {
+                isLerping = false;
+            }
+               
 
             if (percentageComplete >= 1.0f)
             {
@@ -37,6 +45,7 @@ public class MovimentaZoiudoScript : MonoBehaviour {
         if (GM.GetComponent<MiniGameGananciaController>().GetPerdeu())
         {
             StopCoroutine(AIRoutine());
+            rotationTime = 0.2f;
             IniciaRotacao(0);
         }
     }
