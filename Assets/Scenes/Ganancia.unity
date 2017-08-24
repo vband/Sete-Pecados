@@ -131,7 +131,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 160389979}
   m_LocalRotation: {x: 0.0062323078, y: 0.70707935, z: -0.0062323078, w: 0.70707935}
-  m_LocalPosition: {x: 0.45, y: 0.15, z: 0.2}
+  m_LocalPosition: {x: 0.45, y: 0.2, z: 0.2}
   m_LocalScale: {x: 0.3000002, y: 0.3, z: 0.30000025}
   m_Children: []
   m_Father: {fileID: 317293841}
@@ -152,8 +152,8 @@ Light:
   m_SpotAngle: 60
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
+    m_Type: 2
+    m_Resolution: 3
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
@@ -162,7 +162,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -778,7 +778,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1096542088}
   m_LocalRotation: {x: 0.0062323078, y: 0.70707935, z: -0.0062323078, w: 0.70707935}
-  m_LocalPosition: {x: 0.45, y: 0.15, z: -0.2}
+  m_LocalPosition: {x: 0.45, y: 0.2, z: -0.2}
   m_LocalScale: {x: 0.30000013, y: 0.3, z: 0.30000013}
   m_Children: []
   m_Father: {fileID: 317293841}
@@ -799,8 +799,8 @@ Light:
   m_SpotAngle: 60
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
+    m_Type: 2
+    m_Resolution: 3
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
@@ -809,7 +809,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1619,7 +1619,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -1629,7 +1629,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1830,7 +1830,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2033435760}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 775f75fe578c7664e91fbf542906439d, type: 3}
   m_Name: 
