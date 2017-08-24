@@ -2004,7 +2004,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Arena: {fileID: 1948241029}
-  Bolinha: {fileID: 1358815443}
   cam: {fileID: 1248451751}
   _StartAltitude: 1
   _Radius: 4
@@ -2024,7 +2023,7 @@ MonoBehaviour:
   Cam: {fileID: 1248451747}
   display_Tempo: {fileID: 1134713730}
   isPlaying: 0
-  tempo: 70
+  tempo: 7
 --- !u!1 &2076508521
 GameObject:
   m_ObjectHideFlags: 0
