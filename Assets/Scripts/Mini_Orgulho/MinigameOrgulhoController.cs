@@ -5,19 +5,27 @@ using UnityEngine.UI;
 
 public class MinigameOrgulhoController : MonoBehaviour
 {
+    // Ponteiros para outros objetos da cena
     public RectTransform AnuncioPrefab;
     public Canvas canvasAnuncios;
     public List<Sprite> anuncioImagens;
     public Image timeBar;
 
-    public int numberOfAds;
-    public float maxTime;
+    // Parâmetros de dificuldade
+    private int numberOfAds;
+    private float maxTime;
 
+    // Variáveis privadas
     private float timeLeft;
     private int adsClosed = 0;
 
+    // Marcador de dificuldade
+    private static int difficulty = 3;
+
 	void Start ()
     {
+        AdjustParameters();
+
         // Inicialização
         timeLeft = maxTime;
 
@@ -62,7 +70,14 @@ public class MinigameOrgulhoController : MonoBehaviour
             // Ganha
             if (adsClosed == numberOfAds)
             {
-                Win();
+                if ((maxTime - timeLeft) / maxTime <= 0.5f) // Se o jogador ganhar dentro de metade do tempo
+                {
+                    Perfect();
+                }
+                else
+                {
+                    Win();
+                }
             }
 
             // Perde
@@ -82,7 +97,10 @@ public class MinigameOrgulhoController : MonoBehaviour
 
     private void Perfect()
     {
-
+        GetComponent<Animator>().SetTrigger("Perfect");
+        LivesController.addVidas();
+        GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
+        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
 
     private void Lose()
@@ -92,10 +110,43 @@ public class MinigameOrgulhoController : MonoBehaviour
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
 
+    private void AdjustParameters()
+    {
+        switch (difficulty)
+        {
+            case 1:
+                numberOfAds = 3;
+                maxTime = 5;
+                break;
+            case 2:
+                numberOfAds = 5;
+                maxTime = 5;
+                break;
+
+            case 3:
+                numberOfAds = 10;
+                maxTime = 5;
+                break;
+            case 4:
+                numberOfAds = 15;
+                maxTime = 7;
+                break;
+            case 5:
+                numberOfAds = 25;
+                maxTime = 10;
+                break;
+        }
+    }
+
     // Chamada quando um anúncio é fechado
     public void CloseAd(GameObject ad)
     {
         Destroy(ad);
         adsClosed++;
+    }
+
+    public static void SetDifficulty(int dif)
+    {
+        difficulty = dif;
     }
 }
