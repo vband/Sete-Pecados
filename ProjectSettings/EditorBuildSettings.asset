@@ -32,3 +32,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Inveja.unity
     guid: edf18b4d922238940b452dfd841cced4
+  - enabled: 1
+    path: Assets/Scenes/Luxuria.unity
+    guid: e6e2e6081fccd86429ad4ff543915b59

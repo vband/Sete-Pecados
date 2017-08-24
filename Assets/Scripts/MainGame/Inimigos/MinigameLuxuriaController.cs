@@ -30,7 +30,7 @@ public class MinigameLuxuriaController : MonoBehaviour {
     private static int difficulty = 5;
     private float velocidadeDoPutao = 2f;
 
-    
+    private bool FimDeJogo = false;
 
     private void Awake()
     {
@@ -56,7 +56,7 @@ public class MinigameLuxuriaController : MonoBehaviour {
     {
         WinCondition();
         //debug only
-        
+        /*
         if (Input.GetMouseButtonDown(0))
         {
             Player.transform.position = PlayerOffset;
@@ -64,7 +64,7 @@ public class MinigameLuxuriaController : MonoBehaviour {
             Cam.backgroundColor = BackGroundColorOffset;
             running = true;
         }
-        
+        */
 
     }
 
@@ -139,27 +139,32 @@ public class MinigameLuxuriaController : MonoBehaviour {
 
     private void WinCondition()
     {
-        //vitoria
-        if (Player.localPosition.y < -190)
+        if (!FimDeJogo)
         {
-            running = false;
-            Cam.backgroundColor = new Color(0, 1, 0);
-            ganhou.gameObject.SetActive(true);
-            StopCoroutine(ControlaVibrador());
-            Vibration.Cancel();
-            Vibration.Cancel();
-            Vibration.Vibrate(4000);
-            WinOrLoseScript.Venceu();
-        }
-        //derrota
-        if(Perseguidor.localPosition.y <= Player.localPosition.y)
-        {
-            StopCoroutine(ControlaVibrador());
-            Vibration.Cancel();
-            running = false;
-            Cam.backgroundColor = new Color(1, 0, 0);
-            perdeu.gameObject.SetActive(true);
-            WinOrLoseScript.Perdeu();
+            
+            //vitoria
+            if (Player.localPosition.y < -190)
+            {
+                FimDeJogo = true;
+                running = false;
+                Cam.backgroundColor = new Color(0, 1, 0);
+                ganhou.gameObject.SetActive(true);
+                StopCoroutine(ControlaVibrador());
+
+                Vibration.Vibrate(4000);
+                GetComponent<WinOrLoseScript>().Venceu();
+            }
+            //derrota
+            if (Perseguidor.localPosition.y <= Player.localPosition.y)
+            {
+                FimDeJogo = true;
+                StopCoroutine(ControlaVibrador());
+                Vibration.Cancel();
+                running = false;
+                Cam.backgroundColor = new Color(1, 0, 0);
+                perdeu.gameObject.SetActive(true);
+                GetComponent<WinOrLoseScript>().Perdeu();
+            }
         }
 
     }

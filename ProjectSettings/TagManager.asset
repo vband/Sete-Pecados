@@ -23,6 +23,7 @@ TagManager:
   - EnemyGula
   - car
   - EnemyInveja
+  - EnemyLuxuria
   layers:
   - Default
   - TransparentFX
