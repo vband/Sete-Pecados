@@ -36,11 +36,14 @@ public class ShakeDetection : MonoBehaviour {
             // Perform your "shaking actions" here. If necessary, add suitable
             // guards in the if check above to avoid redundant handling during
             // the same shake (e.g. a minimum refractory period).
-            Debug.Log("Shake event detected at time " + Time.time);
-            Vibration.Vibrate(20);
+            // Debug.Log("Shake event detected at time " + Time.time);
+            
             shakeEvent = true;
         }
         else
+        {
             shakeEvent = false;
+        }
+            
     }
 }
