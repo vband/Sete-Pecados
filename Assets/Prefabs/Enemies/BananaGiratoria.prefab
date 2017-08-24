@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50328204886051224}
   - component: {fileID: 61178569535351986}
   - component: {fileID: 114324276614762108}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BananaGiratoria
   m_TagString: EnemyLuxuria
   m_Icon: {fileID: 0}

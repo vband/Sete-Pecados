@@ -649,7 +649,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Fuja do Put\xE3o!"
+  m_Text: Fuja!
 --- !u!222 &986915279
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1007,7 +1007,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Agite o celular para fugir!
+  m_Text: Agite o celular!
 --- !u!222 &1985969425
 CanvasRenderer:
   m_ObjectHideFlags: 0
