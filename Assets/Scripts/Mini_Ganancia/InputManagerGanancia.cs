@@ -40,7 +40,7 @@ public class InputManagerGanancia : MonoBehaviour
         if (isFlat)
             tilt = Quaternion.Euler(90, 0, 0) * tilt;
 
-        _Ball.AddForce(tilt.x * 20, 0, tilt.z * 20);
+        _Ball.AddForce(tilt.x * 30, 0, tilt.z * 30);
 #elif UNITY_STANDALONE
 
         mousePosition = Input.mousePosition + new Vector3(0, 0, 10);

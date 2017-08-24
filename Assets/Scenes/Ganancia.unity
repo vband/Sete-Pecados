@@ -1916,7 +1916,7 @@ Transform:
   m_GameObject: {fileID: 1948241029}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalScale: {x: 3, y: 1, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -2024,7 +2024,7 @@ MonoBehaviour:
   Cam: {fileID: 1248451747}
   display_Tempo: {fileID: 1134713730}
   isPlaying: 0
-  tempo: 10
+  tempo: 70
 --- !u!1 &2076508521
 GameObject:
   m_ObjectHideFlags: 0
