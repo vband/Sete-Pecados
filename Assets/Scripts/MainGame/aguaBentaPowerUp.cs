@@ -13,7 +13,7 @@ public class aguaBentaPowerUp : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemies") || collision.gameObject.layer == LayerMask.NameToLayer("Invejoso"))
         {
             transform.parent.GetComponent<PlayerMovement>().sobeCarinha();
             Destroy(collision.gameObject);

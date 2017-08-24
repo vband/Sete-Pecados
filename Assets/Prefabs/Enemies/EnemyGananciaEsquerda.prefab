@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 50370986377700978}
   - component: {fileID: 114135662815270610}
   - component: {fileID: 82716339890428142}
+  - component: {fileID: 114910028641331654}
   m_Layer: 9
   m_Name: EnemyGananciaEsquerda
   m_TagString: EnemyGanancia
@@ -79,6 +80,8 @@ GameObject:
   - component: {fileID: 50279547919916346}
   - component: {fileID: 61138505635732100}
   - component: {fileID: 114880215143064374}
+  - component: {fileID: 114727317523232078}
+  - component: {fileID: 114984952100005258}
   m_Layer: 9
   m_Name: PlacaPolitico
   m_TagString: EnemyGanancia
@@ -516,6 +519,18 @@ MonoBehaviour:
   forceX: -400
   MaxVelo: 2
   DropCooldown: 1.5
+--- !u!114 &114727317523232078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1457285393171436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4c364b73ee8fa54da139bf8c4019db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxTime: 5
 --- !u!114 &114880215143064374
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -527,6 +542,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776b7385228ec9d448f260ae4d56a32f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114910028641331654
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1235134180583598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4c364b73ee8fa54da139bf8c4019db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxTime: 5
+--- !u!114 &114984952100005258
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1457285393171436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4c364b73ee8fa54da139bf8c4019db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxTime: 5
 --- !u!212 &212035268590766460
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -567,6 +606,8 @@ SpriteRenderer:
   m_Size: {x: 0.75, y: 0.1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!212 &212093534091801138
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -607,6 +648,8 @@ SpriteRenderer:
   m_Size: {x: 1.1, y: 1.35}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!212 &212348388166724590
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -647,6 +690,8 @@ SpriteRenderer:
   m_Size: {x: 1, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!212 &212451643434402588
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -687,6 +732,8 @@ SpriteRenderer:
   m_Size: {x: 0.53, y: 0.14}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!212 &212508830650018418
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -727,6 +774,8 @@ SpriteRenderer:
   m_Size: {x: 0.53, y: 0.14}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!212 &212686245302774560
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -767,6 +816,8 @@ SpriteRenderer:
   m_Size: {x: 0.19, y: 0.19}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!233 &233066424767468482
 HingeJoint2D:
   m_ObjectHideFlags: 1

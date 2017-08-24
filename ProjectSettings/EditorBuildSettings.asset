@@ -5,30 +5,30 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 48a91eb30bc3df548bfea1b591e39e11
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: fde99912583f4174299f798cbecba63a
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/GananciaOLD.unity
     guid: 3fe5384ac74244f4f8e2e5a3906f83bc
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Ira.unity
     guid: 4d3f249d286bd9e4f89dfad21ac5bfcf
-  - enabled: 0
+  - enabled: 1
     path: "Assets/Scenes/Pregui\xE7a.unity"
     guid: 084b9d280aca49842b6704ae83d7b59c
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 1ce32f0e953a54d4aa296bb89888b83a
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Ganancia.unity
     guid: 000f1818c13090446aade1c8d4cfab09
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Gula.unity
     guid: 6b299134d2c5721409cd3c6adb92d66d
   - enabled: 1
-    path: Assets/Scenes/Luxuria.unity
-    guid: e6e2e6081fccd86429ad4ff543915b59
+    path: Assets/Scenes/Inveja.unity
+    guid: edf18b4d922238940b452dfd841cced4
