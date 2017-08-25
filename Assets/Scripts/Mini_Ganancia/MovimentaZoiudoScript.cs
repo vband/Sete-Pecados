@@ -25,7 +25,7 @@ public class MovimentaZoiudoScript : MonoBehaviour {
             float timeSinceStarted = Time.time - timeStartedLerping;
             float percentageComplete = timeSinceStarted / rotationTime;
 
-            if (!GetComponent<ZoiudoScript>().IsSeeeing)
+            if (!GetComponent<ZoiudoScript>().IsSeeeing || rotationTime == 0.2f)
             {
                 transform.rotation = Quaternion.Lerp(inicio, fim, percentageComplete);
 
