@@ -227,6 +227,10 @@ public class MainMenu : MonoBehaviour
     public void AtualizaVolume()
     {
         AudioListener.volume = SliderVolume.value;
+        if (SliderVolume.value < 0.1f)
+            CaixaVolumeMudo.isOn = true;
+        else
+            CaixaVolumeMudo.isOn = false;
         SalvarPreferencias();
     }
 
@@ -234,6 +238,8 @@ public class MainMenu : MonoBehaviour
     {
         MudoKey = CaixaVolumeMudo.isOn;
         AudioListener.pause = MudoKey;
+        if (CaixaVolumeMudo.isOn == false && SliderVolume.value < 0.1f)
+            SliderVolume.value = 0.5f;
         SalvarPreferencias();
     }
 
