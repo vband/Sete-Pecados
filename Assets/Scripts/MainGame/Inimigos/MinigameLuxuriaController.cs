@@ -12,6 +12,7 @@ public class MinigameLuxuriaController : MonoBehaviour {
 
     [SerializeField] private Text fujadoputao;
     [SerializeField] private Text instrucoes;
+    [SerializeField] private Text instrucoesPC;
     [SerializeField] private Text ganhou;
     [SerializeField] private Text perdeu;
     [SerializeField] private Text perfect;
@@ -39,6 +40,11 @@ public class MinigameLuxuriaController : MonoBehaviour {
 
     void Start () {
 
+#if UNITY_ANDROID
+        instrucoes.gameObject.SetActive(true);
+#elif UNITY_STANDALONE
+        instrucoesPC.gameObject.SetActive(true);
+#endif
         PlayerOffset = Player.position;//y=220
         PlayerScaleOffset = Player.localScale;
         PerseguidorOffset = Perseguidor.position;
@@ -70,10 +76,10 @@ public class MinigameLuxuriaController : MonoBehaviour {
 
 
     // Update is called once per frame
-    void FixedUpdate () {
+    void FixedUpdate() {
         if (running)
         {
-            if (ShakeDetection.shakeEvent)
+            if (ShakeDetection.shakeEvent || Input.GetKeyDown(KeyCode.Space))
             {
                 MovePlayer();
             }
@@ -119,7 +125,11 @@ public class MinigameLuxuriaController : MonoBehaviour {
 
     private void MovePlayer()
     {
+#if UNITY_ANDROID
         Player.localPosition += Vector3.down * Time.deltaTime * 100f;
+#else
+        Player.localPosition += Vector3.down * Time.deltaTime * 200f;
+#endif
         //Player.transform.position += Vector3.down * Time.deltaTime * 20f;
         DebugPosition.text = Player.localPosition.ToString();
         //ajusta tamanho da sprite para simular proximidade
@@ -174,6 +184,7 @@ public class MinigameLuxuriaController : MonoBehaviour {
         yield return new WaitForSeconds(tempo);
         fujadoputao.gameObject.SetActive(false);
         instrucoes.gameObject.SetActive(false);
+        instrucoesPC.gameObject.SetActive(false);
         Vibration.Vibrate(100);
         running = true;
     }
