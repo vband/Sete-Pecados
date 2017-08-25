@@ -19,6 +19,7 @@ public static class Vibration
 #if UNITY_ANDROID
         if (isAndroid())
             vibrator.Call("vibrate");
+#if UNITY_ANDROID
         else
             Handheld.Vibrate();
 #endif
@@ -30,6 +31,7 @@ public static class Vibration
 #if UNITY_ANDROID
         if (isAndroid())
             vibrator.Call("vibrate", milliseconds);
+#if UNITY_ANDROID
         else
             Handheld.Vibrate();
 #endif
@@ -40,6 +42,7 @@ public static class Vibration
 #if UNITY_ANDROID
         if (isAndroid())
             vibrator.Call("vibrate", pattern, repeat);
+#if UNITY_ANDROID
         else
             Handheld.Vibrate();
 #endif
