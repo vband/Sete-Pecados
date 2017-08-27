@@ -29,7 +29,6 @@ public class CarroLuxuosoController : MonoBehaviour
         }
 
         DestroyNearbyCars();
-        //ActivateInvejoso();
     }
 
     private void Move()
@@ -52,23 +51,9 @@ public class CarroLuxuosoController : MonoBehaviour
             Destroy(rightHit.collider.gameObject);
         }
     }
-
-    /*
-    // Ativa o invejoso quando o carro atinge metade da tela
-    private void ActivateInvejoso()
-    {
-        if (!hasActivated && transform.position.x <= Camera.main.transform.position.x)
-        {
-            hasActivated = true;
-            invejoso.OnActivate();
-            pointEffector.enabled = true;
-        }
-    }
-    */
     
     public void OnInvejosoVisible()
     {
         pointEffector.enabled = true;
     }
-    
 }
