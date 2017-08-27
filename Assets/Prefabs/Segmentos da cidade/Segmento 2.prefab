@@ -4352,6 +4352,7 @@ GameObject:
   - component: {fileID: 50875138438729876}
   - component: {fileID: 251248436665717656}
   - component: {fileID: 61991939321641566}
+  - component: {fileID: 114525399844863166}
   m_Layer: 8
   m_Name: Guarda-sol
   m_TagString: Obstacle
@@ -8930,6 +8931,17 @@ MonoBehaviour:
   PowerUP: 0
   InimigoTerrestre: 1
   InimigoAlado: 0
+--- !u!114 &114525399844863166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1999768736429316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765d5aa7bd171e04da415ebb16e327f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114593896877309388
 MonoBehaviour:
   m_ObjectHideFlags: 1

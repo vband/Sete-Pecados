@@ -1465,6 +1465,7 @@ GameObject:
   - component: {fileID: 50996849979616660}
   - component: {fileID: 251419845114918836}
   - component: {fileID: 61333150888719908}
+  - component: {fileID: 114911940364784490}
   m_Layer: 8
   m_Name: Guarda-sol
   m_TagString: Obstacle
@@ -2947,6 +2948,7 @@ GameObject:
   - component: {fileID: 50110851506422126}
   - component: {fileID: 251208250514971428}
   - component: {fileID: 61987986200770916}
+  - component: {fileID: 114651974170981298}
   m_Layer: 8
   m_Name: Guarda-sol
   m_TagString: Obstacle
@@ -13722,7 +13724,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1582489216159452}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -14689,6 +14691,17 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 16384
+--- !u!114 &114651974170981298
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1408171048251462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765d5aa7bd171e04da415ebb16e327f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114837685177964678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14717,6 +14730,17 @@ MonoBehaviour:
   PowerUP: 0
   InimigoTerrestre: 1
   InimigoAlado: 0
+--- !u!114 &114911940364784490
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1184508994853824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765d5aa7bd171e04da415ebb16e327f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114943341260500106
 MonoBehaviour:
   m_ObjectHideFlags: 1
