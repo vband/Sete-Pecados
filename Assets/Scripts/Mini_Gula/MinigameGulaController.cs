@@ -24,7 +24,7 @@ public class MinigameGulaController : MonoBehaviour
     private bool hasGameEnded;
 
     // Dificuldade
-    private static int difficulty = 4;
+    private static int difficulty = 5;
 
     // Constantes
     private const int MEIO = 0, ESQUERDA = 1, DIREITA = 2;
@@ -93,34 +93,34 @@ public class MinigameGulaController : MonoBehaviour
         switch (difficulty)
         {
             case 1:
-                nTotalFoods = 5;
-                nBadFoods = 1;
-                nGoodFoods = 4;
-                globalFoodSpeed = 20;
-                break;
-            case 2:
                 nTotalFoods = 10;
                 nBadFoods = 3;
                 nGoodFoods = 7;
-                globalFoodSpeed = 20;
+                globalFoodSpeed = 15;
                 break;
-
-            case 3:
-                nTotalFoods = 20;
+            case 2:
+                nTotalFoods = 15;
                 nBadFoods = 5;
                 nGoodFoods = 10;
                 globalFoodSpeed = 20;
                 break;
-            case 4:
-                nTotalFoods = 30;
+
+            case 3:
+                nTotalFoods = 25;
                 nBadFoods = 10;
+                nGoodFoods = 15;
+                globalFoodSpeed = 20;
+                break;
+            case 4:
+                nTotalFoods = 35;
+                nBadFoods = 15;
                 nGoodFoods = 20;
                 globalFoodSpeed = 20;
                 break;
             case 5:
-                nTotalFoods = 40;
-                nBadFoods = 10;
-                nGoodFoods = 30;
+                nTotalFoods = 45;
+                nBadFoods = 20;
+                nGoodFoods = 25;
                 globalFoodSpeed = 25;
                 break;
         }
