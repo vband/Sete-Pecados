@@ -136,6 +136,7 @@ public class PlayerMovement : MonoBehaviour {
         if (jumpInput == 0)
         {
             hasLetGoOfJumpButton = true;
+            isJumping = false;
         }
     }
 
