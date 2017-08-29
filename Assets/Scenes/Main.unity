@@ -11740,6 +11740,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 933721085}
     m_Modifications:
+    - target: {fileID: 114594443831082998, guid: 71fa341a247929549a17b659fc781318,
+        type: 2}
+      propertyPath: InimigosTerrestres.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4585884517566830, guid: 71fa341a247929549a17b659fc781318, type: 2}
       propertyPath: m_LocalPosition.x
       value: 15
@@ -11787,6 +11792,12 @@ Prefab:
       propertyPath: espirito_canvas
       value: 
       objectReference: {fileID: 1664475156}
+    - target: {fileID: 114594443831082998, guid: 71fa341a247929549a17b659fc781318,
+        type: 2}
+      propertyPath: InimigosTerrestres.Array.data[3]
+      value: 
+      objectReference: {fileID: 1901824605084676, guid: 28f3eb2fe62c76c4aae024fe46a8fbaa,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 71fa341a247929549a17b659fc781318, type: 2}
   m_IsPrefabParent: 0
