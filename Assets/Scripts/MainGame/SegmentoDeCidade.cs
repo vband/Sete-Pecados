@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class SegmentoDeCidade : MonoBehaviour
 {
-    public enum Difficulty { Beginner, Easy, Medium, Hard, Expert };
-    public Difficulty type;
     public SpriteRenderer street;
 
     void Start ()

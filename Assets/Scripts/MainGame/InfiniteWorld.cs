@@ -4,31 +4,40 @@ using UnityEngine;
 
 public class InfiniteWorld : MonoBehaviour
 {
+    public Transform[] segmentosDif1, segmentosDif2, segmentosDif3, segmentosDif4, segmentosDif5;
     public Transform player;
     public Transform segmento1, segmento2, segmento3; // Pacotes que guardam os diferentes segmentos da cidade
-    // Ponteiros para o início e o fim dos diferentes segmentos da cidade
-    public Transform pointerToCityBeginning;
+    public Transform pointerToCityBeginning; // Ponteiro para o início da cidade
     public SceneController cenaPrincipal;
     public Transform igrejaPrefab;
 
+    private Transform[][] matrizDeSegmentos;
+    private int currentDif, lastDifUsed = 0;
     private Vector3 currentCityEndPos;
     private float distanceToWin;
     private bool hasCreatedChurch;
-    private int nextArrayPointer, prevArrayPointer; // Variável que guarda qual array de objetos está sendo usado para criar a cidade
-    private List<int> arrayIndexes; // Os índices dos arrays de objetos: 1, 2 ou 3
+    // Variáveis usadas para não repetir o mesmo segmento duas vezes seguidas
+    private int nextArrayPointer, prevArrayPointer;
+    private List<int> arrayIndexes;
 
 	void Start ()
     {
+        matrizDeSegmentos = new Transform[5][];
+        matrizDeSegmentos[0] = segmentosDif1;
+        matrizDeSegmentos[1] = segmentosDif2;
+        matrizDeSegmentos[2] = segmentosDif3;
+        matrizDeSegmentos[3] = segmentosDif4;
+        matrizDeSegmentos[4] = segmentosDif5;
         distanceToWin = cenaPrincipal.distanceToWin;
         hasCreatedChurch = false;
-        arrayIndexes = new List<int>() {1, 2, 3};
-        nextArrayPointer = GetNextIndex(arrayIndexes, 1);
         currentCityEndPos = pointerToCityBeginning.position;
-        Debug.DrawLine(currentCityEndPos + Vector3.down, currentCityEndPos + Vector3.up, Color.blue, 300f);
     }
 
     void Update ()
     {
+        // Atualiza a dificuldade atual do jogo
+        UpdateDifficulty();
+
         // Se a cidade já cresceu o bastante para terminar o jogo, cria a igreja
         if (Vector3.Distance(pointerToCityBeginning.position, currentCityEndPos) >= distanceToWin)
         {
@@ -40,7 +49,7 @@ public class InfiniteWorld : MonoBehaviour
         }
         
         // Se o jogador se aproximar do fim da cidade, gera novos objetos
-        else if (Vector3.Distance(player.position, currentCityEndPos) < 50)
+        else if (Vector3.Distance(player.position, currentCityEndPos) < 30)
         {
             GenerateMoreObjects();
         }
@@ -50,47 +59,49 @@ public class InfiniteWorld : MonoBehaviour
 
     private void GenerateMoreObjects()
     {
-        Transform instance;
-        // Instancia todos os objetos que foram preparados antecipadamente
-        switch (nextArrayPointer)
+        int indiceDoSegmento;
+
+        // Se a dificuldade é a mesma da última iteração
+        if (lastDifUsed == currentDif)
         {
-            case 1:
-                instance = Instantiate(segmento1, segmento1.position + currentCityEndPos + new Vector3(9.5f, 0),
-                    new Quaternion(0, 0, 0, 0), this.transform);
-                instance.gameObject.SetActive(true);
-                GetComponent<DespawnController>().AdicionarNovoSegmento(instance);
+            // Sorteia o próximo segmento a ser istanciado, sem repetir o último usado
+            indiceDoSegmento = GetNextIndex(arrayIndexes, prevArrayPointer);
 
-                // Recalcula o fim da cidade
-                currentCityEndPos = currentCityEndPos + Vector3.right * segmento1.GetComponent<SegmentoDeCidade>().GetLength();
-                break;
-
-            case 2:
-                instance = Instantiate(segmento2, segmento2.position + currentCityEndPos + new Vector3(8.64f, 0),
-                    new Quaternion(0, 0, 0, 0), this.transform);
-                instance.gameObject.SetActive(true);
-                GetComponent<DespawnController>().AdicionarNovoSegmento(instance);
-
-                // Recalcula o fim da cidade
-                currentCityEndPos = currentCityEndPos + Vector3.right * segmento2.GetComponent<SegmentoDeCidade>().GetLength();
-                break;
-
-            case 3:
-                instance = Instantiate(segmento3, segmento3.position + currentCityEndPos + new Vector3(9.46f, 0),
-                    new Quaternion(0, 0, 0, 0), this.transform);
-                instance.gameObject.SetActive(true);
-                GetComponent<DespawnController>().AdicionarNovoSegmento(instance);
-
-                // Recalcula o fim da cidade
-                currentCityEndPos = currentCityEndPos + Vector3.right * segmento3.GetComponent<SegmentoDeCidade>().GetLength();
-                break;
+            // Registra qual segmento acaba de ser instanciado, pois esse não deverá repetir na próxima iteração
+            prevArrayPointer = indiceDoSegmento;
         }
 
-        // Muda o array que será usado na próxima vez
-        // Anota qual foi o último usado, pois esse não poderá repetir
-        prevArrayPointer = nextArrayPointer;
-        // Sorteia um índice novo, que será diferente do último usado
-        nextArrayPointer = GetNextIndex(arrayIndexes, prevArrayPointer);
-        Debug.DrawLine(currentCityEndPos + Vector3.down, currentCityEndPos + Vector3.up, Color.blue, 300f);
+        // Se a dificuldade trocou
+        else
+        {
+            // Obtém os índices dos segmentos da nova dificuldade
+            arrayIndexes = new List<int>();
+            for (int i = 0; i < matrizDeSegmentos[currentDif-1].Length; i++)
+            {
+                arrayIndexes.Add(i);
+            }
+
+            // Sorteia um segmento para instanciar
+            indiceDoSegmento = Random.Range(0, matrizDeSegmentos[currentDif - 1].Length);
+
+            // Registra que a atual dificuldade acaba de ser usada para instanciar um segmento
+            lastDifUsed = currentDif;
+
+            // Registra qual segmento acaba de ser instanciado, pois esse não deverá repetir na próxima iteração
+            prevArrayPointer = indiceDoSegmento;
+        }
+
+        // Instancia o novo segmento
+        Transform instance = Instantiate(
+            matrizDeSegmentos[currentDif - 1][indiceDoSegmento],
+            matrizDeSegmentos[currentDif - 1][indiceDoSegmento].position + currentCityEndPos + new Vector3(9.46f, 0f),
+            Quaternion.identity,
+            this.transform);
+        instance.gameObject.SetActive(true);
+        GetComponent<DespawnController>().AdicionarNovoSegmento(instance);
+
+        // Recalcula o fim da cidade
+        currentCityEndPos = currentCityEndPos + Vector3.right * matrizDeSegmentos[currentDif - 1][indiceDoSegmento].GetComponent<SegmentoDeCidade>().GetLength();
     }
 
     private void CreateChurch()
@@ -117,6 +128,30 @@ public class InfiniteWorld : MonoBehaviour
         instance = Instantiate(segmento1, segmento1.position + currentCityEndPos + new Vector3(9.5f, 0),
             new Quaternion(0, 0, 0, 0), this.transform);
         instance.gameObject.SetActive(true);
+    }
+
+    private void UpdateDifficulty()
+    {
+        if (cenaPrincipal.progressBar.fillAmount <= 0.2)
+        {
+            currentDif = 1;
+        }
+        else if (cenaPrincipal.progressBar.fillAmount <= 0.4)
+        {
+            currentDif = 2;
+        }
+        else if (cenaPrincipal.progressBar.fillAmount <= 0.6)
+        {
+            currentDif = 3;
+        }
+        else if (cenaPrincipal.progressBar.fillAmount <= 0.8)
+        {
+            currentDif = 4;
+        }
+        else
+        {
+            currentDif = 5;
+        }
     }
 
     private int GetNextIndex(List<int> list, int lastIndex)
