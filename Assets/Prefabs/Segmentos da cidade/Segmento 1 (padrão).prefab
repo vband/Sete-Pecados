@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 4387209418675092}
   - component: {fileID: 114654275092372658}
   m_Layer: 0
-  m_Name: "Segmento 1 (rua \xFAnica)"
+  m_Name: "Segmento 1 (padr\xE3o)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5047,7 +5047,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19530a6f3891d7840b499c1d26e1babf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
   street: {fileID: 212028852087416358}
 --- !u!114 &114792969021302476
 MonoBehaviour:
