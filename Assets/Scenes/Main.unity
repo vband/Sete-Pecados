@@ -1309,13 +1309,11 @@ MonoBehaviour:
   - {fileID: 4317208479851758, guid: 1ba3560d2f90c0d4b98bf87ff772ae90, type: 2}
   - {fileID: 4556408236777292, guid: 90a5921866dbd6d45acdacc4c0e1bc51, type: 2}
   player: {fileID: 1297590616}
-  segmento1: {fileID: 4387209418675092, guid: d13f8024be631234bb53ff7e842549b5, type: 2}
-  segmento2: {fileID: 4317208479851758, guid: 1ba3560d2f90c0d4b98bf87ff772ae90, type: 2}
-  segmento3: {fileID: 4556408236777292, guid: 90a5921866dbd6d45acdacc4c0e1bc51, type: 2}
   pointerToCityBeginning: {fileID: 767841292}
   cenaPrincipal: {fileID: 209957537}
   igrejaPrefab: {fileID: 4694049137954290, guid: a3b7ade6dd3c40a499f0ddcdeec8f004,
     type: 2}
+  segmentoInicial: {fileID: 687152311}
 --- !u!114 &302034307
 MonoBehaviour:
   m_ObjectHideFlags: 0

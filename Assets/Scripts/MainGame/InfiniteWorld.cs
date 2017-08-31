@@ -6,10 +6,11 @@ public class InfiniteWorld : MonoBehaviour
 {
     public Transform[] segmentosDif1, segmentosDif2, segmentosDif3, segmentosDif4, segmentosDif5;
     public Transform player;
-    public Transform segmento1, segmento2, segmento3; // Pacotes que guardam os diferentes segmentos da cidade
+    //public Transform segmento1, segmento2, segmento3; // Pacotes que guardam os diferentes segmentos da cidade
     public Transform pointerToCityBeginning; // Ponteiro para o início da cidade
     public SceneController cenaPrincipal;
     public Transform igrejaPrefab;
+    public Transform segmentoInicial;
 
     private Transform[][] matrizDeSegmentos;
     private int currentDif, lastDifUsed = 0;
@@ -124,8 +125,8 @@ public class InfiniteWorld : MonoBehaviour
         float igrejaWidth = instance.GetComponent<BoxCollider2D>().bounds.size.x;
         currentCityEndPos += new Vector3(igrejaWidth + 0.68f * 2, 0, 0);
 
-        // Cria prédios ao lado da igreja (segmento 1)
-        instance = Instantiate(segmento1, segmento1.position + currentCityEndPos + new Vector3(9.5f, 0),
+        // Cria prédios ao lado da igreja (segmento inicial)
+        instance = Instantiate(segmentoInicial, segmentoInicial.position + currentCityEndPos + new Vector3(9.5f, 0.37f),
             new Quaternion(0, 0, 0, 0), this.transform);
         instance.gameObject.SetActive(true);
     }
