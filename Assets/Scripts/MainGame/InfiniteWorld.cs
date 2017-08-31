@@ -7,12 +7,10 @@ public class InfiniteWorld : MonoBehaviour
     public Transform player;
     public Transform segmento1, segmento2, segmento3; // Pacotes que guardam os diferentes segmentos da cidade
     // Ponteiros para o início e o fim dos diferentes segmentos da cidade
-    public Transform beginnigOfSection1, endOfSection1, beginnigOfSection2, endOfSection2, beginnigOfSection3, endOfSection3;
+    public Transform pointerToCityBeginning;
     public SceneController cenaPrincipal;
     public Transform igrejaPrefab;
 
-    private float sectionWidth1, sectionWidth2, sectionWidth3; // Largura dos diferentes segmentos da cidade
-    //private int nIterations; // Quantidade atual de vezes que o script já gerou novos objetos
     private Vector3 currentCityEndPos;
     private float distanceToWin;
     private bool hasCreatedChurch;
@@ -21,21 +19,18 @@ public class InfiniteWorld : MonoBehaviour
 
 	void Start ()
     {
-        sectionWidth1 = endOfSection1.position.x - beginnigOfSection1.position.x;
-        sectionWidth2 = endOfSection2.position.x - beginnigOfSection2.position.x;
-        sectionWidth3 = endOfSection3.position.x - beginnigOfSection3.position.x;
         distanceToWin = cenaPrincipal.distanceToWin;
         hasCreatedChurch = false;
         arrayIndexes = new List<int>() {1, 2, 3};
         nextArrayPointer = GetNextIndex(arrayIndexes, 1);
-        currentCityEndPos = endOfSection1.position;
+        currentCityEndPos = pointerToCityBeginning.position;
         Debug.DrawLine(currentCityEndPos + Vector3.down, currentCityEndPos + Vector3.up, Color.blue, 300f);
     }
 
     void Update ()
     {
         // Se a cidade já cresceu o bastante para terminar o jogo, cria a igreja
-        if (Vector3.Distance(beginnigOfSection1.position, currentCityEndPos) >= distanceToWin)
+        if (Vector3.Distance(pointerToCityBeginning.position, currentCityEndPos) >= distanceToWin)
         {
             if (!hasCreatedChurch)
             {
@@ -47,13 +42,13 @@ public class InfiniteWorld : MonoBehaviour
         // Se o jogador se aproximar do fim da cidade, gera novos objetos
         else if (Vector3.Distance(player.position, currentCityEndPos) < 50)
         {
-            generateMoreObjects();
+            GenerateMoreObjects();
         }
 
         Debug.DrawLine(currentCityEndPos + Vector3.down, currentCityEndPos + Vector3.up, Color.blue);
 	}
 
-    private void generateMoreObjects()
+    private void GenerateMoreObjects()
     {
         Transform instance;
         // Instancia todos os objetos que foram preparados antecipadamente
@@ -66,7 +61,7 @@ public class InfiniteWorld : MonoBehaviour
                 GetComponent<DespawnController>().AdicionarNovoSegmento(instance);
 
                 // Recalcula o fim da cidade
-                currentCityEndPos = currentCityEndPos + Vector3.right * sectionWidth1;
+                currentCityEndPos = currentCityEndPos + Vector3.right * segmento1.GetComponent<SegmentoDeCidade>().GetLength();
                 break;
 
             case 2:
@@ -76,17 +71,17 @@ public class InfiniteWorld : MonoBehaviour
                 GetComponent<DespawnController>().AdicionarNovoSegmento(instance);
 
                 // Recalcula o fim da cidade
-                currentCityEndPos = currentCityEndPos + Vector3.right * sectionWidth2;
+                currentCityEndPos = currentCityEndPos + Vector3.right * segmento2.GetComponent<SegmentoDeCidade>().GetLength();
                 break;
 
             case 3:
-                instance = Instantiate(segmento3, segmento3.position + currentCityEndPos + new Vector3(10, 0),
+                instance = Instantiate(segmento3, segmento3.position + currentCityEndPos + new Vector3(9.46f, 0),
                     new Quaternion(0, 0, 0, 0), this.transform);
                 instance.gameObject.SetActive(true);
                 GetComponent<DespawnController>().AdicionarNovoSegmento(instance);
 
                 // Recalcula o fim da cidade
-                currentCityEndPos = currentCityEndPos + Vector3.right * sectionWidth3;
+                currentCityEndPos = currentCityEndPos + Vector3.right * segmento3.GetComponent<SegmentoDeCidade>().GetLength();
                 break;
         }
 
