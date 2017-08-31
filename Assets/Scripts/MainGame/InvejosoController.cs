@@ -12,6 +12,7 @@ public class InvejosoController : MonoBehaviour
 
     private bool hasJumped = false;
     private bool hasGrippedCar = false;
+    //private Vector2 tempSpeed;
 
 	void Start ()
     {
@@ -25,7 +26,22 @@ public class InvejosoController : MonoBehaviour
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Invejoso"), LayerMask.NameToLayer("PowerUps"));
     }
 
-    void Update ()
+    private void Update()
+    {
+        // Pausa a movimentação quando o jogo estiver pausado
+        if (SceneController.paused && rb2D.constraints == RigidbodyConstraints2D.None)
+        {
+            //tempSpeed = rb2D.velocity;
+            rb2D.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+        else if (!SceneController.paused && rb2D.constraints == RigidbodyConstraints2D.FreezeAll && hasJumped && !hasGrippedCar)
+        {
+            //rb2D.velocity = tempSpeed;
+            rb2D.constraints = RigidbodyConstraints2D.None;
+        }
+    }
+
+    private void FixedUpdate ()
     {
         
         // Quando o invejoso aparecer na tela...
@@ -57,15 +73,4 @@ public class InvejosoController : MonoBehaviour
         rb2D.AddForce(new Vector2(0, jumpForce));
         carro.OnInvejosoVisible();
     }
-
-    /*
-    // Chamada quando o carro manda o invejoso se ativar
-    public void OnActivate()
-    {
-        hasJumped = true;
-
-        // Pula para agarrar o carro luxuoso
-        Jump();
-    }
-    */
 }

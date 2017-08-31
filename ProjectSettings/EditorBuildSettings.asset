@@ -35,3 +35,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Luxuria.unity
     guid: e6e2e6081fccd86429ad4ff543915b59
+  - enabled: 1
+    path: Assets/Scenes/Orgulho.unity
+    guid: 2450cf1d8d9439747838b473891e022c

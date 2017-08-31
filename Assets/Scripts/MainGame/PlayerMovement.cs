@@ -136,6 +136,7 @@ public class PlayerMovement : MonoBehaviour {
         if (jumpInput == 0)
         {
             hasLetGoOfJumpButton = true;
+            isJumping = false;
         }
     }
 
@@ -452,6 +453,7 @@ public class PlayerMovement : MonoBehaviour {
 
         // Começa a ignorar colisões entre o jogador e os inimigos
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemies"));
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Invejoso"));
     }
 
     IEnumerator InvencibilidadeVisualFeedback()
@@ -472,6 +474,7 @@ public class PlayerMovement : MonoBehaviour {
         
         // Para de ignorar colisões entre o jogador e os inimigos
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemies"), false);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Invejoso"), false);
     }
 
     public bool isImortal()

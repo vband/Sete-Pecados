@@ -24,6 +24,7 @@ TagManager:
   - car
   - EnemyInveja
   - EnemyLuxuria
+  - EnemyOrgulho
   layers:
   - Default
   - TransparentFX

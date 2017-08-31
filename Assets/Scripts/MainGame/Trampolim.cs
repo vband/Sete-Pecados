@@ -8,10 +8,12 @@ public class Trampolim : MonoBehaviour
     public LayerMask playerLayer;
 
     //private Vector3 origin;
+    private Color color;
 
     private void Start()
     {
         //origin = GetComponentsInParent<Transform>()[0].position;
+        color = Color.blue;
     }
 
     private void FixedUpdate()
@@ -39,9 +41,9 @@ public class Trampolim : MonoBehaviour
         hitCenter = Physics2D.Raycast(originCenter, Vector2.up, distance, playerLayer);
         hitLeft = Physics2D.Raycast(originLeft, Vector2.up, distance, playerLayer);
         hitRight = Physics2D.Raycast(originRight, Vector2.up, distance, playerLayer);
-        Debug.DrawRay(originCenter, Vector3.up * distance, Color.blue);
-        Debug.DrawRay(originLeft, Vector3.up * distance, Color.blue);
-        Debug.DrawRay(originRight, Vector3.up * distance, Color.blue);
+        Debug.DrawRay(originCenter, Vector3.up * distance, color);
+        Debug.DrawRay(originLeft, Vector3.up * distance, color);
+        Debug.DrawRay(originRight, Vector3.up * distance, color);
 
 
 
@@ -52,14 +54,21 @@ public class Trampolim : MonoBehaviour
             if (hitLeft.collider != null)
             {
                 bouncingObject = hitLeft.collider;
+                color = Color.green;
             }
             else if (hitCenter.collider != null)
             {
                 bouncingObject = hitCenter.collider;
+                color = Color.green;
             }
             else if (hitRight.collider != null)
             {
                 bouncingObject = hitRight.collider;
+                color = Color.green;
+            }
+            else
+            {
+                color = Color.blue;
             }
 
             // Lança o jogador para o alto

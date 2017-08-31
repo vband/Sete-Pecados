@@ -19,11 +19,11 @@ public class MinigameLuxuriaController : MonoBehaviour {
 
     public Text DebugPosition;
     
-    private Vector3 PlayerOffset;
+    //private Vector3 PlayerOffset;
     private Vector3 PlayerScaleOffset;
-    private Vector3 PerseguidorOffset;
+    //private Vector3 PerseguidorOffset;
     private Vector3 PerseguidorScaleOffset;
-    private Color BackGroundColorOffset;
+    //private Color BackGroundColorOffset;
     
     private bool running = false;
     private float parcialPlayer = 0, parcialPerseguidor;
@@ -45,11 +45,11 @@ public class MinigameLuxuriaController : MonoBehaviour {
 #elif UNITY_STANDALONE
         instrucoesPC.gameObject.SetActive(true);
 #endif
-        PlayerOffset = Player.position;//y=220
+        //PlayerOffset = Player.position;//y=220
         PlayerScaleOffset = Player.localScale;
-        PerseguidorOffset = Perseguidor.position;
+        //PerseguidorOffset = Perseguidor.position;
         PerseguidorScaleOffset = Perseguidor.localScale;
-        BackGroundColorOffset = Cam.backgroundColor;
+        //BackGroundColorOffset = Cam.backgroundColor;
 
         AdjustParameters();
         

@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 50725263041641360}
   - component: {fileID: 251135351722480840}
   - component: {fileID: 61237858934503046}
+  - component: {fileID: 114832690878617166}
   m_Layer: 8
   m_Name: Guarda-sol
   m_TagString: Obstacle
@@ -211,6 +212,17 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 16384
+--- !u!114 &114832690878617166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1467626967056182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765d5aa7bd171e04da415ebb16e327f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212157161211459638
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -251,6 +263,8 @@ SpriteRenderer:
   m_Size: {x: 0.16, y: 0.09}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!212 &212265013826959612
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -291,6 +305,8 @@ SpriteRenderer:
   m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!231 &231683917411230636
 SpringJoint2D:
   m_ObjectHideFlags: 1
