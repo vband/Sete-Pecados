@@ -18,9 +18,7 @@ public class ZoiudoScript : MonoBehaviour {
     private void Start()
     {
         Unidade = new Vector3(VelocidadeDeAumento, VelocidadeDeAumento, VelocidadeDeAumento);
-        TamanhoInicial = OlhoEsquerdo.transform.localScale.x;
-        //print(TamanhoInicial);
-        
+        TamanhoInicial = OlhoEsquerdo.transform.localScale.x;  
     }
 
     private void Update()
@@ -56,9 +54,7 @@ public class ZoiudoScript : MonoBehaviour {
         {
             OlhoEsquerdo.transform.localScale += Unidade;
             OlhoDireito.transform.localScale += Unidade;
-            
         }
-       
     }
 
     private void DiminuiOlho()
@@ -67,8 +63,6 @@ public class ZoiudoScript : MonoBehaviour {
         {
             OlhoEsquerdo.transform.localScale -= Unidade;
             OlhoDireito.transform.localScale -= Unidade;
-            
         }
-        
     }
 }

@@ -28,7 +28,6 @@ public class MovimentaZoiudoScript : MonoBehaviour {
             if (!GetComponent<ZoiudoScript>().IsSeeeing || rotationTime == 0.2f)
             {
                 transform.rotation = Quaternion.Lerp(inicio, fim, percentageComplete);
-
             }
             else
             {

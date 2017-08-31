@@ -20,7 +20,8 @@ public class EnemyLuxuriaController : MonoBehaviour {
     {
         inicio:
         yield return new WaitForSeconds(0.5f);
-        if (!SceneController.paused)
+        //tem chance de arremessar os objetos indecentes
+        if (Random.Range(0,100) > 50 && !SceneController.paused)
             Instantiate(Arremecavel, transform.position + Vector3.left, Quaternion.identity);        
         goto inicio;
     }

@@ -64,7 +64,11 @@ public class MiniGameGananciaController : MonoBehaviour {
     private void AtualizaTempo()
     {
         if (tempo < 0)
+        {
             ganhou = true;
+            display_Tempo.GetComponent<Text>().text = "0.0";
+        }
+            
         else if (!ganhou && !perdeu)
         {
             tempo -= Time.deltaTime;

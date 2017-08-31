@@ -20,7 +20,7 @@ public class MinigameOrgulhoController : MonoBehaviour
     private int adsClosed = 0;
 
     // Marcador de dificuldade
-    private static int difficulty = 3;
+    private static int difficulty = 5;
 
 	void Start ()
     {

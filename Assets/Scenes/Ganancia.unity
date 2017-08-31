@@ -1838,7 +1838,7 @@ MonoBehaviour:
   Cam: {fileID: 1248451747}
   display_Tempo: {fileID: 1134713730}
   isPlaying: 0
-  tempo: 7
+  tempo: 10
 --- !u!1 &2076508521
 GameObject:
   m_ObjectHideFlags: 0
