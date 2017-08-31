@@ -400,4 +400,9 @@ public class SceneController : MonoBehaviour
     {
         GetComponent<AudioSource>().pitch = 1.0f;
     }
+
+    public void ButtonVibrate()
+    {
+        Vibration.Vibrate(30);
+    }
 }

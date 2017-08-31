@@ -3,20 +3,17 @@ using UnityEngine;
 
 namespace UnityStandardAssets.CrossPlatformInput
 {
+    
     public class ButtonHandler : MonoBehaviour
     {
 
         public string Name;
 
-        void OnEnable()
-        {
-
-        }
+        void OnEnable() { }
 
         public void SetDownState()
         {
             CrossPlatformInputManager.SetButtonDown(Name);
-            
         }
 
 
@@ -43,9 +40,6 @@ namespace UnityStandardAssets.CrossPlatformInput
             CrossPlatformInputManager.SetAxisNegative(Name);
         }
 
-        public void Update()
-        {
-
-        }
+        public void Update() { }
     }
 }

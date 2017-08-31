@@ -331,6 +331,7 @@ public class MinigamePreguiçaController : MonoBehaviour
 #if UNITY_ANDROID
         if (Input.touchCount > 0)
         {
+            Vibration.Vibrate(30);
             buttonPressedTime = Time.time;
         }
 #endif

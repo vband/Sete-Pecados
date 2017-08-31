@@ -37,7 +37,7 @@ public class MinigameOrgulhoController : MonoBehaviour
             RectTransform instance = Instantiate(AnuncioPrefab, canvasAnuncios.transform);
 
             // Define o que acontece quando clicam no botão
-            instance.GetComponentInChildren<Button>().onClick.AddListener(delegate { CloseAd(instance.gameObject); });
+            instance.GetComponentInChildren<Button>().onClick.AddListener(delegate { CloseAd(instance.gameObject); Vibration.Vibrate(30); });
 
             // Define a imagem
             instance.GetComponent<Image>().sprite = anuncioImagens[adIndex];

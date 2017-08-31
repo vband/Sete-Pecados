@@ -77,6 +77,7 @@ public class MouthController : MonoBehaviour
     // Fecha a boca
     public void CloseMouth()
     {
+        Vibration.Vibrate(30);
         imageController.sprite = closedMouth;
         state = CLOSED;
     }

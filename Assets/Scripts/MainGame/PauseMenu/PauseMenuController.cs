@@ -12,6 +12,7 @@ public class PauseMenuController : MonoBehaviour {
 
     public void AtivaMenu(bool estado)
     {
+        Vibration.Vibrate(30);
         switch (estado)
         {
             case true:
@@ -53,6 +54,7 @@ public class PauseMenuController : MonoBehaviour {
 
     public void VoltarParaMenuOnClick()
     {
+        Vibration.Vibrate(30);
         Time.timeScale = 1;
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MainMenu");
     }

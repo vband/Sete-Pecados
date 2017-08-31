@@ -21,10 +21,12 @@ public class CommentController : MonoBehaviour
         if (isAggressive)
         {
             GetComponentInParent<MinigameIraController>().AggressiveCommentOnClick();
+            Vibration.Vibrate(30);
         }
         else
         {
             GetComponentInParent<MinigameIraController>().PoliteCommentOnClick();
+            Vibration.Vibrate(60);
         }
     }
 }

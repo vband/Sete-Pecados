@@ -56,7 +56,7 @@ public class MinigameInvejaController: MonoBehaviour {
                                         zPosition), Quaternion.identity, transform);
             instance.GetComponentInChildren<ParDeOlhosController>().SetTarget(Target.transform);
 
-            instance.GetComponent<Button>().onClick.AddListener(delegate { RostoCerto(); });
+            instance.GetComponent<Button>().onClick.AddListener(delegate { RostoCerto(); Vibration.Vibrate(30); });
 
             listaCerto.Add(instance);
         }
@@ -69,7 +69,7 @@ public class MinigameInvejaController: MonoBehaviour {
 
             instance.GetComponentInChildren<ParDeOlhosController>().SetTarget(Target.transform, modo);
 
-            instance.GetComponent<Button>().onClick.AddListener(delegate { RostoErrado(); });
+            instance.GetComponent<Button>().onClick.AddListener(delegate { RostoErrado(); Vibration.Vibrate(30); });
 
             listaErrado.Add(instance);
         }

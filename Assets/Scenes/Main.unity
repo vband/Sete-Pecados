@@ -933,6 +933,17 @@ MonoBehaviour:
             m_StringArgument: Jump
             m_BoolArgument: 0
           m_CallState: 1
+        - m_Target: {fileID: 209957537}
+          m_MethodName: ButtonVibrate
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 3
@@ -5195,12 +5206,12 @@ Prefab:
     - target: {fileID: 224928651327859604, guid: aa54dea07fe3536448ec4b8406419a0e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -19.35
       objectReference: {fileID: 0}
     - target: {fileID: 224928651327859604, guid: aa54dea07fe3536448ec4b8406419a0e,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 38.7
       objectReference: {fileID: 0}
     - target: {fileID: 224196225074152684, guid: aa54dea07fe3536448ec4b8406419a0e,
         type: 2}
@@ -5220,12 +5231,12 @@ Prefab:
     - target: {fileID: 224196225074152684, guid: aa54dea07fe3536448ec4b8406419a0e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -19.35
       objectReference: {fileID: 0}
     - target: {fileID: 224196225074152684, guid: aa54dea07fe3536448ec4b8406419a0e,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 38.7
       objectReference: {fileID: 0}
     - target: {fileID: 224205757215567158, guid: aa54dea07fe3536448ec4b8406419a0e,
         type: 2}
@@ -5245,12 +5256,12 @@ Prefab:
     - target: {fileID: 224205757215567158, guid: aa54dea07fe3536448ec4b8406419a0e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -19.35
       objectReference: {fileID: 0}
     - target: {fileID: 224205757215567158, guid: aa54dea07fe3536448ec4b8406419a0e,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 38.7
       objectReference: {fileID: 0}
     - target: {fileID: 114761891471473628, guid: aa54dea07fe3536448ec4b8406419a0e,
         type: 2}
@@ -6200,14 +6211,25 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 209957537}
+          m_MethodName: ButtonVibrate
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 3
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1165383034}
-          m_MethodName: SetAxisNeutralState
+        - m_Target: {fileID: 209957537}
+          m_MethodName: ButtonVibrate
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6517,6 +6539,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 209957537}
+          m_MethodName: ButtonVibrate
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 3
@@ -6525,6 +6558,17 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1233217598}
           m_MethodName: SetAxisNeutralState
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 209957537}
+          m_MethodName: ButtonVibrate
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -7750,6 +7794,17 @@ MonoBehaviour:
             m_StringArgument: Jump
             m_BoolArgument: 0
           m_CallState: 1
+        - m_Target: {fileID: 209957537}
+          m_MethodName: ButtonVibrate
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 3
@@ -7946,6 +8001,17 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1770824337}
           m_MethodName: SetAxisNegativeState
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 209957537}
+          m_MethodName: ButtonVibrate
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

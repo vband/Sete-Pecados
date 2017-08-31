@@ -236,6 +236,7 @@ public class MainMenu : MonoBehaviour
 
     public void AtualizaMudo()
     {
+        HapticVibration();
         MudoKey = CaixaVolumeMudo.isOn;
         AudioListener.pause = MudoKey;
         if (CaixaVolumeMudo.isOn == false && SliderVolume.value < 0.1f)
@@ -253,14 +254,13 @@ public class MainMenu : MonoBehaviour
         {
             InputKey = VIRTUAL;
         }
-
+        HapticVibration();
         SalvarPreferencias();
     }
 
     //=========VOID DE SALVAMENTO==========//
     public void SalvarPreferencias() //chamar sempre que alterar opcoes
     {
-        
         PlayerPrefs.SetInt("MUDO", Convert.ToInt32(MudoKey));
         PlayerPrefs.SetFloat("VOLUME", SliderVolume.value);
         PlayerPrefs.SetInt("INPUTCONFIG", InputKey);
@@ -270,52 +270,65 @@ public class MainMenu : MonoBehaviour
 
     public void Jogar()
     {
+        HapticVibration();
         AtualizaMenu(MODODEJOGO);
     }
 
     public void Classico()
     {
+        HapticVibration();
         LivesController.InitVidas();
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
 
     public void Minigames()
     {
-
+        HapticVibration();
     }
 
     public void SemFim()
     {
-
+        HapticVibration();
     }
 
     public void Opcoes()
     {
+        HapticVibration();
         AtualizaMenu(OPCOES);
     }
 
     public void MostrarCreditos()
     {
+        HapticVibration();
         AtualizaMenu(CREDITOS);
     }
 
     public void VoltarOpcoes()
     {
+        HapticVibration();
         AtualizaMenu(INICIAL);
     }
 
     public void VoltarCreditos()
     {
+        HapticVibration();
         AtualizaMenu(OPCOES);
     }
 
     public void VoltarModoDeJogo()
     {
+        HapticVibration();
         AtualizaMenu(INICIAL);
     }
 
     public void Sair()
     {
+        HapticVibration();
         Application.Quit();
+    }
+
+    private void HapticVibration()
+    {
+        Vibration.Vibrate(30);
     }
 }
