@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: df16976e21d099c4e9b3db29be135898
+timeCreated: 1504244710
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Double Pixel-7
+  fontNames:
+  - Double Pixel-7
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
