@@ -18,6 +18,10 @@ public class GameOverBehaviour : MonoBehaviour
         if (restart)
         {
             carregandoText.gameObject.SetActive(true);
+            scoreText.gameObject.SetActive(false);
+            gameOverText.gameObject.SetActive(false);
+            jogarButton.gameObject.SetActive(false);
+            voltarButton.gameObject.SetActive(false);
             LoadGame();
         }
         else

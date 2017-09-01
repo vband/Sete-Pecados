@@ -710,7 +710,7 @@ MonoBehaviour:
   beginningOfWorld: {fileID: 1591121102}
   progressBarFrame: {fileID: 1180567118}
   PainelPowerUp: {fileID: 563259968}
-  distanceToWin: 800
+  distanceToWin: 400
   rostoFalamaia: {fileID: 1878876648}
   mainCamera: {fileID: 933721084}
   VoltarParaMenu: {fileID: 194437642}
@@ -1299,13 +1299,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51394a05da1129347a39b0e82b96a482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  segmentosDif1:
+  - {fileID: 4899591321213458, guid: 42ce9ea30c828c44ea4104f962d60c75, type: 2}
+  - {fileID: 4175788033033110, guid: d3ca00e022d9e944d85cb3d6260f689a, type: 2}
+  - {fileID: 4760051421187018, guid: cb489633ec4452c41bdde6cddaccf07b, type: 2}
+  segmentosDif2:
+  - {fileID: 4293723953438222, guid: c4747af02a2cd51498f8cb3acf2877dd, type: 2}
+  - {fileID: 4580184050625890, guid: b42e9fd79e53cb842a2767f5c7c82cca, type: 2}
+  - {fileID: 4121381204502518, guid: cfe710430b81a7c4199633fc35aa6e12, type: 2}
+  segmentosDif3:
+  - {fileID: 4435089368703070, guid: 8f29b1755e441824d8eef42b528f03d5, type: 2}
+  - {fileID: 4234147148117918, guid: cd4c413ba730c6847882b72577119da6, type: 2}
+  - {fileID: 4524169230946336, guid: 91f5a82e252e4824d9d32a146fd3572c, type: 2}
+  segmentosDif4:
+  - {fileID: 4054048833714130, guid: f387f67529d710a458de79fc24a940bf, type: 2}
+  - {fileID: 4366878738779762, guid: 06dacb7021e941b488d7e5546ba342b8, type: 2}
+  - {fileID: 4139959813240280, guid: 547cf664e5530074b888006b4acb7adc, type: 2}
+  segmentosDif5:
+  - {fileID: 4943451770332788, guid: 6b929e81b36c5bf45991fb6eb4b14c0f, type: 2}
+  - {fileID: 4154167692639510, guid: 737443ffdb81a004e994b19924d2c09b, type: 2}
+  - {fileID: 4466079355264950, guid: a56fc0b84b2769a429bb4cca992efc89, type: 2}
   player: {fileID: 1297590616}
-  segmento1: {fileID: 4387209418675092, guid: d13f8024be631234bb53ff7e842549b5, type: 2}
-  segmento2: {fileID: 4317208479851758, guid: 1ba3560d2f90c0d4b98bf87ff772ae90, type: 2}
-  segmento3: {fileID: 4556408236777292, guid: 90a5921866dbd6d45acdacc4c0e1bc51, type: 2}
   pointerToCityBeginning: {fileID: 767841292}
   cenaPrincipal: {fileID: 209957537}
   igrejaPrefab: {fileID: 4694049137954290, guid: a3b7ade6dd3c40a499f0ddcdeec8f004,
+    type: 2}
+  segmentoInicial: {fileID: 4765082268599812, guid: f28cc76efa4522346a83c9c1932f068b,
     type: 2}
 --- !u!114 &302034307
 MonoBehaviour:
@@ -5399,10 +5418,6 @@ Prefab:
     - target: {fileID: 4765082268599812, guid: f28cc76efa4522346a83c9c1932f068b, type: 2}
       propertyPath: m_RootOrder
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1995836970498708, guid: f28cc76efa4522346a83c9c1932f068b, type: 2}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f28cc76efa4522346a83c9c1932f068b, type: 2}
@@ -11751,11 +11766,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 933721085}
     m_Modifications:
-    - target: {fileID: 114594443831082998, guid: 71fa341a247929549a17b659fc781318,
-        type: 2}
-      propertyPath: InimigosTerrestres.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4585884517566830, guid: 71fa341a247929549a17b659fc781318, type: 2}
       propertyPath: m_LocalPosition.x
       value: 15
@@ -11803,12 +11813,6 @@ Prefab:
       propertyPath: espirito_canvas
       value: 
       objectReference: {fileID: 1664475156}
-    - target: {fileID: 114594443831082998, guid: 71fa341a247929549a17b659fc781318,
-        type: 2}
-      propertyPath: InimigosTerrestres.Array.data[3]
-      value: 
-      objectReference: {fileID: 1901824605084676, guid: 28f3eb2fe62c76c4aae024fe46a8fbaa,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 71fa341a247929549a17b659fc781318, type: 2}
   m_IsPrefabParent: 0

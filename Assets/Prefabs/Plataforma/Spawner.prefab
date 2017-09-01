@@ -106,6 +106,7 @@ MonoBehaviour:
   - {fileID: 1102780570716508, guid: b886a1db31c7c0447be0bbe119245a45, type: 2}
   - {fileID: 1666402556106878, guid: ec9cd8c9d26360c4f8e66f0601a01f7d, type: 2}
   - {fileID: 1197867747735914, guid: 4ebc1aebb411b5c40931c72eb0609490, type: 2}
+  - {fileID: 1901824605084676, guid: 28f3eb2fe62c76c4aae024fe46a8fbaa, type: 2}
   InimigosAlados:
   - {fileID: 1235134180583598, guid: ecc9437927e3caa46b7c1042d828c5fb, type: 2}
 --- !u!212 &212479697696375234
