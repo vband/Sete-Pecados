@@ -24,6 +24,8 @@ public class MinigameLuxuriaController : MonoBehaviour {
     //private Vector3 PerseguidorOffset;
     private Vector3 PerseguidorScaleOffset;
     //private Color BackGroundColorOffset;
+
+    private float DistanciaFinal = 0f;
     
     private bool running = false;
     private float parcialPlayer = 0, parcialPerseguidor;
@@ -32,6 +34,8 @@ public class MinigameLuxuriaController : MonoBehaviour {
     private float velocidadeDoPutao = 2f;
 
     private bool FimDeJogo = false;
+
+    private KeyCode lastPress = KeyCode.None;
 
     private void Awake()
     {
@@ -60,7 +64,7 @@ public class MinigameLuxuriaController : MonoBehaviour {
 
     private void Update()
     {
-        WinCondition();
+        
         //debug only
         /*
         if (Input.GetMouseButtonDown(0))
@@ -71,15 +75,9 @@ public class MinigameLuxuriaController : MonoBehaviour {
             running = true;
         }
         */
-
-    }
-
-
-    // Update is called once per frame
-    void FixedUpdate() {
         if (running)
         {
-            if (ShakeDetection.shakeEvent || Input.GetKeyDown(KeyCode.Space))
+            if (ShakeDetection.shakeEvent || KeyboardInput())
             {
                 MovePlayer();
             }
@@ -87,11 +85,25 @@ public class MinigameLuxuriaController : MonoBehaviour {
             MovePutao();
         }
 
-        //vibra de acordo com a proximidade com a vitoria
-        //Vibration.Vibrate(((long)(parcialPlayer * 1000)) / 16);
-        //VibraDeAcordoComAProximidadeDeGanhar();
+        WinCondition();
 
     }
+
+    private bool KeyboardInput()
+    {
+        if (Input.GetKeyDown(KeyCode.A) && (lastPress == KeyCode.D || lastPress == KeyCode.None))
+        {
+            lastPress = KeyCode.A;
+            return true;
+        }
+        else if (Input.GetKeyDown(KeyCode.D) && (lastPress == KeyCode.A || lastPress == KeyCode.None))
+        {
+            lastPress = KeyCode.D;
+            return true;
+        }
+        else
+            return false;
+    } 
 
     private void VibraDeAcordoComAProximidadeDeGanhar()
     {
@@ -157,12 +169,25 @@ public class MinigameLuxuriaController : MonoBehaviour {
             {
                 FimDeJogo = true;
                 running = false;
-                Cam.backgroundColor = new Color(0, 1, 0);
-                ganhou.gameObject.SetActive(true);
+                DistanciaFinal = Vector2.Distance(Player.localPosition, Perseguidor.localPosition);
+                //Debug.Log(DistanciaFinal);
                 StopCoroutine(ControlaVibrador());
 
-                Vibration.Vibrate(4000);
-                GetComponent<WinOrLoseScript>().Venceu();
+                if (DistanciaFinal > 250)
+                {
+                    Cam.backgroundColor = new Color(1, 1, 1);
+                    Vibration.Vibrate(2500);
+                    perfect.gameObject.SetActive(true);
+                    GetComponent<WinOrLoseScript>().Perfect();
+                } 
+                else
+                {
+                    Cam.backgroundColor = new Color(0, 1, 0);
+                    Vibration.Vibrate(1500);
+                    ganhou.gameObject.SetActive(true);
+                    GetComponent<WinOrLoseScript>().Venceu();
+                }
+                    
             }
             //derrota
             if (Perseguidor.localPosition.y <= Player.localPosition.y)
