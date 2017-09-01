@@ -779,7 +779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -879,12 +879,12 @@ GameObject:
   - component: {fileID: 1443560396}
   - component: {fileID: 1443560395}
   m_Layer: 5
-  m_Name: PressioneEspaco
+  m_Name: Pressione A ou D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1443560394
 RectTransform:
   m_ObjectHideFlags: 0
@@ -900,8 +900,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0005493164, y: -60.599365}
-  m_SizeDelta: {x: 310.6, y: 60.73}
+  m_AnchoredPosition: {x: 0.00034331996, y: -60.599365}
+  m_SizeDelta: {x: 490.98, y: 60.73}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1443560395
 MonoBehaviour:
@@ -929,13 +929,13 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 72
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Pressione espa\xE7o!"
+  m_Text: Pressione A e D para correr!
 --- !u!222 &1443560396
 CanvasRenderer:
   m_ObjectHideFlags: 0

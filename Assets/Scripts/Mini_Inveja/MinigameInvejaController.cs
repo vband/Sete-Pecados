@@ -14,7 +14,7 @@ public class MinigameInvejaController: MonoBehaviour {
     public List<GameObject> Rostos;
 
     //dificuldade
-    private static int difficulty;
+    private static int difficulty = 3 ;
     private int tot_errado;
     private int tot_certo;
     private int modo;
@@ -127,7 +127,7 @@ public class MinigameInvejaController: MonoBehaviour {
                 tot_errado = 25;
                 modo = ALEATORIO;
                 break;
-            default: //case sem entrada, ativa o mais facil
+            default: //case sem entrada
                 tot_certo = 1;
                 tot_errado = 20;
                 modo = ALEATORIO;

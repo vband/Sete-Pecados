@@ -13,6 +13,7 @@ public class ParDeOlhosController : MonoBehaviour {
 
     const int CORRETO = 0, FRENTE = 1, OPOSTO = 2, ALEATORIO = 3;
 
+    [HideInInspector] public float AnguloRotacao = 0;
 
     // Use this for initialization
     void Start() {
@@ -21,6 +22,7 @@ public class ParDeOlhosController : MonoBehaviour {
         AZUL = Color.cyan;
         VERDE = new Color(0.341f, 0.901f, 0.360f);
 
+        AnguloRotacao = Random.Range(-90, 90);
 
         Color cor = PickRandomColor();
         for (int i = 0; i < transform.childCount; i++)

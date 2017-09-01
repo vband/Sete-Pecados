@@ -26,13 +26,12 @@ public class SingleEyeLook : MonoBehaviour {
         //target = GetComponentInParent<ParDeOlhosController>().Target;
         
         iris_max_raio = GetComponentInParent<ParDeOlhosController>().iris_max_raio;
-        AnguloRotacao = Random.Range(-90, 90);
+        AnguloRotacao = GetComponentInParent<ParDeOlhosController>().AnguloRotacao;
     }
 	
 	// Update is called once per frame
 	void Update () {
         IrisLookAt();
-        
     }
 
     public void IrisLookAt()
@@ -59,9 +58,7 @@ public class SingleEyeLook : MonoBehaviour {
                 OlharNormalizado = (target.position - iris.position).normalized;
                 OlharNormalizado = Quaternion.Euler(0, 0, AnguloRotacao) * OlharNormalizado;
                 iris.position = ((OlharNormalizado * iris_max_raio) * (-1)) + GloboOcular.position;
-            }
-        
-            
+            }   
         }
     }
 
