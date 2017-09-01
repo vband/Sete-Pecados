@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: fde99912583f4174299f798cbecba63a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GananciaOLD.unity
     guid: 3fe5384ac74244f4f8e2e5a3906f83bc
   - enabled: 1

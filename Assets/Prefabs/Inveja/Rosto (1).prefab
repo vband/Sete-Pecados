@@ -275,6 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iris: {fileID: 4241089953819644}
   target: {fileID: 0}
+  modo: 0
 --- !u!114 &114114935217661386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -294,7 +295,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: ad60b7f2e1b1827498fb32ea52797229, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c94b72baf55f65c4995ea1bfa05c393a, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -315,6 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iris: {fileID: 4839004463760414}
   target: {fileID: 0}
+  modo: 0
 --- !u!114 &114370986008234236
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -328,6 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RamdomColor: 1
   iris_max_raio: 0.04
+  AnguloRotacao: 0
 --- !u!114 &114472652168958416
 MonoBehaviour:
   m_ObjectHideFlags: 1
