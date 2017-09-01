@@ -43,7 +43,7 @@ public class InputManagerGanancia : MonoBehaviour
 
         mousePosition = Input.mousePosition + new Vector3(0, 0, 10);
         temp = cam.ScreenToWorldPoint(mousePosition);
-        _Ball.transform.transform.position = new Vector3(temp.x, temp.y, temp.z);
+        _Ball.transform.transform.position = new Vector3(temp.x, temp.y + 0.2f, temp.z);
 #endif
         //cuida da trajetoria circular
         

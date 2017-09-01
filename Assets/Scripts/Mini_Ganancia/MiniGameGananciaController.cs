@@ -13,9 +13,11 @@ public class MiniGameGananciaController : MonoBehaviour {
     private bool ganhou = false;
     private bool perfect = true;
     [SerializeField] private float tempo;
+    private static int difficulty = 5;
 
     // Use this for initialization
     void Start() {
+        AdjustParameters();
         //inicializa o contador de tempo
         display_Tempo.GetComponent<Text>().text = tempo.ToString("F1");
 
@@ -75,4 +77,35 @@ public class MiniGameGananciaController : MonoBehaviour {
             display_Tempo.GetComponent<Text>().text = tempo.ToString("F1");
         }
     }
+
+    public static void SetDifficulty(int dif)
+    {
+        difficulty = dif;
+    }
+
+    // Baseado na dificuldade, ajusta os parâmetros do minigame, a saber: 
+    // multiplicador de velocidade do putao
+    private void AdjustParameters()
+    {
+        switch (difficulty)
+        {
+            case 1:
+                MovimentaZoiudoScript.rotationTime = 2f;
+                break;
+            case 2:
+                MovimentaZoiudoScript.rotationTime = 1.7f;
+                break;
+
+            case 3:
+                MovimentaZoiudoScript.rotationTime = 1.4f;
+                break;
+            case 4:
+                MovimentaZoiudoScript.rotationTime = 1.1f;
+                break;
+            case 5:
+                MovimentaZoiudoScript.rotationTime = 0.8f;
+                break;
+        }
+    }
+
 }

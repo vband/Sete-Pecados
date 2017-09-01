@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class MovimentaZoiudoScript : MonoBehaviour {
 
-    [SerializeField] private float rotationTime;
+    public static float rotationTime;
     [SerializeField] private GameObject GM;
     private Quaternion inicio;
     private Quaternion fim;
 
     private float timeStartedLerping;
     private bool isLerping = false;
+
+    private float rotacao = 0;
 
     private void Start()
     {
@@ -45,18 +47,25 @@ public class MovimentaZoiudoScript : MonoBehaviour {
         {
             StopCoroutine(AIRoutine());
             rotationTime = 0.2f;
-            IniciaRotacao(0);
+            IniciaRotateTo(0);
         }
     }
 
     private void IniciaRotacao(float angulo)
     {
+        inicio = transform.rotation;
+        fim = Quaternion.Euler(new Vector3(0, angulo, 0)) * inicio; //soma a rotacao com o novo angulo sorteado 
 
+        timeStartedLerping = Time.time;
+        
+    }
+
+    private void IniciaRotateTo(float angulo)
+    {
         inicio = transform.rotation;
         fim = Quaternion.Euler(new Vector3(0, angulo, 0));
 
         timeStartedLerping = Time.time;
-        isLerping = true;
     }
 
     private void StartAI()
@@ -68,9 +77,29 @@ public class MovimentaZoiudoScript : MonoBehaviour {
     {
         yield return new WaitUntil(() => GM.GetComponent<MiniGameGananciaController>().isPlaying == true);
         inicio:
-        IniciaRotacao(Random.Range(-360, 360));
+        IniciaRotacao(RotacaoAleatoria());
+        isLerping = true;
         yield return new WaitUntil(() => isLerping == false);
-        IniciaRotacao(Random.Range(-360, 360));
         goto inicio;
+    }
+
+
+    private float RotacaoAleatoria()
+    {
+        
+        
+        if (Random.Range(0, 100) > 50)
+        {
+            rotacao = Random.Range(45, 270);
+            Debug.Log(rotacao);
+            return rotacao;
+        }
+        else
+        {
+            rotacao = Random.Range(-45, -270);
+            Debug.Log(rotacao);
+            return rotacao;
+        }
+        
     }
 }
