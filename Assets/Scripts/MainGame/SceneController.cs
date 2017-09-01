@@ -251,6 +251,9 @@ public class SceneController : MonoBehaviour
             mecanica.SetDifficulty(1);
             MinigameGulaController.SetDifficulty(1);
             MinigameOrgulhoController.SetDifficulty(1);
+            MiniGameGananciaController.SetDifficulty(1);
+            MinigameLuxuriaController.SetDifficulty(1);
+            MinigameInvejaController.SetDifficulty(1);
         }
         else if (progressBar.fillAmount <= 0.4)
         {
@@ -259,6 +262,9 @@ public class SceneController : MonoBehaviour
             mecanica.SetDifficulty(2);
             MinigameGulaController.SetDifficulty(2);
             MinigameOrgulhoController.SetDifficulty(2);
+            MiniGameGananciaController.SetDifficulty(2);
+            MinigameLuxuriaController.SetDifficulty(2);
+            MinigameInvejaController.SetDifficulty(2);
         }
         else if (progressBar.fillAmount <= 0.6)
         {
@@ -267,6 +273,9 @@ public class SceneController : MonoBehaviour
             mecanica.SetDifficulty(3);
             MinigameGulaController.SetDifficulty(3);
             MinigameOrgulhoController.SetDifficulty(3);
+            MiniGameGananciaController.SetDifficulty(3);
+            MinigameLuxuriaController.SetDifficulty(3);
+            MinigameInvejaController.SetDifficulty(3);
         }
         else if (progressBar.fillAmount <= 0.8)
         {
@@ -275,6 +284,9 @@ public class SceneController : MonoBehaviour
             mecanica.SetDifficulty(4);
             MinigameGulaController.SetDifficulty(4);
             MinigameOrgulhoController.SetDifficulty(4);
+            MiniGameGananciaController.SetDifficulty(4);
+            MinigameLuxuriaController.SetDifficulty(4);
+            MinigameInvejaController.SetDifficulty(4);
         }
         else
         {
@@ -283,6 +295,9 @@ public class SceneController : MonoBehaviour
             mecanica.SetDifficulty(5);
             MinigameGulaController.SetDifficulty(5);
             MinigameOrgulhoController.SetDifficulty(5);
+            MiniGameGananciaController.SetDifficulty(5);
+            MinigameLuxuriaController.SetDifficulty(5);
+            MinigameInvejaController.SetDifficulty(5);
         }
     }
 
