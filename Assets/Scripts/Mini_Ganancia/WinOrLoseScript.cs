@@ -9,6 +9,10 @@ public class WinOrLoseScript : MonoBehaviour {
         GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
         Screen.orientation = ScreenOrientation.AutoRotation;
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+#if UNITY_ANDROID
+        Screen.orientation = ScreenOrientation.Landscape;
+        Screen.orientation = ScreenOrientation.AutoRotation;
+#endif
     }
 
     public void Perdeu()
@@ -16,6 +20,10 @@ public class WinOrLoseScript : MonoBehaviour {
         Screen.orientation = ScreenOrientation.AutoRotation;
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
         LivesController.RemVidas();
+#if UNITY_ANDROID
+        Screen.orientation = ScreenOrientation.Landscape;
+        Screen.orientation = ScreenOrientation.AutoRotation;
+#endif
     }
 
     public void Perfect()
@@ -24,5 +32,9 @@ public class WinOrLoseScript : MonoBehaviour {
         GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
         Screen.orientation = ScreenOrientation.AutoRotation;
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+#if UNITY_ANDROID
+        Screen.orientation = ScreenOrientation.Landscape;
+        Screen.orientation = ScreenOrientation.AutoRotation;
+#endif
     }
 }
