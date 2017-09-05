@@ -29,7 +29,9 @@ public class SceneController : MonoBehaviour
     private bool intro;
     private float playerInitPos, playerEndPos, deltaDistance;
 
-    
+    private float fillAmount = 0;
+
+
     private GameObject igreja;
     [HideInInspector] public static bool winAnimation = false;
     [HideInInspector] public static bool hasGameFinished = false;
@@ -171,7 +173,7 @@ public class SceneController : MonoBehaviour
     private void ProgressBar()
     {
         // Atualiza o enchimento da barra de progresso
-        float fillAmount = player.position.x / deltaDistance;
+        fillAmount = player.position.x / deltaDistance;
         float preenchimento = 800 - 800 * fillAmount;
         float correctPos = -preenchimento + 380;
         //ajusta preenchimento da barra
@@ -196,7 +198,7 @@ public class SceneController : MonoBehaviour
     {
         // Divide o progresso do jogo em 5 segmentos, e
         // estabelece um nível de dificuldade para cada um.
-        if (progressBar.fillAmount <= 0.2)
+        if (fillAmount <= 0.2)
         {
             MinigameIraController.SetDifficulty(1);
             MinigamePreguiçaController.SetDifficulty(1);
@@ -207,7 +209,7 @@ public class SceneController : MonoBehaviour
             MinigameLuxuriaController.SetDifficulty(1);
             MinigameInvejaController.SetDifficulty(1);
         }
-        else if (progressBar.fillAmount <= 0.4)
+        else if (fillAmount <= 0.4)
         {
             MinigameIraController.SetDifficulty(2);
             MinigamePreguiçaController.SetDifficulty(2);
@@ -218,7 +220,7 @@ public class SceneController : MonoBehaviour
             MinigameLuxuriaController.SetDifficulty(2);
             MinigameInvejaController.SetDifficulty(2);
         }
-        else if (progressBar.fillAmount <= 0.6)
+        else if (fillAmount <= 0.6)
         {
             MinigameIraController.SetDifficulty(3);
             MinigamePreguiçaController.SetDifficulty(3);
@@ -229,7 +231,7 @@ public class SceneController : MonoBehaviour
             MinigameLuxuriaController.SetDifficulty(3);
             MinigameInvejaController.SetDifficulty(3);
         }
-        else if (progressBar.fillAmount <= 0.8)
+        else if (fillAmount <= 0.8)
         {
             MinigameIraController.SetDifficulty(4);
             MinigamePreguiçaController.SetDifficulty(4);
