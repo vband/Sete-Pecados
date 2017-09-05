@@ -1537,12 +1537,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114433871304293170, guid: 4ebc1aebb411b5c40931c72eb0609490,
-        type: 2}
-      propertyPath: Arremecavel
-      value: 
-      objectReference: {fileID: 1490327975814784, guid: ecc810ba08f0f8041bafe1a8619732e5,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4ebc1aebb411b5c40931c72eb0609490, type: 2}
   m_IsPrefabParent: 0
