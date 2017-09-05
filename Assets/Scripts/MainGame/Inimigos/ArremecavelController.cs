@@ -15,7 +15,9 @@ public class ArremecavelController : MonoBehaviour {
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        sr.color = RandomColor();
         velocidade = new Vector2(ArremecavelVelocity, 0);
+        rb.AddTorque(10);
 	}
 	
 	// Update is called once per frame
@@ -27,4 +29,25 @@ public class ArremecavelController : MonoBehaviour {
         if(!sr.isVisible)
             Destroy(this.gameObject);
 	}
+
+    Color RandomColor()
+    {
+        switch (Random.Range(0, 6))
+        {
+            case 0:
+                return Color.red;
+            case 1:
+                return Color.magenta;
+            case 2:
+                return Color.yellow;
+            case 3:
+                return Color.black;
+            case 4:
+                return Color.green;
+            case 5:
+                return Color.blue;
+            default:
+                return Color.red;
+        }
+    }
 }

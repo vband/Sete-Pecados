@@ -19,7 +19,7 @@ public class EnemyLuxuriaController : MonoBehaviour {
     IEnumerator Arremassador()
     {
         inicio:
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.8f);
         //tem chance de arremessar os objetos indecentes
         if (Random.Range(0,100) > 50 && !SceneController.paused)
             Instantiate(Arremecavel, transform.position + Vector3.left, Quaternion.identity);        
