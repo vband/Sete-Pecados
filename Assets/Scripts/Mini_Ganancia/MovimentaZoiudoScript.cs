@@ -91,13 +91,11 @@ public class MovimentaZoiudoScript : MonoBehaviour {
         if (Random.Range(0, 100) > 50)
         {
             rotacao = Random.Range(45, 270);
-            Debug.Log(rotacao);
             return rotacao;
         }
         else
         {
             rotacao = Random.Range(-45, -270);
-            Debug.Log(rotacao);
             return rotacao;
         }
         
