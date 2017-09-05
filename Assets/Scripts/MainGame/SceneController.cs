@@ -15,6 +15,8 @@ public class SceneController : MonoBehaviour
     public Transform beginningOfWorld;
     public RectTransform progressBarFrame;
     public Transform PainelPowerUp;
+    public Animator CanvasHud;
+    public GameObject Background;
     // Distância que o jogador precisa percorrer para ganhar
     public float distanceToWin;
     public RectTransform rostoFalamaia;
@@ -23,21 +25,16 @@ public class SceneController : MonoBehaviour
     public Button JogarDeNovo;
     public Text almasSalvasText;
     public RectTransform lowLivesWarning;
-    public float warningTimeInterval;
-    public int warningTimesLimit;
 
     private bool intro;
     private float playerInitPos, playerEndPos, deltaDistance;
-    private float progressBarWidth;
-    private float warningTimer;
-    private int warningCounter;
+
     
     private GameObject igreja;
     [HideInInspector] public static bool winAnimation = false;
     [HideInInspector] public static bool hasGameFinished = false;
     [HideInInspector] public static bool created = false;
     [HideInInspector] public static bool paused = false;
-    [HideInInspector] public bool isWarning = false; // True se o aviso de vida baixa está ocorrendo
 
     private const int JOYSTICK = 0, VIRTUAL = 1;
 
@@ -52,7 +49,6 @@ public class SceneController : MonoBehaviour
         playerInitPos = beginningOfWorld.position.x;
         playerEndPos = playerInitPos + distanceToWin;
         deltaDistance = Mathf.Abs(playerEndPos - playerInitPos);
-        progressBarWidth = progressBar.GetComponent<RectTransform>().rect.width;
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("PowerUps"));
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("Enemies"));
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("AguaBentaPowerUp"), LayerMask.NameToLayer("PowerUps"));
@@ -62,7 +58,6 @@ public class SceneController : MonoBehaviour
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Environment"), LayerMask.NameToLayer("AguaBentaPowerUp"));
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("UI"));
         intro = true;
-        warningCounter = 0;
 
 #if UNITY_STANDALONE_WIN
         pauseButton.gameObject.SetActive(false);
@@ -109,7 +104,7 @@ public class SceneController : MonoBehaviour
         {
             PainelPowerUp.gameObject.SetActive(false);
             progressBarFrame.gameObject.SetActive(false);
-            lowLivesWarning.gameObject.SetActive(false);
+            Background.gameObject.SetActive(false);
 
 #if UNITY_ANDROID
 
@@ -134,6 +129,7 @@ public class SceneController : MonoBehaviour
         {
             PainelPowerUp.gameObject.SetActive(true);
             progressBarFrame.gameObject.SetActive(true);
+            Background.gameObject.SetActive(true);
 
 #if UNITY_ANDROID
             pauseButton.gameObject.SetActive(true);
@@ -158,86 +154,42 @@ public class SceneController : MonoBehaviour
         }
 
         // Verifica se deve avisar o jogador
-        if (isWarning)
-        {
-            // Avisa o jogador
-            WarnPlayer();
-        }
 	}
 
-    // Registra que o aviso de vida baixa deve começar agora
-    public void StartWarning()
+    // Ativa animacao de warning na tela
+
+    public IEnumerator WarnPlayer()
     {
-        if (warningCounter == warningTimesLimit)
-        {
-            return;
-        }
-
-        isWarning = true;
-        warningTimer = 0;
-    }
-
-    // Ativa e desativa o aviso de vida baixa
-    private void WarnPlayer()
-    {
-        if (warningTimer == 0) // Essa é a primeira vez que essa chamada é feita
-        {
-            // Registra o tempo atual
-            warningTimer = Time.time;
-
-            // Ativa o texto
-            lowLivesWarning.gameObject.SetActive(true);
-
-            warningCounter++;
-        }
-        else // Essa não é a primeira vez que essa chamada é feita
-        {
-            // Verifica se está na hora de pulsar o texto
-            if (Time.time - warningTimer >= warningTimeInterval)
-            {
-                // Verifica se já terminou de avisar
-                if (warningCounter == warningTimesLimit)
-                {
-                    StopWarning();
-                }
-
-                // Ainda não terminou...
-                else
-                {
-                    // Registra o tempo atual
-                    warningTimer = Time.time;
-
-                    // Pulsa o texto
-                    lowLivesWarning.gameObject.SetActive(!lowLivesWarning.gameObject.activeSelf);
-
-                    if (lowLivesWarning.gameObject.activeSelf)
-                    {
-                        warningCounter++;
-                    }
-                }
-            }
-        }
-    }
-
-    // Registra que o aviso de vida baixa deve parar
-    public void StopWarning()
-    {
-        warningTimer = 0;
-        isWarning = false;
-        lowLivesWarning.gameObject.SetActive(false);
+        yield return new WaitForSeconds(3);
+        yield return new WaitUntil(() => LivesController.GetVidas() == 1);
+        CanvasHud.SetBool("Warning", true);
+        yield return new WaitUntil(() => CanvasHud.GetCurrentAnimatorStateInfo(0).IsTag("piscando"));
+        CanvasHud.SetBool("Warning", false);
     }
 
     // Ajusta a posição da barra de progresso com base a posição atual do jogador
     private void ProgressBar()
     {
         // Atualiza o enchimento da barra de progresso
-        //float delta = Mathf.Abs(playerEndPos - playerInitPos);
         float fillAmount = player.position.x / deltaDistance;
-        progressBar.fillAmount = fillAmount;
-
-        // Move o rosto do Falamaia
-        float correctPos = fillAmount * progressBarWidth;
-        rostoFalamaia.anchoredPosition = new Vector2(correctPos, rostoFalamaia.anchoredPosition.y);
+        float preenchimento = 800 - 800 * fillAmount;
+        float correctPos = -preenchimento + 380;
+        //ajusta preenchimento da barra
+        if(correctPos < 380)
+            SetRect(progressBar.GetComponent<RectTransform>(), 0, 0, preenchimento, -32);        
+        //ajusta posicao da cabeca
+        if (correctPos <= -380)
+            rostoFalamaia.localPosition = new Vector3(-380, rostoFalamaia.localPosition.y);
+        else if (correctPos >= 380)
+            rostoFalamaia.localPosition = new Vector3(380, rostoFalamaia.localPosition.y);
+        else
+            rostoFalamaia.localPosition = new Vector2(correctPos, rostoFalamaia.localPosition.y);
+    }
+    //metodo para acessar as propriedades do recttransform
+    public static void SetRect(RectTransform trs, float left, float top, float right, float bottom)
+    {
+        trs.offsetMin = new Vector2(left, bottom);
+        trs.offsetMax = new Vector2(-right, -top);
     }
 
     private void UpdateDifficulty() //mecanica = MinigameGananciaController

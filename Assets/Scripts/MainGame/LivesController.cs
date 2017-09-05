@@ -1,16 +1,14 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 
 public class LivesController : MonoBehaviour {
 
     public GameObject LivesPrefab;
-    public SceneController sceneController;
+    public SceneController sc;
 
     static private int vidas = 3;
+    static private bool avisar = false;
     private int showingLives;
     private bool gameOver;
 
@@ -25,20 +23,7 @@ public class LivesController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         updatePanel();
-        WarnPlayer();
 	}
-
-    private void WarnPlayer()
-    {
-        if (!SceneController.paused && vidas == 1 && !sceneController.isWarning)
-        {
-            sceneController.StartWarning();
-        }
-        else if (vidas != 1 && sceneController.isWarning)
-        {
-            sceneController.StopWarning();
-        }
-    }
 
     void updatePanel()
     {
@@ -56,8 +41,12 @@ public class LivesController : MonoBehaviour {
         {
             showingLives--;
             StartVidaVisualFeedback(transform.GetChild(vidas).gameObject);
-            //Destroy(transform.GetChild(vidas).gameObject);
-            
+            //Destroy(transform.GetChild(vidas).gameObject);  
+        }
+        if (avisar)
+        {
+            StartCoroutine( sc.WarnPlayer());
+            avisar = false;
         }
     }
 
@@ -70,9 +59,13 @@ public class LivesController : MonoBehaviour {
         
     }
 
+   
+
     public static void RemVidas()
     {
         vidas--;
+        if (vidas == 1)
+            avisar = true;
     }
 
     public static void InitVidas()

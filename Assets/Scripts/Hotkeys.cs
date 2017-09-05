@@ -1,13 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class Hotkeys : MonoBehaviour
 {
     void Update()
     {
+        if (Input.GetKeyUp(KeyCode.F1))
+            GameObject.Find("Player").GetComponent<PlayerMovement>().viraDeus();
+
         if (Input.GetKeyUp(KeyCode.M))
             GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
 
@@ -34,6 +34,12 @@ public class Hotkeys : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.LeftShift))
             GameObject.Find("Player").GetComponent<PlayerMovement>().sobeCarinha();
+
+        if (Input.GetKeyUp(KeyCode.PageUp))
+            LivesController.addVidas();
+
+        if (Input.GetKeyUp(KeyCode.PageDown))
+            LivesController.RemVidas();
 
         //BotaoPausa
         if (Input.GetKeyUp(KeyCode.Escape))
