@@ -746,14 +746,14 @@ MonoBehaviour:
   goodFoodSprites:
   - {fileID: 21300000, guid: 0b117c8b44c9f35478c17f2ce0d6e92b, type: 3}
   - {fileID: 21300000, guid: 1a5ce6bee4a9ea04198ca83e37658584, type: 3}
-  - {fileID: 21300000, guid: 1a53f96d5fae3f34790b4878dbe3c08c, type: 3}
-  - {fileID: 21300000, guid: be42830a6820b974d9288901a88166b5, type: 3}
-  - {fileID: 21300000, guid: 325f2b3e756e59745b64a66c9fecae75, type: 3}
+  - {fileID: 21300000, guid: 52fdc0a38c86cdd4294ac67ff561678b, type: 3}
+  - {fileID: 21300000, guid: 87f7c0972c43e994eae8b1fa5e103571, type: 3}
+  - {fileID: 21300000, guid: 18aca5fab20b9af4c8760d62ac112347, type: 3}
   - {fileID: 21300000, guid: 6ae65972bd4309347b34d55357997a24, type: 3}
   - {fileID: 21300000, guid: 85c3860d5744d7b49aaba6ca27edd6b8, type: 3}
   - {fileID: 21300000, guid: 4f03e7fff76b96d48b8f9d161544cdc1, type: 3}
   badFoodSprites:
-  - {fileID: 21300000, guid: 5afea1bfc11207843b48cef1be767a37, type: 3}
+  - {fileID: 21300000, guid: c259f98eb32080a42afd8a60f1a192e8, type: 3}
   - {fileID: 21300000, guid: b636e47aa8e69554eb93107a24f19321, type: 3}
   - {fileID: 21300000, guid: 3bd05a68896307d4f8f81b885765228f, type: 3}
   - {fileID: 21300000, guid: 2f847194b5eae3748a99296b13dd040d, type: 3}
