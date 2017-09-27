@@ -366,7 +366,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: bf71fc1d3a9d5f94c96001cbeeb1eb0a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb037754661fa524d92cf02e861c84eb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -391,8 +391,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca250da3f96dc24ea231cb7ff67e940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openMouth: {fileID: 21300000, guid: bf71fc1d3a9d5f94c96001cbeeb1eb0a, type: 3}
-  closedMouth: {fileID: 21300002, guid: bf71fc1d3a9d5f94c96001cbeeb1eb0a, type: 3}
+  openMouth: {fileID: 21300000, guid: fb037754661fa524d92cf02e861c84eb, type: 3}
+  closedMouth: {fileID: 21300000, guid: 3a73b2ccc7db11d4fbcd3b9785cc6d14, type: 3}
   gameController: {fileID: 1045122697}
 --- !u!58 &700135586
 CircleCollider2D:
@@ -744,23 +744,22 @@ MonoBehaviour:
   - {fileID: 1733768481}
   - {fileID: 700135585}
   goodFoodSprites:
-  - {fileID: 21300000, guid: 0b117c8b44c9f35478c17f2ce0d6e92b, type: 3}
-  - {fileID: 21300000, guid: 1a5ce6bee4a9ea04198ca83e37658584, type: 3}
-  - {fileID: 21300000, guid: 52fdc0a38c86cdd4294ac67ff561678b, type: 3}
-  - {fileID: 21300000, guid: 87f7c0972c43e994eae8b1fa5e103571, type: 3}
-  - {fileID: 21300000, guid: 18aca5fab20b9af4c8760d62ac112347, type: 3}
-  - {fileID: 21300000, guid: 6ae65972bd4309347b34d55357997a24, type: 3}
-  - {fileID: 21300000, guid: 85c3860d5744d7b49aaba6ca27edd6b8, type: 3}
-  - {fileID: 21300000, guid: 4f03e7fff76b96d48b8f9d161544cdc1, type: 3}
+  - {fileID: 21300000, guid: db2af7bd63366cc4890bc57631fab384, type: 3}
+  - {fileID: 21300000, guid: 9de422af2194de9438df7aef7fa5ffdc, type: 3}
+  - {fileID: 21300000, guid: 9c05d4876be0b244c89cd3ee357f2481, type: 3}
+  - {fileID: 21300000, guid: 183b4530a300fe8448791639f5092136, type: 3}
+  - {fileID: 21300000, guid: 8002ee59a44e82c4e945d4aa73cddc95, type: 3}
+  - {fileID: 21300000, guid: c3490519684cdf541bbfa2732ca2d46c, type: 3}
+  - {fileID: 21300000, guid: 985ac850d505ca54981ac1c3e797552c, type: 3}
   badFoodSprites:
-  - {fileID: 21300000, guid: c259f98eb32080a42afd8a60f1a192e8, type: 3}
-  - {fileID: 21300000, guid: b636e47aa8e69554eb93107a24f19321, type: 3}
-  - {fileID: 21300000, guid: 3bd05a68896307d4f8f81b885765228f, type: 3}
-  - {fileID: 21300000, guid: 2f847194b5eae3748a99296b13dd040d, type: 3}
-  - {fileID: 21300000, guid: 91723485a90884a4d829e61e1a8a258b, type: 3}
-  - {fileID: 21300000, guid: 3158a9edc53fd044a9eec92d3f4c0976, type: 3}
-  - {fileID: 21300000, guid: 45e4f63c9314b394d8d3d9c1fd3b1847, type: 3}
-  - {fileID: 21300000, guid: 5e01f374135ff8c458c0c99c705f4e7c, type: 3}
+  - {fileID: 21300000, guid: 5816310cf2651f04e9d4ac338425a793, type: 3}
+  - {fileID: 21300000, guid: 54f8960218506e248bfdc9185aaf7bf4, type: 3}
+  - {fileID: 21300000, guid: c8347fe4ba6d02648b556d3eebebb6cc, type: 3}
+  - {fileID: 21300000, guid: 31485b010bb911b4c8d92fb131fa7c8d, type: 3}
+  - {fileID: 21300000, guid: 77816ab598fd78d4c933d8dabcb10fff, type: 3}
+  - {fileID: 21300000, guid: f0b8dc84aa7a98141925bfad37b1ddfd, type: 3}
+  - {fileID: 21300000, guid: 9cebb63f1d0c01a42a2043ccfec2ee09, type: 3}
+  - {fileID: 21300000, guid: 470e583afdbeb8b4fa6cb67551fc6fca, type: 3}
   foodPrefab: {fileID: 1216007139607020, guid: 9516298e857e451408721f0c154d78c6, type: 2}
   foodDeltaDist: 150
 --- !u!1 &1300350491
@@ -1163,7 +1162,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: bf71fc1d3a9d5f94c96001cbeeb1eb0a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb037754661fa524d92cf02e861c84eb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1188,8 +1187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca250da3f96dc24ea231cb7ff67e940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openMouth: {fileID: 21300000, guid: bf71fc1d3a9d5f94c96001cbeeb1eb0a, type: 3}
-  closedMouth: {fileID: 21300002, guid: bf71fc1d3a9d5f94c96001cbeeb1eb0a, type: 3}
+  openMouth: {fileID: 21300000, guid: fb037754661fa524d92cf02e861c84eb, type: 3}
+  closedMouth: {fileID: 21300000, guid: 3a73b2ccc7db11d4fbcd3b9785cc6d14, type: 3}
   gameController: {fileID: 1045122697}
 --- !u!58 &1554967880
 CircleCollider2D:
@@ -1398,7 +1397,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: bf71fc1d3a9d5f94c96001cbeeb1eb0a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb037754661fa524d92cf02e861c84eb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1423,8 +1422,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca250da3f96dc24ea231cb7ff67e940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openMouth: {fileID: 21300000, guid: bf71fc1d3a9d5f94c96001cbeeb1eb0a, type: 3}
-  closedMouth: {fileID: 21300002, guid: bf71fc1d3a9d5f94c96001cbeeb1eb0a, type: 3}
+  openMouth: {fileID: 21300000, guid: fb037754661fa524d92cf02e861c84eb, type: 3}
+  closedMouth: {fileID: 21300000, guid: 3a73b2ccc7db11d4fbcd3b9785cc6d14, type: 3}
   gameController: {fileID: 1045122697}
 --- !u!58 &1733768482
 CircleCollider2D:
