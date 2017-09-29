@@ -384,4 +384,9 @@ public class SceneController : MonoBehaviour
     {
         Vibration.Vibrate(30);
     }
+
+    public float GetProgress()
+    {
+        return fillAmount;
+    }
 }
