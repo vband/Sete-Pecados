@@ -178,14 +178,14 @@ public class MinigameLuxuriaController : MonoBehaviour {
                     Cam.backgroundColor = new Color(1, 1, 1);
                     Vibration.Vibrate(2500);
                     perfect.gameObject.SetActive(true);
-                    GetComponent<WinOrLoseScript>().Perfect();
+                    GetComponent<WinOrLoseScript>().Perfect("Luxuria");
                 } 
                 else
                 {
                     Cam.backgroundColor = new Color(0, 1, 0);
                     Vibration.Vibrate(1500);
                     ganhou.gameObject.SetActive(true);
-                    GetComponent<WinOrLoseScript>().Venceu();
+                    GetComponent<WinOrLoseScript>().Venceu("Luxuria");
                 }
                     
             }
@@ -198,7 +198,7 @@ public class MinigameLuxuriaController : MonoBehaviour {
                 running = false;
                 Cam.backgroundColor = new Color(1, 0, 0);
                 perdeu.gameObject.SetActive(true);
-                GetComponent<WinOrLoseScript>().Perdeu();
+                GetComponent<WinOrLoseScript>().Perdeu("Luxuria");
             }
         }
 

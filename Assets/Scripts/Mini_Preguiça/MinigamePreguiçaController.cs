@@ -247,35 +247,51 @@ public class MinigamePreguiçaController : MonoBehaviour
 
     private void WinGame()
     {
-        DespawnBeds();
-
-        if (nGreats == numberOfBeds)
+        if (GameMode.Mode == GameMode.GameModes.Minigame)
         {
-            LivesController.addVidas();
-            animator.SetTrigger("perfect");
+            MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
+            minigameModeController.OnMinigameFinished(true, "Preguiça");
         }
         else
         {
-            animator.SetTrigger("win");
+            DespawnBeds();
+
+            if (nGreats == numberOfBeds)
+            {
+                LivesController.addVidas();
+                animator.SetTrigger("perfect");
+            }
+            else
+            {
+                animator.SetTrigger("win");
+            }
+            GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
         }
-        GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
-        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
 
     private void LoseGame()
     {
-        LivesController.RemVidas();
-        DespawnBeds();
-        animator.SetTrigger("lose");
-
-        // BUG FIX
-        int nCurrentLives = LivesController.GetVidas();
-        if (nCurrentLives == nInitialLives - 2)
+        if (GameMode.Mode == GameMode.GameModes.Minigame)
         {
-            LivesController.addVidas();
+            MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
+            minigameModeController.OnMinigameFinished(false, "Preguiça");
         }
+        else
+        {
+            LivesController.RemVidas();
+            DespawnBeds();
+            animator.SetTrigger("lose");
 
-        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+            // BUG FIX
+            int nCurrentLives = LivesController.GetVidas();
+            if (nCurrentLives == nInitialLives - 2)
+            {
+                LivesController.addVidas();
+            }
+
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+        }
     }
 
     private void DespawnBeds()

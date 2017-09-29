@@ -244,36 +244,60 @@ public class MinigameGulaController : MonoBehaviour
     // Perde o minigame
     private void Lose()
     {
-        hasGameEnded = true;
-        DestroyAllFoods();
-        GetComponent<Animator>().SetTrigger("Lose");
-        LivesController.RemVidas();
-        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
-        Screen.orientation = ScreenOrientation.Landscape;
-        Screen.orientation = ScreenOrientation.AutoRotation;
+        if (GameMode.Mode == GameMode.GameModes.Minigame)
+        {
+            MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
+            minigameModeController.OnMinigameFinished(false, "Gula");
+        }
+        else
+        {
+            hasGameEnded = true;
+            DestroyAllFoods();
+            GetComponent<Animator>().SetTrigger("Lose");
+            LivesController.RemVidas();
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+            Screen.orientation = ScreenOrientation.Landscape;
+            Screen.orientation = ScreenOrientation.AutoRotation;
+        }
     }
 
     // Vence o minigame
     private void Win()
     {
-        hasGameEnded = true;
-        GetComponent<Animator>().SetTrigger("Win");
-        GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
-        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
-        Screen.orientation = ScreenOrientation.Landscape;
-        Screen.orientation = ScreenOrientation.AutoRotation;
+        if (GameMode.Mode == GameMode.GameModes.Minigame)
+        {
+            MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
+            minigameModeController.OnMinigameFinished(true, "Gula");
+        }
+        else
+        {
+            hasGameEnded = true;
+            GetComponent<Animator>().SetTrigger("Win");
+            GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+            Screen.orientation = ScreenOrientation.Landscape;
+            Screen.orientation = ScreenOrientation.AutoRotation;
+        }
     }
 
     // Vence o minigame com Perfect
     private void Perfect()
     {
-        hasGameEnded = true;
-        GetComponent<Animator>().SetTrigger("Perfect");
-        LivesController.addVidas();
-        GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
-        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
-        Screen.orientation = ScreenOrientation.Landscape;
-        Screen.orientation = ScreenOrientation.AutoRotation;
+        if (GameMode.Mode == GameMode.GameModes.Minigame)
+        {
+            MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
+            minigameModeController.OnMinigameFinished(true, "Gula");
+        }
+        else
+        {
+            hasGameEnded = true;
+            GetComponent<Animator>().SetTrigger("Perfect");
+            LivesController.addVidas();
+            GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+            Screen.orientation = ScreenOrientation.Landscape;
+            Screen.orientation = ScreenOrientation.AutoRotation;
+        }
     }
 
     // Abre todas as bocas

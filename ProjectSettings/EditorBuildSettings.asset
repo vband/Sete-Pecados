@@ -38,3 +38,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Orgulho.unity
     guid: 2450cf1d8d9439747838b473891e022c
+  - enabled: 1
+    path: "Assets/Scenes/ModoMinigame_Transi\xE7\xE3o.unity"
+    guid: 221ffe9cdf7937245982458b3fe98410
