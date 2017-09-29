@@ -37,7 +37,6 @@ public class MinigameModeController : MonoBehaviour
 
     private void Init()
     {
-        GameMode.Mode = GameMode.GameModes.Minigame;
         lives = MAX_LIVES;
         difficulty = 1;
         score = 0;

@@ -40,9 +40,9 @@ public class InfiniteWorld : MonoBehaviour
         UpdateDifficulty();
 
         // Se a cidade já cresceu o bastante para terminar o jogo, cria a igreja
-        if (Vector3.Distance(pointerToCityBeginning.position, currentCityEndPos) >= distanceToWin)
+        if (Vector3.Distance(pointerToCityBeginning.position, currentCityEndPos) >= distanceToWin && GameMode.Mode == GameMode.GameModes.Classic)
         {
-            if (!hasCreatedChurch && !SceneController.EndlessMode)
+            if (!hasCreatedChurch)
             {
                 CreateChurch();
                 hasCreatedChurch = true;

@@ -38,7 +38,7 @@ public class SceneController : MonoBehaviour
     [HideInInspector] public static bool hasGameFinished = false;
     [HideInInspector] public static bool created = false;
     [HideInInspector] public static bool paused = false;
-    [HideInInspector] public static bool EndlessMode = false;
+    //[HideInInspector] public static bool EndlessMode = false;
 
     private const int JOYSTICK = 0, VIRTUAL = 1;
 
@@ -64,7 +64,7 @@ public class SceneController : MonoBehaviour
         intro = true;
 
         if (SceneManager.GetActiveScene().name == "MainEndless")
-            EndlessMode = true;
+            GameMode.Mode = GameMode.GameModes.Endless;
 
 #if UNITY_STANDALONE_WIN
         pauseButton.gameObject.SetActive(false);
@@ -261,7 +261,7 @@ public class SceneController : MonoBehaviour
 
     public void WinGame()
     {
-        if (EndlessMode)
+        if (GameMode.Mode == GameMode.GameModes.Endless)
         {
             //Ocultar barra de progresso de um jeito Legal!
         }

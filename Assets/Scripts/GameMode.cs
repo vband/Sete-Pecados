@@ -8,6 +8,7 @@ public class GameMode
     {
         Minigame, Endless, Classic
     }
-
-    public static GameModes Mode;
+    //adicionada configuracao default para evitar null pointer exception 
+    //e quebrar modo classico quando iniciado no editor
+    public static GameModes Mode = GameModes.Classic;
 }

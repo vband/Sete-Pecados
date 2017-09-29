@@ -278,12 +278,14 @@ public class MainMenu : MonoBehaviour
     {
         HapticVibration();
         LivesController.InitVidas();
+        GameMode.Mode = GameMode.GameModes.Classic;
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
 
     public void Minigames()
     {
         HapticVibration();
+        GameMode.Mode = GameMode.GameModes.Minigame;
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("ModoMinigame_Transição");
     }
 
@@ -291,6 +293,7 @@ public class MainMenu : MonoBehaviour
     {
         HapticVibration();
         LivesController.InitVidas();
+        GameMode.Mode = GameMode.GameModes.Endless;
         GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MainEndless");
     }
 

@@ -771,7 +771,7 @@ MonoBehaviour:
   PainelPowerUp: {fileID: 563259968}
   CanvasHud: {fileID: 1263910887}
   Background: {fileID: 1466510857}
-  distanceToWin: 100
+  distanceToWin: 400
   rostoFalamaia: {fileID: 1568059454}
   mainCamera: {fileID: 933721084}
   VoltarParaMenu: {fileID: 194437642}
@@ -1710,12 +1710,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!224 &563259968 stripped
-RectTransform:
-  m_PrefabParentObject: {fileID: 224635211766791016, guid: aa54dea07fe3536448ec4b8406419a0e,
-    type: 2}
-  m_PrefabInternal: {fileID: 764339505}
---- !u!84 &577683849
+--- !u!84 &517449838
 RenderTexture:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1742,6 +1737,11 @@ RenderTexture:
     m_WrapW: 1
   m_Dimension: 2
   m_VolumeDepth: 1
+--- !u!224 &563259968 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224635211766791016, guid: aa54dea07fe3536448ec4b8406419a0e,
+    type: 2}
+  m_PrefabInternal: {fileID: 764339505}
 --- !u!1 &632340407
 GameObject:
   m_ObjectHideFlags: 0
@@ -5378,12 +5378,12 @@ Prefab:
     - target: {fileID: 224928651327859604, guid: aa54dea07fe3536448ec4b8406419a0e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -17.5
       objectReference: {fileID: 0}
     - target: {fileID: 224928651327859604, guid: aa54dea07fe3536448ec4b8406419a0e,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 224196225074152684, guid: aa54dea07fe3536448ec4b8406419a0e,
         type: 2}
@@ -5403,12 +5403,12 @@ Prefab:
     - target: {fileID: 224196225074152684, guid: aa54dea07fe3536448ec4b8406419a0e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -17.5
       objectReference: {fileID: 0}
     - target: {fileID: 224196225074152684, guid: aa54dea07fe3536448ec4b8406419a0e,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 224205757215567158, guid: aa54dea07fe3536448ec4b8406419a0e,
         type: 2}
@@ -5428,12 +5428,12 @@ Prefab:
     - target: {fileID: 224205757215567158, guid: aa54dea07fe3536448ec4b8406419a0e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -17.5
       objectReference: {fileID: 0}
     - target: {fileID: 224205757215567158, guid: aa54dea07fe3536448ec4b8406419a0e,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 114761891471473628, guid: aa54dea07fe3536448ec4b8406419a0e,
         type: 2}

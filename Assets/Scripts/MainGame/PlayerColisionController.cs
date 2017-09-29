@@ -22,7 +22,7 @@ public class PlayerColisionController : MonoBehaviour
                     goto imortal;
 
                 Vibrar();
-                if (SceneController.EndlessMode)
+                if (GameMode.Mode == GameMode.GameModes.Endless)
                 {
                     Destroy(collision.gameObject);
                     LivesController.RemVidas();
@@ -42,7 +42,7 @@ public class PlayerColisionController : MonoBehaviour
                     goto imortal;
 
                 Vibrar();
-                if (SceneController.EndlessMode)
+                if (GameMode.Mode == GameMode.GameModes.Endless)
                 {
                     Destroy(collision.gameObject);
                     LivesController.RemVidas();
@@ -60,7 +60,7 @@ public class PlayerColisionController : MonoBehaviour
                 if (GetComponent<PlayerMovement>().isImortal())
                     goto imortal;
                 Vibrar();
-                if (SceneController.EndlessMode)
+                if (GameMode.Mode == GameMode.GameModes.Endless)
                 {
                     Destroy(collision.gameObject);
                     LivesController.RemVidas();
@@ -79,7 +79,7 @@ public class PlayerColisionController : MonoBehaviour
                     goto imortal;
 
                 Vibrar();
-                if (SceneController.EndlessMode)
+                if (GameMode.Mode == GameMode.GameModes.Endless)
                 {
                     Destroy(collision.gameObject);
                     LivesController.RemVidas();
@@ -97,7 +97,7 @@ public class PlayerColisionController : MonoBehaviour
                     goto imortal;
 
                 Vibrar();
-                if (SceneController.EndlessMode)
+                if (GameMode.Mode == GameMode.GameModes.Endless)
                 {
                     Destroy(collision.gameObject);
                     LivesController.RemVidas();
@@ -115,7 +115,7 @@ public class PlayerColisionController : MonoBehaviour
                     goto imortal;
 
                 Vibrar();
-                if (SceneController.EndlessMode)
+                if (GameMode.Mode == GameMode.GameModes.Endless)
                 {
                     Destroy(collision.gameObject);
                     LivesController.RemVidas();
@@ -133,7 +133,7 @@ public class PlayerColisionController : MonoBehaviour
                     goto imortal;
 
                 Vibrar();
-                if (SceneController.EndlessMode)
+                if (GameMode.Mode == GameMode.GameModes.Endless)
                 {
                     Destroy(collision.gameObject);
                     LivesController.RemVidas();
@@ -158,7 +158,7 @@ public class PlayerColisionController : MonoBehaviour
     private void Vibrar()
     {
 #if UNITY_ANDROID
-        if (SceneController.EndlessMode)
+        if (GameMode.Mode == GameMode.GameModes.Endless)
             Vibration.Vibrate(100);
         else
             Vibration.Vibrate(400);
