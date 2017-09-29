@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class SceneController : MonoBehaviour
     [HideInInspector] public static bool hasGameFinished = false;
     [HideInInspector] public static bool created = false;
     [HideInInspector] public static bool paused = false;
+    [HideInInspector] public static bool EndlessMode = false;
 
     private const int JOYSTICK = 0, VIRTUAL = 1;
 
@@ -60,6 +62,9 @@ public class SceneController : MonoBehaviour
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Environment"), LayerMask.NameToLayer("AguaBentaPowerUp"));
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("UI"));
         intro = true;
+
+        if (SceneManager.GetActiveScene().name == "MainEndless")
+            EndlessMode = true;
 
 #if UNITY_STANDALONE_WIN
         pauseButton.gameObject.SetActive(false);
@@ -125,7 +130,6 @@ public class SceneController : MonoBehaviour
                 mobileVirtualButtonsController.gameObject.SetActive(false);
             }
 #endif
-
         }
         else
         {
@@ -257,31 +261,37 @@ public class SceneController : MonoBehaviour
 
     public void WinGame()
     {
-        // Avisa que o jogo acabou
-        hasGameFinished = true;
-        winAnimation = true;
-        // Avisa que a câmera vai parar de andar sozinha
-        mainCamera.GetComponent<CameraMovement>().enabled = false;
-        // Impede que o jogo prossiga
-        paused = true;
+        if (EndlessMode)
+        {
+            //Ocultar barra de progresso de um jeito Legal!
+        }
+        else
+        {
+            // Avisa que o jogo acabou
+            hasGameFinished = true;
+            winAnimation = true;
+            // Avisa que a câmera vai parar de andar sozinha
+            mainCamera.GetComponent<CameraMovement>().enabled = false;
+            // Impede que o jogo prossiga
+            paused = true;
 
-        player.GetComponent<Animator>().SetBool("isRunning", false);
-        player.GetComponent<Animator>().SetBool("isJumping", false);
+            player.GetComponent<Animator>().SetBool("isRunning", false);
+            player.GetComponent<Animator>().SetBool("isJumping", false);
 
 #if UNITY_ANDROID
-
-        if (PlayerPrefs.GetInt("INPUTCONFIG") == VIRTUAL)
-        {
-            mobileVirtualButtonsController.gameObject.SetActive(false);
-        }
-        else if (PlayerPrefs.GetInt("INPUTCONFIG") == JOYSTICK)
-        {
-            freeJoystick.gameObject.SetActive(false);
-        }
+            if (PlayerPrefs.GetInt("INPUTCONFIG") == VIRTUAL)
+            {
+                mobileVirtualButtonsController.gameObject.SetActive(false);
+            }
+            else if (PlayerPrefs.GetInt("INPUTCONFIG") == JOYSTICK)
+            {
+                freeJoystick.gameObject.SetActive(false);
+            }
 #endif
 
-
-        igreja = GameObject.FindGameObjectWithTag("Igreja");
+            igreja = GameObject.FindGameObjectWithTag("Igreja");
+        }
+        
     }
 
     // Executa a animação de vitória

@@ -289,6 +289,8 @@ public class MainMenu : MonoBehaviour
     public void SemFim()
     {
         HapticVibration();
+        LivesController.InitVidas();
+        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MainEndless");
     }
 
     public void Opcoes()

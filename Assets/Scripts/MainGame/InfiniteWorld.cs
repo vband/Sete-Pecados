@@ -42,7 +42,7 @@ public class InfiniteWorld : MonoBehaviour
         // Se a cidade já cresceu o bastante para terminar o jogo, cria a igreja
         if (Vector3.Distance(pointerToCityBeginning.position, currentCityEndPos) >= distanceToWin)
         {
-            if (!hasCreatedChurch)
+            if (!hasCreatedChurch && !SceneController.EndlessMode)
             {
                 CreateChurch();
                 hasCreatedChurch = true;
@@ -134,25 +134,15 @@ public class InfiniteWorld : MonoBehaviour
     private void UpdateDifficulty()
     {
         if (cenaPrincipal.progressBar.fillAmount <= 0.2)
-        {
             currentDif = 1;
-        }
         else if (cenaPrincipal.progressBar.fillAmount <= 0.4)
-        {
             currentDif = 2;
-        }
         else if (cenaPrincipal.progressBar.fillAmount <= 0.6)
-        {
             currentDif = 3;
-        }
         else if (cenaPrincipal.progressBar.fillAmount <= 0.8)
-        {
             currentDif = 4;
-        }
         else
-        {
             currentDif = 5;
-        }
     }
 
     private int GetNextIndex(List<int> list, int lastIndex)

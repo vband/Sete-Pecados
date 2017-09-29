@@ -38,3 +38,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Orgulho.unity
     guid: 2450cf1d8d9439747838b473891e022c
+  - enabled: 1
+    path: Assets/Scenes/MainEndless.unity
+    guid: 4d01fef69980dcc41bc25fb4c029078b
