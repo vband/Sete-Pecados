@@ -9,6 +9,7 @@ public class ArremecavelController : MonoBehaviour {
     private Vector2 velocidade;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+    private bool hasBeenSeen = false;
 
 
 	// Use this for initialization
@@ -26,7 +27,10 @@ public class ArremecavelController : MonoBehaviour {
             rb.velocity = velocidade;
         else
             rb.velocity = Vector3.zero;
-        if(!sr.isVisible)
+        if (sr.isVisible && !hasBeenSeen)
+            hasBeenSeen = true;
+
+        if(!sr.isVisible && hasBeenSeen)
             Destroy(this.gameObject);
 	}
 

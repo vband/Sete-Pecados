@@ -74,3 +74,6 @@ TagManager:
   - name: Player
     uniqueID: 135828329
     locked: 0
+  - name: ObjectMask
+    uniqueID: 30457813
+    locked: 0
