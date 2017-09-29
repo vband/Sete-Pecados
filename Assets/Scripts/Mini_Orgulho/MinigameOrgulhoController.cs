@@ -22,7 +22,7 @@ public class MinigameOrgulhoController : MonoBehaviour
     // Marcador de dificuldade
     private static int difficulty = 5;
 
-    private bool hasLost = false;
+    private bool hasFinished = false;
 
 	void Start ()
     {
@@ -70,8 +70,10 @@ public class MinigameOrgulhoController : MonoBehaviour
             }
 
             // Ganha
-            if (adsClosed == numberOfAds)
+            if (adsClosed == numberOfAds && !hasFinished)
             {
+                hasFinished = true;
+
                 if ((maxTime - timeLeft) / maxTime <= 0.5f) // Se o jogador ganhar dentro de metade do tempo
                 {
                     Perfect();
@@ -83,9 +85,9 @@ public class MinigameOrgulhoController : MonoBehaviour
             }
 
             // Perde
-            if (timeLeft <= 0 && !hasLost)
+            if (timeLeft <= 0 && !hasFinished)
             {
-                hasLost = true;
+                hasFinished = true;
                 Lose();
             }
         }
