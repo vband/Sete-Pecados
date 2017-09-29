@@ -284,6 +284,7 @@ public class MainMenu : MonoBehaviour
     public void Minigames()
     {
         HapticVibration();
+        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("ModoMinigame_Transição");
     }
 
     public void SemFim()

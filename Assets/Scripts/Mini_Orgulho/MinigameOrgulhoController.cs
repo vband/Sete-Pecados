@@ -22,6 +22,8 @@ public class MinigameOrgulhoController : MonoBehaviour
     // Marcador de dificuldade
     private static int difficulty = 5;
 
+    private bool hasLost = false;
+
 	void Start ()
     {
         AdjustParameters();
@@ -81,8 +83,9 @@ public class MinigameOrgulhoController : MonoBehaviour
             }
 
             // Perde
-            if (timeLeft <= 0)
+            if (timeLeft <= 0 && !hasLost)
             {
+                hasLost = true;
                 Lose();
             }
         }
@@ -90,24 +93,48 @@ public class MinigameOrgulhoController : MonoBehaviour
 
     private void Win()
     {
-        GetComponent<Animator>().SetTrigger("Win");
-        GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
-        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+        if (GameMode.Mode == GameMode.GameModes.Minigame)
+        {
+            MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
+            minigameModeController.OnMinigameFinished(true, "Orgulho");
+        }
+        else
+        {
+            GetComponent<Animator>().SetTrigger("Win");
+            GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+        }
     }
 
     private void Perfect()
     {
-        GetComponent<Animator>().SetTrigger("Perfect");
-        LivesController.addVidas();
-        GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
-        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+        if (GameMode.Mode == GameMode.GameModes.Minigame)
+        {
+            MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
+            minigameModeController.OnMinigameFinished(true, "Orgulho");
+        }
+        else
+        {
+            GetComponent<Animator>().SetTrigger("Perfect");
+            LivesController.addVidas();
+            GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+        }
     }
 
     private void Lose()
     {
-        GetComponent<Animator>().SetTrigger("Lose");
-        LivesController.RemVidas();
-        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+        if (GameMode.Mode == GameMode.GameModes.Minigame)
+        {
+            MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
+            minigameModeController.OnMinigameFinished(false, "Orgulho");
+        }
+        else
+        {
+            GetComponent<Animator>().SetTrigger("Lose");
+            LivesController.RemVidas();
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+        }
     }
 
     private void AdjustParameters()

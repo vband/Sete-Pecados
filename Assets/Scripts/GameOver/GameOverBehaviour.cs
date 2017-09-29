@@ -47,6 +47,13 @@ public class GameOverBehaviour : MonoBehaviour
     public void LoadGame()
     {
         LivesController.InitVidas();
-        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+        if (GameMode.Mode == GameMode.GameModes.Classic)
+        {
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+        }
+        else if (GameMode.Mode == GameMode.GameModes.Minigame)
+        {
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("ModoMinigame_Transição");
+        }
     }
 }

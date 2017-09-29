@@ -136,29 +136,44 @@ public class MinigameIraController : MonoBehaviour
 
     private void LoseGame()
     {
-        lost = true;
-        LivesController.RemVidas();
-        canvas.GetComponent<Animator>().SetBool("Lost", true);
-        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+        if (GameMode.Mode == GameMode.GameModes.Minigame)
+        {
+            MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
+            minigameModeController.OnMinigameFinished(false, "Ira");
+        }
+        else
+        {
+            lost = true;
+            LivesController.RemVidas();
+            canvas.GetComponent<Animator>().SetBool("Lost", true);
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+        }
     }
 
     private void WinGame()
     {
-        // Checa se o jogador ganhou de Perfect (ganhar em menos de 1 segundo)
-        if (maxTime - timeLeft <= 1)
+        if (GameMode.Mode == GameMode.GameModes.Minigame)
         {
-            LivesController.addVidas();
-            canvas.GetComponent<Animator>().SetBool("Perfect", true);
-            GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
-            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+            MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
+            minigameModeController.OnMinigameFinished(true, "Ira");
         }
         else
         {
-            canvas.GetComponent<Animator>().SetBool("Won", true);
-            GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
-            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+            // Checa se o jogador ganhou de Perfect (ganhar em menos de 1 segundo)
+            if (maxTime - timeLeft <= 1)
+            {
+                LivesController.addVidas();
+                canvas.GetComponent<Animator>().SetBool("Perfect", true);
+                GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
+                GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+            }
+            else
+            {
+                canvas.GetComponent<Animator>().SetBool("Won", true);
+                GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
+                GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+            }
         }
-
     }
 
     public static void SetDifficulty(int dif)
