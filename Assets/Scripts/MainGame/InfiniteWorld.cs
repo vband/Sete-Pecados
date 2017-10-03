@@ -133,13 +133,13 @@ public class InfiniteWorld : MonoBehaviour
 
     private void UpdateDifficulty()
     {
-        if (cenaPrincipal.progressBar.fillAmount <= 0.2)
+        if (cenaPrincipal.GetProgress() <= 0.2)
             currentDif = 1;
-        else if (cenaPrincipal.progressBar.fillAmount <= 0.4)
+        else if (cenaPrincipal.GetProgress() <= 0.4)
             currentDif = 2;
-        else if (cenaPrincipal.progressBar.fillAmount <= 0.6)
+        else if (cenaPrincipal.GetProgress() <= 0.6)
             currentDif = 3;
-        else if (cenaPrincipal.progressBar.fillAmount <= 0.8)
+        else if (cenaPrincipal.GetProgress() <= 0.8)
             currentDif = 4;
         else
             currentDif = 5;
