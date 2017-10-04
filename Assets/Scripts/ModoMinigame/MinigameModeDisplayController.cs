@@ -13,5 +13,9 @@ public class MinigameModeDisplayController : MonoBehaviour
         lives.text = "x " + newNumberOfLives.ToString();
         score.text = "Score: " + newScore.ToString();
         highScore.text = "High Score: " + newHighScore.ToString();
+
+#if UNITY_ANDROID
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+#endif
     }
 }
