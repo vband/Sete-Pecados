@@ -139,30 +139,39 @@ public class MinigameInvejaController: MonoBehaviour {
     {
         if (!faceClick)
         {
-            if (GameMode.Mode == GameMode.GameModes.Minigame)
+            if (GetComponent<CountdownScriptInveja>().TempoContagem > 10 - difficulty - 1)
             {
-                MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
-                minigameModeController.OnMinigameFinished(true, "Inveja");
+                if (GameMode.Mode == GameMode.GameModes.Minigame)
+                {
+                    perfect.gameObject.SetActive(true);
+                    MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
+                    minigameModeController.OnMinigameFinished(true, "Inveja");
+                }
+
+                perfect.gameObject.SetActive(true);
+                LivesController.addVidas();
             }
             else
             {
-                if (GetComponent<CountdownScriptInveja>().TempoContagem > 10 - difficulty - 1)
-                {
-                    perfect.gameObject.SetActive(true);
-                    LivesController.addVidas();
-                }
-                else
+                if (GameMode.Mode == GameMode.GameModes.Minigame)
                 {
                     ganhou.gameObject.SetActive(true);
+                    MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
+                    minigameModeController.OnMinigameFinished(true, "Inveja");
                 }
 
-                foreach (GameObject errado in listaErrado)
-                {
-                    errado.GetComponent<Animator>().SetBool("FadeOut", true);
-                    errado.GetComponent<Button>().enabled = false;
-                }
-                faceClick = true;
+                ganhou.gameObject.SetActive(true);
+            }
 
+            foreach (GameObject errado in listaErrado)
+            {
+                errado.GetComponent<Animator>().SetBool("FadeOut", true);
+                errado.GetComponent<Button>().enabled = false;
+            }
+            faceClick = true;
+
+            if (GameMode.Mode != GameMode.GameModes.Minigame)
+            {
                 GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
                 GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
             }
@@ -175,6 +184,14 @@ public class MinigameInvejaController: MonoBehaviour {
 
         if (!faceClick)
         {
+            faceClick = true;
+
+            foreach (GameObject errado in listaErrado)
+            {
+                errado.GetComponent<Animator>().SetBool("FadeOut", true);
+                errado.GetComponent<Button>().enabled = false;
+            }
+
             if (GameMode.Mode == GameMode.GameModes.Minigame)
             {
                 MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
@@ -182,15 +199,7 @@ public class MinigameInvejaController: MonoBehaviour {
             }
             else
             {
-                foreach (GameObject errado in listaErrado)
-                {
-                    errado.GetComponent<Animator>().SetBool("FadeOut", true);
-                    errado.GetComponent<Button>().enabled = false;
-                }
                 LivesController.RemVidas();
-
-                faceClick = true;
-
                 GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
             }
         }

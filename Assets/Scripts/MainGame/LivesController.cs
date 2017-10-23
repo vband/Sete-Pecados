@@ -45,8 +45,11 @@ public class LivesController : MonoBehaviour {
         }
         if (avisar)
         {
-            StartCoroutine( sc.WarnPlayer());
-            avisar = false;
+            if (GameMode.Mode == GameMode.GameModes.Classic)
+            {
+                StartCoroutine(sc.WarnPlayer());
+                avisar = false;
+            }
         }
     }
 

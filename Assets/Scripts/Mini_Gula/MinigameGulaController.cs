@@ -246,6 +246,9 @@ public class MinigameGulaController : MonoBehaviour
     {
         if (GameMode.Mode == GameMode.GameModes.Minigame)
         {
+            hasGameEnded = true;
+            DestroyAllFoods();
+            GetComponent<Animator>().SetTrigger("Lose");
             MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
             minigameModeController.OnMinigameFinished(false, "Gula");
         }
@@ -266,6 +269,8 @@ public class MinigameGulaController : MonoBehaviour
     {
         if (GameMode.Mode == GameMode.GameModes.Minigame)
         {
+            hasGameEnded = true;
+            GetComponent<Animator>().SetTrigger("Win");
             MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
             minigameModeController.OnMinigameFinished(true, "Gula");
         }
@@ -285,6 +290,8 @@ public class MinigameGulaController : MonoBehaviour
     {
         if (GameMode.Mode == GameMode.GameModes.Minigame)
         {
+            hasGameEnded = true;
+            GetComponent<Animator>().SetTrigger("Perfect");
             MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
             minigameModeController.OnMinigameFinished(true, "Gula");
         }

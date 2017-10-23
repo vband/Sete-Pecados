@@ -247,27 +247,35 @@ public class MinigamePreguiçaController : MonoBehaviour
 
     private void WinGame()
     {
-        if (GameMode.Mode == GameMode.GameModes.Minigame)
+        DespawnBeds();
+
+        if (nGreats == numberOfBeds)
         {
-            MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
-            minigameModeController.OnMinigameFinished(true, "Preguiça");
+            if (GameMode.Mode == GameMode.GameModes.Minigame)
+            {
+                animator.SetTrigger("perfect");
+                MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
+                minigameModeController.OnMinigameFinished(true, "Preguiça");
+                return;
+            }
+
+            LivesController.addVidas();
+            animator.SetTrigger("perfect");
         }
         else
         {
-            DespawnBeds();
-
-            if (nGreats == numberOfBeds)
-            {
-                LivesController.addVidas();
-                animator.SetTrigger("perfect");
-            }
-            else
+            if (GameMode.Mode == GameMode.GameModes.Minigame)
             {
                 animator.SetTrigger("win");
+                MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
+                minigameModeController.OnMinigameFinished(true, "Preguiça");
+                return;
             }
-            GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
-            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+
+            animator.SetTrigger("win");
         }
+        GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
+        GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
     }
 
     private void LoseGame()
