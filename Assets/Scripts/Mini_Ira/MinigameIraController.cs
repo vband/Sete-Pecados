@@ -138,6 +138,8 @@ public class MinigameIraController : MonoBehaviour
     {
         if (GameMode.Mode == GameMode.GameModes.Minigame)
         {
+            lost = true;
+            canvas.GetComponent<Animator>().SetBool("Lost", true);
             MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
             minigameModeController.OnMinigameFinished(false, "Ira");
         }
@@ -152,27 +154,36 @@ public class MinigameIraController : MonoBehaviour
 
     private void WinGame()
     {
-        if (GameMode.Mode == GameMode.GameModes.Minigame)
+        
+        // Checa se o jogador ganhou de Perfect (ganhar em menos de 1 segundo)
+        if (maxTime - timeLeft <= 1)
         {
-            MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
-            minigameModeController.OnMinigameFinished(true, "Ira");
+            if (GameMode.Mode == GameMode.GameModes.Minigame)
+            {
+                canvas.GetComponent<Animator>().SetBool("Perfect", true);
+                MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
+                minigameModeController.OnMinigameFinished(true, "Ira");
+                return;
+            }
+
+            LivesController.addVidas();
+            canvas.GetComponent<Animator>().SetBool("Perfect", true);
+            GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
         }
         else
         {
-            // Checa se o jogador ganhou de Perfect (ganhar em menos de 1 segundo)
-            if (maxTime - timeLeft <= 1)
-            {
-                LivesController.addVidas();
-                canvas.GetComponent<Animator>().SetBool("Perfect", true);
-                GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
-                GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
-            }
-            else
+            if (GameMode.Mode == GameMode.GameModes.Minigame)
             {
                 canvas.GetComponent<Animator>().SetBool("Won", true);
-                GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
-                GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
+                MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
+                minigameModeController.OnMinigameFinished(true, "Ira");
+                return;
             }
+
+            canvas.GetComponent<Animator>().SetBool("Won", true);
+            GameObject.Find("Player").GetComponent<PlayerMovement>().StartDelaySobeCarinha();
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("Main");
         }
     }
 

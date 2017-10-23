@@ -78,6 +78,7 @@ public class MinigameModeController : MonoBehaviour
 
     private IEnumerator LoadMyScene(bool won, string lastMinigame)
     {
+        yield return new WaitForSeconds(1f);
         loadScene = SceneManager.LoadSceneAsync("ModoMinigame_Transição");
         while (!loadScene.isDone)
         {

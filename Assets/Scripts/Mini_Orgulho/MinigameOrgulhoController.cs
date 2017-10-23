@@ -97,6 +97,7 @@ public class MinigameOrgulhoController : MonoBehaviour
     {
         if (GameMode.Mode == GameMode.GameModes.Minigame)
         {
+            GetComponent<Animator>().SetTrigger("Win");
             MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
             minigameModeController.OnMinigameFinished(true, "Orgulho");
         }
@@ -112,6 +113,7 @@ public class MinigameOrgulhoController : MonoBehaviour
     {
         if (GameMode.Mode == GameMode.GameModes.Minigame)
         {
+            GetComponent<Animator>().SetTrigger("Perfect");
             MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
             minigameModeController.OnMinigameFinished(true, "Orgulho");
         }
@@ -128,6 +130,7 @@ public class MinigameOrgulhoController : MonoBehaviour
     {
         if (GameMode.Mode == GameMode.GameModes.Minigame)
         {
+            GetComponent<Animator>().SetTrigger("Lose");
             MinigameModeController minigameModeController = FindObjectOfType<MinigameModeController>();
             minigameModeController.OnMinigameFinished(false, "Orgulho");
         }

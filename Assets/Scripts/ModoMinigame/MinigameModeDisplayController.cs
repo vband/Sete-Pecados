@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MinigameModeDisplayController : MonoBehaviour
 {
     [SerializeField]
-    private Text lives, score, highScore;
+    private Text lives = null, score = null, highScore = null;
 
     public void UpdateDisplay(int newNumberOfLives, int newScore, int newHighScore)
     {
