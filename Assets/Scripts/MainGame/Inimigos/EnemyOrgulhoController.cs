@@ -13,32 +13,53 @@ public class EnemyOrgulhoController : MonoBehaviour
 
     private Transform player;
     private Rigidbody2D rb2D;
-    private bool isJumping = false;
+    private Animator animator;
+    private BoxCollider2D boxCollider;
+    //private bool isJumping = false;
     private float jumpTimer;
-    private enum State { Chase, Idle };
-    private State state = State.Chase;
+    private enum State { Chase, Idle, Selfie};
+    private State state = State.Idle;
 
     void Start ()
     {
         player = GameObject.Find("Player").transform;
         rb2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     private void FixedUpdate()
     {
         if (!SceneController.paused)
         {
+            /*
             if (isJumping)
             {
                 KeepJumping();
             }
+            */
 
+            /*
             if (IsStuck())
             {
                 //StartJumping();
             }
+            */
 
-            if (state == State.Chase)
+            if (state == State.Idle)
+            {
+                // Fica parada estalando os dedos...
+
+                // Checa se o player se aproximou
+                float dist = Mathf.Abs(player.position.x - transform.position.x);
+                if (dist <= chaseDistance)
+                {
+                    animator.SetBool("Walking", true);
+                    state = State.Chase;
+                }
+            }
+
+            else if (state == State.Chase)
             {
                 float dist = Mathf.Abs(player.position.x - transform.position.x);
 
@@ -49,18 +70,29 @@ public class EnemyOrgulhoController : MonoBehaviour
 
                 if (dist < stopDistance)
                 {
+                    /*
                     if (IsBelowPlatform() && Random.Range(0f, 100f) < 50f) // 50% de chance para que o inimigo pule quando se aproxima do player (se estiver sob uma plataforma)
                     {
                         StartJumping();
                     }
+                    */
 
-                    state = State.Idle;
+                    animator.SetBool("Walking", false);
+                    animator.SetBool("Taking selfie", true);
+                    state = State.Selfie;
+
+                    // Dobra a largura do collider
+                    boxCollider.size = new Vector2
+                    (
+                        boxCollider.size.x * 2.3f,
+                        boxCollider.size.y
+                    );
                 }
             }
 
-            else if (state == State.Idle)
+            else if (state == State.Selfie)
             {
-                // Fica parado
+                // Fica parada tirando selfie...
             }
         }
     }
@@ -70,6 +102,7 @@ public class EnemyOrgulhoController : MonoBehaviour
         rb2D.AddForce(Vector2.left * speed * Time.fixedDeltaTime);
     }
 
+    /*
     private void StartJumping()
     {
         if (IsGrounded())
@@ -91,6 +124,7 @@ public class EnemyOrgulhoController : MonoBehaviour
             isJumping = false;
         }
     }
+    
 
     private bool IsGrounded()
     {
@@ -125,4 +159,5 @@ public class EnemyOrgulhoController : MonoBehaviour
         }
         return false;
     }
+    */
 }
