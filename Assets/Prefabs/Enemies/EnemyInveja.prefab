@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 58310443334501190}
   - component: {fileID: 114268169061679748}
   - component: {fileID: 114212851534560344}
+  - component: {fileID: 95972645544566048}
   m_Layer: 16
   m_Name: Invejoso
   m_TagString: EnemyInveja
@@ -188,6 +189,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 40, y: 5}
   m_EdgeRadius: 0
+--- !u!95 &95972645544566048
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1418551550790670}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6e00925dca0ca32458c560b206f92b7e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114212851534560344
 MonoBehaviour:
   m_ObjectHideFlags: 1

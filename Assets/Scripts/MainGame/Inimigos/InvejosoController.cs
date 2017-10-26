@@ -9,6 +9,7 @@ public class InvejosoController : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb2D;
+    private Animator animator;
 
     private bool hasJumped = false;
     private bool hasGrippedCar = false;
@@ -18,6 +19,7 @@ public class InvejosoController : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         rb2D.constraints = RigidbodyConstraints2D.FreezePosition;
 
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Invejoso"), LayerMask.NameToLayer("Enemies"));
@@ -60,17 +62,30 @@ public class InvejosoController : MonoBehaviour
             // Se agarra ao carro
             if (Vector2.Distance(transform.position, carro.transform.position) <= 1f)
             {
+                animator.SetTrigger("Gripped");
                 rb2D.bodyType = RigidbodyType2D.Kinematic;
                 transform.parent = carro.transform;
                 hasGrippedCar = true;
             }
         }
+
+        FreezeRotation();
 	}
 
     private void Jump()
     {
+        animator.SetTrigger("Jumped");
         rb2D.constraints = RigidbodyConstraints2D.None;
+        rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
         rb2D.AddForce(new Vector2(0, jumpForce));
         carro.OnInvejosoVisible();
+    }
+
+    private void FreezeRotation()
+    {
+        if (rb2D.constraints != RigidbodyConstraints2D.FreezeRotation)
+        {
+            rb2D.constraints = rb2D.constraints | RigidbodyConstraints2D.FreezeRotation;
+        }
     }
 }
