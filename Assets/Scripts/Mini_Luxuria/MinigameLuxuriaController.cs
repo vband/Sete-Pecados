@@ -212,6 +212,7 @@ public class MinigameLuxuriaController : MonoBehaviour {
         instrucoesPC.gameObject.SetActive(false);
         Vibration.Vibrate(100);
         running = true;
+        Perseguidor.GetComponent<Animator>().enabled = true;
     }
 
     public static void SetDifficulty(int dif)
