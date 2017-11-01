@@ -14,7 +14,6 @@ public class EnemyOrgulhoController : MonoBehaviour
     private Transform player;
     private Rigidbody2D rb2D;
     private Animator animator;
-    private BoxCollider2D boxCollider;
     //private bool isJumping = false;
     private float jumpTimer;
     private enum State { Chase, Idle, Selfie};
@@ -25,7 +24,6 @@ public class EnemyOrgulhoController : MonoBehaviour
         player = GameObject.Find("Player").transform;
         rb2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     private void FixedUpdate()
@@ -70,23 +68,21 @@ public class EnemyOrgulhoController : MonoBehaviour
 
                 if (dist < stopDistance)
                 {
-                    /*
-                    if (IsBelowPlatform() && Random.Range(0f, 100f) < 50f) // 50% de chance para que o inimigo pule quando se aproxima do player (se estiver sob uma plataforma)
+                    if (Random.Range(0f, 100f) < 50f) // 50% de chance para que o inimigo crie uma escada quando se aproxima do player
                     {
-                        StartJumping();
+                        //StartJumping();
+                        animator.SetBool("Walking", false);
+                        animator.SetBool("Climbing stairs", true);
+                        state = State.Selfie;
+                        rb2D.bodyType = RigidbodyType2D.Kinematic;
+                        rb2D.velocity = Vector3.zero;
                     }
-                    */
-
-                    animator.SetBool("Walking", false);
-                    animator.SetBool("Taking selfie", true);
-                    state = State.Selfie;
-
-                    // Dobra a largura do collider
-                    boxCollider.size = new Vector2
-                    (
-                        boxCollider.size.x * 2.3f,
-                        boxCollider.size.y
-                    );
+                    else
+                    {
+                        animator.SetBool("Walking", false);
+                        animator.SetBool("Taking selfie", true);
+                        state = State.Selfie;
+                    }
                 }
             }
 
@@ -152,6 +148,8 @@ public class EnemyOrgulhoController : MonoBehaviour
     private bool IsBelowPlatform()
     {
         RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, Vector2.up, 2.7f, environmentLayer);
+
+        Debug.DrawRay(transform.position, Vector3.up * 2.7f, Color.cyan, 100f);
 
         if (hit.collider != null)
         {
