@@ -126,7 +126,7 @@ public class InfiniteWorld : MonoBehaviour
         currentCityEndPos += new Vector3(igrejaWidth + 0.68f * 2, 0, 0);
 
         // Cria prédios ao lado da igreja (segmento inicial)
-        instance = Instantiate(segmentoInicial, segmentoInicial.position + currentCityEndPos + new Vector3(9.5f, 0.37f),
+        instance = Instantiate(segmentoInicial, segmentoInicial.position + currentCityEndPos + new Vector3(9.5f, /*0.37f*/1.51f),
             new Quaternion(0, 0, 0, 0), this.transform);
         instance.gameObject.SetActive(true);
     }
