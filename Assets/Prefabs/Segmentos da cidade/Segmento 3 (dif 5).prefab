@@ -404,7 +404,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4478550066390354}
-  - component: {fileID: 50656395671414108}
   - component: {fileID: 61802964408910912}
   - component: {fileID: 251364623879784140}
   - component: {fileID: 61643912954211466}
@@ -2019,7 +2018,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4581813389653890}
-  - component: {fileID: 50898114508985318}
   - component: {fileID: 61584799132486674}
   - component: {fileID: 251579869501867276}
   m_Layer: 8
@@ -4005,7 +4003,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4770419029502316}
-  - component: {fileID: 50147668152060004}
   - component: {fileID: 61955872953346474}
   - component: {fileID: 251878948658889684}
   - component: {fileID: 61083640719272836}
@@ -4587,7 +4584,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4766948749894250}
-  - component: {fileID: 50394431679317494}
   - component: {fileID: 61408711290852864}
   - component: {fileID: 251415150238101930}
   - component: {fileID: 61774635330429206}
@@ -13765,26 +13761,6 @@ Transform:
   m_Father: {fileID: 4466079355264950}
   m_RootOrder: 45
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50147668152060004
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1587444409968920}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!50 &50180680273211210
 Rigidbody2D:
   serializedVersion: 4
@@ -13872,26 +13848,6 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1811606280331042}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!50 &50394431679317494
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1670972483453094}
   m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -14005,26 +13961,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!50 &50656395671414108
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1063279400515278}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!50 &50662928319744316
 Rigidbody2D:
   serializedVersion: 4
@@ -14092,26 +14028,6 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1706470589672184}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!50 &50898114508985318
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1318548809671294}
   m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0

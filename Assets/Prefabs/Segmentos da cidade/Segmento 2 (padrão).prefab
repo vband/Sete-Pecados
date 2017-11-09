@@ -169,7 +169,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4337211847010622}
-  - component: {fileID: 50837984869391914}
   - component: {fileID: 61016497529398376}
   - component: {fileID: 61449943439025148}
   - component: {fileID: 251150348903523534}
@@ -2146,7 +2145,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4113032290184196}
-  - component: {fileID: 50817957528329962}
   - component: {fileID: 61251875805388692}
   - component: {fileID: 251471425835561598}
   - component: {fileID: 212876373157081610}
@@ -2349,7 +2347,6 @@ GameObject:
   - component: {fileID: 4028888414807626}
   - component: {fileID: 61075311293105066}
   - component: {fileID: 251298595485988672}
-  - component: {fileID: 50445547008104388}
   m_Layer: 8
   m_Name: PontoOnibus
   m_TagString: Untagged
@@ -3300,7 +3297,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4748996495341834}
-  - component: {fileID: 50330975556839384}
   - component: {fileID: 61478544328881500}
   - component: {fileID: 61158320332594612}
   - component: {fileID: 61289212882470732}
@@ -3580,7 +3576,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4518880774531836}
-  - component: {fileID: 50476604249652856}
   - component: {fileID: 61489661500108400}
   - component: {fileID: 251337593437282652}
   m_Layer: 8
@@ -6973,26 +6968,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!50 &50330975556839384
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1907172971121178}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!50 &50335987751408182
 Rigidbody2D:
   serializedVersion: 4
@@ -7013,46 +6988,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!50 &50445547008104388
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1657468907554366}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!50 &50476604249652856
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1971924426147562}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!50 &50705332370874542
 Rigidbody2D:
   serializedVersion: 4
@@ -7060,46 +6995,6 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1880229506447464}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!50 &50817957528329962
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1607586205924996}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!50 &50837984869391914
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1030675280587370}
   m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
