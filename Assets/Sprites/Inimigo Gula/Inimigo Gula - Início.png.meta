@@ -1,0 +1,240 @@
+fileFormatVersion: 2
+guid: b18c1b7ce83696a459087137deae1c95
+timeCreated: 1511479360
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: "Inimigo Gula - Tempor\xE1rio_0"
+    21300002: "Inimigo Gula - Tempor\xE1rio_1"
+    21300004: "Inimigo Gula - Tempor\xE1rio_2"
+    21300006: "Inimigo Gula - Tempor\xE1rio_3"
+    21300008: "Inimigo Gula - Tempor\xE1rio_4"
+    21300010: "Inimigo Gula - Tempor\xE1rio_5"
+    21300012: "Inimigo Gula - Tempor\xE1rio_6"
+    21300014: "Inimigo Gula - Tempor\xE1rio_7"
+    21300016: "Inimigo Gula - Tempor\xE1rio_8"
+    21300018: "Inimigo Gula - Tempor\xE1rio_9"
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "Inimigo Gula - Tempor\xE1rio_0"
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 476
+        width: 65
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Inimigo Gula - Tempor\xE1rio_1"
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 476
+        width: 65
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Inimigo Gula - Tempor\xE1rio_2"
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 477
+        width: 65
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Inimigo Gula - Tempor\xE1rio_3"
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 473
+        width: 65
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Inimigo Gula - Tempor\xE1rio_4"
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 471
+        width: 65
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Inimigo Gula - Tempor\xE1rio_5"
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 369
+        width: 75
+        height: 74
+      alignment: 9
+      pivot: {x: 0.5647255, y: 0.565}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Inimigo Gula - Tempor\xE1rio_6"
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 336
+        width: 75
+        height: 106
+      alignment: 9
+      pivot: {x: 0.5647255, y: 0.696}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Inimigo Gula - Tempor\xE1rio_7"
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 314
+        width: 76
+        height: 128
+      alignment: 9
+      pivot: {x: 0.57, y: 0.748}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Inimigo Gula - Tempor\xE1rio_8"
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 278
+        width: 77
+        height: 159
+      alignment: 9
+      pivot: {x: 0.575, y: 0.798}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Inimigo Gula - Tempor\xE1rio_9"
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 247
+        width: 75
+        height: 188
+      alignment: 9
+      pivot: {x: 0.5647255, y: 0.829}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
