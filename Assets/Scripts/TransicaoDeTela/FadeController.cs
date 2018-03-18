@@ -11,7 +11,7 @@ public class FadeController : MonoBehaviour {
     [HideInInspector] public bool EmTransicao = false;
     private bool enemyColision = false;
     private GameObject Player;
-    private GameObject cam;
+    public GameObject cam;
     public GameObject circleImage;
     public static Color IRA, GULA, PREGUICA, GANANCIA, LUXURIA, INVEJA, SOBERBA, PADRAO, BRANCO;
     //vermelho, laranja, azul, amarelo, rosa, verde, purpura
@@ -24,7 +24,7 @@ public class FadeController : MonoBehaviour {
     private void Start()
     {
         Player = GameObject.Find("Player");
-        cam = GameObject.Find("Main Camera");
+        //cam = GameObject.Find("Main Camera");
         SetColor(PADRAO);
     }
 
