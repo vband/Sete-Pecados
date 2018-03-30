@@ -5,6 +5,8 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class ObsceneImageEffect : MonoBehaviour {
 
+    public Camera PlatformCamera;
+
 	[Range(64.0f, 512.0f)] public float BlockCount = 64;
 
 	[SerializeField]
@@ -21,7 +23,7 @@ public class ObsceneImageEffect : MonoBehaviour {
 
 	void OnRenderImage(RenderTexture src, RenderTexture dst)
 	{
-		float k = Camera.main.aspect;
+		float k = PlatformCamera.aspect;
 		Vector2 count = new Vector2(BlockCount, BlockCount/k);
 		Vector2 size = new Vector2(1.0f/count.x, 1.0f/count.y);
 		_effectMaterial.SetVector("BlockCount", count);
