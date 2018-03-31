@@ -128,6 +128,8 @@ SpriteRenderer:
   m_Size: {x: 0.09, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!251 &251209699368457326
 PlatformEffector2D:
   m_ObjectHideFlags: 1
@@ -138,7 +140,7 @@ PlatformEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294836223
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0

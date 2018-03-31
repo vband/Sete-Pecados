@@ -23,7 +23,7 @@ public class ObjectMaskCamera : MonoBehaviour {
 
 	void GenerateRT()
 	{
-		_camera = GetComponent<Camera>();
+        _camera = GetComponent<Camera>();
 
         if (_camera.targetTexture != null)
         {
@@ -41,6 +41,6 @@ public class ObjectMaskCamera : MonoBehaviour {
 
 	void OnRenderImage(RenderTexture src, RenderTexture dest)
 	{
-		Graphics.Blit(src, _camera.targetTexture);
+        Graphics.Blit(src, _camera.targetTexture);
 	}
 }

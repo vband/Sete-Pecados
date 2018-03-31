@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114171440814282938}
   - component: {fileID: 61053757500442894}
   - component: {fileID: 50432830113998436}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: ObjetoObsceno
   m_TagString: EnemyLuxuria
   m_Icon: {fileID: 0}

@@ -9,7 +9,9 @@ public class ArremecavelController : MonoBehaviour {
     private Vector2 velocidade;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
-    private bool hasBeenSeen = false;
+    private float startTime;
+    private float timeToDespawn = 10f;
+
 
 
 	// Use this for initialization
@@ -19,19 +21,31 @@ public class ArremecavelController : MonoBehaviour {
         sr.color = RandomColor();
         velocidade = new Vector2(ArremecavelVelocity, 0);
         rb.AddTorque(10);
+        startTime = Time.time;
 	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-        if (!SceneController.paused)
-            rb.velocity = velocidade;
-        else
-            rb.velocity = Vector3.zero;
-        if (sr.isVisible && !hasBeenSeen)
-            hasBeenSeen = true;
 
-        if(!sr.isVisible && hasBeenSeen)
-            Destroy(this.gameObject);
+    private void Update()
+    {
+        if (Time.time - startTime >= timeToDespawn)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void FixedUpdate () {
+        if (!SceneController.paused)
+        {
+            rb.velocity = velocidade;
+            if (rb.angularVelocity == 0)
+            {
+                rb.AddTorque(10);
+            }
+        }
+        else
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = 0f;
+        }
 	}
 
     Color RandomColor()

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114192660153831474}
   - component: {fileID: 61326136333850112}
   - component: {fileID: 50208386679320656}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: ObjetoObscenoGreyScale
   m_TagString: EnemyLuxuria
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.03, y: 0.63}
+    oldSize: {x: 1.13, y: 0.73}
     newSize: {x: 0.73, y: 0.33}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
