@@ -5,7 +5,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class ObsceneImageEffect : MonoBehaviour {
 
-    public Camera PlatformCamera;
+    private Camera PlatformCamera;
 
 	[Range(64.0f, 512.0f)] public float BlockCount = 64;
 
@@ -15,15 +15,21 @@ public class ObsceneImageEffect : MonoBehaviour {
 	private Texture2D _noise; 
 	private Material _effectMaterial;
 
-	void OnEnable()
+    void OnEnable()
 	{
-		_effectMaterial = new Material(_effect);
-		_effectMaterial.SetTexture("_NoiseTex", _noise);
+        PlatformCamera = GetComponent<Camera>();
+        
+		
 	}
 
 	void OnRenderImage(RenderTexture src, RenderTexture dst)
 	{
-		float k = PlatformCamera.aspect;
+        //print(PlatformCamera.ToString());
+
+        _effectMaterial = new Material(_effect);
+        _effectMaterial.SetTexture("_NoiseTex", _noise);
+
+        float k = PlatformCamera.aspect;
 		Vector2 count = new Vector2(BlockCount, BlockCount/k);
 		Vector2 size = new Vector2(1.0f/count.x, 1.0f/count.y);
 		_effectMaterial.SetVector("BlockCount", count);

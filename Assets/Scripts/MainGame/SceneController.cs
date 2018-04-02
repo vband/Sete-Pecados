@@ -26,6 +26,7 @@ public class SceneController : MonoBehaviour
     public Button JogarDeNovo;
     public Text almasSalvasText;
     public RectTransform lowLivesWarning;
+    public ShaderReloader shaderReloader;
 
     private bool intro;
     private float playerInitPos, playerEndPos, deltaDistance;
@@ -365,9 +366,18 @@ public class SceneController : MonoBehaviour
         {
             // Determina que não é para mostrar a intro de novo
             introAnim.enabled = false;
+
+            // Recarrega o script do shader de censura
+            SendMessage(shaderReloader);
+
             // this must be a duplicate from a scene reload - DESTROY!
             Destroy(this.gameObject);
         }
+    }
+
+    private void SendMessage(ShaderReloader sr)
+    {
+        sr.OnGetMessage();
     }
 
     public void SpeedUpMusic(float Multiplier)
