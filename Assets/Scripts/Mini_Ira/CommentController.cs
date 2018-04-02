@@ -7,13 +7,15 @@ public class CommentController : MonoBehaviour
 {
     public bool isAggressive;
 
-	void Start () { }
-
-    void Update() { }
-
     public void SetComment(string c)
     {
         GetComponentInChildren<Text>().text = c;
+
+        int rand = Random.Range(0, GetComponentInParent<MinigameIraController>().Users.Count);
+        Sprite image = GetComponentInParent<MinigameIraController>().Users[rand];
+        GetComponentInParent<MinigameIraController>().Users.RemoveAt(rand);
+
+        GetComponent<Image>().sprite = image;
     }
 
     public void OnClick()

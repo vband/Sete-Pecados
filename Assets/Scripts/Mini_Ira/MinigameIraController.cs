@@ -15,8 +15,12 @@ public class MinigameIraController : MonoBehaviour
     public float maxTime;
     public Transform canvas;
     public Image timeBar;
+    [Space(5)]
+    public Sprite[] users;
+    [HideInInspector]
+    public List<Sprite> Users = new List<Sprite>();
 
-    private static int difficulty = 1;
+    private static int difficulty = 5;
 
     // Caminhos para os diretórios
     private string pathToAggressiveFolder;
@@ -32,6 +36,7 @@ public class MinigameIraController : MonoBehaviour
 
     void Start ()
     {
+        Users.AddRange(users);
         // Inicializa os caminhos para os diretórios
         float buttonHeight = commentPrefab.rect.height;
         pathToAggressiveFolder = "AggressiveComments";
