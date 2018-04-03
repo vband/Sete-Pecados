@@ -55,5 +55,9 @@ public class GameOverBehaviour : MonoBehaviour
         {
             GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("ModoMinigame_Transição");
         }
+        else if (GameMode.Mode == GameMode.GameModes.Endless)
+        {
+            GameObject.Find("FadeImage").GetComponent<FadeController>().CallFading("MainEndless");
+        }
     }
 }

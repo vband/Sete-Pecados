@@ -83,7 +83,7 @@ public class FadeController : MonoBehaviour {
         }
         else
         {
-            if(NextScene == "Main" && SceneManager.GetActiveScene().name != "MainMenu")
+            if((NextScene == "Main" || NextScene == "MainEndless") && SceneManager.GetActiveScene().name != "MainMenu")
                 SetColor(BRANCO);
 
             if (NextScene == "MainMenu" || NextScene == "GameOver")
