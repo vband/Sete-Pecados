@@ -56,7 +56,7 @@ public class MinigameIraController : MonoBehaviour
 
         for (int i = 0; i < total; i++)
         {
-            commentSlots.Add(commentPrefab.position.y + i * buttonHeight);
+            commentSlots.Add(commentPrefab.position.y - i * buttonHeight);
         }
 
         // Gera os comentários agressivos
