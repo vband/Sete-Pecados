@@ -4359,7 +4359,7 @@ GameObject:
   - component: {fileID: 2001869634}
   - component: {fileID: 2001869633}
   m_Layer: 0
-  m_Name: CCXP18
+  m_Name: "Corre, Irm\xE3o!"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4415,7 +4415,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: CCXP18
+  m_Text: "Corre, Irm\xE3o!"
 --- !u!222 &2001869634
 CanvasRenderer:
   m_ObjectHideFlags: 0
