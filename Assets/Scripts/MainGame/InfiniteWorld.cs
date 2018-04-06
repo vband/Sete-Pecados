@@ -107,8 +107,18 @@ public class InfiniteWorld : MonoBehaviour
 
     private void CreateChurch()
     {
+        // Cria prédios antes da igreja (segmento inicial), para evitar que os inimigos fiquem na frente da igreja
+        Transform instance = Instantiate(segmentoInicial,
+                                         segmentoInicial.position + currentCityEndPos + new Vector3(9.5f, 1.51f),
+                                         Quaternion.identity,
+                                         this.transform);
+        instance.gameObject.SetActive(true);
+
+        // Recalcuta o fim da cidade
+        currentCityEndPos = currentCityEndPos + Vector3.right * 21.17f;
+
         // Instancia a igreja
-        Transform instance = Instantiate(igrejaPrefab,
+        instance = Instantiate(igrejaPrefab,
             igrejaPrefab.position + new Vector3(currentCityEndPos.x, 0, 0),
             new Quaternion(0, 0, 0, 0),
             cenaPrincipal.transform);
