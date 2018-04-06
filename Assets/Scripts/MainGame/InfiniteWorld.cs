@@ -115,7 +115,7 @@ public class InfiniteWorld : MonoBehaviour
 
         // Reposiciona a igreja, para ficar certo
         float igrejaExtent = instance.GetComponent<BoxCollider2D>().bounds.extents.x;
-        instance.position = new Vector3 (instance.position.x + igrejaExtent + 0.68f, instance.position.y, instance.position.z);
+        instance.position = new Vector3 (instance.position.x + igrejaExtent + 0.68f, instance.position.y - 0.24f, instance.position.z);
         instance.GetComponent<IgrejaBehaviour>().cenaPrincipal = cenaPrincipal;
 
         // Nomeia o objeto
