@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class CameraMovement : MonoBehaviour
@@ -46,16 +47,16 @@ public class CameraMovement : MonoBehaviour
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemies"), LayerMask.NameToLayer("LeftCollider"));
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Environment"), LayerMask.NameToLayer("LeftCollider"));
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("PowerUps"), LayerMask.NameToLayer("LeftCollider"));
-        //Gera as cordenadas do mundo
-        cameraPos = Camera.main.transform.position;
+        //Gera as coordenadas do mundo
+        cameraPos = /*Camera.main.*/transform.position;
         screenSize.x = Vector2.Distance(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)), Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0))) * 0.5f;
         screenSize.y = Vector2.Distance(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)), Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height))) * 0.5f;
-        //modifica as cordanadas papa equivaler a extremidades   
+        //modifica as coordenadas para equivaler a extremidades
         leftCollider.localScale = new Vector3(colDepth, screenSize.y * 2, colDepth);
         leftCollider.position = new Vector3(cameraPos.x - screenSize.x - (leftCollider.localScale.x * 0.5f), cameraPos.y, zPosition);
 
         //limite direita
-        Limite_direita.transform.position = new Vector3(cameraPos.x + screenSize.x , cameraPos.y, zPosition);
+        Limite_direita.transform.position = new Vector3(cameraPos.x + screenSize.x, cameraPos.y, zPosition);
 
         yPosition = transform.position.y;
     }
@@ -84,10 +85,10 @@ public class CameraMovement : MonoBehaviour
     {
 
         // Variáveis locais
-        float actualCameraSpeed, playerPositionRelativeToCamera, t, speedModifier;
-        float defaultSpeedModifier = 1.15f;
-        float maxSpeedModifier = 3f;
-        float minSpeedModifier = 0.3f;
+        float actualCameraSpeed, playerPositionRelativeToCamera = 0f, t, speedModifier;
+        float defaultSpeedModifier = 38.3f;
+        float maxSpeedModifier = 240f;
+        float minSpeedModifier = 10f;
 
         // Se o jogador estiver à direita do centro da tela
         if (player.transform.position.x > transform.position.x)
@@ -125,8 +126,9 @@ public class CameraMovement : MonoBehaviour
 
         // Movimenta a câmera
         Vector2 pos = (Vector2) transform.position;
-        Vector2 speed = new Vector2(actualCameraSpeed, 0);
-        rb.MovePosition(pos + speed);
+        Vector2 speed = new Vector2(actualCameraSpeed * Time.deltaTime, 0);
+        //rb.MovePosition(pos + speed);
+        transform.position = new Vector3(transform.position.x + speed.x, transform.position.y + speed.y, transform.position.z);
     }
     
     void DisableListener()
