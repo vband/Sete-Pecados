@@ -1,17 +1,19 @@
-# ~~Sete-Pecados~~ CCXP18
-Jogo fantástico para o Processo Seletivo [GDP](http://www.gamedevproject.com.br/) 2017.1
+# Corre, Irmão!
+Jogo fantástico para o Processo Seletivo [GDP](http://gdpufrj.itch.io/) 2017.1
 
-O jogo foi originalmente desenvolvido ao longo de um período de seis semanas para ser apresentados como prova de trabalho para ingresso no Grupo de Desenvolvimento de Jogos ([GDP](http://www.gamedevproject.com.br/)). Um grupo de extensão associado ao Departamento de Ciência da Computação da UFRJ.
+O jogo foi originalmente desenvolvido ao longo de um período de seis semanas para ser apresentado como prova de trabalho para ingresso no grupo de extensão.
 
-O jogo Consiste em um jogo de plataforma que faz uso de minigames como micro combates. Como o tema selecionado para os jogos do processo seletivo era "Sete Pecados", todos os jogos tinham que, essencialmente, atender ao tema. O nosso jogo atende ao ter um inimigo representando cada pecado e um senhorzinho, a.k.a Falamaia que tem por objetivo atravessar uma cidade combatendo esses pecados e se esquivando de forma que não se torne um pecador.
+Depois do nosso ingresso na GDP, os envolvidos decidiram continuar com a produção do jogo, polindo-o até atingir a versão final.
 
-O nome do projeto e do jogo originalmente era Sete Pecados. Entretanto, esse nome era muito genérico e foi atualizado para CCXP18 que significa Comic Culto eXperience 2018. Esse nome faz uma brincadeira com o grande evento de revistas em quadrinho chamado Comic Con Experience ([CCXP](https://www.ccxp.com.br/)) e faz sentido no jogo, afinal, nosso querido Falamaia deseja chegar em um grande encontro de religiosos no centro da cidade grande!
+O jogo é do gênero plataforma e faz uso de minigames como micro combates. Como o tema selecionado para os jogos do processo seletivo era "Sete Pecados", todos os jogos tinham que, essencialmente, atender ao tema. O nosso jogo atende ao ter um inimigo representando cada pecado e um senhorzinho, a.k.a Falamaia que tem por objetivo atravessar uma cidade combatendo esses pecados e se esquivando de forma que não se torne um pecador.
+
+O nome do projeto e do jogo originalmente era Sete Pecados. Entretanto, esse nome era muito genérico e foi atualizado para Corre, Irmão!
 
 
-O jogo ainda está em produção e seu time de desenvolvimento tem como integrantes:
+O time de desenvolvimento tem como integrantes:
 * Programdores:
   * [Alonso Matos](https://github.com/sottam)
-  * [Vitor Barcelos](https://github.com/vband)
+  * [Vitor Barcelos](https://github.com/vband) (https://raycast.itch.io)
 * Artistas:
   * [Thomaz Cuber](https://github.com/tomazcuber)
 
